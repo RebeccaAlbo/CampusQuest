@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=3 uid="uid://lulw05as8mxr"]
+
+[ext_resource type="Texture2D" uid="uid://7txwbn474pm2" path="res://campus/Tilesets/Grass.png" id="1_ygy1f"]
+[ext_resource type="Texture2D" uid="uid://b0pm3ublqtyh1" path="res://player/sprites/ExamplePlayerSprite.png" id="2_0wybv"]
+[ext_resource type="Script" path="res://player/scripts/character_body_2d.gd" id="2_04op5"]
+[ext_resource type="Script" path="res://campus/script/tile_map.gd" id="2_xdm7a"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gvxf3"]
+texture = ExtResource("1_ygy1f")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xgapb"]
+sources/0 = SubResource("TileSetAtlasSource_gvxf3")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t3hsj"]
+radius = 30.0
+
+[node name="world" type="Node3D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_xgapb")
+format = 2
+script = ExtResource("2_xdm7a")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="TileMap"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("2_04op5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_t3hsj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("2_0wybv")
+hframes = 21

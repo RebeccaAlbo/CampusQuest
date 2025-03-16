@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://lulw05as8mxr"]
+
+[ext_resource type="PackedScene" uid="uid://b4avan405l84w" path="res://minimal3D/minimal3d.blend" id="3_m8u5f"]
+[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addon/proto_controller/proto_controller.tscn" id="4_is3ju"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m8u5f"]
+size = Vector3(1000, 2, 1000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wt17y"]
+albedo_color = Color(0.515052, 0.27974, 0.123088, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_m8u5f"]
+material = SubResource("StandardMaterial3D_wt17y")
+size = Vector2(1000, 1000)
+
+[node name="world" type="Node3D"]
+
+[node name="minimal3d" parent="." instance=ExtResource("3_m8u5f")]
+
+[node name="ProtoController" parent="." instance=ExtResource("4_is3ju")]
+transform = Transform3D(-7.84369, 0, 6.24586, 0, 10.0267, 0, -6.24586, 0, -7.84369, -54.4261, 0, 0)
+can_jump = false
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_wt17y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_m8u5f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_m8u5f")
