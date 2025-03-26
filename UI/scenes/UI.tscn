@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq8tdhh7ogese"]
+
+[ext_resource type="Script" uid="uid://bufn1qeaygwxe" path="res://UI/scripts/UImanager.gd" id="1_dm5n8"]
+[ext_resource type="PackedScene" uid="uid://dg5bqncln4h4m" path="res://UI/joystick/scenes/touch_controls.tscn" id="2_qw5j8"]
+
+[node name="Manager" type="Node"]
+script = ExtResource("1_dm5n8")
+
+[node name="Dialog" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="Dialog"]
+layout_mode = 0
+offset_right = 293.0
+offset_bottom = 137.0
+theme_override_font_sizes/font_size = 100
+
+[node name="TouchControls" parent="Dialog" instance=ExtResource("2_qw5j8")]
