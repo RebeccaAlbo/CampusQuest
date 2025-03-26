@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bs72ogkvdd7d6"]
 
-[ext_resource type="Script" uid="uid://bn1qm5i3d4wnx" path="res://addon/proto_controller/proto_controller.gd" id="1_b2uk8"]
+[ext_resource type="Script" uid="uid://bbmos805r8h46" path="res://addon/proto_controller/touch_controller.gd" id="1_ulwue"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://campus/dialog.tscn" id="2_ulwue"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
@@ -16,7 +16,7 @@ height = 1.8
 
 [node name="ProtoController" type="CharacterBody3D"]
 collision_layer = 2
-script = ExtResource("1_b2uk8")
+script = ExtResource("1_ulwue")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)

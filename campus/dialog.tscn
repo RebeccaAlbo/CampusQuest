@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq8tdhh7ogese"]
+
+[ext_resource type="Script" uid="uid://bufn1qeaygwxe" path="res://campus/dialog.gd" id="1_dm5n8"]
+
+[node name="Manager" type="Node"]
+script = ExtResource("1_dm5n8")
+
+[node name="Dialog" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Dialog"]
+offset_right = 293.0
+offset_bottom = 137.0
+theme_override_font_sizes/font_size = 100
