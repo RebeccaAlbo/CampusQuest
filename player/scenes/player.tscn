@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bs72ogkvdd7d6"]
 
-[ext_resource type="Script" uid="uid://bbmos805r8h46" path="res://player/scripts/touch_controller.gd" id="1_8h4do"]
+[ext_resource type="Script" path="res://player/scripts/touch_controller.gd" id="1_8h4do"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/scenes/UI.tscn" id="2_ulwue"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
