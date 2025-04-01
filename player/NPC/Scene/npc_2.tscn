@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6qp18idoxerc"]
+
+[ext_resource type="PackedScene" uid="uid://k5dd5uckx44s" path="res://player/NPC/NPC2.glb" id="1_o6teh"]
+[ext_resource type="Script" path="res://player/NPC/Scene/npc_2.gd" id="2_8ywec"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_52a2v"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0mlxc"]
+radius = 5.0
+
+[node name="NPC2" instance=ExtResource("1_o6teh")]
+collision_layer = 3
+script = ExtResource("2_8ywec")
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(1.118e-09, 0.648981, -2.09605e-09)
+bones/3/position = Vector3(0.0587525, 0.186503, 0.000915303)
+bones/3/rotation = Quaternion(-0.0137341, -0.0191066, -0.811765, 0.58351)
+bones/4/rotation = Quaternion(-0.0362898, 0.0128226, -0.332907, 0.942174)
+bones/5/rotation = Quaternion(0.0712842, 0.000848592, -0.223144, 0.972175)
+bones/6/rotation = Quaternion(-0.198948, -0.0290447, 0.00706617, 0.979554)
+bones/7/rotation = Quaternion(0.0639171, 0.0194365, -0.144877, 0.987192)
+bones/8/rotation = Quaternion(0.0857772, 0.0187153, -0.179476, 0.979837)
+bones/9/rotation = Quaternion(-0.0936894, 0.0226847, 0.0141097, 0.995243)
+bones/10/rotation = Quaternion(0.0419097, 0.0304843, -0.0888326, 0.994697)
+bones/11/rotation = Quaternion(0.10345, -0.0148142, -0.308603, 0.945433)
+bones/12/rotation = Quaternion(-0.00534417, 0.000375838, 0.0296276, 0.999547)
+bones/13/rotation = Quaternion(0.00739822, 0.00775215, -0.150644, 0.98853)
+bones/14/rotation = Quaternion(-0.00985046, 0.0139382, -0.253063, 0.967299)
+bones/15/rotation = Quaternion(0.112314, -0.000103831, 0.0135002, 0.993581)
+bones/16/rotation = Quaternion(-0.0975945, 0.000883556, -0.0340599, 0.994643)
+bones/17/rotation = Quaternion(0.0803981, -0.011344, -0.330717, 0.940231)
+bones/18/rotation = Quaternion(0.310948, -0.0143828, 0.102768, 0.944745)
+bones/19/rotation = Quaternion(0.0179618, 0.00278789, -0.0561577, 0.998256)
+bones/20/rotation = Quaternion(-0.00990386, 0.014878, -0.0363638, 0.999179)
+bones/21/position = Vector3(-0.0585034, 0.185767, 0.000949972)
+bones/21/rotation = Quaternion(-0.0136138, 0.0191926, 0.815416, 0.578396)
+bones/22/rotation = Quaternion(-0.0360134, -0.0135793, 0.352553, 0.935)
+bones/23/rotation = Quaternion(0.071137, -0.000881364, 0.231761, 0.970168)
+bones/25/rotation = Quaternion(0.0600533, 0.00776483, 0.0722812, 0.995544)
+bones/26/rotation = Quaternion(0.0750214, 0.0223695, -0.0675713, 0.994638)
+bones/28/rotation = Quaternion(0.02616, -0.0172562, 0.0136693, 0.999415)
+bones/29/rotation = Quaternion(0.0525699, 0.029329, 0.0683638, 0.995843)
+bones/31/rotation = Quaternion(-0.00408091, -0.00538477, 0.0739522, 0.997239)
+bones/32/rotation = Quaternion(-0.0577257, -0.00209445, 0.00880429, 0.998291)
+bones/34/rotation = Quaternion(-0.108689, -0.0095364, -0.0427158, 0.993112)
+bones/35/rotation = Quaternion(0.0350156, -0.011413, 0.0910092, 0.995169)
+bones/37/rotation = Quaternion(0.0179618, -0.00278787, 0.0561577, 0.998256)
+bones/38/rotation = Quaternion(-0.00990392, -0.014878, 0.0363639, 0.999179)
+bones/40/rotation = Quaternion(4.85829e-14, 7.27595e-12, 3.28782e-10, 1)
+bones/41/rotation = Quaternion(0.884629, -3.00875e-11, -0.000130765, 0.466296)
+bones/42/rotation = Quaternion(0.748984, -3.65755e-11, -0.000110714, 0.662589)
+bones/44/rotation = Quaternion(0.00881227, 0.188982, 0.980222, -0.0580863)
+bones/45/rotation = Quaternion(-0.38815, 0.00280769, -0.0474852, 0.920368)
+bones/46/rotation = Quaternion(0.777256, 0.0162609, -0.00514265, 0.628953)
+bones/47/rotation = Quaternion(-0.00999572, 0.188925, 0.980805, 0.0472133)
+bones/48/rotation = Quaternion(-0.388149, -0.00280777, 0.0474849, 0.920368)
+bones/49/rotation = Quaternion(0.777256, -0.0162603, 0.00514271, 0.628953)
+bones/51/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
+bones/53/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_52a2v")
+
+[node name="chat_detection_area" type="Area3D" parent="." index="3"]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="chat_detection_area" index="0"]
+shape = SubResource("SphereShape3D_0mlxc")
+
+[connection signal="body_entered" from="chat_detection_area" to="." method="_on_chat_detection_area_body_entered"]
+[connection signal="body_exited" from="chat_detection_area" to="." method="_on_chat_detection_area_body_exited"]

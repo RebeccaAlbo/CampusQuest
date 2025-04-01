@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq4auqmr07dfa"
-path.s3tc="res://.godot/imported/newBase_ImphenziaPalette02-Emission.png-8cfe0c1c6842851602d4ec7646efdae1.s3tc.ctex"
+uid="uid://bxnq5y67duqcd"
+path.s3tc="res://.godot/imported/NPC2_ImphenziaPalette02-Albedo.png-314cbc3954cbd11f31794b2c2b806659.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "b91c7a31203d95be6f8759722a149935"
+"md5": "8054d6c07f76b78bb3c1833389977f29"
 }
 
 [deps]
 
-source_file="res://player/BaseCharacter/Color/newBase_ImphenziaPalette02-Emission.png"
-dest_files=["res://.godot/imported/newBase_ImphenziaPalette02-Emission.png-8cfe0c1c6842851602d4ec7646efdae1.s3tc.ctex"]
+source_file="res://player/NPC/NPC2_ImphenziaPalette02-Albedo.png"
+dest_files=["res://.godot/imported/NPC2_ImphenziaPalette02-Albedo.png-314cbc3954cbd11f31794b2c2b806659.s3tc.ctex"]
 
 [params]
 

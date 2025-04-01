@@ -5,11 +5,12 @@ extends CharacterBody3D
 @onready var spring_arm: SpringArm3D = $SpringArmPivot/SpringArm3D
 @onready var anim_tree: AnimationTree = $AnimationTree
 
-const SPEED = 20.0
+const SPEED = 30.0
 const LERP_VAL = .15
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	add_to_group("player")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quit"):

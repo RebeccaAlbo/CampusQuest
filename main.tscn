@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="PackedScene" uid="uid://b4avan405l84w" path="res://campus/sprites/minimal3D/minimal3d.blend" id="1_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://b64sojovtket6" path="res://UI/dialog/scenes/infoInteraction.tscn" id="3_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/scenes/UI.tscn" id="4_272bh"]
 [ext_resource type="PackedScene" uid="uid://chmkvv0nt5cvf" path="res://player/BaseCharacter/Scene/little_dude.tscn" id="5_cqup2"]
+[ext_resource type="PackedScene" uid="uid://c6qp18idoxerc" path="res://player/NPC/Scene/npc_2.tscn" id="5_i3608"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
 
@@ -42,11 +42,11 @@ environment = SubResource("Environment_wt17y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 95.0384, 0)
 light_energy = 0.0
 
-[node name="Interaction" parent="." instance=ExtResource("3_7mycd")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -13.47, 0, 39.47)
-
 [node name="Manager" parent="." instance=ExtResource("4_272bh")]
 
 [node name="LittleDude" parent="." instance=ExtResource("5_cqup2")]
-transform = Transform3D(7, 1.81179e-09, 4.88944e-09, -1.81179e-09, 7, -1.08654e-09, -4.88944e-09, 1.08654e-09, 7, -37.5071, -0.0998099, 1.06347)
+transform = Transform3D(7, 1.14187e-09, 5.58794e-09, -2.58979e-09, 7, -1.86265e-09, -5.58794e-09, 9.31323e-10, 7, -70.1274, -0.0771001, 1.02343)
 collision_layer = 2
+
+[node name="NPC2" parent="." instance=ExtResource("5_i3608")]
+transform = Transform3D(3.71447, 0.00486638, -5.93319, -0.00734262, 7, 0.00114454, 5.93318, 0.00561625, 3.71447, -20.322, 0.999943, 17.6811)

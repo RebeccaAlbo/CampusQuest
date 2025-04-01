@@ -20,25 +20,26 @@ blend_point_1/pos = 1.0
 min_space = 0.0
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_vb6gh"]
-graph_offset = Vector2(-26.1818, -9.9091)
+graph_offset = Vector2(-39.8182, 32)
 nodes/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_24idx")
 nodes/BlendSpace1D/position = Vector2(120, 100)
 nodes/output/position = Vector2(460, 160)
 node_connections = [&"output", 0, &"BlendSpace1D"]
 
 [node name="LittleDude" instance=ExtResource("1_whbc8")]
+collision_layer = 3
 script = ExtResource("2_boxm1")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-bones/0/position = Vector3(8.38138e-10, 0.66474, -5.31044e-09)
+bones/0/position = Vector3(1.07149e-09, 0.662391, -3.6701e-09)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/rotation = Quaternion(-0.101219, -0.000264807, 0.0135792, 0.994771)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/rotation = Quaternion(0.083879, 0.000415142, -0.0112401, 0.996412)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/position = Vector3(0.0586179, 0.207888, -9.19392e-05)
-bones/3/rotation = Quaternion(-0.0639435, 0.016563, -0.811062, 0.581219)
+bones/3/position = Vector3(0.0586386, 0.204599, 6.29813e-05)
+bones/3/rotation = Quaternion(-0.0561544, 0.0110223, -0.811374, 0.58172)
 bones/4/rotation = Quaternion(-0.0362898, 0.0128226, -0.332907, 0.942174)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(0.0712842, 0.000848592, -0.223144, 0.972175)
@@ -64,8 +65,8 @@ bones/18/rotation = Quaternion(0.310948, -0.0143828, 0.102768, 0.944745)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/rotation = Quaternion(0.0179618, 0.00278789, -0.0561577, 0.998256)
 bones/20/rotation = Quaternion(-0.00990386, 0.014878, -0.0363638, 0.999179)
-bones/21/position = Vector3(-0.0586379, 0.207152, -5.72697e-05)
-bones/21/rotation = Quaternion(-0.0552803, -0.0107962, 0.815046, 0.576652)
+bones/21/position = Vector3(-0.0586172, 0.203863, 9.76552e-05)
+bones/21/rotation = Quaternion(-0.0488134, -0.00613679, 0.815245, 0.577023)
 bones/22/rotation = Quaternion(-0.0360134, -0.0135793, 0.352553, 0.935)
 bones/22/scale = Vector3(1, 1, 1)
 bones/23/rotation = Quaternion(0.071137, -0.000881364, 0.231761, 0.970168)
@@ -96,14 +97,14 @@ bones/41/rotation = Quaternion(0.884629, -3.00875e-11, -0.000130765, 0.466296)
 bones/41/scale = Vector3(1, 1, 1)
 bones/42/rotation = Quaternion(0.748984, -3.65755e-11, -0.000110714, 0.662589)
 bones/43/rotation = Quaternion(0.705365, -3.07936e-11, -0.000104267, 0.708844)
-bones/44/rotation = Quaternion(0.00954834, 0.159415, 0.985724, -0.0533365)
+bones/44/rotation = Quaternion(0.0094243, 0.16437, 0.984868, -0.054117)
 bones/44/scale = Vector3(1, 1, 0.999999)
-bones/45/rotation = Quaternion(-0.32358, 0.00288395, -0.0395859, 0.945368)
-bones/46/rotation = Quaternion(0.752291, 0.012271, -0.00784444, 0.65867)
-bones/47/rotation = Quaternion(-0.0104041, 0.159347, 0.986256, 0.0424302)
+bones/45/rotation = Quaternion(-0.33455, 0.0028721, -0.0409279, 0.941485)
+bones/46/rotation = Quaternion(0.756497, 0.0129266, -0.00738345, 0.653827)
+bones/47/rotation = Quaternion(-0.0103349, 0.164304, 0.985408, 0.0432156)
 bones/47/scale = Vector3(1, 1, 0.999998)
-bones/48/rotation = Quaternion(-0.323578, -0.00288404, 0.0395856, 0.945369)
-bones/49/rotation = Quaternion(0.752291, -0.0122704, 0.00784446, 0.65867)
+bones/48/rotation = Quaternion(-0.334548, -0.00287219, 0.0409275, 0.941485)
+bones/49/rotation = Quaternion(0.756497, -0.012926, 0.00738348, 0.653827)
 bones/49/scale = Vector3(1, 1, 1)
 bones/51/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 bones/53/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
@@ -123,4 +124,4 @@ transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 
 [node name="AnimationTree" type="AnimationTree" parent="." index="4"]
 tree_root = SubResource("AnimationNodeBlendTree_vb6gh")
 anim_player = NodePath("../AnimationPlayer")
-parameters/BlendSpace1D/blend_position = 0
+parameters/BlendSpace1D/blend_position = 0.0
