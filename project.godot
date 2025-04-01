@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 window/size/viewport_width=1910
 window/size/viewport_height=1080
 window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 window/stretch/scale=0.5
 
 [input]
@@ -57,3 +58,4 @@ pointing/emulate_mouse_from_touch=false
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

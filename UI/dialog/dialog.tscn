@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b3pp1mo14w58u"]
+
+[node name="Dialog" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 293.0
+offset_bottom = 137.0
+theme_override_font_sizes/font_size = 100
