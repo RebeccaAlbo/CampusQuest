@@ -21,8 +21,8 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [display]
 
-window/size/viewport_width=1500
-window/size/viewport_height=1000
+window/size/viewport_width=1000
+window/size/viewport_height=550
 window/stretch/mode="viewport"
 window/stretch/scale=0.5
 
