@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=13 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="PackedScene" uid="uid://b4avan405l84w" path="res://campus/sprites/minimal3D/minimal3d.blend" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/scenes/UI.tscn" id="4_272bh"]
 [ext_resource type="PackedScene" uid="uid://chmkvv0nt5cvf" path="res://player/BaseCharacter/Scene/little_dude.tscn" id="5_cqup2"]
+[ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/NPC/Scene/actionable.tscn" id="5_gxv56"]
 [ext_resource type="PackedScene" uid="uid://c6qp18idoxerc" path="res://player/NPC/Scene/npc_2.tscn" id="5_i3608"]
+[ext_resource type="Resource" uid="uid://buvspf4fn04v1" path="res://Dialogue/main.dialogue" id="6_phau0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
 
@@ -18,6 +20,9 @@ material = SubResource("StandardMaterial3D_wt17y")
 size = Vector2(1000, 1000)
 
 [sub_resource type="Environment" id="Environment_wt17y"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ai5fp"]
+radius = 3.0
 
 [node name="world" type="Node3D"]
 transform = Transform3D(0.999999, -0.00069618, 0.00122757, 0.0006952, 0.999999, 0.000802319, -0.00122813, -0.000801468, 0.999999, 0, 0, 0)
@@ -45,8 +50,15 @@ light_energy = 0.0
 [node name="Manager" parent="." instance=ExtResource("4_272bh")]
 
 [node name="LittleDude" parent="." instance=ExtResource("5_cqup2")]
-transform = Transform3D(7, 1.14187e-09, 5.58794e-09, -2.58979e-09, 7, -1.86265e-09, -5.58794e-09, 9.31323e-10, 7, -70.1274, -0.0771001, 1.02343)
+transform = Transform3D(5, 1.84985e-09, 3.99139e-09, -1.84985e-09, 5, -6.65231e-10, -3.99139e-09, 6.65231e-10, 5, -70.1274, -0.0771001, 1.02343)
 collision_layer = 2
 
 [node name="NPC2" parent="." instance=ExtResource("5_i3608")]
-transform = Transform3D(3.71447, 0.00486638, -5.93319, -0.00734262, 7, 0.00114454, 5.93318, 0.00561625, 3.71447, -20.322, 0.999943, 17.6811)
+transform = Transform3D(2.65319, 0.00347599, -4.23799, -0.00524473, 5, 0.000817522, 4.23799, 0.00401161, 2.6532, -20.322, 0.999943, 17.6811)
+collision_mask = 2
+
+[node name="Actionable" parent="NPC2" instance=ExtResource("5_gxv56")]
+dialoque_resrouce = ExtResource("6_phau0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPC2/Actionable"]
+shape = SubResource("SphereShape3D_ai5fp")

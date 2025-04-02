@@ -4,6 +4,8 @@ extends CharacterBody3D
 @onready var spring_arm_pivot: Node3D = $SpringArmPivot
 @onready var spring_arm: SpringArm3D = $SpringArmPivot/SpringArm3D
 @onready var anim_tree: AnimationTree = $AnimationTree
+@onready var actionable_finder: Area3D = $Direction/ActionableFinder
+
 
 const SPEED = 30.0
 const LERP_VAL = .15
@@ -22,6 +24,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		spring_arm.rotate_x(-event.relative.y * .001)
 		# No infinite rotation
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/4, PI/4)
+		
+	if Input.is_action_just_pressed("chat"):
+		var actionables = actionable_finder.get_overlapping_areas()
+		if actionables.size() > 0:
+			actionables[0].action()
+			return
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
