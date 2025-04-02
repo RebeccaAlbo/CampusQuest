@@ -3,6 +3,7 @@ extends Area3D
 @export var dialoque_resrouce : DialogueResource
 @export var dialoque_start : String = "start"
 
+const Balloon = preload("res://Dialogue/balloon.tscn")
 # For zooming in on NPC during conversation
 var camera: Camera3D = null
 var spring_arm: SpringArm3D
@@ -31,7 +32,10 @@ func action() -> void:
 		var target_position = npc.global_transform.origin + zoom_offset
 		smooth_camera_zoom(target_position)
 	
-	DialogueManager.show_example_dialogue_balloon(dialoque_resrouce, dialoque_start)
+	var balloon: Node = Balloon.instantiate()
+	get_tree().current_scene.add_child(balloon)
+	balloon.start(dialoque_resrouce, dialoque_start)
+	
 	
 	await DialogueManager.dialogue_ended
 	reset_camera_position()
@@ -48,6 +52,7 @@ func smooth_camera_zoom(target_pos: Vector3) -> void:
 		tween.tween_property(spring_arm, "global_transform:origin", target_pos, 0.7).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 func reset_camera_position() -> void:
+		spring_arm.spring_length = original_spring_arm_length
 		if camera:
 			var tween = get_tree().create_tween()
 			tween.tween_property(spring_arm, "global_transform:origin", initial_camera_pos, 0.7).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
