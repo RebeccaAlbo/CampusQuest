@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=11 format=3 uid="uid://lulw05as8mxr"]
 
+[ext_resource type="Script" uid="uid://bn1qm5i3d4wnx" path="res://player/scripts/proto_controller.gd" id="2_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://player/player.tscn" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://b64sojovtket6" path="res://campus/infoInteraction.tscn" id="3_7mycd"]
-[ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/sprites/johanneberg.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/UI.tscn" id="4_272bh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
@@ -11,7 +12,7 @@
 size = Vector3(10000, 2, 10000)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wt17y"]
-albedo_color = Color(0.814744, 0.477324, 0.260621, 1)
+albedo_color = Color(0.476423, 0.557368, 0.0688423, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_m8u5f"]
 material = SubResource("StandardMaterial3D_wt17y")
@@ -22,12 +23,24 @@ background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
 
 [node name="world" type="Node3D"]
-transform = Transform3D(0.999999, -0.00069618, 0.00122757, 0.0006952, 0.999999, 0.000802319, -0.00122813, -0.000801468, 0.999999, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="player" parent="." instance=ExtResource("2_lquwl")]
 transform = Transform3D(-7.66044, -5.62068e-10, 6.42788, 1.86265e-09, 10, 4.65661e-10, -6.42788, 0, -7.66044, -185, 0.128794, -0.227101)
+script = ExtResource("2_7mycd")
+can_jump = true
+can_sprint = false
+can_freefly = false
+look_speed = 0.002
+jump_velocity = 4.5
+sprint_speed = null
+freefly_speed = 25.0
+input_jump = "ui_accept"
+input_sprint = "sprint"
+input_freefly = "freefly"
 
 [node name="ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 physics_material_override = SubResource("PhysicsMaterial_wt17y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
@@ -52,3 +65,5 @@ transform = Transform3D(10, -1.95905e-09, 2.79397e-09, 8.22183e-10, 10, -1.86265
 
 [node name="johanneberg" parent="." instance=ExtResource("4_1bvp3")]
 transform = Transform3D(0.999999, 0.000695196, -0.00122813, -0.000696185, 1, -0.000801465, 0.00122757, 0.000802323, 0.999999, 0, 0, 0)
+
+[connection signal="ready" from="." to="." method="_on_ready"]
