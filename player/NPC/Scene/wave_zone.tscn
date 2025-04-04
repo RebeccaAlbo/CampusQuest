@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://emdkw05ycyav"]
+
+[ext_resource type="Script" path="res://wave_zone.gd" id="1_02ajn"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ur86w"]
+radius = 6.0
+
+[node name="wave_zone" type="Area3D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_02ajn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ur86w")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

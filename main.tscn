@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=15 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="PackedScene" uid="uid://b4avan405l84w" path="res://campus/sprites/minimal3D/minimal3d.blend" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/scenes/UI.tscn" id="4_272bh"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/NPC/Scene/actionable.tscn" id="5_gxv56"]
 [ext_resource type="PackedScene" uid="uid://c6qp18idoxerc" path="res://player/NPC/Scene/npc_2.tscn" id="5_i3608"]
 [ext_resource type="Resource" uid="uid://buvspf4fn04v1" path="res://Dialogue/main.dialogue" id="6_phau0"]
+[ext_resource type="PackedScene" uid="uid://emdkw05ycyav" path="res://player/NPC/Scene/wave_zone.tscn" id="7_vm0tp"]
 [ext_resource type="PackedScene" uid="uid://dbn7fmsdl1yi8" path="res://player/NPC/Scene/computer.tscn" id="7_ynxga"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
@@ -52,7 +53,6 @@ light_energy = 0.0
 
 [node name="LittleDude" parent="." instance=ExtResource("5_cqup2")]
 transform = Transform3D(5, 1.58116e-09, 4.19095e-09, -1.91631e-09, 5, -9.31323e-10, -4.65661e-09, 4.65661e-10, 5, -70.1374, -0.0836409, 9.18452)
-collision_layer = 2
 
 [node name="architecture" parent="." instance=ExtResource("5_i3608")]
 transform = Transform3D(2.65319, 0.00347599, -4.23799, -0.00524473, 5, 0.000817522, 4.23799, 0.00401161, 2.6532, -20.322, 0.999943, 17.6811)
@@ -61,8 +61,7 @@ collision_mask = 2
 [node name="Actionable" parent="architecture" instance=ExtResource("5_gxv56")]
 dialoque_resrouce = ExtResource("6_phau0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="architecture/Actionable"]
-shape = SubResource("SphereShape3D_ai5fp")
+[node name="wave_zone" parent="architecture" instance=ExtResource("7_vm0tp")]
 
 [node name="computer" parent="." instance=ExtResource("7_ynxga")]
 transform = Transform3D(5, 0.003476, -0.00614065, -0.00348092, 5, -0.00400734, 0.00613786, 0.00401161, 5, -72.5724, -1.67638e-08, -27.6525)
@@ -72,3 +71,5 @@ dialoque_resrouce = ExtResource("6_phau0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="computer/Actionable"]
 shape = SubResource("SphereShape3D_ai5fp")
+
+[node name="wave_zone" parent="computer" instance=ExtResource("7_vm0tp")]

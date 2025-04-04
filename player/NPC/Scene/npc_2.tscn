@@ -1,34 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c6qp18idoxerc"]
 
 [ext_resource type="PackedScene" uid="uid://k5dd5uckx44s" path="res://player/NPC/NPC2.glb" id="1_o6teh"]
-
-[sub_resource type="GDScript" id="GDScript_hdxi4"]
-script/source = "extends CharacterBody3D
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-
-const SPEED = 15
-
-var player
-var player_in_chat_zone = false
-
-func _ready():
-	animation(\"Idle\", 0.3)
-
-func _on_chat_detection_area_body_entered(body: Node3D) -> void:
-	if body.is_in_group(\"player\"):
-		player = body
-		player_in_chat_zone = true
-		animation(\"Waving\", 0.3)
-
-
-func _on_chat_detection_area_body_exited(body: Node3D) -> void:
-	if body.is_in_group(\"player\"):
-		player_in_chat_zone = false
-		animation(\"Idle\", 0.3)
-		
-func animation(animation : String, time : float):
-	animation_player.play(animation, time)
-"
+[ext_resource type="Script" path="res://player/NPC/Scene/npc_2.gd" id="2_bbvw3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_52a2v"]
 
@@ -37,7 +10,7 @@ radius = 5.0
 
 [node name="NPC2" instance=ExtResource("1_o6teh")]
 collision_layer = 3
-script = SubResource("GDScript_hdxi4")
+script = ExtResource("2_bbvw3")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 bones/0/position = Vector3(1.118e-09, 0.648981, -2.09605e-09)
