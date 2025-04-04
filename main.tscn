@@ -53,12 +53,12 @@ light_energy = 0.0
 transform = Transform3D(5, 1.84985e-09, 3.99139e-09, -1.84985e-09, 5, -6.65231e-10, -3.99139e-09, 6.65231e-10, 5, -70.1274, -0.0771001, 1.02343)
 collision_layer = 2
 
-[node name="NPC2" parent="." instance=ExtResource("5_i3608")]
+[node name="architecture" parent="." instance=ExtResource("5_i3608")]
 transform = Transform3D(2.65319, 0.00347599, -4.23799, -0.00524473, 5, 0.000817522, 4.23799, 0.00401161, 2.6532, -20.322, 0.999943, 17.6811)
 collision_mask = 2
 
-[node name="Actionable" parent="NPC2" instance=ExtResource("5_gxv56")]
+[node name="Actionable" parent="architecture" instance=ExtResource("5_gxv56")]
 dialoque_resrouce = ExtResource("6_phau0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NPC2/Actionable"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="architecture/Actionable"]
 shape = SubResource("SphereShape3D_ai5fp")

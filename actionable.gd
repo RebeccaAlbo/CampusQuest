@@ -1,7 +1,7 @@
 extends Area3D
 
 @export var dialoque_resrouce : DialogueResource
-@export var dialoque_start : String = "start"
+@export var dialoque_start : String = ""
 
 const Balloon = preload("res://Dialogue/balloon.tscn")
 # For zooming in on NPC during conversation
@@ -12,10 +12,19 @@ var zoom_offset: Vector3 = Vector3(0, 1, 1)  # Adjust zoom position
 var initial_camera_pos: Vector3
 var original_spring_arm_length: float
 
+var npc
+var department: String
+
+func _ready():
+	npc = get_parent()
+	if npc:
+		department = npc.name
+		if dialoque_start == "":
+			dialoque_start = department
+		
+
 func action() -> void:
-	var npc = get_parent()
-	npc.animation("Talking", 0.3)
-	
+		
 	#Find the camera
 	if camera == null:
 		var player = get_tree().get_first_node_in_group("player")
@@ -32,12 +41,14 @@ func action() -> void:
 		var target_position = npc.global_transform.origin + zoom_offset
 		smooth_camera_zoom(target_position)
 	
+	npc.animation("Talking", 0.3)
 	var balloon: Node = Balloon.instantiate()
 	get_tree().current_scene.add_child(balloon)
 	balloon.start(dialoque_resrouce, dialoque_start)
 	
 	
 	await DialogueManager.dialogue_ended
+	npc.animation("Idle", 0.3)
 	reset_camera_position()
 
 
