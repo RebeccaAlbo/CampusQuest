@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b64sojovtket6"]
 
-[ext_resource type="Script" uid="uid://b6lfe8wv3vv2d" path="res://campus/info_interaction.gd" id="1_hmi1s"]
+[ext_resource type="Script" path="res://campus/info_interaction.gd" id="1_hmi1s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hmi1s"]
 
