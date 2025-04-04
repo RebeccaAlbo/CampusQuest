@@ -5,3 +5,5 @@
 [node name="Actionable" type="Area3D"]
 collision_layer = 16
 script = ExtResource("1_fnklc")
+
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

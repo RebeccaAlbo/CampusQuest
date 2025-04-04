@@ -12,6 +12,7 @@ var zoom_offset: Vector3 = Vector3(0, 1, 1)  # Adjust zoom position
 var initial_camera_pos: Vector3
 var original_spring_arm_length: float
 
+var player
 var npc
 var department: String
 
@@ -27,7 +28,7 @@ func action() -> void:
 		
 	#Find the camera
 	if camera == null:
-		var player = get_tree().get_first_node_in_group("player")
+		player = get_tree().get_first_node_in_group("player")
 		if player:
 			var node3d = player.get_node_or_null("SpringArmPivot")
 			if node3d:
@@ -41,14 +42,19 @@ func action() -> void:
 		var target_position = npc.global_transform.origin + zoom_offset
 		smooth_camera_zoom(target_position)
 	
+	# Set up for dialoque envoronment
+	player.in_dialogue()
+	npc.face_toward(player)
 	npc.animation("Talking", 0.3)
 	var balloon: Node = Balloon.instantiate()
 	get_tree().current_scene.add_child(balloon)
 	balloon.start(dialoque_resrouce, dialoque_start)
 	
-	
+	# Wait for end of dialogue, then reset everything
 	await DialogueManager.dialogue_ended
+	player.end_dialoque()
 	npc.animation("Idle", 0.3)
+	npc.face_back()
 	reset_camera_position()
 
 

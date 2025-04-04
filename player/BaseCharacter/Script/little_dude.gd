@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var armature: Node3D = $Armature
 @onready var spring_arm_pivot: Node3D = $SpringArmPivot
 @onready var spring_arm: SpringArm3D = $SpringArmPivot/SpringArm3D
@@ -9,6 +10,8 @@ extends CharacterBody3D
 
 const SPEED = 30.0
 const LERP_VAL = .15
+
+var can_move: bool = true
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -32,6 +35,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			return
 
 func _physics_process(delta: float) -> void:
+	if !can_move:
+		return
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -53,3 +59,11 @@ func _physics_process(delta: float) -> void:
 	anim_tree.set("parameters/BlendSpace1D/blend_position", velocity.length() / SPEED)
 
 	move_and_slide()
+	
+func in_dialogue():
+	velocity = Vector3.ZERO
+	anim_tree.set("parameters/BlendSpace1D/blend_position", 0.0)
+	can_move = false
+	
+func end_dialoque():
+	can_move = true

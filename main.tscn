@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=16 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="PackedScene" uid="uid://b4avan405l84w" path="res://campus/sprites/minimal3D/minimal3d.blend" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/scenes/UI.tscn" id="4_272bh"]
@@ -22,6 +22,9 @@ material = SubResource("StandardMaterial3D_wt17y")
 size = Vector2(1000, 1000)
 
 [sub_resource type="Environment" id="Environment_wt17y"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hjsum"]
+radius = 3.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ai5fp"]
 radius = 3.0
@@ -60,6 +63,9 @@ collision_mask = 2
 
 [node name="Actionable" parent="architecture" instance=ExtResource("5_gxv56")]
 dialoque_resrouce = ExtResource("6_phau0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="architecture/Actionable"]
+shape = SubResource("SphereShape3D_hjsum")
 
 [node name="wave_zone" parent="architecture" instance=ExtResource("7_vm0tp")]
 
