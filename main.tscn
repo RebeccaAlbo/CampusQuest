@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=12 format=3 uid="uid://lulw05as8mxr"]
 
+[ext_resource type="Script" uid="uid://bh7js3jr6402m" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="Script" uid="uid://bn1qm5i3d4wnx" path="res://player/scripts/proto_controller.gd" id="2_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://player/player.tscn" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://b64sojovtket6" path="res://campus/infoInteraction.tscn" id="3_7mycd"]
@@ -23,7 +24,7 @@ background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
 
 [node name="world" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_7mycd")
 
 [node name="player" parent="." instance=ExtResource("2_lquwl")]
 transform = Transform3D(-7.66044, -5.62068e-10, 6.42788, 1.86265e-09, 10, 4.65661e-10, -6.42788, 0, -7.66044, -185, 0.128794, -0.227101)
