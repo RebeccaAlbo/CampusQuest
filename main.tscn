@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=18 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="4_1bvp3"]
@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/Other/Scenes/actionable.tscn" id="6_jk0vt"]
 [ext_resource type="PackedScene" uid="uid://emdkw05ycyav" path="res://player/Other/Scenes/wave_zone.tscn" id="7_5jd8l"]
 [ext_resource type="PackedScene" uid="uid://dbn7fmsdl1yi8" path="res://player/NPC/Scene/computer.tscn" id="8_eawyd"]
+[ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="9_o4th1"]
+[ext_resource type="PackedScene" uid="uid://dd6d57l0bjch1" path="res://player/NPC/Scene/electrical.tscn" id="9_vrpx7"]
+[ext_resource type="PackedScene" uid="uid://bui3dm2ac1fqp" path="res://player/Other/Scenes/actionable_collision.tscn" id="10_fl0qd"]
+[ext_resource type="PackedScene" uid="uid://d2k4cl3wm4rd0" path="res://player/Other/Scenes/chat_detection_area.tscn" id="10_plfgr"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
 
@@ -24,12 +28,6 @@ size = Vector2(10000, 10000)
 [sub_resource type="Environment" id="Environment_wt17y"]
 background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_v3pio"]
-radius = 2.0
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_vp1eo"]
-radius = 2.0
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_7mycd")
@@ -62,24 +60,43 @@ transform = Transform3D(0.999999, 0.000695196, -0.00122813, -0.000696185, 1, -0.
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -187.111, -1, -14.0308)
 
 [node name="architecture" parent="." instance=ExtResource("5_e00gu")]
-transform = Transform3D(5.96244e-08, 0, -5, 0, 5, 0, 5, 0, 5.96244e-08, -145.557, 4.51704, 152.66)
+transform = Transform3D(5.96244e-08, 0, -5, 0, 5, 0, 5, 0, 5.96244e-08, -137.485, -0.926676, 158.449)
+
+[node name="NPCCollision" parent="architecture" instance=ExtResource("9_o4th1")]
 
 [node name="Actionable" parent="architecture" instance=ExtResource("6_jk0vt")]
 transform = Transform3D(1, 0, 8.88178e-16, 0, 1, 0, -8.88178e-16, 0, 1, 0, 0, -0.693489)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="architecture/Actionable"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.87638)
-shape = SubResource("SphereShape3D_v3pio")
+[node name="actionableCollision" parent="architecture/Actionable" instance=ExtResource("10_fl0qd")]
 
 [node name="wave_zone" parent="architecture" instance=ExtResource("7_5jd8l")]
+
+[node name="chatDetectionArea" parent="architecture" instance=ExtResource("10_plfgr")]
 
 [node name="computer" parent="." instance=ExtResource("8_eawyd")]
 transform = Transform3D(5.96244e-08, 0, -5, 0, 5, 0, 5, 0, 5.96244e-08, -23.4675, -1, 107.536)
 
+[node name="NPCCollision" parent="computer" instance=ExtResource("9_o4th1")]
+
 [node name="Actionable" parent="computer" instance=ExtResource("6_jk0vt")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="computer/Actionable"]
-transform = Transform3D(1, 0, 8.88178e-16, 0, 1, 0, -8.88178e-16, 0, 1, 0, 0, 1.17419)
-shape = SubResource("SphereShape3D_vp1eo")
+[node name="actionableCollision" parent="computer/Actionable" instance=ExtResource("10_fl0qd")]
+
+[node name="wave_zone" parent="computer" instance=ExtResource("7_5jd8l")]
+
+[node name="chatDetectionArea" parent="computer" instance=ExtResource("10_plfgr")]
+
+[node name="electrical" parent="." instance=ExtResource("9_vrpx7")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 21.0247, -1, 134.023)
+
+[node name="Actionable" parent="electrical" instance=ExtResource("6_jk0vt")]
+
+[node name="actionableCollision" parent="electrical/Actionable" instance=ExtResource("10_fl0qd")]
+
+[node name="wave_zone" parent="electrical" instance=ExtResource("7_5jd8l")]
+
+[node name="NPCCollision" parent="electrical" instance=ExtResource("9_o4th1")]
+
+[node name="chatDetectionArea" parent="electrical" instance=ExtResource("10_plfgr")]
 
 [connection signal="ready" from="." to="." method="_on_ready"]

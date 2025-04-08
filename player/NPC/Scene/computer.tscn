@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbn7fmsdl1yi8"]
+[gd_scene load_steps=3 format=3 uid="uid://dbn7fmsdl1yi8"]
 
 [ext_resource type="PackedScene" uid="uid://c2t7ukhjdw30n" path="res://player/NPC/Imports/computer.glb" id="1_pd563"]
 
@@ -28,11 +28,6 @@ func face_back():
 func animation(animation : String, time : float):
 	animation_player.play(animation, time)
 "
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xlr3a"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_n2wu6"]
-radius = 5.0
 
 [node name="computer" instance=ExtResource("1_pd563")]
 script = SubResource("GDScript_lc52q")
@@ -104,14 +99,3 @@ bones/47/rotation = Quaternion(0.00215545, 0.138467, 0.989647, 0.0376975)
 bones/47/scale = Vector3(1, 1, 0.999998)
 bones/48/rotation = Quaternion(-0.278102, -0.00292851, 0.0340221, 0.959944)
 bones/49/scale = Vector3(1, 1, 1)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_xlr3a")
-
-[node name="chat_detection_area" type="Area3D" parent="." index="3"]
-collision_layer = 2
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="chat_detection_area" index="0"]
-shape = SubResource("SphereShape3D_n2wu6")

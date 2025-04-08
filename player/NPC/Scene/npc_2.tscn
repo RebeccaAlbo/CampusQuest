@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6qp18idoxerc"]
+[gd_scene load_steps=3 format=3 uid="uid://c6qp18idoxerc"]
 
 [ext_resource type="PackedScene" uid="uid://k5dd5uckx44s" path="res://player/NPC/Imports/NPC2.glb" id="1_o6teh"]
 
@@ -30,11 +30,6 @@ func animation(animation : String, time : float):
 	animation_player.play(animation, time)
 
 "
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_52a2v"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_0mlxc"]
-radius = 5.0
 
 [node name="NPC2" instance=ExtResource("1_o6teh")]
 collision_layer = 3
@@ -86,17 +81,3 @@ bones/48/rotation = Quaternion(-0.388149, -0.00280777, 0.0474849, 0.920368)
 bones/49/rotation = Quaternion(0.777256, -0.0162603, 0.00514271, 0.628953)
 bones/51/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 bones/53/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_52a2v")
-
-[node name="chat_detection_area" type="Area3D" parent="." index="3"]
-collision_layer = 2
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="chat_detection_area" index="0"]
-shape = SubResource("SphereShape3D_0mlxc")
-
-[connection signal="body_entered" from="chat_detection_area" to="." method="_on_chat_detection_area_body_entered"]
-[connection signal="body_exited" from="chat_detection_area" to="." method="_on_chat_detection_area_body_exited"]
