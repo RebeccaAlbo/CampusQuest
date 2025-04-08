@@ -44,14 +44,17 @@ script = ExtResource("1_7mycd")
 
 [node name="ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
 physics_material_override = SubResource("PhysicsMaterial_wt17y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
 shape = SubResource("BoxShape3D_m8u5f")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ground"]
 transform = Transform3D(1.00162, -2.16005e-11, 1.16415e-10, -2.33058e-11, 1.00162, -5.82077e-11, -1.16415e-10, 0, 1.00162, 0, 0, 0)
+visible = false
 mesh = SubResource("PlaneMesh_m8u5f")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -67,7 +70,7 @@ light_color = Color(1, 0.941176, 0.941176, 1)
 transform = Transform3D(0.999999, 0.000695196, -0.00122813, -0.000696185, 1, -0.000801465, 0.00122757, 0.000802323, 0.999999, 0, 0, 0)
 
 [node name="LittleDude" parent="." instance=ExtResource("4_tfm4j")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -187.111, -0.416794, -14.0308)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -187.111, 0.6042, -14.0308)
 
 [node name="architecture" parent="." instance=ExtResource("5_e00gu")]
 transform = Transform3D(5.96244e-08, 0, -5, 0, 5, 0, 5, 0, 5.96244e-08, -137.485, -0.926676, 158.449)

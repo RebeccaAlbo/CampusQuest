@@ -19,8 +19,8 @@ func _ready():
 	add_to_group("player")
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
+	if Input.is_action_just_pressed("menu"):
+		get_tree().change_scene_to_file("res://MainMenu/main_menu.tscn")
 		
 	# Mouse control viewpoint
 	if event is InputEventMouseMotion:

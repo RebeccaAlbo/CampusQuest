@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=3 uid="uid://c262jelbr7551"]
+
+[ext_resource type="Script" path="res://control.gd" id="1_5viqy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qmoke"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ur1j"]
+bg_color = Color(0.666569, 0.666569, 0.666569, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4ruw"]
+bg_color = Color(0.435192, 0.435192, 0.435192, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofqi2"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[node name="Controls" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5viqy")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartGame" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -116.0
+offset_top = 17.0
+offset_right = -27.0
+offset_bottom = 59.0
+grow_horizontal = 0
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qmoke")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8ur1j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y4ruw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ofqi2")
+text = "Exit"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 110.0
+offset_right = 623.0
+offset_bottom = 436.0
+theme_override_font_sizes/font_size = 30
+text = "Walk Forward:            W or ↑
+Walk Backward:          S or ↓ 
+Move Left:                    A or ← 
+Move Right:                  D or → 
+Start Dialogue: 	           F
+Menu:                            Esc"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 52.0
+offset_top = 24.0
+offset_right = 623.0
+offset_bottom = 108.0
+theme_override_font_sizes/font_size = 55
+text = "Controls"
+
+[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
