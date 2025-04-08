@@ -17,7 +17,6 @@ var npc
 var department: String
 
 func _ready():
-	print(dialoque_resource)
 	npc = get_parent()
 	if npc:
 		department = npc.name

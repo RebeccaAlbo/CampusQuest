@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=28 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="4_1bvp3"]
@@ -12,6 +12,16 @@
 [ext_resource type="PackedScene" uid="uid://dd6d57l0bjch1" path="res://player/NPC/Scene/electrical.tscn" id="9_vrpx7"]
 [ext_resource type="PackedScene" uid="uid://bui3dm2ac1fqp" path="res://player/Other/Scenes/actionable_collision.tscn" id="10_fl0qd"]
 [ext_resource type="PackedScene" uid="uid://d2k4cl3wm4rd0" path="res://player/Other/Scenes/chat_detection_area.tscn" id="10_plfgr"]
+[ext_resource type="PackedScene" uid="uid://baxs73larwsr1" path="res://player/NPC/Scene/industrial.tscn" id="13_w4iwd"]
+[ext_resource type="PackedScene" uid="uid://bmhumysegegtc" path="res://player/NPC/Scene/physics.tscn" id="14_ah3hh"]
+[ext_resource type="PackedScene" uid="uid://chk66t6vfn5qb" path="res://player/NPC/Scene/chemistry.tscn" id="15_cfoy7"]
+[ext_resource type="PackedScene" uid="uid://ckdfjc7flpwdm" path="res://player/NPC/Scene/life.tscn" id="16_dmcfl"]
+[ext_resource type="PackedScene" uid="uid://caqb5ropfs36q" path="res://player/NPC/Scene/math.tscn" id="17_uverf"]
+[ext_resource type="PackedScene" uid="uid://8tormtv14q07" path="res://player/NPC/Scene/mechanics.tscn" id="18_t2po3"]
+[ext_resource type="PackedScene" uid="uid://cj7le52ks7iqq" path="res://player/NPC/Scene/micro.tscn" id="19_eidep"]
+[ext_resource type="PackedScene" uid="uid://dsvtw2vrku8p1" path="res://player/NPC/Scene/space.tscn" id="20_xri15"]
+[ext_resource type="PackedScene" uid="uid://d0heqcl0pg1n3" path="res://player/NPC/Scene/economic.tscn" id="21_noa0e"]
+[ext_resource type="PackedScene" uid="uid://cb8cpqr0olva4" path="res://player/NPC/Scene/science.tscn" id="22_kqs5g"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
 
@@ -98,5 +108,137 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 21.0247, -1, 134.023)
 [node name="NPCCollision" parent="electrical" instance=ExtResource("9_o4th1")]
 
 [node name="chatDetectionArea" parent="electrical" instance=ExtResource("10_plfgr")]
+
+[node name="industrial" parent="." instance=ExtResource("13_w4iwd")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -84.2536, -0.999998, -7.0776)
+
+[node name="NPCCollision" parent="industrial" instance=ExtResource("9_o4th1")]
+
+[node name="Actionable" parent="industrial" instance=ExtResource("6_jk0vt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="actionableCollision" parent="industrial/Actionable" instance=ExtResource("10_fl0qd")]
+
+[node name="wave_zone" parent="industrial" instance=ExtResource("7_5jd8l")]
+
+[node name="chatDetectionArea" parent="industrial" instance=ExtResource("10_plfgr")]
+
+[node name="physics" parent="." instance=ExtResource("14_ah3hh")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -188.973, -1, -195.699)
+
+[node name="NPCCollision" parent="physics" instance=ExtResource("9_o4th1")]
+
+[node name="Actionable" parent="physics" instance=ExtResource("6_jk0vt")]
+
+[node name="actionableCollision" parent="physics/Actionable" instance=ExtResource("10_fl0qd")]
+
+[node name="wave_zone" parent="physics" instance=ExtResource("7_5jd8l")]
+
+[node name="chatDetectionArea" parent="physics" instance=ExtResource("10_plfgr")]
+
+[node name="chemistry" parent="." instance=ExtResource("15_cfoy7")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -59.7977, -1, -233.436)
+
+[node name="NPCCollision" parent="chemistry" instance=ExtResource("9_o4th1")]
+
+[node name="Actionable" parent="chemistry" instance=ExtResource("6_jk0vt")]
+
+[node name="actionableCollision" parent="chemistry/Actionable" instance=ExtResource("10_fl0qd")]
+
+[node name="wave_zone" parent="chemistry" instance=ExtResource("7_5jd8l")]
+
+[node name="chatDetectionArea" parent="chemistry" instance=ExtResource("10_plfgr")]
+
+[node name="life" parent="." instance=ExtResource("16_dmcfl")]
+transform = Transform3D(-2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, -124.785, -1, -182.024)
+
+[node name="NPCCollision" parent="life" instance=ExtResource("9_o4th1")]
+
+[node name="Actionable" parent="life" instance=ExtResource("6_jk0vt")]
+
+[node name="actionableCollision" parent="life/Actionable" instance=ExtResource("10_fl0qd")]
+
+[node name="wave_zone" parent="life" instance=ExtResource("7_5jd8l")]
+
+[node name="chatDetectionArea" parent="life" instance=ExtResource("10_plfgr")]
+
+[node name="math" parent="." instance=ExtResource("17_uverf")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -48.2272, -1, -149.427)
+
+[node name="Actionable" parent="math" instance=ExtResource("6_jk0vt")]
+
+[node name="actionableCollision" parent="math/Actionable" instance=ExtResource("10_fl0qd")]
+
+[node name="NPCCollision" parent="math" instance=ExtResource("9_o4th1")]
+
+[node name="wave_zone" parent="math" instance=ExtResource("7_5jd8l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="chatDetectionArea" parent="math" instance=ExtResource("10_plfgr")]
+
+[node name="mechanics" parent="." instance=ExtResource("18_t2po3")]
+transform = Transform3D(-2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, 14.7081, -1, -34.798)
+
+[node name="NPCCollision" parent="mechanics" instance=ExtResource("9_o4th1")]
+
+[node name="Actionable" parent="mechanics" instance=ExtResource("6_jk0vt")]
+
+[node name="actionableCollision" parent="mechanics/Actionable" instance=ExtResource("10_fl0qd")]
+
+[node name="wave_zone" parent="mechanics" instance=ExtResource("7_5jd8l")]
+
+[node name="chatDetectionArea" parent="mechanics" instance=ExtResource("10_plfgr")]
+
+[node name="micro" parent="." instance=ExtResource("19_eidep")]
+transform = Transform3D(4.23862, 0, 2.65219, 0, 5, 0, -2.65219, 0, 4.23862, -182.789, -1, -279.331)
+
+[node name="NPCCollision" parent="micro" instance=ExtResource("9_o4th1")]
+
+[node name="Actionable" parent="micro" instance=ExtResource("6_jk0vt")]
+
+[node name="actionableCollision" parent="micro/Actionable" instance=ExtResource("10_fl0qd")]
+
+[node name="wave_zone" parent="micro" instance=ExtResource("7_5jd8l")]
+
+[node name="chatDetectionArea" parent="micro" instance=ExtResource("10_plfgr")]
+
+[node name="space" parent="." instance=ExtResource("20_xri15")]
+transform = Transform3D(-4.34047, 0, -2.48199, 0, 5, 0, 2.48199, 0, -4.34047, 3, -1, 54)
+
+[node name="NPCCollision" parent="space" instance=ExtResource("9_o4th1")]
+
+[node name="Actionable" parent="space" instance=ExtResource("6_jk0vt")]
+
+[node name="actionableCollision" parent="space/Actionable" instance=ExtResource("10_fl0qd")]
+
+[node name="wave_zone" parent="space" instance=ExtResource("7_5jd8l")]
+
+[node name="chatDetectionArea" parent="space" instance=ExtResource("10_plfgr")]
+
+[node name="economic" parent="." instance=ExtResource("21_noa0e")]
+transform = Transform3D(4.63176, 0, 1.8833, 0, 5, 0, -1.8833, 0, 4.63176, -187.96, -1, -480.266)
+
+[node name="NPCCollision" parent="economic" instance=ExtResource("9_o4th1")]
+
+[node name="Actionable" parent="economic" instance=ExtResource("6_jk0vt")]
+
+[node name="actionableCollision" parent="economic/Actionable" instance=ExtResource("10_fl0qd")]
+
+[node name="wave_zone" parent="economic" instance=ExtResource("7_5jd8l")]
+
+[node name="chatDetectionArea" parent="economic" instance=ExtResource("10_plfgr")]
+
+[node name="science" parent="." instance=ExtResource("22_kqs5g")]
+transform = Transform3D(1.93581, 0, -4.61006, 0, 5, 0, 4.61006, 0, 1.93581, -33.474, -0.999998, -187.82)
+
+[node name="NPCCollision" parent="science" instance=ExtResource("9_o4th1")]
+
+[node name="Actionable" parent="science" instance=ExtResource("6_jk0vt")]
+
+[node name="actionableCollision" parent="science/Actionable" instance=ExtResource("10_fl0qd")]
+
+[node name="wave_zone" parent="science" instance=ExtResource("7_5jd8l")]
+
+[node name="chatDetectionArea" parent="science" instance=ExtResource("10_plfgr")]
 
 [connection signal="ready" from="." to="." method="_on_ready"]
