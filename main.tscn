@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=8 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="Script" uid="uid://bh7js3jr6402m" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="Script" uid="uid://bn1qm5i3d4wnx" path="res://player/scripts/proto_controller.gd" id="2_7mycd"]
@@ -6,18 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://b64sojovtket6" path="res://campus/infoInteraction.tscn" id="3_7mycd"]
 [ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/UI.tscn" id="4_272bh"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_m8u5f"]
-size = Vector3(10000, 2, 10000)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wt17y"]
-albedo_color = Color(0.476423, 0.557368, 0.0688423, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_m8u5f"]
-material = SubResource("StandardMaterial3D_wt17y")
-size = Vector2(10000, 10000)
 
 [sub_resource type="Environment" id="Environment_wt17y"]
 background_energy_multiplier = 5.0
@@ -39,18 +27,6 @@ freefly_speed = 25.0
 input_jump = "ui_accept"
 input_sprint = "sprint"
 input_freefly = "freefly"
-
-[node name="ground" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-physics_material_override = SubResource("PhysicsMaterial_wt17y")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-shape = SubResource("BoxShape3D_m8u5f")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ground"]
-transform = Transform3D(1.00162, -2.16005e-11, 1.16415e-10, -2.33058e-11, 1.00162, -5.82077e-11, -1.16415e-10, 0, 1.00162, 0, 0, 0)
-mesh = SubResource("PlaneMesh_m8u5f")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wt17y")
