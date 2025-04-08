@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://uwl12swp3r7n"]
+
+[ext_resource type="PackedScene" uid="uid://dqcshgewwjx1j" path="res://campus/johanneberg/sprites/johanneberg.blend" id="1_ye06m"]
+[ext_resource type="Script" uid="uid://bqfttsnl575qk" path="res://campus/buildingManager.gd" id="2_oxs2a"]
+
+[node name="johanneberg" instance=ExtResource("1_ye06m")]
+script = ExtResource("2_oxs2a")

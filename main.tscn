@@ -1,40 +1,47 @@
-[gd_scene load_steps=16 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=12 format=3 uid="uid://lulw05as8mxr"]
 
-[ext_resource type="PackedScene" uid="uid://b4avan405l84w" path="res://campus/sprites/minimal3D/minimal3d.blend" id="1_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/scenes/UI.tscn" id="4_272bh"]
-[ext_resource type="PackedScene" uid="uid://chmkvv0nt5cvf" path="res://player/BaseCharacter/Scene/little_dude.tscn" id="5_cqup2"]
-[ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/NPC/Scene/actionable.tscn" id="5_gxv56"]
-[ext_resource type="PackedScene" uid="uid://c6qp18idoxerc" path="res://player/NPC/Scene/npc_2.tscn" id="5_i3608"]
-[ext_resource type="Resource" uid="uid://buvspf4fn04v1" path="res://Dialogue/main.dialogue" id="6_phau0"]
-[ext_resource type="PackedScene" uid="uid://emdkw05ycyav" path="res://player/NPC/Scene/wave_zone.tscn" id="7_vm0tp"]
-[ext_resource type="PackedScene" uid="uid://dbn7fmsdl1yi8" path="res://player/NPC/Scene/computer.tscn" id="7_ynxga"]
+[ext_resource type="Script" uid="uid://bh7js3jr6402m" path="res://main.gd" id="1_7mycd"]
+[ext_resource type="Script" uid="uid://bn1qm5i3d4wnx" path="res://player/scripts/proto_controller.gd" id="2_7mycd"]
+[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://player/player.tscn" id="2_lquwl"]
+[ext_resource type="PackedScene" uid="uid://b64sojovtket6" path="res://campus/infoInteraction.tscn" id="3_7mycd"]
+[ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/UI.tscn" id="4_272bh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m8u5f"]
-size = Vector3(1000, 2, 1000)
+size = Vector3(10000, 2, 10000)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wt17y"]
-albedo_color = Color(0.814744, 0.477324, 0.260621, 1)
+albedo_color = Color(0.476423, 0.557368, 0.0688423, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_m8u5f"]
 material = SubResource("StandardMaterial3D_wt17y")
-size = Vector2(1000, 1000)
+size = Vector2(10000, 10000)
 
 [sub_resource type="Environment" id="Environment_wt17y"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_hjsum"]
-radius = 3.0
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_ai5fp"]
-radius = 3.0
+background_energy_multiplier = 5.0
+ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
 
 [node name="world" type="Node3D"]
-transform = Transform3D(0.999999, -0.00069618, 0.00122757, 0.0006952, 0.999999, 0.000802319, -0.00122813, -0.000801468, 0.999999, 0, 0, 0)
+script = ExtResource("1_7mycd")
 
-[node name="campus" parent="." instance=ExtResource("1_1bvp3")]
+[node name="player" parent="." instance=ExtResource("2_lquwl")]
+transform = Transform3D(-7.66044, -5.62068e-10, 6.42788, 1.86265e-09, 10, 4.65661e-10, -6.42788, 0, -7.66044, -185, 0.128794, -0.227101)
+script = ExtResource("2_7mycd")
+can_jump = true
+can_sprint = false
+can_freefly = false
+look_speed = 0.002
+jump_velocity = 4.5
+sprint_speed = null
+freefly_speed = 25.0
+input_jump = "ui_accept"
+input_sprint = "sprint"
+input_freefly = "freefly"
 
 [node name="ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 physics_material_override = SubResource("PhysicsMaterial_wt17y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
@@ -42,7 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("BoxShape3D_m8u5f")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ground"]
-transform = Transform3D(1.00162, -2.17142e-11, 2.32831e-10, -2.31921e-11, 1.00162, -1.16415e-10, -2.32831e-10, 0, 1.00162, -0.656358, -0.481039, 0.000730979)
+transform = Transform3D(1.00162, -2.16005e-11, 1.16415e-10, -2.33058e-11, 1.00162, -5.82077e-11, -1.16415e-10, 0, 1.00162, 0, 0, 0)
 mesh = SubResource("PlaneMesh_m8u5f")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -50,32 +57,14 @@ environment = SubResource("Environment_wt17y")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 95.0384, 0)
-light_energy = 0.0
+light_color = Color(1, 0.941176, 0.941176, 1)
+
+[node name="Interaction" parent="." instance=ExtResource("3_7mycd")]
+transform = Transform3D(10, -1.95905e-09, 2.79397e-09, 8.22183e-10, 10, -1.86265e-09, -3.72529e-09, 0, 10, -166.504, 0.0840753, 67.2822)
 
 [node name="Manager" parent="." instance=ExtResource("4_272bh")]
 
-[node name="LittleDude" parent="." instance=ExtResource("5_cqup2")]
-transform = Transform3D(5, 1.58116e-09, 4.19095e-09, -1.91631e-09, 5, -9.31323e-10, -4.65661e-09, 4.65661e-10, 5, -70.1374, -0.0836409, 9.18452)
+[node name="johanneberg" parent="." instance=ExtResource("4_1bvp3")]
+transform = Transform3D(0.999999, 0.000695196, -0.00122813, -0.000696185, 1, -0.000801465, 0.00122757, 0.000802323, 0.999999, 0, 0, 0)
 
-[node name="architecture" parent="." instance=ExtResource("5_i3608")]
-transform = Transform3D(2.65319, 0.00347599, -4.23799, -0.00524473, 5, 0.000817522, 4.23799, 0.00401161, 2.6532, -20.322, 0.999943, 17.6811)
-collision_mask = 2
-
-[node name="Actionable" parent="architecture" instance=ExtResource("5_gxv56")]
-dialoque_resrouce = ExtResource("6_phau0")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="architecture/Actionable"]
-shape = SubResource("SphereShape3D_hjsum")
-
-[node name="wave_zone" parent="architecture" instance=ExtResource("7_vm0tp")]
-
-[node name="computer" parent="." instance=ExtResource("7_ynxga")]
-transform = Transform3D(5, 0.003476, -0.00614065, -0.00348092, 5, -0.00400734, 0.00613786, 0.00401161, 5, -72.5724, -1.67638e-08, -27.6525)
-
-[node name="Actionable" parent="computer" instance=ExtResource("5_gxv56")]
-dialoque_resrouce = ExtResource("6_phau0")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="computer/Actionable"]
-shape = SubResource("SphereShape3D_ai5fp")
-
-[node name="wave_zone" parent="computer" instance=ExtResource("7_vm0tp")]
+[connection signal="ready" from="." to="." method="_on_ready"]
