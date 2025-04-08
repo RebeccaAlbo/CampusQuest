@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://emdkw05ycyav"]
 
-[ext_resource type="Script" path="res://player/NPC/Script/wave_zone.gd" id="1_02ajn"]
+[ext_resource type="Script" path="res://player/Other/Scripts/wave_zone.gd" id="1_02ajn"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ur86w"]
 radius = 3.0

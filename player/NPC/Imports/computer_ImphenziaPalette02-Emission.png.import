@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dgl0ggeaeih7v"
-path.s3tc="res://.godot/imported/computer_ImphenziaPalette02-Emission.png-971082ca05a97ad0463fa33a3f6ccfdb.s3tc.ctex"
+path.s3tc="res://.godot/imported/computer_ImphenziaPalette02-Emission.png-50943aea4ce654cf86e039d04af84e79.s3tc.ctex"
+path.etc2="res://.godot/imported/computer_ImphenziaPalette02-Emission.png-50943aea4ce654cf86e039d04af84e79.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -14,8 +15,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://player/NPC/computer_ImphenziaPalette02-Emission.png"
-dest_files=["res://.godot/imported/computer_ImphenziaPalette02-Emission.png-971082ca05a97ad0463fa33a3f6ccfdb.s3tc.ctex"]
+source_file="res://player/NPC/Imports/computer_ImphenziaPalette02-Emission.png"
+dest_files=["res://.godot/imported/computer_ImphenziaPalette02-Emission.png-50943aea4ce654cf86e039d04af84e79.s3tc.ctex", "res://.godot/imported/computer_ImphenziaPalette02-Emission.png-50943aea4ce654cf86e039d04af84e79.etc2.ctex"]
 
 [params]
 

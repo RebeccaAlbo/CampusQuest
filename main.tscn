@@ -1,11 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=16 format=3 uid="uid://lulw05as8mxr"]
 
-[ext_resource type="Script" uid="uid://bh7js3jr6402m" path="res://main.gd" id="1_7mycd"]
-[ext_resource type="Script" uid="uid://bn1qm5i3d4wnx" path="res://player/scripts/proto_controller.gd" id="2_7mycd"]
-[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://player/player.tscn" id="2_lquwl"]
-[ext_resource type="PackedScene" uid="uid://b64sojovtket6" path="res://campus/infoInteraction.tscn" id="3_7mycd"]
+[ext_resource type="Script" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/UI.tscn" id="4_272bh"]
+[ext_resource type="PackedScene" uid="uid://chmkvv0nt5cvf" path="res://player/BaseCharacter/Scene/little_dude.tscn" id="4_tfm4j"]
+[ext_resource type="PackedScene" uid="uid://c6qp18idoxerc" path="res://player/NPC/Scene/npc_2.tscn" id="5_e00gu"]
+[ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/Other/Scenes/actionable.tscn" id="6_jk0vt"]
+[ext_resource type="PackedScene" uid="uid://emdkw05ycyav" path="res://player/Other/Scenes/wave_zone.tscn" id="7_5jd8l"]
+[ext_resource type="PackedScene" uid="uid://dbn7fmsdl1yi8" path="res://player/NPC/Scene/computer.tscn" id="8_eawyd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
 
@@ -23,22 +25,14 @@ size = Vector2(10000, 10000)
 background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_v3pio"]
+radius = 2.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vp1eo"]
+radius = 2.0
+
 [node name="world" type="Node3D"]
 script = ExtResource("1_7mycd")
-
-[node name="player" parent="." instance=ExtResource("2_lquwl")]
-transform = Transform3D(-7.66044, -5.62068e-10, 6.42788, 1.86265e-09, 10, 4.65661e-10, -6.42788, 0, -7.66044, -185, 0.128794, -0.227101)
-script = ExtResource("2_7mycd")
-can_jump = true
-can_sprint = false
-can_freefly = false
-look_speed = 0.002
-jump_velocity = 4.5
-sprint_speed = null
-freefly_speed = 25.0
-input_jump = "ui_accept"
-input_sprint = "sprint"
-input_freefly = "freefly"
 
 [node name="ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -59,12 +53,33 @@ environment = SubResource("Environment_wt17y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 95.0384, 0)
 light_color = Color(1, 0.941176, 0.941176, 1)
 
-[node name="Interaction" parent="." instance=ExtResource("3_7mycd")]
-transform = Transform3D(10, -1.95905e-09, 2.79397e-09, 8.22183e-10, 10, -1.86265e-09, -3.72529e-09, 0, 10, -166.504, 0.0840753, 67.2822)
-
 [node name="Manager" parent="." instance=ExtResource("4_272bh")]
 
 [node name="johanneberg" parent="." instance=ExtResource("4_1bvp3")]
 transform = Transform3D(0.999999, 0.000695196, -0.00122813, -0.000696185, 1, -0.000801465, 0.00122757, 0.000802323, 0.999999, 0, 0, 0)
+
+[node name="LittleDude" parent="." instance=ExtResource("4_tfm4j")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -187.111, -1, -14.0308)
+
+[node name="architecture" parent="." instance=ExtResource("5_e00gu")]
+transform = Transform3D(5.96244e-08, 0, -5, 0, 5, 0, 5, 0, 5.96244e-08, -145.557, 4.51704, 152.66)
+
+[node name="Actionable" parent="architecture" instance=ExtResource("6_jk0vt")]
+transform = Transform3D(1, 0, 8.88178e-16, 0, 1, 0, -8.88178e-16, 0, 1, 0, 0, -0.693489)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="architecture/Actionable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.87638)
+shape = SubResource("SphereShape3D_v3pio")
+
+[node name="wave_zone" parent="architecture" instance=ExtResource("7_5jd8l")]
+
+[node name="computer" parent="." instance=ExtResource("8_eawyd")]
+transform = Transform3D(5.96244e-08, 0, -5, 0, 5, 0, 5, 0, 5.96244e-08, -23.4675, -1, 107.536)
+
+[node name="Actionable" parent="computer" instance=ExtResource("6_jk0vt")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="computer/Actionable"]
+transform = Transform3D(1, 0, 8.88178e-16, 0, 1, 0, -8.88178e-16, 0, 1, 0, 0, 1.17419)
+shape = SubResource("SphereShape3D_vp1eo")
 
 [connection signal="ready" from="." to="." method="_on_ready"]

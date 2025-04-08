@@ -1,6 +1,6 @@
 extends Area3D
 
-@export var dialoque_resrouce : DialogueResource
+@export var dialoque_resource : DialogueResource
 @export var dialoque_start : String = ""
 
 const Balloon = preload("res://Dialogue/balloon.tscn")
@@ -17,6 +17,7 @@ var npc
 var department: String
 
 func _ready():
+	print(dialoque_resource)
 	npc = get_parent()
 	if npc:
 		department = npc.name
@@ -48,7 +49,7 @@ func action() -> void:
 	npc.animation("Talking", 0.3)
 	var balloon: Node = Balloon.instantiate()
 	get_tree().current_scene.add_child(balloon)
-	balloon.start(dialoque_resrouce, dialoque_start)
+	balloon.start(dialoque_resource, dialoque_start)
 	
 	# Wait for end of dialogue, then reset everything
 	await DialogueManager.dialogue_ended

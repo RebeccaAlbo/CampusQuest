@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dwm0mo6y2yir5"
-path.s3tc="res://.godot/imported/computer_ImphenziaPalette02-Albedo.png-4e42957223c66f1437be56653fabb6ee.s3tc.ctex"
+path.s3tc="res://.godot/imported/computer_ImphenziaPalette02-Albedo.png-284918d72ab63fa3c0502912309f09fb.s3tc.ctex"
+path.etc2="res://.godot/imported/computer_ImphenziaPalette02-Albedo.png-284918d72ab63fa3c0502912309f09fb.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -14,8 +15,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://player/NPC/computer_ImphenziaPalette02-Albedo.png"
-dest_files=["res://.godot/imported/computer_ImphenziaPalette02-Albedo.png-4e42957223c66f1437be56653fabb6ee.s3tc.ctex"]
+source_file="res://player/NPC/Imports/computer_ImphenziaPalette02-Albedo.png"
+dest_files=["res://.godot/imported/computer_ImphenziaPalette02-Albedo.png-284918d72ab63fa3c0502912309f09fb.s3tc.ctex", "res://.godot/imported/computer_ImphenziaPalette02-Albedo.png-284918d72ab63fa3c0502912309f09fb.etc2.ctex"]
 
 [params]
 

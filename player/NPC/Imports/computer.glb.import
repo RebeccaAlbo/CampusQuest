@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c2t7ukhjdw30n"
-path="res://.godot/imported/computer.glb-66b8b83391cfe115731b152911329ce6.scn"
+path="res://.godot/imported/computer.glb-ae5d8210724d5e7c08489777a4552d88.scn"
 
 [deps]
 
-source_file="res://player/NPC/computer.glb"
-dest_files=["res://.godot/imported/computer.glb-66b8b83391cfe115731b152911329ce6.scn"]
+source_file="res://player/NPC/Imports/computer.glb"
+dest_files=["res://.godot/imported/computer.glb-ae5d8210724d5e7c08489777a4552d88.scn"]
 
 [params]
 
