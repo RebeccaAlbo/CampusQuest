@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=8 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="Script" uid="uid://bh7js3jr6402m" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="Script" uid="uid://bn1qm5i3d4wnx" path="res://player/scripts/proto_controller.gd" id="2_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://player/player.tscn" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/UI.tscn" id="4_272bh"]
-[ext_resource type="Script" uid="uid://ctmh6so6qx5jy" path="res://campus/johanneberg/sprites/ground_manager.gd" id="6_272bh"]
 [ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="7_5vw27"]
 
 [sub_resource type="Environment" id="Environment_wt17y"]
@@ -39,10 +38,6 @@ light_color = Color(1, 0.941176, 0.941176, 1)
 [node name="Manager" parent="." instance=ExtResource("4_272bh")]
 
 [node name="johanneberg" parent="." instance=ExtResource("4_1bvp3")]
-script = ExtResource("6_272bh")
-override_depth_test = false
-render_priority = 0
-material_color = Color(0.2, 0.8, 0.2, 1)
 
 [node name="ground" parent="." instance=ExtResource("7_5vw27")]
 
