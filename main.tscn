@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://bh7js3jr6402m" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="Script" uid="uid://bn1qm5i3d4wnx" path="res://player/scripts/proto_controller.gd" id="2_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://player/player.tscn" id="2_lquwl"]
-[ext_resource type="PackedScene" uid="uid://b64sojovtket6" path="res://campus/infoInteraction.tscn" id="3_7mycd"]
 [ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/UI.tscn" id="4_272bh"]
-[ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="9_4c57u"]
+[ext_resource type="Script" uid="uid://ctmh6so6qx5jy" path="res://campus/johanneberg/sprites/ground_manager.gd" id="6_272bh"]
+[ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="7_5vw27"]
 
 [sub_resource type="Environment" id="Environment_wt17y"]
 background_energy_multiplier = 5.0
@@ -36,14 +36,14 @@ environment = SubResource("Environment_wt17y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 95.0384, 0)
 light_color = Color(1, 0.941176, 0.941176, 1)
 
-[node name="Interaction" parent="." instance=ExtResource("3_7mycd")]
-transform = Transform3D(10, -1.95905e-09, 2.79397e-09, 8.22183e-10, 10, -1.86265e-09, -3.72529e-09, 0, 10, -166.504, 0.0840753, 67.2822)
-
 [node name="Manager" parent="." instance=ExtResource("4_272bh")]
 
-[node name="ground" parent="." instance=ExtResource("9_4c57u")]
-
 [node name="johanneberg" parent="." instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("6_272bh")
+override_depth_test = false
+render_priority = 0
+material_color = Color(0.2, 0.8, 0.2, 1)
+
+[node name="ground" parent="." instance=ExtResource("7_5vw27")]
 
 [connection signal="ready" from="." to="." method="_on_ready"]
