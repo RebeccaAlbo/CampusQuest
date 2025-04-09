@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c262jelbr7551"]
 
-[ext_resource type="Script" path="res://mainMenu/control.gd" id="1_5viqy"]
+[ext_resource type="Script" path="res://menu/control.gd" id="1_5viqy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qmoke"]
 
@@ -29,6 +29,7 @@ corner_radius_bottom_left = 16
 shadow_size = 5
 
 [node name="Controls" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,7 +46,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StartGame" type="Button" parent="."]
+[node name="exit" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -68,7 +69,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_y4ruw")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ofqi2")
 text = "Exit"
 
-[node name="Label" type="Label" parent="."]
+[node name="instructions" type="Label" parent="."]
 layout_mode = 0
 offset_left = 52.0
 offset_top = 110.0
@@ -82,7 +83,7 @@ Move Right:                  D or →
 Start Dialogue: 	           F
 Menu:                            Esc"
 
-[node name="Label2" type="Label" parent="."]
+[node name="title" type="Label" parent="."]
 layout_mode = 0
 offset_left = 52.0
 offset_top = 24.0
@@ -91,4 +92,4 @@ offset_bottom = 108.0
 theme_override_font_sizes/font_size = 55
 text = "Controls"
 
-[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=29 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="4_1bvp3"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://dsvtw2vrku8p1" path="res://player/NPC/Scene/space.tscn" id="20_xri15"]
 [ext_resource type="PackedScene" uid="uid://d0heqcl0pg1n3" path="res://player/NPC/Scene/economic.tscn" id="21_noa0e"]
 [ext_resource type="PackedScene" uid="uid://cb8cpqr0olva4" path="res://player/NPC/Scene/science.tscn" id="22_kqs5g"]
+[ext_resource type="PackedScene" uid="uid://b5elambvpjdk3" path="res://menu/pause_menu.tscn" id="23_7j6p8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
 
@@ -73,7 +74,7 @@ transform = Transform3D(0.999999, 0.000695196, -0.00122813, -0.000696185, 1, -0.
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -187.111, 0.6042, -14.0308)
 
 [node name="architecture" parent="." instance=ExtResource("5_e00gu")]
-transform = Transform3D(5.96244e-08, 0, -5, 0, 5, 0, 5, 0, 5.96244e-08, -137.485, -0.926676, 158.449)
+transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, -137.485, -0.926676, 158.449)
 
 [node name="NPCCollision" parent="architecture" instance=ExtResource("9_o4th1")]
 
@@ -87,7 +88,7 @@ transform = Transform3D(1, 0, 8.88178e-16, 0, 1, 0, -8.88178e-16, 0, 1, 0, 0, -0
 [node name="chatDetectionArea" parent="architecture" instance=ExtResource("10_plfgr")]
 
 [node name="computer" parent="." instance=ExtResource("8_eawyd")]
-transform = Transform3D(5.96244e-08, 0, -5, 0, 5, 0, 5, 0, 5.96244e-08, -23.4675, -1, 107.536)
+transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, -23.4675, -1, 107.536)
 
 [node name="NPCCollision" parent="computer" instance=ExtResource("9_o4th1")]
 
@@ -243,5 +244,10 @@ transform = Transform3D(1.93581, 0, -4.61006, 0, 5, 0, 4.61006, 0, 1.93581, -33.
 [node name="wave_zone" parent="science" instance=ExtResource("7_5jd8l")]
 
 [node name="chatDetectionArea" parent="science" instance=ExtResource("10_plfgr")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("23_7j6p8")]
+visible = false
 
 [connection signal="ready" from="." to="." method="_on_ready"]

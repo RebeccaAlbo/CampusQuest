@@ -1,0 +1,123 @@
+[gd_scene load_steps=9 format=3 uid="uid://b5elambvpjdk3"]
+
+[ext_resource type="Script" path="res://menu/pause_menu.gd" id="1_6cegj"]
+[ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://menu/Pixellari.ttf" id="2_5n084"]
+[ext_resource type="Texture2D" uid="uid://bryejuohsdw34" path="res://menu/Background.png" id="2_hxty5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ntu06"]
+texture = ExtResource("2_hxty5")
+modulate_color = Color(0.288518, 0.288518, 0.288518, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0tfa3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qib7c"]
+bg_color = Color(0.666569, 0.666569, 0.666569, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kigma"]
+bg_color = Color(0.435192, 0.435192, 0.435192, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0k6ik"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6cegj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.317085, 0.319973, 0.306646, 1)
+
+[node name="Panel" type="Panel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ntu06")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -177.0
+offset_top = -136.0
+offset_right = 177.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_fonts/font = ExtResource("2_5n084")
+theme_override_font_sizes/font_size = 85
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Resume" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0tfa3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qib7c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kigma")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0k6ik")
+text = "Resume
+"
+
+[node name="QuitGame" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0tfa3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qib7c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kigma")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0k6ik")
+text = "Quit game"
+
+[connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitGame" to="." method="_on_quit_game_pressed"]

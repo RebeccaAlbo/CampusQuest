@@ -15,4 +15,5 @@ func _on_exit_pressed() -> void:
 
 
 func _on_controls_pressed() -> void:
-	get_tree().change_scene_to_file("res://MainMenu/controls.tscn")
+	SceneManager.prev_scene_path = "res://menu/main_menu.tscn"
+	get_tree().change_scene_to_file("res://menu/controls.tscn")

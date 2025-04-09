@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://dfq80v1wbg66c"]
 
-[ext_resource type="Texture2D" uid="uid://bryejuohsdw34" path="res://mainMenu/Background.png" id="1_14d27"]
-[ext_resource type="Script" path="res://mainMenu/main_menu.gd" id="1_oj5xs"]
-[ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://mainMenu/Pixellari.ttf" id="2_yie4i"]
+[ext_resource type="Texture2D" uid="uid://bryejuohsdw34" path="res://menu/Background.png" id="1_14d27"]
+[ext_resource type="Script" path="res://menu/main_menu.gd" id="1_oj5xs"]
+[ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://menu/Pixellari.ttf" id="2_yie4i"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mvco5"]
 texture = ExtResource("1_14d27")
@@ -35,6 +35,7 @@ corner_radius_bottom_left = 16
 shadow_size = 5
 
 [node name="MainMenu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
