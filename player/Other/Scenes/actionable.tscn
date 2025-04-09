@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c7yhcimbsxqhj"]
 
 [ext_resource type="Script" path="res://player/Other/Scripts/actionable.gd" id="1_fnklc"]
-[ext_resource type="Resource" uid="uid://b2w7lfrrfcp38" path="res://Dialogue/main.dialogue" id="2_iwbq3"]
+[ext_resource type="Resource" uid="uid://b2w7lfrrfcp38" path="res://dialogue/main.dialogue" id="2_iwbq3"]
 
 [node name="Actionable" type="Area3D"]
 collision_layer = 16

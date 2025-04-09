@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c262jelbr7551"]
 
-[ext_resource type="Script" path="res://control.gd" id="1_5viqy"]
+[ext_resource type="Script" path="res://mainMenu/control.gd" id="1_5viqy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qmoke"]
 
@@ -83,6 +83,7 @@ Start Dialogue: 	           F
 Menu:                            Esc"
 
 [node name="Label2" type="Label" parent="."]
+layout_mode = 0
 offset_left = 52.0
 offset_top = 24.0
 offset_right = 623.0

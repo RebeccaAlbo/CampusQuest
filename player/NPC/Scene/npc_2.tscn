@@ -1,39 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://c6qp18idoxerc"]
 
 [ext_resource type="PackedScene" uid="uid://k5dd5uckx44s" path="res://player/NPC/Imports/NPC2.glb" id="1_o6teh"]
-
-[sub_resource type="GDScript" id="GDScript_irrn6"]
-script/source = "extends CharacterBody3D
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-
-const SPEED = 15
-
-var original_pos: Vector3
-
-func _ready():
-	animation(\"Idle\", 0.3)
-	
-func face_toward(target_node: Node3D):
-	original_pos = rotation
-	var direction = (target_node.global_transform.origin - global_transform.origin)
-	direction.y = 0  # Keep it level, no vertical tilt
-	direction = direction.normalized()
-
-	var target_rotation = Vector3(0, atan2(direction.x, direction.z), 0)
-	rotation = target_rotation
-	
-func face_back():
-		rotation = original_pos
-		
-		
-func animation(animation : String, time : float):
-	animation_player.play(animation, time)
-
-"
+[ext_resource type="Script" path="res://player/NPC/Script/npc_2.gd" id="2_bixf0"]
 
 [node name="NPC2" instance=ExtResource("1_o6teh")]
 collision_layer = 3
-script = SubResource("GDScript_irrn6")
+script = ExtResource("2_bixf0")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 bones/0/position = Vector3(1.118e-09, 0.648981, -2.09605e-09)

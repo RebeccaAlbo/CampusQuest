@@ -20,5 +20,5 @@ func face_toward(target_node: Node3D):
 func face_back():
 		rotation = original_pos
 		
-func animation(animation : String, time : float):
-	animation_player.play(animation, time)
+func animation(anim : String, time : float):
+	animation_player.play(anim, time)
