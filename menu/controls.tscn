@@ -76,12 +76,12 @@ offset_top = 110.0
 offset_right = 623.0
 offset_bottom = 436.0
 theme_override_font_sizes/font_size = 30
-text = "Walk Forward:            W or ↑
+text = "Forward:                      W or ↑
 Walk Backward:          S or ↓ 
 Move Left:                    A or ← 
 Move Right:                  D or → 
-Start Dialogue: 	           F
-Menu:                            Esc"
+Interact:                        F
+Pause:                           ENTER"
 
 [node name="title" type="Label" parent="."]
 layout_mode = 0

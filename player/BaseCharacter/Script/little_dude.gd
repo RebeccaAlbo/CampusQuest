@@ -19,8 +19,6 @@ func _ready():
 	add_to_group("player")
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("menu"):
-		get_tree().change_scene_to_file("res://MainMenu/main_menu.tscn")
 		
 	# Mouse control viewpoint
 	if event is InputEventMouseMotion:
@@ -29,7 +27,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		# No infinite rotation
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/4, PI/4)
 		
-	if Input.is_action_just_pressed("chat"):
+	if Input.is_action_just_pressed("interact"):
 		var actionables = actionable_finder.get_overlapping_areas()
 		if actionables.size() > 0:
 			actionables[0].action()

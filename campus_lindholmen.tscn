@@ -1,0 +1,70 @@
+[gd_scene load_steps=14 format=3 uid="uid://c3ynfcpspetng"]
+
+[ext_resource type="Script" path="res://campus_lindholmen.gd" id="1_02gfq"]
+[ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/UI.tscn" id="1_fyxg7"]
+[ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="2_hgjfa"]
+[ext_resource type="PackedScene" uid="uid://bmxn8658qh64v" path="res://campus/lindholmen/lindholmen.tscn" id="3_2ryas"]
+[ext_resource type="Script" path="res://campus/lindholmen/lindholmen.gd" id="4_cjb7m"]
+[ext_resource type="PackedScene" uid="uid://chmkvv0nt5cvf" path="res://player/BaseCharacter/Scene/little_dude.tscn" id="6_r074d"]
+[ext_resource type="PackedScene" uid="uid://b5elambvpjdk3" path="res://menu/pause_menu.tscn" id="7_q5oko"]
+[ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://busStop/bus_stop.tscn" id="8_xqaft"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k1vra"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gbsa4"]
+size = Vector3(10000, 2, 10000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wt17y"]
+albedo_color = Color(0.476423, 0.557368, 0.0688423, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wqhbk"]
+material = SubResource("StandardMaterial3D_wt17y")
+size = Vector2(10000, 10000)
+
+[sub_resource type="Environment" id="Environment_35y5l"]
+background_energy_multiplier = 5.0
+ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
+
+[node name="campus_lindholmen" type="Node3D"]
+script = ExtResource("1_02gfq")
+
+[node name="ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
+physics_material_override = SubResource("PhysicsMaterial_k1vra")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
+shape = SubResource("BoxShape3D_gbsa4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ground"]
+transform = Transform3D(1.00162, -2.16005e-11, 1.16415e-10, -2.33058e-11, 1.00162, -5.82077e-11, -1.16415e-10, 0, 1.00162, 0, 0, 0)
+visible = false
+mesh = SubResource("PlaneMesh_wqhbk")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_35y5l")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 95.0384, 0)
+light_color = Color(1, 0.941176, 0.941176, 1)
+
+[node name="Manager" parent="." instance=ExtResource("1_fyxg7")]
+
+[node name="ground2" parent="." instance=ExtResource("2_hgjfa")]
+
+[node name="busStop" parent="." instance=ExtResource("8_xqaft")]
+transform = Transform3D(1.4926, 0, 1.61621, 0, 2.2, 0, -1.61621, 0, 1.4926, -52.5655, 0, -177.95)
+collision_layer = 32
+collision_mask = 2
+
+[node name="lindholmen" parent="." instance=ExtResource("3_2ryas")]
+script = ExtResource("4_cjb7m")
+
+[node name="LittleDude" parent="." instance=ExtResource("6_r074d")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -40.4331, 0, -175.714)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_q5oko")]

@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://47qx37tnfxug"]
+
+[ext_resource type="PackedScene" uid="uid://dhw6aqaxqmilk" path="res://busStop/busStop.glb" id="1_ge4yq"]
+[ext_resource type="Script" path="res://busStop/bus_stop.gd" id="2_ecyc3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mwfuk"]
+size = Vector3(0.3, 5, 4.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1jiye"]
+size = Vector3(8.5, 4, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qdlj6"]
+size = Vector3(2.7, 1.2, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_p04xi"]
+radius = 5.0
+
+[node name="busStop" instance=ExtResource("1_ge4yq")]
+script = ExtResource("2_ecyc3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.20008, 2.52071, -1.75529)
+visible = false
+shape = SubResource("BoxShape3D_mwfuk")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.16959, 2.52071, -1.75529)
+visible = false
+shape = SubResource("BoxShape3D_mwfuk")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0706568, 2.0139, -4.06395)
+shape = SubResource("BoxShape3D_1jiye")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.76583, 0.605338, -3.47688)
+shape = SubResource("BoxShape3D_qdlj6")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.84424, 0.605338, -3.47688)
+shape = SubResource("BoxShape3D_qdlj6")
+
+[node name="Area3D" type="Area3D" parent="." index="6"]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.922572)
+shape = SubResource("SphereShape3D_p04xi")
+
+[node name="HoverText" type="Label3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.80157, 0)
+visible = false
+billboard = 1
+shaded = true
+double_sided = false
+modulate = Color(0, 0, 0, 1)
+text = "Press F to change campus"
+font_size = 150
+outline_size = 15
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
