@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bs72ogkvdd7d6"]
+[gd_scene load_steps=7 format=3 uid="uid://bs72ogkvdd7d6"]
 
-[ext_resource type="Script" path="res://player/scripts/touch_controller.gd" id="1_8h4do"]
-[ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/scenes/UI.tscn" id="2_ulwue"]
+[ext_resource type="Script" uid="uid://bbmos805r8h46" path="res://player/scripts/touch_controller.gd" id="1_8h4do"]
+[ext_resource type="Script" uid="uid://dbrqivrgiyq43" path="res://player/camera.gd" id="2_g1dw6"]
+[ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/UI.tscn" id="2_ulwue"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
@@ -32,6 +33,9 @@ shape = SubResource("CapsuleShape3D_iof21")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
-transform = Transform3D(-1, -3.90806e-08, 1.45851e-07, 6.03182e-08, 0.782119, 0.623129, -1.38425e-07, 0.623129, -0.782119, 0, 11.2097, -6.44665)
+transform = Transform3D(-1, -3.90806e-08, 1.45851e-07, 5.0895e-08, 0.822164, 0.569251, -1.4216e-07, 0.569251, -0.822164, 0, 8.36529, -6.44665)
+script = ExtResource("2_g1dw6")
 
 [node name="UIManager" parent="." instance=ExtResource("2_ulwue")]
+
+[connection signal="ready" from="Head/Camera3D" to="." method="_on_camera_3d_ready"]

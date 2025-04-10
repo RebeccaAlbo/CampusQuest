@@ -1,12 +1,15 @@
 [gd_scene load_steps=29 format=3 uid="uid://lulw05as8mxr"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_7mycd"]
+[ext_resource type="Script" uid="uid://bh7js3jr6402m" path="res://main.gd" id="1_7mycd"]
+[ext_resource type="Script" uid="uid://bn1qm5i3d4wnx" path="res://player/scripts/proto_controller.gd" id="2_7mycd"]
+[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://player/player.tscn" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/UI.tscn" id="4_272bh"]
 [ext_resource type="PackedScene" uid="uid://chmkvv0nt5cvf" path="res://player/BaseCharacter/Scene/little_dude.tscn" id="4_tfm4j"]
 [ext_resource type="PackedScene" uid="uid://c6qp18idoxerc" path="res://player/NPC/Scene/npc_2.tscn" id="5_e00gu"]
 [ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/Other/Scenes/actionable.tscn" id="6_jk0vt"]
 [ext_resource type="PackedScene" uid="uid://emdkw05ycyav" path="res://player/Other/Scenes/wave_zone.tscn" id="7_5jd8l"]
+[ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="7_5vw27"]
 [ext_resource type="PackedScene" uid="uid://dbn7fmsdl1yi8" path="res://player/NPC/Scene/computer.tscn" id="8_eawyd"]
 [ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="9_o4th1"]
 [ext_resource type="PackedScene" uid="uid://dd6d57l0bjch1" path="res://player/NPC/Scene/electrical.tscn" id="9_vrpx7"]
@@ -35,6 +38,9 @@ albedo_color = Color(0.476423, 0.557368, 0.0688423, 1)
 [sub_resource type="PlaneMesh" id="PlaneMesh_m8u5f"]
 material = SubResource("StandardMaterial3D_wt17y")
 size = Vector2(10000, 10000)
+
+
+
 
 [sub_resource type="Environment" id="Environment_wt17y"]
 background_energy_multiplier = 5.0
@@ -68,7 +74,8 @@ light_color = Color(1, 0.941176, 0.941176, 1)
 [node name="Manager" parent="." instance=ExtResource("4_272bh")]
 
 [node name="johanneberg" parent="." instance=ExtResource("4_1bvp3")]
-transform = Transform3D(0.999999, 0.000695196, -0.00122813, -0.000696185, 1, -0.000801465, 0.00122757, 0.000802323, 0.999999, 0, 0, 0)
+
+[node name="ground" parent="." instance=ExtResource("7_5vw27")]
 
 [node name="LittleDude" parent="." instance=ExtResource("4_tfm4j")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -187.111, 0.6042, -14.0308)
