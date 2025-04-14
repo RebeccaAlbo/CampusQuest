@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d0heqcl0pg1n3"]
 
-[ext_resource type="PackedScene" uid="uid://ciuhm660ek72x" path="res://player/NPC/Imports/economic.glb" id="1_g7cnv"]
+[ext_resource type="PackedScene" uid="uid://ciuhm660ek72x" path="res://player/NPC/Imports/Johanneberg/economic.glb" id="1_g7cnv"]
 [ext_resource type="Script" path="res://player/NPC/Script/economic.gd" id="2_pdq3q"]
 
 [node name="economic" instance=ExtResource("1_g7cnv")]

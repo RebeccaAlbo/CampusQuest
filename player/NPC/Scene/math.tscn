@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://caqb5ropfs36q"]
 
-[ext_resource type="PackedScene" uid="uid://dda2ifegx1t3h" path="res://player/NPC/Imports/math.glb" id="1_iy4gu"]
+[ext_resource type="PackedScene" uid="uid://dda2ifegx1t3h" path="res://player/NPC/Imports/Johanneberg/math.glb" id="1_iy4gu"]
 [ext_resource type="Script" path="res://player/NPC/Script/math.gd" id="2_27pwb"]
 
 [node name="math" instance=ExtResource("1_iy4gu")]

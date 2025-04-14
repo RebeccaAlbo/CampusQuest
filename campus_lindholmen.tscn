@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c3ynfcpspetng"]
+[gd_scene load_steps=26 format=3 uid="uid://c3ynfcpspetng"]
 
 [ext_resource type="Script" path="res://campus_lindholmen.gd" id="1_02gfq"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/UI.tscn" id="1_fyxg7"]
@@ -7,7 +7,19 @@
 [ext_resource type="Script" path="res://campus/lindholmen/lindholmen.gd" id="4_cjb7m"]
 [ext_resource type="PackedScene" uid="uid://chmkvv0nt5cvf" path="res://player/BaseCharacter/Scene/little_dude.tscn" id="6_r074d"]
 [ext_resource type="PackedScene" uid="uid://b5elambvpjdk3" path="res://menu/pause_menu.tscn" id="7_q5oko"]
+[ext_resource type="PackedScene" uid="uid://bx0yjeuw1ojxn" path="res://player/NPC/Scene/svea.tscn" id="8_o75gl"]
 [ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://busStop/bus_stop.tscn" id="8_xqaft"]
+[ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="9_w8k5j"]
+[ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/Other/Scenes/actionable.tscn" id="10_isx14"]
+[ext_resource type="PackedScene" uid="uid://bui3dm2ac1fqp" path="res://player/Other/Scenes/actionable_collision.tscn" id="11_sk8ci"]
+[ext_resource type="PackedScene" uid="uid://d2k4cl3wm4rd0" path="res://player/Other/Scenes/chat_detection_area.tscn" id="12_8b722"]
+[ext_resource type="PackedScene" uid="uid://emdkw05ycyav" path="res://player/Other/Scenes/wave_zone.tscn" id="13_aoiaa"]
+[ext_resource type="PackedScene" uid="uid://06ccq6sqvbif" path="res://player/NPC/Scene/kuggen.tscn" id="15_3nk8o"]
+[ext_resource type="PackedScene" uid="uid://cviwhmht567mj" path="res://player/NPC/Scene/jupiter.tscn" id="16_w7wy8"]
+[ext_resource type="PackedScene" uid="uid://debrevchux61e" path="res://player/NPC/Scene/patricia.tscn" id="17_8lqmn"]
+[ext_resource type="PackedScene" uid="uid://rlj0t4a7yxjj" path="res://player/NPC/Scene/saga.tscn" id="17_sep0f"]
+[ext_resource type="PackedScene" uid="uid://bkx6evqbw1q8y" path="res://player/NPC/Scene/äran.tscn" id="19_apq5e"]
+[ext_resource type="PackedScene" uid="uid://lps4artqdiwu" path="res://player/NPC/Scene/anglia.tscn" id="20_s6sw8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k1vra"]
 
@@ -63,7 +75,96 @@ collision_mask = 2
 script = ExtResource("4_cjb7m")
 
 [node name="LittleDude" parent="." instance=ExtResource("6_r074d")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -40.4331, 0, -175.714)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -40.4331, 0, -175.714)
+
+[node name="svea" parent="." instance=ExtResource("8_o75gl")]
+transform = Transform3D(1.98056, 0, 3.47525, 0, 4, 0, -3.47525, 0, 1.98056, -105.922, 0, 9.3275)
+
+[node name="NPCCollision" parent="svea" instance=ExtResource("9_w8k5j")]
+
+[node name="Actionable" parent="svea" instance=ExtResource("10_isx14")]
+
+[node name="actionableCollision" parent="svea/Actionable" instance=ExtResource("11_sk8ci")]
+
+[node name="wave_zone" parent="svea" instance=ExtResource("13_aoiaa")]
+
+[node name="chatDetectionArea" parent="svea" instance=ExtResource("12_8b722")]
+
+[node name="kuggen" parent="." instance=ExtResource("15_3nk8o")]
+transform = Transform3D(-3.33373, 0, -2.21048, 0, 4, 0, 2.21048, 0, -3.33373, 0.403141, 0, -57.8886)
+
+[node name="NPCCollision" parent="kuggen" instance=ExtResource("9_w8k5j")]
+
+[node name="Actionable" parent="kuggen" instance=ExtResource("10_isx14")]
+
+[node name="actionableCollision" parent="kuggen/Actionable" instance=ExtResource("11_sk8ci")]
+
+[node name="wave_zone" parent="kuggen" instance=ExtResource("13_aoiaa")]
+
+[node name="chatDetectionArea" parent="kuggen" instance=ExtResource("12_8b722")]
+
+[node name="jupiter" parent="." instance=ExtResource("16_w7wy8")]
+transform = Transform3D(-2.5789, 0, -3.05766, 0, 4, 0, 3.05766, 0, -2.5789, -25.836, 0, -8.12006)
+
+[node name="NPCCollision" parent="jupiter" instance=ExtResource("9_w8k5j")]
+
+[node name="Actionable" parent="jupiter" instance=ExtResource("10_isx14")]
+
+[node name="actionableCollision" parent="jupiter/Actionable" instance=ExtResource("11_sk8ci")]
+
+[node name="wave_zone" parent="jupiter" instance=ExtResource("13_aoiaa")]
+
+[node name="chatDetectionArea" parent="jupiter" instance=ExtResource("12_8b722")]
+
+[node name="saga" parent="." instance=ExtResource("17_sep0f")]
+transform = Transform3D(0.955897, 0, 3.8841, 0, 4, 0, -3.8841, 0, 0.955897, -59.1846, 0, 34.7213)
+
+[node name="NPCCollision" parent="saga" instance=ExtResource("9_w8k5j")]
+
+[node name="Actionable" parent="saga" instance=ExtResource("10_isx14")]
+
+[node name="actionableCollision" parent="saga/Actionable" instance=ExtResource("11_sk8ci")]
+
+[node name="wave_zone" parent="saga" instance=ExtResource("13_aoiaa")]
+
+[node name="chatDetectionArea" parent="saga" instance=ExtResource("12_8b722")]
+
+[node name="patricia" parent="." instance=ExtResource("17_8lqmn")]
+transform = Transform3D(1.43966, 0, 3.73194, 0, 4, 0, -3.73194, 0, 1.43966, -83.7594, 0, -33.1025)
+
+[node name="NPCCollision" parent="patricia" instance=ExtResource("9_w8k5j")]
+
+[node name="Actionable" parent="patricia" instance=ExtResource("10_isx14")]
+
+[node name="actionableCollision" parent="patricia/Actionable" instance=ExtResource("11_sk8ci")]
+
+[node name="wave_zone" parent="patricia" instance=ExtResource("13_aoiaa")]
+
+[node name="chatDetectionArea" parent="patricia" instance=ExtResource("12_8b722")]
+
+[node name="äran" parent="." instance=ExtResource("19_apq5e")]
+transform = Transform3D(-3.92355, 0, 0.778307, 0, 4, 0, -0.778307, 0, -3.92355, -78.7897, 0, 97.2154)
+
+[node name="NPCCollision" parent="äran" instance=ExtResource("9_w8k5j")]
+
+[node name="Actionable" parent="äran" instance=ExtResource("10_isx14")]
+
+[node name="actionableCollision" parent="äran/Actionable" instance=ExtResource("11_sk8ci")]
+
+[node name="chatDetectionArea" parent="äran" instance=ExtResource("12_8b722")]
+
+[node name="anglia" parent="." instance=ExtResource("20_s6sw8")]
+transform = Transform3D(-3.871, 0, -1.00767, 0, 4, 0, 1.00767, 0, -3.871, -119.953, 0, 198.521)
+
+[node name="NPCCollision" parent="anglia" instance=ExtResource("9_w8k5j")]
+
+[node name="Actionable" parent="anglia" instance=ExtResource("10_isx14")]
+
+[node name="actionableCollision" parent="anglia/Actionable" instance=ExtResource("11_sk8ci")]
+
+[node name="chatDetectionArea" parent="anglia" instance=ExtResource("12_8b722")]
+
+[node name="wave_zone" parent="anglia" instance=ExtResource("13_aoiaa")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

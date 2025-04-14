@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cb8cpqr0olva4"]
 
-[ext_resource type="PackedScene" uid="uid://dgrvnyqqie7k2" path="res://player/NPC/Imports/science.glb" id="1_mycvf"]
+[ext_resource type="PackedScene" uid="uid://dgrvnyqqie7k2" path="res://player/NPC/Imports/Johanneberg/science.glb" id="1_mycvf"]
 [ext_resource type="Script" path="res://player/NPC/Script/science.gd" id="2_0rdxn"]
 
 [node name="science" instance=ExtResource("1_mycvf")]

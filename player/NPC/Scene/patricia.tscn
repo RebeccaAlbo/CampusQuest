@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://debrevchux61e"]
+
+[ext_resource type="PackedScene" uid="uid://djnwlomgp10os" path="res://player/NPC/Imports/Lindholmen/patricia.glb" id="1_hrb3n"]
+[ext_resource type="Script" path="res://player/NPC/Script/patricia.gd" id="2_4uf1u"]
+
+[node name="patricia" instance=ExtResource("1_hrb3n")]
+script = ExtResource("2_4uf1u")

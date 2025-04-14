@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ckdfjc7flpwdm"]
 
-[ext_resource type="PackedScene" uid="uid://ch600bi4fu51i" path="res://player/NPC/Imports/life.glb" id="1_quels"]
+[ext_resource type="PackedScene" uid="uid://ch600bi4fu51i" path="res://player/NPC/Imports/Johanneberg/life.glb" id="1_quels"]
 [ext_resource type="Script" path="res://player/NPC/Script/life.gd" id="2_17u2v"]
 
 [node name="life" instance=ExtResource("1_quels")]

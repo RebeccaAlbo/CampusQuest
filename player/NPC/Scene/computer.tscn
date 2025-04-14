@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dbn7fmsdl1yi8"]
 
-[ext_resource type="PackedScene" uid="uid://c2t7ukhjdw30n" path="res://player/NPC/Imports/computer.glb" id="1_pd563"]
+[ext_resource type="PackedScene" uid="uid://c2t7ukhjdw30n" path="res://player/NPC/Imports/Johanneberg/computer.glb" id="1_pd563"]
 
 [sub_resource type="GDScript" id="GDScript_lc52q"]
 script/source = "extends CharacterBody3D

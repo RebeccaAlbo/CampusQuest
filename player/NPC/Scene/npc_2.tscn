@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c6qp18idoxerc"]
 
-[ext_resource type="PackedScene" uid="uid://k5dd5uckx44s" path="res://player/NPC/Imports/NPC2.glb" id="1_o6teh"]
+[ext_resource type="PackedScene" uid="uid://k5dd5uckx44s" path="res://player/NPC/Imports/Johanneberg/NPC2.glb" id="1_o6teh"]
 [ext_resource type="Script" path="res://player/NPC/Script/npc_2.gd" id="2_bixf0"]
 
 [node name="NPC2" instance=ExtResource("1_o6teh")]

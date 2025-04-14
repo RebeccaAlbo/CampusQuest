@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cj7le52ks7iqq"]
 
-[ext_resource type="PackedScene" uid="uid://dbygwfnckri8b" path="res://player/NPC/Imports/micro.glb" id="1_ndjo8"]
+[ext_resource type="PackedScene" uid="uid://dbygwfnckri8b" path="res://player/NPC/Imports/Johanneberg/micro.glb" id="1_ndjo8"]
 [ext_resource type="Script" path="res://player/NPC/Script/micro.gd" id="2_bltdb"]
 
 [node name="micro" instance=ExtResource("1_ndjo8")]

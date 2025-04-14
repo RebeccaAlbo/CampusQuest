@@ -16,7 +16,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		hover_text.visible = true
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("interact") and player_in_transport_zone:
 		print("travelling")
 		hover_text.visible = false
@@ -25,5 +25,5 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif current_scene.name =="campus_lindholmen":
 			get_tree().change_scene_to_file("res://campus_johanneberg.tscn")
 
-func _on_area_3d_body_exited(body: Node3D) -> void:
+func _on_area_3d_body_exited(_body: Node3D) -> void:
 	hover_text.visible = false

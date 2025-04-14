@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://chk66t6vfn5qb"]
 
-[ext_resource type="PackedScene" uid="uid://cyk2vf8uof4qc" path="res://player/NPC/Imports/chemistry.glb" id="1_xbbu1"]
+[ext_resource type="PackedScene" uid="uid://cyk2vf8uof4qc" path="res://player/NPC/Imports/Johanneberg/chemistry.glb" id="1_xbbu1"]
 [ext_resource type="Script" path="res://player/NPC/Script/chemistry.gd" id="2_lrwto"]
 
 [node name="chemistry" instance=ExtResource("1_xbbu1")]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://8tormtv14q07"]
 
-[ext_resource type="PackedScene" uid="uid://b2nh5urop0prr" path="res://player/NPC/Imports/mechanics.glb" id="1_voyia"]
+[ext_resource type="PackedScene" uid="uid://b2nh5urop0prr" path="res://player/NPC/Imports/Johanneberg/mechanics.glb" id="1_voyia"]
 [ext_resource type="Script" path="res://player/NPC/Script/mechanics.gd" id="2_scnwu"]
 
 [node name="mechanics" instance=ExtResource("1_voyia")]

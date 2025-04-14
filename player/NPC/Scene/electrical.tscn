@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dd6d57l0bjch1"]
 
-[ext_resource type="PackedScene" uid="uid://d28cacnp1b3w1" path="res://player/NPC/Imports/electrical.glb" id="1_ay0ib"]
+[ext_resource type="PackedScene" uid="uid://d28cacnp1b3w1" path="res://player/NPC/Imports/Johanneberg/electrical.glb" id="1_ay0ib"]
 [ext_resource type="Script" path="res://player/NPC/Script/electrical.gd" id="2_igwtj"]
 
 [node name="electrical" instance=ExtResource("1_ay0ib")]

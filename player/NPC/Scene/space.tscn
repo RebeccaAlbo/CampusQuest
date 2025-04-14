@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dsvtw2vrku8p1"]
 
-[ext_resource type="PackedScene" uid="uid://bg42mx0nw35mw" path="res://player/NPC/Imports/space.glb" id="1_yyx75"]
+[ext_resource type="PackedScene" uid="uid://bg42mx0nw35mw" path="res://player/NPC/Imports/Johanneberg/space.glb" id="1_yyx75"]
 [ext_resource type="Script" path="res://player/NPC/Script/space.gd" id="2_tuops"]
 
 [node name="space" instance=ExtResource("1_yyx75")]
