@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=34 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="Script" path="res://script_templates/Node3D/campus.gd" id="1_bvc45"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/UI.tscn" id="2_4ls75"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://chmkvv0nt5cvf" path="res://player/BaseCharacter/Scene/little_dude.tscn" id="5_lsdd2"]
 [ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://busStop/bus_stop.tscn" id="5_rrnht"]
 [ext_resource type="PackedScene" uid="uid://c6qp18idoxerc" path="res://player/NPC/Scene/npc_2.tscn" id="6_l630j"]
+[ext_resource type="Texture2D" uid="uid://1y4t1in22vyd" path="res://menu/dot.png" id="6_vbvlo"]
 [ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="7_r3rb6"]
 [ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/Other/Scenes/actionable.tscn" id="8_qwxh4"]
 [ext_resource type="PackedScene" uid="uid://bui3dm2ac1fqp" path="res://player/Other/Scenes/actionable_collision.tscn" id="9_r86a4"]
@@ -25,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://d0heqcl0pg1n3" path="res://player/NPC/Scene/economic.tscn" id="22_ym16x"]
 [ext_resource type="PackedScene" uid="uid://cb8cpqr0olva4" path="res://player/NPC/Scene/science.tscn" id="23_hly5b"]
 [ext_resource type="PackedScene" uid="uid://b5elambvpjdk3" path="res://menu/pause_menu.tscn" id="24_wqpu3"]
+[ext_resource type="Script" path="res://menu/minimap.gd" id="26_s4sft"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
 
@@ -41,6 +43,9 @@ size = Vector2(10000, 10000)
 [sub_resource type="Environment" id="Environment_wt17y"]
 background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gs0ng"]
+viewport_path = NodePath("CanvasLayer/MinimapJ/SubViewport")
 
 [node name="campus_johanneberg" type="Node3D"]
 script = ExtResource("1_bvc45")
@@ -74,9 +79,16 @@ light_color = Color(1, 0.941176, 0.941176, 1)
 [node name="ground2" parent="." instance=ExtResource("4_ni8s6")]
 
 [node name="LittleDude" parent="." instance=ExtResource("5_lsdd2")]
+unique_name_in_owner = true
 transform = Transform3D(4.95669, 0, -0.656698, 0, 5, 0, 0.656698, 0, 4.95669, -297.594, 0.6042, -100.474)
 collision_layer = 35
 collision_mask = 7
+
+[node name="Indicator" type="Sprite3D" parent="LittleDude"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2, 0)
+layers = 1024
+no_depth_test = true
+texture = ExtResource("6_vbvlo")
 
 [node name="busStop" parent="." instance=ExtResource("5_rrnht")]
 transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, -305, 0, -126)
@@ -258,5 +270,38 @@ transform = Transform3D(1.93581, 0, -4.61006, 0, 5, 0, 4.61006, 0, 1.93581, -33.
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("24_wqpu3")]
+
+[node name="MinimapJ" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_right = -40.0
+grow_horizontal = 0
+script = ExtResource("26_s4sft")
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/MinimapJ"]
+
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/MinimapJ/SubViewport"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -297.673, 10, -101.511)
+cull_mask = 1048573
+projection = 1
+fov = 7.0
+size = 120.06
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MinimapJ"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -365.0
+offset_top = 35.0
+offset_right = 17.0
+offset_bottom = 415.0
+grow_horizontal = 0
+texture = SubResource("ViewportTexture_gs0ng")
+expand_mode = 1
 
 [connection signal="ready" from="." to="." method="_on_ready"]
