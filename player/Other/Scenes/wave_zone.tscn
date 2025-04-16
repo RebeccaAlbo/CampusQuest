@@ -5,7 +5,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_ur86w"]
 radius = 3.0
 
-[node name="wave_zone" type="Area3D"]
+[node name="WaveZone" type="Area3D"]
 collision_layer = 32
 collision_mask = 2
 script = ExtResource("1_02ajn")

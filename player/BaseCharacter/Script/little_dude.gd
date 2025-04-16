@@ -6,7 +6,6 @@ extends CharacterBody3D
 @onready var spring_arm: SpringArm3D = $SpringArmPivot/SpringArm3D
 @onready var anim_tree: AnimationTree = $AnimationTree
 @onready var actionable_finder: Area3D = $Direction/ActionableFinder
-@onready var dot_sprite: Sprite3D = $dot_sprite
 
 
 const SPEED = 30.0

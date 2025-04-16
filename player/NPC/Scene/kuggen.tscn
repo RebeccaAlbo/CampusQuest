@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://06ccq6sqvbif"]
 
 [ext_resource type="PackedScene" uid="uid://djbfa4v0gmr8l" path="res://player/NPC/Imports/Lindholmen/kuggen.glb" id="1_f16fb"]
-[ext_resource type="Script" path="res://kuggen.gd" id="2_pjncx"]
+[ext_resource type="Script" path="res://player/NPC/Script/kuggen.gd" id="2_pjncx"]
 
 [node name="kuggen" instance=ExtResource("1_f16fb")]
 script = ExtResource("2_pjncx")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b584gsiy5gxk2"]
 
 [ext_resource type="PackedScene" uid="uid://c3lyo743c46k5" path="res://player/NPC/Imports/Lindholmen/äran.glb" id="1_hnitc"]
-[ext_resource type="Script" path="res://äran.gd" id="2_olnam"]
+[ext_resource type="Script" path="res://player/NPC/Script/äran.gd" id="2_olnam"]
 
 [node name="äran" instance=ExtResource("1_hnitc")]
 script = ExtResource("2_olnam")
