@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=35 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="Script" path="res://script_templates/Node3D/campus.gd" id="1_bvc45"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/UI.tscn" id="2_4ls75"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://busStop/bus_stop.tscn" id="5_rrnht"]
 [ext_resource type="PackedScene" uid="uid://c6qp18idoxerc" path="res://player/NPC/Scene/npc_2.tscn" id="6_l630j"]
 [ext_resource type="Texture2D" uid="uid://dqphkalnuma64" path="res://menu/exlamation.png" id="6_m3tah"]
+[ext_resource type="Texture2D" uid="uid://1y4t1in22vyd" path="res://menu/dot.png" id="6_vbvlo"]
 [ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="7_r3rb6"]
 [ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/Other/Scenes/actionable.tscn" id="8_qwxh4"]
 [ext_resource type="PackedScene" uid="uid://bui3dm2ac1fqp" path="res://player/Other/Scenes/actionable_collision.tscn" id="9_r86a4"]
@@ -26,7 +27,6 @@
 [ext_resource type="PackedScene" uid="uid://d0heqcl0pg1n3" path="res://player/NPC/Scene/economic.tscn" id="22_ym16x"]
 [ext_resource type="PackedScene" uid="uid://cb8cpqr0olva4" path="res://player/NPC/Scene/science.tscn" id="23_hly5b"]
 [ext_resource type="PackedScene" uid="uid://b5elambvpjdk3" path="res://menu/pause_menu.tscn" id="24_wqpu3"]
-[ext_resource type="Script" path="res://minimap.gd" id="27_82wfb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
 
@@ -44,25 +44,25 @@ size = Vector2(10000, 10000)
 background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1uj5"]
-albedo_color = Color(0.822244, 0, 0.188958, 1)
+[sub_resource type="GDScript" id="GDScript_m4xvu"]
+script/source = "extends Control
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_ogso1"]
-material = SubResource("StandardMaterial3D_y1uj5")
-height = 0.01
+@onready var _little_dude_l: CharacterBody3D = %LittleDudeL
+@onready var _minimap_camera_l: Camera3D = %MinimapCameraL
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxwxs"]
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(0.255659, 0.255659, 0.255659, 1)
+func _process(_delta: float) -> void:
+	_minimap_camera.global_position = _little_dude.global_position + Vector3.UP * 10
+"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ekp7j"]
+viewport_path = NodePath("CanvasLayer/MinimapJ/SubViewport")
 
 [node name="campus_johanneberg" type="Node3D"]
 script = ExtResource("1_bvc45")
 
 [node name="ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
 physics_material_override = SubResource("PhysicsMaterial_wt17y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
@@ -93,10 +93,11 @@ transform = Transform3D(4.95669, 0, -0.656698, 0, 5, 0, 0.656698, 0, 4.95669, -2
 collision_layer = 35
 collision_mask = 7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="LittleDude"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 10, 0)
+[node name="Sprite3D" type="Sprite3D" parent="LittleDude"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2, 0)
 layers = 1024
-mesh = SubResource("CylinderMesh_ogso1")
+flip_h = true
+texture = ExtResource("6_vbvlo")
 
 [node name="busStop" parent="." instance=ExtResource("5_rrnht")]
 transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, -305, 0, -126)
@@ -283,29 +284,32 @@ transform = Transform3D(1.93581, 0, -4.61006, 0, 5, 0, 4.61006, 0, 1.93581, -33.
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("24_wqpu3")]
 
-[node name="Minimap" type="PanelContainer" parent="CanvasLayer"]
+[node name="MinimapJ" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_m4xvu")
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/MinimapJ"]
+
+[node name="MinimapCamera" type="Camera3D" parent="CanvasLayer/MinimapJ/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -297.711, 10, -100.609)
+cull_mask = 1048573
+projection = 1
+current = true
+size = 120.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MinimapJ"]
+layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -282.567
-offset_top = 19.8986
-offset_right = -20.567
-offset_bottom = 281.899
+offset_left = 449.0
+offset_top = -1.0
+offset_right = 961.0
+offset_bottom = 511.0
 grow_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_mxwxs")
-script = ExtResource("27_82wfb")
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Minimap"]
-layout_mode = 2
-
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(250, 250)
-render_target_update_mode = 4
-
-[node name="Camera3D" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -298.251, 100, -100.675)
-cull_mask = 1048573
-size = 100.0
+texture = SubResource("ViewportTexture_ekp7j")
 
 [connection signal="ready" from="." to="." method="_on_ready"]

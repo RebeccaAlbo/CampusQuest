@@ -1,7 +1,8 @@
 extends Control
 
 @onready var _little_dude: CharacterBody3D = $"../../LittleDude"
-@onready var _camera_3d: Camera3D = %Camera3D
+@onready var _camera_3d: Camera3D = $SubViewport/Camera3D
+
 
 
 

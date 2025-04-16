@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c3ynfcpspetng"]
+[gd_scene load_steps=30 format=3 uid="uid://c3ynfcpspetng"]
 
 [ext_resource type="Script" path="res://campus_lindholmen.gd" id="1_02gfq"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/UI.tscn" id="1_fyxg7"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://chmkvv0nt5cvf" path="res://player/BaseCharacter/Scene/little_dude.tscn" id="6_r074d"]
 [ext_resource type="PackedScene" uid="uid://b5elambvpjdk3" path="res://menu/pause_menu.tscn" id="7_q5oko"]
 [ext_resource type="PackedScene" uid="uid://bx0yjeuw1ojxn" path="res://player/NPC/Scene/svea.tscn" id="8_o75gl"]
+[ext_resource type="Texture2D" uid="uid://1y4t1in22vyd" path="res://menu/dot.png" id="8_r5lfy"]
 [ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://busStop/bus_stop.tscn" id="8_xqaft"]
 [ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="9_w8k5j"]
 [ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/Other/Scenes/actionable.tscn" id="10_isx14"]
@@ -21,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://rlj0t4a7yxjj" path="res://player/NPC/Scene/saga.tscn" id="17_sep0f"]
 [ext_resource type="PackedScene" uid="uid://bkx6evqbw1q8y" path="res://player/NPC/Scene/äran.tscn" id="19_apq5e"]
 [ext_resource type="PackedScene" uid="uid://lps4artqdiwu" path="res://player/NPC/Scene/anglia.tscn" id="20_s6sw8"]
-[ext_resource type="Script" path="res://minimap.gd" id="22_q6hgg"]
+[ext_resource type="Script" path="res://menu/minimapL.gd" id="21_ojxhb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k1vra"]
 
@@ -39,19 +40,8 @@ size = Vector2(10000, 10000)
 background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5qyeq"]
-albedo_color = Color(0.822244, 0, 0.188958, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_682jy"]
-material = SubResource("StandardMaterial3D_5qyeq")
-height = 0.01
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28ls7"]
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(0.255659, 0.255659, 0.255659, 1)
+[sub_resource type="ViewportTexture" id="ViewportTexture_3ytjr"]
+viewport_path = NodePath("CanvasLayer/MinimapL/SubViewport")
 
 [node name="campus_lindholmen" type="Node3D"]
 script = ExtResource("1_02gfq")
@@ -90,10 +80,10 @@ script = ExtResource("4_cjb7m")
 [node name="LittleDude" parent="." instance=ExtResource("6_r074d")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -40.4331, 0, -175.714)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="LittleDude"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 10, 0)
+[node name="Indicator" type="Sprite3D" parent="LittleDude"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2, 0)
 layers = 1024
-mesh = SubResource("CylinderMesh_682jy")
+texture = ExtResource("8_r5lfy")
 
 [node name="svea" parent="." instance=ExtResource("8_o75gl")]
 transform = Transform3D(1.98056, 0, 3.47525, 0, 4, 0, -3.47525, 0, 1.98056, -105.922, 0, 9.3275)
@@ -175,18 +165,18 @@ transform = Transform3D(1.43966, 0, 3.73194, 0, 4, 0, -3.73194, 0, 1.43966, -83.
 [node name="exlamation" parent="patricia" instance=ExtResource("15_0e3o0")]
 transform = Transform3D(1.09291, 1.67498, 7.32157e-08, 3.18221e-15, -8.74228e-08, 2, 1.67498, -1.09291, -4.77724e-08, 0, 2, 0)
 
-[node name="aran" parent="." instance=ExtResource("19_apq5e")]
+[node name="äran" parent="." instance=ExtResource("19_apq5e")]
 transform = Transform3D(-3.92355, 0, 0.778307, 0, 4, 0, -0.778307, 0, -3.92355, -78.7897, 0, 97.2154)
 
-[node name="NPCCollision" parent="aran" instance=ExtResource("9_w8k5j")]
+[node name="NPCCollision" parent="äran" instance=ExtResource("9_w8k5j")]
 
-[node name="Actionable" parent="aran" instance=ExtResource("10_isx14")]
+[node name="Actionable" parent="äran" instance=ExtResource("10_isx14")]
 
-[node name="actionableCollision" parent="aran/Actionable" instance=ExtResource("11_sk8ci")]
+[node name="actionableCollision" parent="äran/Actionable" instance=ExtResource("11_sk8ci")]
 
-[node name="chatDetectionArea" parent="aran" instance=ExtResource("12_8b722")]
+[node name="chatDetectionArea" parent="äran" instance=ExtResource("12_8b722")]
 
-[node name="exlamation" parent="aran" instance=ExtResource("15_0e3o0")]
+[node name="exlamation" parent="äran" instance=ExtResource("15_0e3o0")]
 transform = Transform3D(-1.93561, 0.503395, 2.20041e-08, 3.18221e-15, -8.74228e-08, 2, 0.503395, 1.93561, 8.46083e-08, 0, 2, 0)
 
 [node name="anglia" parent="." instance=ExtResource("20_s6sw8")]
@@ -209,27 +199,34 @@ transform = Transform3D(-1.99827, 0.0832281, 3.63801e-09, 3.18221e-15, -8.74228e
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_q5oko")]
 
-[node name="Minimap" type="PanelContainer" parent="CanvasLayer"]
+[node name="MinimapL" type="Control" parent="CanvasLayer"]
+layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -282.567
-offset_top = 19.8986
-offset_right = -20.567
-offset_bottom = 281.899
+offset_left = -40.0
+offset_right = -40.0
 grow_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_28ls7")
-script = ExtResource("22_q6hgg")
+script = ExtResource("21_ojxhb")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Minimap"]
-layout_mode = 2
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/MinimapL"]
 
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(250, 250)
-render_target_update_mode = 4
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/MinimapL/SubViewport"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -40.1833, 25.6568, -175.927)
+projection = 1
+fov = 7.0
+size = 120.06
 
-[node name="Camera3D" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -40.3138, 100, -175.817)
-cull_mask = 1048573
-size = 100.0
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MinimapL"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -365.0
+offset_top = 35.0
+offset_right = 17.0
+offset_bottom = 415.0
+grow_horizontal = 0
+texture = SubResource("ViewportTexture_3ytjr")
+expand_mode = 1
