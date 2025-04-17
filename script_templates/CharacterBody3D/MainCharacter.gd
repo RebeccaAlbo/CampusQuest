@@ -13,13 +13,39 @@ const JUMP_VELOCITY = 4.5
 const LERP_VAL = .15
 
 var can_move: bool = true
+var show_shoes: bool = true
+
+var skin_colors = [
+	Color(1.0, 0.8, 0.6),  # Light
+	Color(0.8, 0.6, 0.4),  # Tan
+	Color(0.5, 0.3, 0.2),  # Medium brown
+	Color(0.3, 0.2, 0.1)   # Dark brown	
+]
+
+var hair_styles = [
+	$Armature/Skeleton3D/Hair1,
+	$Armature/Skeleton3D/Hair2,
+	$Armature/Skeleton3D/Hair3,
+	$Armature/Skeleton3D/Hair4,
+]
+
+var current_skin_index = 0
+var current_hair_index = 0
+var prev_hair
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	update_skin_color()
 	add_to_group("player")
+	prev_hair = hair_styles[current_hair_index]
+	
+	if get_tree().current_scene.name == "CharacterSelection":
+		can_move = false
+	elif get_tree().current_scene.name == "campus_johanneberg" or get_tree().current_scene.name == "campus_lindholmen":
+		update_character_skin(CharacterCust.skin_index)
+		update_character_hair(CharacterCust.hair_index)
 
 func _unhandled_input(event: InputEvent) -> void:
-		
 	# Mouse control viewpoint
 	if event is InputEventMouseMotion:
 		spring_arm_pivot.rotate_y(-event.relative.x * .001)
@@ -70,3 +96,49 @@ func in_dialogue():
 	
 func end_dialoque():
 	can_move = true
+	
+func change_skin_color(direction: int):
+	current_skin_index = (current_skin_index + direction) % skin_colors.size()
+	if current_skin_index < 0:
+		current_skin_index = skin_colors.size() - 1
+	update_skin_color()
+
+func update_skin_color():
+	var skin = $Armature/Skeleton3D/Body
+	if skin == null:
+		print("skin not found")
+		return
+		
+	var material = skin.get_surface_override_material(0)
+	
+	if material == null:
+		material = skin.get_active_material(0).duplicate()
+		skin.set_surface_override_material(0, material)
+
+	material.albedo_color = skin_colors[current_skin_index]
+
+func change_hair(direction: int):
+	print("changing hair...")
+	current_hair_index = (current_hair_index + direction) % hair_styles.size()
+	if current_hair_index < 0:
+		current_hair_index = hair_styles.size() - 1
+	update_hair_style()
+		
+func update_hair_style():
+	prev_hair.visible = false
+	var current_hair = hair_styles[current_hair_index]
+	current_hair.visible = true
+	prev_hair = current_hair
+		
+func update_character_skin(index: int):
+	var skin = $Armature/Skeleton3D/Body
+	var material = skin.get_surface_override_material(0)
+	material.albedo_color = skin_colors[index]
+	
+func update_character_hair(index: int):
+	var current_hair = hair_styles[index]
+	current_hair.visible = true
+	
+	
+	
+	

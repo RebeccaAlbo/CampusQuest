@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c3ynfcpspetng"]
+[gd_scene load_steps=35 format=3 uid="uid://c3ynfcpspetng"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_lindholmen.gd" id="1_bghy0"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI2/UI.tscn" id="2_hyq3a"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" path="res://UI/Menues/Skripts/big_map.gd" id="22_4s3ad"]
 [ext_resource type="Texture2D" uid="uid://1y4t1in22vyd" path="res://UI/Images/dot.png" id="23_bgv1d"]
 [ext_resource type="Script" path="res://sprite_3d.gd" id="24_1gvsc"]
+[ext_resource type="PackedScene" uid="uid://c85xldxotb6jh" path="res://player/tester.tscn" id="25_gas8w"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k1vra"]
 
@@ -195,6 +196,7 @@ transform = Transform3D(-3.871, 0, -1.00767, 0, 4, 0, 1.00767, 0, -3.871, -119.9
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("20_3lu4g")]
+visible = false
 
 [node name="Minimap" type="PanelContainer" parent="CanvasLayer"]
 anchors_preset = 1
@@ -274,6 +276,9 @@ modulate = Color(0, 0, 0, 1)
 text = "Press F to change campus"
 font_size = 150
 outline_size = 15
+
+[node name="tester" parent="." instance=ExtResource("25_gas8w")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -29.1387, 0, -174.237)
 
 [connection signal="mouse_entered" from="Sprite3D/Area3D" to="Sprite3D" method="_on_area_3d_mouse_entered"]
 [connection signal="mouse_exited" from="Sprite3D/Area3D" to="Sprite3D" method="_on_area_3d_mouse_exited"]

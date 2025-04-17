@@ -13,6 +13,7 @@ const JUMP_VELOCITY = 4.5
 const LERP_VAL = .15
 
 var can_move: bool = true
+var show_shoes: bool = true
 
 var skin_colors = [
 	Color(1.0, 0.8, 0.6),  # Light
@@ -21,7 +22,16 @@ var skin_colors = [
 	Color(0.3, 0.2, 0.1)   # Dark brown	
 ]
 
+var hair_styles = [
+	$Armature/Skeleton3D/Hair1,
+	$Armature/Skeleton3D/Hair2,
+	$Armature/Skeleton3D/Hair3,
+	$Armature/Skeleton3D/Hair4,
+]
+
 var current_skin_index = 0
+var current_hair_index = 0
+var prev_hair = hair_styles[0]
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -92,22 +102,34 @@ func change_skin_color(direction: int):
 	update_skin_color()
 
 func update_skin_color():
-	var mesh = $Armature/Skeleton3D/Body
-	if mesh == null:
-		print("mesh not found")
+	var skin = $Armature/Skeleton3D/Body
+	if skin == null:
+		print("skin not found")
 		return
 		
-	var material = mesh.get_surface_override_material(0)
+	var material = skin.get_surface_override_material(0)
 	
 	if material == null:
-		material = mesh.get_active_material(0).duplicate()
-		mesh.set_surface_override_material(0, material)
+		material = skin.get_active_material(0).duplicate()
+		skin.set_surface_override_material(0, material)
 
 	material.albedo_color = skin_colors[current_skin_index]
-	print("current index is ", current_skin_index)
-	
+
+func change_hair(direction: int):
+	current_hair_index = (current_hair_index + direction) % hair_styles.size()
+	if current_hair_index < 0:
+		current_hair_index = hair_styles.size() - 1
+	update_hair_style()
+		
+func update_hair_style():
+	prev_hair.visible = false
+	var current_hair = hair_styles[current_hair_index]
+	current_hair.visible = true
+		
 func update_character_skin(index: int):
-	var mesh = $Armature/Skeleton3D/Body
-	var material = mesh.get_surface_override_material(0)
+	var skin = $Armature/Skeleton3D/Body
+	var material = skin.get_surface_override_material(0)
 	material.albedo_color = skin_colors[index]
+	
+	
 	

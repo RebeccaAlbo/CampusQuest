@@ -1,7 +1,122 @@
 [gd_scene load_steps=9 format=3 uid="uid://chmkvv0nt5cvf"]
 
 [ext_resource type="PackedScene" uid="uid://bm1l4areekkdh" path="res://player/BaseCharacter/newBase.glb" id="1_whbc8"]
-[ext_resource type="Script" path="res://player/BaseCharacter/Script/little_dude.gd" id="2_boxm1"]
+
+[sub_resource type="GDScript" id="GDScript_8p71h"]
+script/source = "extends CharacterBody3D
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var armature: Node3D = $Armature
+@onready var spring_arm_pivot: Node3D = $SpringArmPivot
+@onready var spring_arm: SpringArm3D = $SpringArmPivot/SpringArm3D
+@onready var anim_tree: AnimationTree = $AnimationTree
+@onready var actionable_finder: Area3D = $Direction/ActionableFinder
+
+
+const SPEED = 30.0
+const JUMP_VELOCITY = 4.5
+const LERP_VAL = .15
+
+var can_move: bool = true
+
+var skin_colors = [
+	Color(1.0, 0.8, 0.6),  # Light
+	Color(0.8, 0.6, 0.4),  # Tan
+	Color(0.5, 0.3, 0.2),  # Medium brown
+	Color(0.3, 0.2, 0.1)   # Dark brown	
+]
+
+var current_skin_index = 0
+
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	update_skin_color()
+	add_to_group(\"player\")
+	
+	if get_tree().current_scene.name == \"CharacterSelection\":
+		can_move = false
+	elif get_tree().current_scene.name == \"campus_johanneberg\" or get_tree().current_scene.name == \"campus_lindholmen\":
+		update_character_skin(CharacterCust.skin_index)
+
+func _unhandled_input(event: InputEvent) -> void:
+	# Mouse control viewpoint
+	if event is InputEventMouseMotion:
+		spring_arm_pivot.rotate_y(-event.relative.x * .001)
+		spring_arm.rotate_x(-event.relative.y * .001)
+		# No infinite rotation
+		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/4, PI/4)
+		
+	if Input.is_action_just_pressed(\"interact\"):
+		var actionables = actionable_finder.get_overlapping_areas()
+		if actionables.size() > 0:
+			actionables[0].action()
+			return
+
+func _physics_process(delta: float) -> void:
+	if !can_move:
+		return
+		
+	# Handle jump.
+	if Input.is_action_just_pressed(\"jump\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+	
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var input_dir := Input.get_vector(\"left\", \"right\", \"up\", \"down\")
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	# Mouse control direction of character
+	direction = direction.rotated(Vector3.UP, spring_arm_pivot.rotation.y)
+	if direction:
+		velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
+		velocity.z = lerp(velocity.z, direction.z * SPEED, LERP_VAL)
+		armature.rotation.y = lerp_angle(armature.rotation.y, atan2(-velocity.x, -velocity.z), LERP_VAL)
+	else:
+		velocity.x = lerp(velocity.x, 0.0, LERP_VAL)
+		velocity.z = lerp(velocity.z, 0.0, LERP_VAL)
+		
+	anim_tree.set(\"parameters/BlendSpace1D/blend_position\", velocity.length() / SPEED)
+
+	move_and_slide()
+	
+func in_dialogue():
+	velocity = Vector3.ZERO
+	anim_tree.set(\"parameters/BlendSpace1D/blend_position\", 0.0)
+	can_move = false
+	
+func end_dialoque():
+	can_move = true
+	
+func change_skin_color(direction: int):
+	current_skin_index = (current_skin_index + direction) % skin_colors.size()
+	if current_skin_index < 0:
+		current_skin_index = skin_colors.size() - 1
+	update_skin_color()
+
+func update_skin_color():
+	var mesh = $Armature/Skeleton3D/Body
+	if mesh == null:
+		print(\"mesh not found\")
+		return
+		
+	var material = mesh.get_surface_override_material(0)
+	
+	if material == null:
+		material = mesh.get_active_material(0).duplicate()
+		mesh.set_surface_override_material(0, material)
+
+	material.albedo_color = skin_colors[current_skin_index]
+	print(\"current index is \", current_skin_index)
+	
+func update_character_skin(index: int):
+	var mesh = $Armature/Skeleton3D/Body
+	var material = mesh.get_surface_override_material(0)
+	material.albedo_color = skin_colors[index]
+	
+"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wberv"]
 radius = 0.38
@@ -31,18 +146,18 @@ node_connections = [&"output", 0, &"BlendSpace1D"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 collision_layer = 2
 collision_mask = 3
-script = ExtResource("2_boxm1")
+script = SubResource("GDScript_8p71h")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-bones/0/position = Vector3(8.35358e-10, 0.663741, -6.49878e-09)
+bones/0/position = Vector3(9.02904e-10, 0.655277, -3.44955e-09)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/rotation = Quaternion(-0.101219, -0.000264807, 0.0135792, 0.994771)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/rotation = Quaternion(0.083879, 0.000415142, -0.0112401, 0.996412)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/position = Vector3(0.0586273, 0.206401, -2.1874e-05)
-bones/3/rotation = Quaternion(-0.0604773, 0.014097, -0.81121, 0.581448)
+bones/3/position = Vector3(0.0586991, 0.19499, 0.000515568)
+bones/3/rotation = Quaternion(-0.0335927, -0.00501186, -0.811856, 0.582869)
 bones/4/rotation = Quaternion(-0.0362898, 0.0128226, -0.332907, 0.942174)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(0.0712842, 0.000848592, -0.223144, 0.972175)
@@ -68,8 +183,8 @@ bones/18/rotation = Quaternion(0.310948, -0.0143828, 0.102768, 0.944745)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/rotation = Quaternion(0.0179618, 0.00278789, -0.0561577, 0.998256)
 bones/20/rotation = Quaternion(-0.00990386, 0.014878, -0.0363638, 0.999179)
-bones/21/position = Vector3(-0.0586285, 0.205665, 1.27965e-05)
-bones/21/rotation = Quaternion(-0.0524022, -0.00872234, 0.815141, 0.576822)
+bones/21/position = Vector3(-0.0585567, 0.194254, 0.000550241)
+bones/21/rotation = Quaternion(-0.0300905, 0.00734286, 0.815527, 0.577889)
 bones/22/rotation = Quaternion(-0.0360134, -0.0135793, 0.352553, 0.935)
 bones/22/scale = Vector3(1, 1, 1)
 bones/23/rotation = Quaternion(0.071137, -0.000881364, 0.231761, 0.970168)
@@ -100,14 +215,14 @@ bones/41/rotation = Quaternion(0.884629, -3.00875e-11, -0.000130765, 0.466296)
 bones/41/scale = Vector3(1, 1, 1)
 bones/42/rotation = Quaternion(0.748984, -3.65755e-11, -0.000110714, 0.662589)
 bones/43/rotation = Quaternion(0.705365, -3.07936e-11, -0.000104267, 0.708844)
-bones/44/rotation = Quaternion(0.00949336, 0.161609, 0.985348, -0.0536814)
+bones/44/rotation = Quaternion(0.00908586, 0.177953, 0.982386, -0.0562879)
 bones/44/scale = Vector3(1, 1, 0.999999)
-bones/45/rotation = Quaternion(-0.328514, 0.00287868, -0.0401894, 0.943639)
-bones/46/rotation = Quaternion(0.754148, 0.0125596, -0.0076407, 0.65654)
-bones/47/rotation = Quaternion(-0.0103734, 0.161542, 0.985884, 0.0427772)
+bones/45/rotation = Quaternion(-0.364195, 0.00283784, -0.0445546, 0.930252)
+bones/46/rotation = Quaternion(0.768001, 0.014753, -0.0061342, 0.640249)
+bones/47/rotation = Quaternion(-0.0101469, 0.177899, 0.982949, 0.0454023)
 bones/47/scale = Vector3(1, 1, 0.999998)
-bones/48/rotation = Quaternion(-0.328512, -0.00287877, 0.0401891, 0.94364)
-bones/49/rotation = Quaternion(0.754148, -0.012559, 0.00764072, 0.65654)
+bones/48/rotation = Quaternion(-0.364193, -0.00283792, 0.0445542, 0.930253)
+bones/49/rotation = Quaternion(0.768001, -0.0147524, 0.00613425, 0.640249)
 bones/49/scale = Vector3(1, 1, 1)
 bones/51/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 bones/53/rotation = Quaternion(-0.707107, 0, 0, 0.707107)

@@ -1,15 +1,9 @@
 extends Node
 
-var shirt
-var hair
-var skin_index
-
-var skin_colors = [
-	Color(1.0, 0.8, 0.6),  # Light
-	Color(0.8, 0.6, 0.4),  # Tan
-	Color(0.5, 0.3, 0.2),  # Medium brown
-	Color(0.3, 0.2, 0.1)   # Dark brown	
-]
+var shirt: String
+var hair_index: int
+var skin_index: int
+var shoes: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,5 +11,5 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
