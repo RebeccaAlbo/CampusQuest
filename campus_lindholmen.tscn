@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c3ynfcpspetng"]
+[gd_scene load_steps=34 format=3 uid="uid://c3ynfcpspetng"]
 
 [ext_resource type="Script" path="res://campus_lindholmen.gd" id="1_02gfq"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI/UI.tscn" id="1_fyxg7"]
@@ -21,7 +21,9 @@
 [ext_resource type="PackedScene" uid="uid://bkx6evqbw1q8y" path="res://player/NPC/Scene/äran.tscn" id="19_apq5e"]
 [ext_resource type="PackedScene" uid="uid://lps4artqdiwu" path="res://player/NPC/Scene/anglia.tscn" id="20_s6sw8"]
 [ext_resource type="Script" path="res://minimap.gd" id="22_q6hgg"]
+[ext_resource type="Texture2D" uid="uid://1y4t1in22vyd" path="res://menu/dot.png" id="23_2urpm"]
 [ext_resource type="Script" path="res://big_map.gd" id="23_3yjdk"]
+[ext_resource type="Script" path="res://sprite_3d.gd" id="24_n6e0w"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k1vra"]
 
@@ -52,6 +54,10 @@ border_width_top = 6
 border_width_right = 6
 border_width_bottom = 6
 border_color = Color(0.255659, 0.255659, 0.255659, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_338ld"]
+height = 0.1
+radius = 0.8
 
 [node name="campus_lindholmen" type="Node3D"]
 script = ExtResource("1_02gfq")
@@ -191,7 +197,6 @@ transform = Transform3D(-3.871, 0, -1.00767, 0, 4, 0, 1.00767, 0, -3.871, -119.9
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_q5oko")]
 
 [node name="Minimap" type="PanelContainer" parent="CanvasLayer"]
-visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -209,7 +214,7 @@ layout_mode = 2
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(250, 250)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -40.3138, 100, -175.817)
@@ -244,4 +249,31 @@ render_target_update_mode = 0
 
 [node name="Camera3D" type="Camera3D" parent="CanvasLayer/BigMap/SubViewportContainer/SubViewport"]
 transform = Transform3D(0.422618, -0.906308, -3.9616e-08, 0, -4.37114e-08, 1, -0.906308, -0.422618, -1.84732e-08, -115.179, 250, 0)
+cull_mask = 1048573
 near = 0.01
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 12.1167, 25.2028, -41.321)
+layers = 1024
+texture = ExtResource("23_2urpm")
+script = ExtResource("24_n6e0w")
+
+[node name="Area3D" type="Area3D" parent="Sprite3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sprite3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0136029, 0, -0.116074)
+shape = SubResource("CylinderShape3D_338ld")
+
+[node name="HoverText" type="Label3D" parent="Sprite3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.80157, 0)
+visible = false
+billboard = 1
+shaded = true
+double_sided = false
+modulate = Color(0, 0, 0, 1)
+text = "Press F to change campus"
+font_size = 150
+outline_size = 15
+
+[connection signal="mouse_entered" from="Sprite3D/Area3D" to="Sprite3D" method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Sprite3D/Area3D" to="Sprite3D" method="_on_area_3d_mouse_exited"]

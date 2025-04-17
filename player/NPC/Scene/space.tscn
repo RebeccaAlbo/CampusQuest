@@ -73,3 +73,15 @@ bones/47/rotation = Quaternion(0.00215545, 0.138467, 0.989647, 0.0376975)
 bones/47/scale = Vector3(1, 1, 0.999998)
 bones/48/rotation = Quaternion(-0.278102, -0.00292851, 0.0340221, 0.959944)
 bones/49/scale = Vector3(1, 1, 1)
+
+[node name="Body" parent="Armature/Skeleton3D" index="0"]
+layers = 2
+
+[node name="Buttons" parent="Armature/Skeleton3D" index="1"]
+layers = 2
+
+[node name="Teeth_bot" parent="Armature/Skeleton3D" index="2"]
+layers = 2
+
+[node name="Teeth_top" parent="Armature/Skeleton3D" index="3"]
+layers = 2

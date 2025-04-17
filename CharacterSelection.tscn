@@ -1,0 +1,134 @@
+[gd_scene load_steps=9 format=3 uid="uid://227gpca37dhl"]
+
+[ext_resource type="PackedScene" uid="uid://c85xldxotb6jh" path="res://player/tester.tscn" id="1_esy01"]
+[ext_resource type="Script" path="res://control.gd" id="2_mjmww"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_83x61"]
+size = Vector3(100, 0.01, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5olvj"]
+size = Vector3(100, 0.01, 100)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3fnv1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yyrn8"]
+bg_color = Color(0.666569, 0.666569, 0.666569, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mojp0"]
+bg_color = Color(0.435192, 0.435192, 0.435192, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2q25x"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[node name="CharacterSelection" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.999961, 0, 0.00877878, 0.00736834, 0.543614, 0.839303, -0.00477227, 0.839335, -0.543593, 0, 13.3781, -44.6595)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_83x61")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_5olvj")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 9.99416, 9.95541)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = SubResource("BoxMesh_83x61")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_5olvj")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, 8.74228e-08, 1, 8.74228e-08, 7.64274e-15, 8.74228e-08, -1, 0, 5.8102, -11.5114)
+current = true
+
+[node name="tester" parent="." instance=ExtResource("1_esy01")]
+transform = Transform3D(-5, 0, -4.37114e-07, 0, 5, 0, 4.37114e-07, 0, -5, 0, 0, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -777.0
+offset_bottom = 271.0
+grow_horizontal = 2
+script = ExtResource("2_mjmww")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+offset_left = 18.0
+offset_top = 31.0
+offset_right = 235.0
+offset_bottom = 298.0
+theme_override_constants/separation = 20
+
+[node name="Hair" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3fnv1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yyrn8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mojp0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2q25x")
+text = "Hair"
+
+[node name="Skin" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3fnv1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yyrn8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mojp0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2q25x")
+text = "Skin color"
+
+[node name="Shirt" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3fnv1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yyrn8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mojp0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2q25x")
+text = "Shirt
+"
+
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Hair" to="CanvasLayer/Control" method="_on_hair_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Skin" to="CanvasLayer/Control" method="_on_skin_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Shirt" to="CanvasLayer/Control" method="_on_shirt_pressed"]

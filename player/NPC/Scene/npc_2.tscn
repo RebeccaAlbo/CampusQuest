@@ -53,3 +53,12 @@ bones/48/rotation = Quaternion(-0.388149, -0.00280777, 0.0474849, 0.920368)
 bones/49/rotation = Quaternion(0.777256, -0.0162603, 0.00514271, 0.628953)
 bones/51/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 bones/53/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
+
+[node name="Body" parent="Armature/Skeleton3D" index="0"]
+layers = 2
+
+[node name="Teeth_bot" parent="Armature/Skeleton3D" index="1"]
+layers = 2
+
+[node name="Teeth_top" parent="Armature/Skeleton3D" index="2"]
+layers = 2

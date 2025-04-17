@@ -5,3 +5,12 @@
 
 [node name="patricia" instance=ExtResource("1_hrb3n")]
 script = ExtResource("2_4uf1u")
+
+[node name="Body" parent="Armature/Skeleton3D" index="0"]
+layers = 2
+
+[node name="Teeth_bot" parent="Armature/Skeleton3D" index="1"]
+layers = 2
+
+[node name="Teeth_top" parent="Armature/Skeleton3D" index="2"]
+layers = 2
