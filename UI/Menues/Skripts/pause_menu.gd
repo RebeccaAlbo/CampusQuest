@@ -13,7 +13,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			_is_paused =  true
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
-			print("pausepause")
 			_is_paused =  false
 			get_tree().paused = _is_paused
 			minimap.visible = true

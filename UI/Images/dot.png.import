@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqphkalnuma64"
-path.s3tc="res://.godot/imported/exlamation.png-cf7b70d020daa7f1c6524f2a8de2f6e4.s3tc.ctex"
-path.etc2="res://.godot/imported/exlamation.png-cf7b70d020daa7f1c6524f2a8de2f6e4.etc2.ctex"
+uid="uid://1y4t1in22vyd"
+path.s3tc="res://.godot/imported/dot.png-b56a045bf331cc31aec0a5fcfab27c29.s3tc.ctex"
+path.etc2="res://.godot/imported/dot.png-b56a045bf331cc31aec0a5fcfab27c29.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://menu/exlamation.png"
-dest_files=["res://.godot/imported/exlamation.png-cf7b70d020daa7f1c6524f2a8de2f6e4.s3tc.ctex", "res://.godot/imported/exlamation.png-cf7b70d020daa7f1c6524f2a8de2f6e4.etc2.ctex"]
+source_file="res://UI/Images/dot.png"
+dest_files=["res://.godot/imported/dot.png-b56a045bf331cc31aec0a5fcfab27c29.s3tc.ctex", "res://.godot/imported/dot.png-b56a045bf331cc31aec0a5fcfab27c29.etc2.ctex"]
 
 [params]
 

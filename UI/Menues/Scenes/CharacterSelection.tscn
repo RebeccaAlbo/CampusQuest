@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://227gpca37dhl"]
 
-[ext_resource type="PackedScene" uid="uid://c85xldxotb6jh" path="res://player/tester.tscn" id="1_esy01"]
-[ext_resource type="Script" path="res://control.gd" id="2_mjmww"]
+[ext_resource type="PackedScene" uid="uid://c85xldxotb6jh" path="res://player/tester.tscn" id="1_vgf5s"]
+[ext_resource type="Script" path="res://UI/Menues/Skripts/CharacterSelection.gd" id="2_c618p"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_83x61"]
 size = Vector3(100, 0.01, 100)
@@ -61,7 +61,7 @@ shape = SubResource("BoxShape3D_5olvj")
 transform = Transform3D(-1, 8.74228e-08, 0, 8.74228e-08, 1, 8.74228e-08, 7.64274e-15, 8.74228e-08, -1, 0, 5.8102, -11.5114)
 current = true
 
-[node name="tester" parent="." instance=ExtResource("1_esy01")]
+[node name="tester" parent="." instance=ExtResource("1_vgf5s")]
 transform = Transform3D(-5, 0, -4.37114e-07, 0, 5, 0, 4.37114e-07, 0, -5, 0, 0, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -73,7 +73,7 @@ anchor_right = 1.0
 offset_right = -777.0
 offset_bottom = 271.0
 grow_horizontal = 2
-script = ExtResource("2_mjmww")
+script = ExtResource("2_c618p")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -129,6 +129,30 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_2q25x")
 text = "Shirt
 "
 
+[node name="Continue" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 604.0
+offset_top = 15.0
+offset_right = 757.0
+offset_bottom = 68.0
+grow_horizontal = 0
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3fnv1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yyrn8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mojp0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2q25x")
+text = "Continue"
+
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Hair" to="CanvasLayer/Control" method="_on_hair_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Skin" to="CanvasLayer/Control" method="_on_skin_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Shirt" to="CanvasLayer/Control" method="_on_shirt_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Continue" to="CanvasLayer/Control" method="_on_continue_pressed"]

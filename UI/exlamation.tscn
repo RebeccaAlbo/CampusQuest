@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdrmucqiu317k"]
+[gd_scene load_steps=2 format=3 uid="uid://c0p3lck625k6e"]
 
-[ext_resource type="Texture2D" uid="uid://dqphkalnuma64" path="res://menu/exlamation.png" id="1_rbgeq"]
+[ext_resource type="Texture2D" uid="uid://dqphkalnuma64" path="res://UI/Images/exlamation.png" id="1_rbgeq"]
 
 [node name="exlamation" type="Sprite3D"]
 transform = Transform3D(-1.79142, -0.88927, -3.88712e-08, 0, -8.74228e-08, 2, -0.88927, 1.79142, 7.83056e-08, 0, 2, 0)

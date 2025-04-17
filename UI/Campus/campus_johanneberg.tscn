@@ -1,0 +1,328 @@
+[gd_scene load_steps=35 format=3 uid="uid://lulw05as8mxr"]
+
+[ext_resource type="Script" path="res://script_templates/Node3D/campus.gd" id="1_wef5f"]
+[ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI2/UI.tscn" id="2_hmtsy"]
+[ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="3_p4gww"]
+[ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="4_0g13b"]
+[ext_resource type="PackedScene" uid="uid://chmkvv0nt5cvf" path="res://player/BaseCharacter/Scene/little_dude.tscn" id="5_25c86"]
+[ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://busStop/bus_stop.tscn" id="6_jjioq"]
+[ext_resource type="PackedScene" uid="uid://c6qp18idoxerc" path="res://player/NPC/Scene/npc_2.tscn" id="7_b36ec"]
+[ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="8_qbc84"]
+[ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/Other/Scenes/camera_controll.tscn" id="9_ukpfr"]
+[ext_resource type="PackedScene" uid="uid://bui3dm2ac1fqp" path="res://player/Other/Scenes/camera_controll_collision.tscn" id="10_88hal"]
+[ext_resource type="PackedScene" uid="uid://d2k4cl3wm4rd0" path="res://player/Other/Scenes/chat_detection_area.tscn" id="11_dvbsa"]
+[ext_resource type="PackedScene" uid="uid://emdkw05ycyav" path="res://player/Other/Scenes/wave_zone.tscn" id="12_dlir3"]
+[ext_resource type="PackedScene" uid="uid://dbn7fmsdl1yi8" path="res://player/NPC/Scene/computer.tscn" id="13_3doim"]
+[ext_resource type="PackedScene" uid="uid://dd6d57l0bjch1" path="res://player/NPC/Scene/electrical.tscn" id="14_x75fr"]
+[ext_resource type="PackedScene" uid="uid://baxs73larwsr1" path="res://player/NPC/Scene/industrial.tscn" id="15_k23oj"]
+[ext_resource type="PackedScene" uid="uid://bmhumysegegtc" path="res://player/NPC/Scene/physics.tscn" id="16_gybfq"]
+[ext_resource type="PackedScene" uid="uid://chk66t6vfn5qb" path="res://player/NPC/Scene/chemistry.tscn" id="17_qw3c1"]
+[ext_resource type="PackedScene" uid="uid://ckdfjc7flpwdm" path="res://player/NPC/Scene/life.tscn" id="18_wkhe0"]
+[ext_resource type="PackedScene" uid="uid://caqb5ropfs36q" path="res://player/NPC/Scene/math.tscn" id="19_u6e35"]
+[ext_resource type="PackedScene" uid="uid://8tormtv14q07" path="res://player/NPC/Scene/mechanics.tscn" id="20_i3yk2"]
+[ext_resource type="PackedScene" uid="uid://cj7le52ks7iqq" path="res://player/NPC/Scene/micro.tscn" id="21_ga0cy"]
+[ext_resource type="PackedScene" uid="uid://dsvtw2vrku8p1" path="res://player/NPC/Scene/space.tscn" id="22_fbe7f"]
+[ext_resource type="PackedScene" uid="uid://d0heqcl0pg1n3" path="res://player/NPC/Scene/economic.tscn" id="23_sk0v5"]
+[ext_resource type="PackedScene" uid="uid://cb8cpqr0olva4" path="res://player/NPC/Scene/science.tscn" id="24_mx7op"]
+[ext_resource type="PackedScene" uid="uid://b5elambvpjdk3" path="res://UI/Menues/Scenes/pause_menu.tscn" id="25_bfsex"]
+[ext_resource type="Script" path="res://UI/Menues/Skripts/minimap.gd" id="26_et1t8"]
+[ext_resource type="Script" path="res://UI/Menues/Skripts/big_map.gd" id="27_rjjvf"]
+[ext_resource type="PackedScene" uid="uid://c85xldxotb6jh" path="res://player/tester.tscn" id="28_mncjf"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m8u5f"]
+size = Vector3(10000, 2, 10000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ktf2j"]
+albedo_color = Color(0.476423, 0.557368, 0.0688423, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_m8u5f"]
+material = SubResource("StandardMaterial3D_ktf2j")
+size = Vector2(10000, 10000)
+
+[sub_resource type="Environment" id="Environment_wt17y"]
+background_energy_multiplier = 5.0
+ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxwxs"]
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.255659, 0.255659, 0.255659, 1)
+
+[node name="campus_johanneberg" type="Node3D"]
+script = ExtResource("1_wef5f")
+
+[node name="ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+physics_material_override = SubResource("PhysicsMaterial_wt17y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
+shape = SubResource("BoxShape3D_m8u5f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ground"]
+transform = Transform3D(1.00162, -2.16005e-11, 1.16415e-10, -2.33058e-11, 1.00162, -5.82077e-11, -1.16415e-10, 0, 1.00162, 0, 0, 0)
+visible = false
+mesh = SubResource("PlaneMesh_m8u5f")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wt17y")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 95.0384, 0)
+light_color = Color(1, 0.941176, 0.941176, 1)
+
+[node name="Manager" parent="." instance=ExtResource("2_hmtsy")]
+
+[node name="johanneberg" parent="." instance=ExtResource("3_p4gww")]
+
+[node name="ground2" parent="." instance=ExtResource("4_0g13b")]
+
+[node name="busStop" parent="." instance=ExtResource("6_jjioq")]
+transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, -305, 0, -126)
+collision_layer = 32
+collision_mask = 2
+
+[node name="testerJ" parent="." instance=ExtResource("28_mncjf")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -298.849, 0, -89.5384)
+
+[node name="LittleDude" parent="." instance=ExtResource("5_25c86")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -294.008, 0, -99.4269)
+
+[node name="architecture" parent="." instance=ExtResource("7_b36ec")]
+transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, -137.485, -0.926676, 158.449)
+
+[node name="NPCCollision" parent="architecture" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="architecture" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="architecture/CameraControll" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="architecture" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="architecture" instance=ExtResource("12_dlir3")]
+
+[node name="computer" parent="." instance=ExtResource("13_3doim")]
+transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, -23.4675, -1, 107.536)
+
+[node name="NPCCollision" parent="computer" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="computer" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="computer/CameraControll" instance=ExtResource("10_88hal")]
+
+[node name="WaveZone" parent="computer" instance=ExtResource("12_dlir3")]
+
+[node name="ChatDetectionArea" parent="computer" instance=ExtResource("11_dvbsa")]
+
+[node name="electrical" parent="." instance=ExtResource("14_x75fr")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 21.0247, -1, 134.023)
+
+[node name="NPCCollision" parent="electrical" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="electrical" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="electrical/CameraControll" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="electrical" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="electrical" instance=ExtResource("12_dlir3")]
+
+[node name="industrial" parent="." instance=ExtResource("15_k23oj")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -84.2536, -0.999998, -7.0776)
+
+[node name="NPCCollision" parent="industrial" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="industrial" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="industrial/CameraControll" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="industrial" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="industrial" instance=ExtResource("12_dlir3")]
+
+[node name="physics" parent="." instance=ExtResource("16_gybfq")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -188.973, -1, -195.699)
+
+[node name="NPCCollision" parent="physics" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="physics" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="physics/CameraControll" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="physics" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="physics" instance=ExtResource("12_dlir3")]
+
+[node name="chemistry" parent="." instance=ExtResource("17_qw3c1")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -59.7977, -1, -233.436)
+
+[node name="NPCCollision" parent="chemistry" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="chemistry" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="chemistry/CameraControll" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="chemistry" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="chemistry" instance=ExtResource("12_dlir3")]
+
+[node name="life" parent="." instance=ExtResource("18_wkhe0")]
+transform = Transform3D(-2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, -124.785, -1, -182.024)
+
+[node name="NPCCollision" parent="life" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="life" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="life/CameraControll" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="life" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="life" instance=ExtResource("12_dlir3")]
+
+[node name="math" parent="." instance=ExtResource("19_u6e35")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -48.2272, -1, -149.427)
+
+[node name="NPCCollision" parent="math" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="math" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="math/CameraControll" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="math" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="math" instance=ExtResource("12_dlir3")]
+
+[node name="mechanics" parent="." instance=ExtResource("20_i3yk2")]
+transform = Transform3D(-2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, 14.7081, -1, -34.798)
+
+[node name="NPCCollision" parent="mechanics" instance=ExtResource("8_qbc84")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.222486, 1, 0)
+
+[node name="CameraControll" parent="mechanics" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="mechanics/CameraControll" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="mechanics" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="mechanics" instance=ExtResource("12_dlir3")]
+
+[node name="micro" parent="." instance=ExtResource("21_ga0cy")]
+transform = Transform3D(4.23862, 0, 2.65219, 0, 5, 0, -2.65219, 0, 4.23862, -182.789, -1, -279.331)
+
+[node name="NPCCollision" parent="micro" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="micro" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="micro/CameraControll" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="micro" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="micro" instance=ExtResource("12_dlir3")]
+
+[node name="space" parent="." instance=ExtResource("22_fbe7f")]
+transform = Transform3D(-4.34047, 0, -2.48199, 0, 5, 0, 2.48199, 0, -4.34047, 3, -1, 54)
+
+[node name="NPCCollision" parent="space" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="space" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="space/CameraControll" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="space" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="space" instance=ExtResource("12_dlir3")]
+
+[node name="economic" parent="." instance=ExtResource("23_sk0v5")]
+transform = Transform3D(4.63176, 0, 1.8833, 0, 5, 0, -1.8833, 0, 4.63176, -187.96, -1, -480.266)
+
+[node name="NPCCollision" parent="economic" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="economic" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="economic/CameraControll" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="economic" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="economic" instance=ExtResource("12_dlir3")]
+
+[node name="science" parent="." instance=ExtResource("24_mx7op")]
+transform = Transform3D(1.93581, 0, -4.61006, 0, 5, 0, 4.61006, 0, 1.93581, -33.474, -0.999998, -187.82)
+
+[node name="NPCCollision" parent="science" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="science" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="science/CameraControll" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="science" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="science" instance=ExtResource("12_dlir3")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("25_bfsex")]
+visible = false
+
+[node name="Minimap" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -282.567
+offset_top = 19.8986
+offset_right = -20.567
+offset_bottom = 281.899
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mxwxs")
+script = ExtResource("26_et1t8")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Minimap"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(250, 250)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -298.251, 100, -100.675)
+cull_mask = 1048573
+size = 100.0
+
+[node name="BigMap" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("27_rjjvf")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/BigMap"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/BigMap/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1000, 500)
+size_2d_override_stretch = true
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/BigMap/SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.422618, -0.906308, -3.9616e-08, 0, -4.37114e-08, 1, -0.906308, 0.422618, 1.84732e-08, -113.817, 300, -23.153)
+cull_mask = 1048573
+near = 0.01
+
+[connection signal="ready" from="." to="." method="_on_ready"]

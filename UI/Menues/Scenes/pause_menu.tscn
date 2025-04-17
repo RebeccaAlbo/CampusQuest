@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://b5elambvpjdk3"]
 
-[ext_resource type="Script" path="res://menu/pause_menu.gd" id="1_6cegj"]
-[ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://menu/Pixellari.ttf" id="2_5n084"]
-[ext_resource type="Texture2D" uid="uid://bryejuohsdw34" path="res://menu/Background.png" id="2_hxty5"]
+[ext_resource type="Script" path="res://UI/Menues/Skripts/pause_menu.gd" id="1_6cegj"]
+[ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="2_5n084"]
+[ext_resource type="Texture2D" uid="uid://bryejuohsdw34" path="res://UI/Images/Background.png" id="2_hxty5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ntu06"]
 texture = ExtResource("2_hxty5")
@@ -36,7 +36,6 @@ shadow_size = 5
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

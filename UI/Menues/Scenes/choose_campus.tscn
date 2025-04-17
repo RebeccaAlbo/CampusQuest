@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://nccqi682d71x"]
 
-[ext_resource type="Script" path="res://menu/choose_campus.gd" id="1_8f0m3"]
-[ext_resource type="Texture2D" uid="uid://bryejuohsdw34" path="res://menu/Background.png" id="1_s02qh"]
-[ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://menu/Pixellari.ttf" id="2_6llcm"]
+[ext_resource type="Script" path="res://UI/Menues/Skripts/choose_campus.gd" id="1_8f0m3"]
+[ext_resource type="Texture2D" uid="uid://bryejuohsdw34" path="res://UI/Images/Background.png" id="1_s02qh"]
+[ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="2_6llcm"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c7wxc"]
 texture = ExtResource("1_s02qh")

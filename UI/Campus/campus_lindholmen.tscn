@@ -1,0 +1,279 @@
+[gd_scene load_steps=34 format=3 uid="uid://c3ynfcpspetng"]
+
+[ext_resource type="Script" path="res://UI/Campus/campus_lindholmen.gd" id="1_bghy0"]
+[ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI2/UI.tscn" id="2_hyq3a"]
+[ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="3_vo4v6"]
+[ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://busStop/bus_stop.tscn" id="4_b004s"]
+[ext_resource type="PackedScene" uid="uid://bmxn8658qh64v" path="res://campus/lindholmen/lindholmen.tscn" id="5_32ols"]
+[ext_resource type="Script" path="res://campus/lindholmen/lindholmen.gd" id="6_vgfen"]
+[ext_resource type="PackedScene" uid="uid://chmkvv0nt5cvf" path="res://player/BaseCharacter/Scene/little_dude.tscn" id="7_dpk8t"]
+[ext_resource type="PackedScene" uid="uid://bx0yjeuw1ojxn" path="res://player/NPC/Scene/svea.tscn" id="8_u2u80"]
+[ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="9_4hias"]
+[ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/Other/Scenes/camera_controll.tscn" id="10_xw84y"]
+[ext_resource type="PackedScene" uid="uid://bui3dm2ac1fqp" path="res://player/Other/Scenes/camera_controll_collision.tscn" id="11_ghfee"]
+[ext_resource type="PackedScene" uid="uid://d2k4cl3wm4rd0" path="res://player/Other/Scenes/chat_detection_area.tscn" id="12_vdjft"]
+[ext_resource type="PackedScene" uid="uid://emdkw05ycyav" path="res://player/Other/Scenes/wave_zone.tscn" id="13_3p1t0"]
+[ext_resource type="PackedScene" uid="uid://06ccq6sqvbif" path="res://player/NPC/Scene/kuggen.tscn" id="14_c7uvx"]
+[ext_resource type="PackedScene" uid="uid://cviwhmht567mj" path="res://player/NPC/Scene/jupiter.tscn" id="15_vem1b"]
+[ext_resource type="PackedScene" uid="uid://rlj0t4a7yxjj" path="res://player/NPC/Scene/saga.tscn" id="16_4hqyw"]
+[ext_resource type="PackedScene" uid="uid://debrevchux61e" path="res://player/NPC/Scene/patricia.tscn" id="17_8uv6s"]
+[ext_resource type="PackedScene" uid="uid://bkx6evqbw1q8y" path="res://player/NPC/Scene/äran.tscn" id="18_rf5dy"]
+[ext_resource type="PackedScene" uid="uid://lps4artqdiwu" path="res://player/NPC/Scene/anglia.tscn" id="19_0lpak"]
+[ext_resource type="PackedScene" uid="uid://b5elambvpjdk3" path="res://UI/Menues/Scenes/pause_menu.tscn" id="20_3lu4g"]
+[ext_resource type="Script" path="res://UI/Menues/Skripts/minimap.gd" id="21_gp3iv"]
+[ext_resource type="Script" path="res://UI/Menues/Skripts/big_map.gd" id="22_4s3ad"]
+[ext_resource type="Texture2D" uid="uid://1y4t1in22vyd" path="res://UI/Images/dot.png" id="23_bgv1d"]
+[ext_resource type="Script" path="res://sprite_3d.gd" id="24_1gvsc"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k1vra"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gbsa4"]
+size = Vector3(10000, 2, 10000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wt17y"]
+albedo_color = Color(0.476423, 0.557368, 0.0688423, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wqhbk"]
+material = SubResource("StandardMaterial3D_wt17y")
+size = Vector2(10000, 10000)
+
+[sub_resource type="Environment" id="Environment_35y5l"]
+background_energy_multiplier = 5.0
+ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5qyeq"]
+albedo_color = Color(0.822244, 0, 0.188958, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_682jy"]
+material = SubResource("StandardMaterial3D_5qyeq")
+height = 0.01
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28ls7"]
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.255659, 0.255659, 0.255659, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_338ld"]
+height = 0.1
+radius = 0.8
+
+[node name="campus_lindholmen" type="Node3D"]
+script = ExtResource("1_bghy0")
+
+[node name="ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+physics_material_override = SubResource("PhysicsMaterial_k1vra")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_gbsa4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ground"]
+transform = Transform3D(1.00162, -2.16005e-11, 1.16415e-10, -2.33058e-11, 1.00162, -5.82077e-11, -1.16415e-10, 0, 1.00162, 0, 0, 0)
+mesh = SubResource("PlaneMesh_wqhbk")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_35y5l")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 95.0384, 0)
+light_color = Color(1, 0.941176, 0.941176, 1)
+
+[node name="Manager" parent="." instance=ExtResource("2_hyq3a")]
+
+[node name="ground2" parent="." instance=ExtResource("3_vo4v6")]
+
+[node name="busStop" parent="." instance=ExtResource("4_b004s")]
+transform = Transform3D(1.4926, 0, 1.61621, 0, 2.2, 0, -1.61621, 0, 1.4926, -52.5655, 0, -177.95)
+collision_layer = 32
+collision_mask = 2
+
+[node name="lindholmen" parent="." instance=ExtResource("5_32ols")]
+script = ExtResource("6_vgfen")
+
+[node name="LittleDude" parent="." instance=ExtResource("7_dpk8t")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -40.4331, 0, -175.714)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LittleDude"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 10, 0)
+layers = 1024
+mesh = SubResource("CylinderMesh_682jy")
+
+[node name="svea" parent="." instance=ExtResource("8_u2u80")]
+transform = Transform3D(1.98056, 0, 3.47525, 0, 4, 0, -3.47525, 0, 1.98056, -105.922, 0, 9.3275)
+
+[node name="NPCCollision" parent="svea" instance=ExtResource("9_4hias")]
+
+[node name="CameraControll" parent="svea" instance=ExtResource("10_xw84y")]
+
+[node name="CameraControllCollision" parent="svea/CameraControll" instance=ExtResource("11_ghfee")]
+
+[node name="ChatDetectionArea" parent="svea" instance=ExtResource("12_vdjft")]
+
+[node name="WaveZone" parent="svea" instance=ExtResource("13_3p1t0")]
+
+[node name="kuggen" parent="." instance=ExtResource("14_c7uvx")]
+transform = Transform3D(-3.33373, 0, -2.21048, 0, 4, 0, 2.21048, 0, -3.33373, 0.403141, 0, -57.8886)
+
+[node name="NPCCollision" parent="kuggen" instance=ExtResource("9_4hias")]
+
+[node name="CameraControll" parent="kuggen" instance=ExtResource("10_xw84y")]
+
+[node name="CameraControllCollision" parent="kuggen/CameraControll" instance=ExtResource("11_ghfee")]
+
+[node name="ChatDetectionArea" parent="kuggen" instance=ExtResource("12_vdjft")]
+
+[node name="WaveZone" parent="kuggen" instance=ExtResource("13_3p1t0")]
+
+[node name="jupiter" parent="." instance=ExtResource("15_vem1b")]
+transform = Transform3D(-2.5789, 0, -3.05766, 0, 4, 0, 3.05766, 0, -2.5789, -25.836, 0, -8.12006)
+
+[node name="NPCCollision" parent="jupiter" instance=ExtResource("9_4hias")]
+
+[node name="CameraControll" parent="jupiter" instance=ExtResource("10_xw84y")]
+
+[node name="CameraControllCollision" parent="jupiter/CameraControll" instance=ExtResource("11_ghfee")]
+
+[node name="ChatDetectionArea" parent="jupiter" instance=ExtResource("12_vdjft")]
+
+[node name="WaveZone" parent="jupiter" instance=ExtResource("13_3p1t0")]
+
+[node name="saga" parent="." instance=ExtResource("16_4hqyw")]
+transform = Transform3D(0.955897, 0, 3.8841, 0, 4, 0, -3.8841, 0, 0.955897, -59.1846, 0, 34.7213)
+
+[node name="NPCCollision" parent="saga" instance=ExtResource("9_4hias")]
+
+[node name="CameraControll" parent="saga" instance=ExtResource("10_xw84y")]
+
+[node name="CameraControllCollision" parent="saga/CameraControll" instance=ExtResource("11_ghfee")]
+
+[node name="ChatDetectionArea" parent="saga" instance=ExtResource("12_vdjft")]
+
+[node name="WaveZone" parent="saga" instance=ExtResource("13_3p1t0")]
+
+[node name="patricia" parent="." instance=ExtResource("17_8uv6s")]
+transform = Transform3D(1.43966, 0, 3.73194, 0, 4, 0, -3.73194, 0, 1.43966, -83.7594, 0, -33.1025)
+
+[node name="NPCCollision" parent="patricia" instance=ExtResource("9_4hias")]
+
+[node name="CameraControll" parent="patricia" instance=ExtResource("10_xw84y")]
+
+[node name="CameraControllCollision" parent="patricia/CameraControll" instance=ExtResource("11_ghfee")]
+
+[node name="ChatDetectionArea" parent="patricia" instance=ExtResource("12_vdjft")]
+
+[node name="WaveZone" parent="patricia" instance=ExtResource("13_3p1t0")]
+
+[node name="aran" parent="." instance=ExtResource("18_rf5dy")]
+transform = Transform3D(-3.92355, 0, 0.778307, 0, 4, 0, -0.778307, 0, -3.92355, -78.7897, 0, 97.2154)
+
+[node name="NPCCollision" parent="aran" instance=ExtResource("9_4hias")]
+
+[node name="CameraControll" parent="aran" instance=ExtResource("10_xw84y")]
+
+[node name="CameraControllCollision" parent="aran/CameraControll" instance=ExtResource("11_ghfee")]
+
+[node name="ChatDetectionArea" parent="aran" instance=ExtResource("12_vdjft")]
+
+[node name="WaveZone" parent="aran" instance=ExtResource("13_3p1t0")]
+
+[node name="anglia" parent="." instance=ExtResource("19_0lpak")]
+transform = Transform3D(-3.871, 0, -1.00767, 0, 4, 0, 1.00767, 0, -3.871, -119.953, 0, 198.521)
+
+[node name="NPCCollision" parent="anglia" instance=ExtResource("9_4hias")]
+
+[node name="CameraControll" parent="anglia" instance=ExtResource("10_xw84y")]
+
+[node name="CameraControllCollision" parent="anglia/CameraControll" instance=ExtResource("11_ghfee")]
+
+[node name="ChatDetectionArea" parent="anglia" instance=ExtResource("12_vdjft")]
+
+[node name="WaveZone" parent="anglia" instance=ExtResource("13_3p1t0")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("20_3lu4g")]
+
+[node name="Minimap" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -282.567
+offset_top = 19.8986
+offset_right = -20.567
+offset_bottom = 281.899
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_28ls7")
+script = ExtResource("21_gp3iv")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Minimap"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(250, 250)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -40.3138, 100, -175.817)
+cull_mask = 1048573
+size = 100.0
+
+[node name="BigMap" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("22_4s3ad")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/BigMap"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/BigMap/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1000, 500)
+size_2d_override_stretch = true
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/BigMap/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.422618, -0.906308, -3.9616e-08, 0, -4.37114e-08, 1, -0.906308, -0.422618, -1.84732e-08, -115.179, 250, 0)
+cull_mask = 1048573
+near = 0.01
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 12.1167, 25.2028, -41.321)
+layers = 1024
+texture = ExtResource("23_bgv1d")
+script = ExtResource("24_1gvsc")
+
+[node name="Area3D" type="Area3D" parent="Sprite3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sprite3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0136029, 0, -0.116074)
+shape = SubResource("CylinderShape3D_338ld")
+
+[node name="HoverText" type="Label3D" parent="Sprite3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.80157, 0)
+visible = false
+billboard = 1
+shaded = true
+double_sided = false
+modulate = Color(0, 0, 0, 1)
+text = "Press F to change campus"
+font_size = 150
+outline_size = 15
+
+[connection signal="mouse_entered" from="Sprite3D/Area3D" to="Sprite3D" method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Sprite3D/Area3D" to="Sprite3D" method="_on_area_3d_mouse_exited"]

@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://dfq80v1wbg66c"]
 
-[ext_resource type="Texture2D" uid="uid://bryejuohsdw34" path="res://menu/Background.png" id="1_14d27"]
-[ext_resource type="Script" path="res://menu/main_menu.gd" id="1_oj5xs"]
-[ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://menu/Pixellari.ttf" id="2_yie4i"]
+[ext_resource type="Script" path="res://UI/Menues/Skripts/main_menu.gd" id="1_ox5xi"]
+[ext_resource type="Texture2D" uid="uid://bryejuohsdw34" path="res://UI/Images/Background.png" id="2_4navf"]
+[ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="3_v4ur8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mvco5"]
-texture = ExtResource("1_14d27")
+texture = ExtResource("2_4navf")
 modulate_color = Color(0.408329, 0.408329, 0.408329, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_as84c"]
@@ -42,7 +42,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_oj5xs")
+script = ExtResource("1_ox5xi")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -125,7 +125,7 @@ offset_bottom = 156.0
 grow_horizontal = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 10
-theme_override_fonts/font = ExtResource("2_yie4i")
+theme_override_fonts/font = ExtResource("3_v4ur8")
 theme_override_font_sizes/font_size = 85
 text = "CampusQuest"
 horizontal_alignment = 1

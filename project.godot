@@ -11,14 +11,15 @@ config_version=5
 [application]
 
 config/name="CampusQuest"
-run/main_scene="res://menu/main_menu.tscn"
+run/main_scene="res://UI/Menues/Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-SceneManager="*res://menu/SceneManager.gd"
+SceneManager="*res://UI/Menues/Skripts/SceneManager.gd"
+CharacterCust="*res://UI/Menues/Skripts/CharacterCust.gd"
 
 [dialogue_manager]
 

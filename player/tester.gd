@@ -30,6 +30,8 @@ func _ready():
 	
 	if get_tree().current_scene.name == "CharacterSelection":
 		can_move = false
+	elif get_tree().current_scene.name == "campus_johanneberg" or get_tree().current_scene.name == "campus_lindholmen":
+		update_character_skin(CharacterCust.skin_index)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse control viewpoint
@@ -84,14 +86,12 @@ func end_dialoque():
 	can_move = true
 	
 func change_skin_color(direction: int):
-	print("player skin color change")
 	current_skin_index = (current_skin_index + direction) % skin_colors.size()
 	if current_skin_index < 0:
 		current_skin_index = skin_colors.size() - 1
 	update_skin_color()
 
 func update_skin_color():
-	print("updating skin color")
 	var mesh = $Armature/Skeleton3D/Body
 	if mesh == null:
 		print("mesh not found")
@@ -104,3 +104,10 @@ func update_skin_color():
 		mesh.set_surface_override_material(0, material)
 
 	material.albedo_color = skin_colors[current_skin_index]
+	print("current index is ", current_skin_index)
+	
+func update_character_skin(index: int):
+	var mesh = $Armature/Skeleton3D/Body
+	var material = mesh.get_surface_override_material(0)
+	material.albedo_color = skin_colors[index]
+	

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c262jelbr7551"]
 
-[ext_resource type="Script" path="res://menu/control.gd" id="1_5viqy"]
+[ext_resource type="Script" path="res://UI/Menues/Skripts/control.gd" id="1_5viqy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qmoke"]
 

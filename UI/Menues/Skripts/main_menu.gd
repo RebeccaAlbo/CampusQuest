@@ -6,7 +6,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 func _on_start_pressed() -> void:
 	print("Starting game")
-	get_tree().change_scene_to_file("res://menu/choose_campus.tscn")
+	get_tree().change_scene_to_file("res://UI/Menues/Scenes/CharacterSelection.tscn")
 
 
 func _on_exit_pressed() -> void:
@@ -15,5 +15,5 @@ func _on_exit_pressed() -> void:
 
 
 func _on_controls_pressed() -> void:
-	SceneManager.prev_scene_path = "res://menu/main_menu.tscn"
-	get_tree().change_scene_to_file("res://menu/controls.tscn")
+	SceneManager.prev_scene_path = "res://UI/Menues/Scenes/main_menu.tscn"
+	get_tree().change_scene_to_file("res://UI/Menues/Scenes/controls.tscn")
