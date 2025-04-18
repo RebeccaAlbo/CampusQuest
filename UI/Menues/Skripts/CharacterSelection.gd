@@ -1,6 +1,7 @@
 extends Control
 
-@onready var tester: CharacterBody3D = $"../../tester"
+@onready var character: CharacterBody3D = $"../../BaseCharacter"
+
 
 var hair_chosen: bool
 var skin_chosen: bool
@@ -19,29 +20,29 @@ func _ready() -> void:
 func _unhandled_input(_event: InputEvent) -> void:
 	if skin_chosen:
 		if Input.is_action_just_pressed("left"):
-			tester.change_skin_color(-1)
+			character.change_skin_color(-1)
 		elif Input.is_action_just_pressed("right"):
-			tester.change_skin_color(1)
+			character.change_skin_color(1)
 	elif hair_chosen:
 		if Input.is_action_just_pressed("left"):
-			tester.change_hair(-1)
+			character.change_hair(-1)
 		elif Input.is_action_just_pressed("right"):
-			tester.change_hair(1)
+			character.change_hair(1)
 	elif pants_chosen:
 		if Input.is_action_just_pressed("left"):
-			tester.change_pant_color(-1)
+			character.change_pant_color(-1)
 		elif Input.is_action_just_pressed("right"):
-			tester.change_pant_color(1)
+			character.change_pant_color(1)
 	elif shirt_chosen:
 		if Input.is_action_just_pressed("left"):
-			tester.change_shirt_color(-1)
+			character.change_shirt_color(-1)
 		elif Input.is_action_just_pressed("right"):
-			tester.change_shirt_color(1)
+			character.change_shirt_color(1)
 	elif shoes_chosen:
 		if Input.is_action_just_pressed("left"):
-			tester.change_shoes_color(-1)
+			character.change_shoes_color(-1)
 		elif Input.is_action_just_pressed("right"):
-			tester.change_shoes_color(1)
+			character.change_shoes_color(1)
 	
 func _on_hair_pressed() -> void:
 	hair_chosen = true
@@ -80,11 +81,11 @@ func _on_shoes_pressed() -> void:
 	shoes_chosen = true
 
 func _on_continue_pressed() -> void:
-	CharacterCust.skin_index = tester.current_skin_index
-	CharacterCust.hair_index = tester.current_hair_index
-	CharacterCust.pant_index = tester.current_pant_index
-	CharacterCust.shirt_index = tester.current_shirt_index
-	CharacterCust.shoes_index = tester.current_shoes_index
+	CharacterCust.skin_index = character.current_skin_index
+	CharacterCust.hair_index = character.current_hair_index
+	CharacterCust.pant_index = character.current_pant_index
+	CharacterCust.shirt_index = character.current_shirt_index
+	CharacterCust.shoes_index = character.current_shoes_index
 	
 	get_tree().change_scene_to_file("res://UI/Menues/Scenes/choose_campus.tscn")
 	

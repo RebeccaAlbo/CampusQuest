@@ -25,8 +25,8 @@
 [ext_resource type="PackedScene" uid="uid://cb8cpqr0olva4" path="res://player/NPC/Scene/science.tscn" id="24_mx7op"]
 [ext_resource type="PackedScene" uid="uid://b5elambvpjdk3" path="res://UI/Menues/Scenes/pause_menu.tscn" id="25_bfsex"]
 [ext_resource type="Script" path="res://UI/Menues/Skripts/minimap.gd" id="26_et1t8"]
+[ext_resource type="PackedScene" uid="uid://3kjk4w0wer4" path="res://player/BaseCharacter/Scene/base_character.tscn" id="27_c0edl"]
 [ext_resource type="Script" path="res://UI/Menues/Skripts/big_map.gd" id="27_rjjvf"]
-[ext_resource type="PackedScene" uid="uid://c85xldxotb6jh" path="res://player/tester.tscn" id="28_mncjf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
 
@@ -86,8 +86,8 @@ transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, -305, 0, -126)
 collision_layer = 32
 collision_mask = 2
 
-[node name="testerJ" parent="." groups=["player"] instance=ExtResource("28_mncjf")]
-transform = Transform3D(-4.97834, 0, -0.464894, 0, 5, 0, 0.464894, 0, -4.97834, -298.849, 0, -89.5384)
+[node name="BaseCharacter" parent="." instance=ExtResource("27_c0edl")]
+transform = Transform3D(-4.86744, 0, 1.14371, 0, 5, 0, -1.14371, 0, -4.86744, -298, 0, -112)
 
 [node name="architecture" parent="." instance=ExtResource("7_b36ec")]
 transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, -137.485, -0.926676, 158.449)

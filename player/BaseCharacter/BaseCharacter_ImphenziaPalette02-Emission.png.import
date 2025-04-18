@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4c3pj8u8lxoy"
-path.s3tc="res://.godot/imported/newBase_ImphenziaPalette02-Emission.png-1c98b2c33ffa1bc434e73c00685694f9.s3tc.ctex"
-path.etc2="res://.godot/imported/newBase_ImphenziaPalette02-Emission.png-1c98b2c33ffa1bc434e73c00685694f9.etc2.ctex"
+uid="uid://c7eudqgvcujlq"
+path.s3tc="res://.godot/imported/BaseCharacter_ImphenziaPalette02-Emission.png-2c84283a1187c735d08eeae3049a2ec1.s3tc.ctex"
+path.etc2="res://.godot/imported/BaseCharacter_ImphenziaPalette02-Emission.png-2c84283a1187c735d08eeae3049a2ec1.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -15,8 +15,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://player/BaseCharacter/newBase_ImphenziaPalette02-Emission.png"
-dest_files=["res://.godot/imported/newBase_ImphenziaPalette02-Emission.png-1c98b2c33ffa1bc434e73c00685694f9.s3tc.ctex", "res://.godot/imported/newBase_ImphenziaPalette02-Emission.png-1c98b2c33ffa1bc434e73c00685694f9.etc2.ctex"]
+source_file="res://player/BaseCharacter/BaseCharacter_ImphenziaPalette02-Emission.png"
+dest_files=["res://.godot/imported/BaseCharacter_ImphenziaPalette02-Emission.png-2c84283a1187c735d08eeae3049a2ec1.s3tc.ctex", "res://.godot/imported/BaseCharacter_ImphenziaPalette02-Emission.png-2c84283a1187c735d08eeae3049a2ec1.etc2.ctex"]
 
 [params]
 

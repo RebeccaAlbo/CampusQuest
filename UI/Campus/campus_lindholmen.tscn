@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c3ynfcpspetng"]
+[gd_scene load_steps=29 format=3 uid="uid://c3ynfcpspetng"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_lindholmen.gd" id="1_bghy0"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI2/UI.tscn" id="2_hyq3a"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://busStop/bus_stop.tscn" id="4_b004s"]
 [ext_resource type="PackedScene" uid="uid://bmxn8658qh64v" path="res://campus/lindholmen/lindholmen.tscn" id="5_32ols"]
 [ext_resource type="Script" path="res://campus/lindholmen/lindholmen.gd" id="6_vgfen"]
-[ext_resource type="PackedScene" uid="uid://chmkvv0nt5cvf" path="res://player/BaseCharacter/Scene/little_dude.tscn" id="7_dpk8t"]
 [ext_resource type="PackedScene" uid="uid://bx0yjeuw1ojxn" path="res://player/NPC/Scene/svea.tscn" id="8_u2u80"]
 [ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="9_4hias"]
 [ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/Other/Scenes/camera_controll.tscn" id="10_xw84y"]
@@ -22,9 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://b5elambvpjdk3" path="res://UI/Menues/Scenes/pause_menu.tscn" id="20_3lu4g"]
 [ext_resource type="Script" path="res://UI/Menues/Skripts/minimap.gd" id="21_gp3iv"]
 [ext_resource type="Script" path="res://UI/Menues/Skripts/big_map.gd" id="22_4s3ad"]
-[ext_resource type="Texture2D" uid="uid://1y4t1in22vyd" path="res://UI/Images/dot.png" id="23_bgv1d"]
-[ext_resource type="Script" path="res://sprite_3d.gd" id="24_1gvsc"]
-[ext_resource type="PackedScene" uid="uid://c85xldxotb6jh" path="res://player/tester.tscn" id="25_gas8w"]
+[ext_resource type="PackedScene" uid="uid://3kjk4w0wer4" path="res://player/BaseCharacter/Scene/base_character.tscn" id="24_r2aeb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k1vra"]
 
@@ -42,23 +39,12 @@ size = Vector2(10000, 10000)
 background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5qyeq"]
-albedo_color = Color(0.822244, 0, 0.188958, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_682jy"]
-material = SubResource("StandardMaterial3D_5qyeq")
-height = 0.01
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28ls7"]
 border_width_left = 6
 border_width_top = 6
 border_width_right = 6
 border_width_bottom = 6
 border_color = Color(0.255659, 0.255659, 0.255659, 1)
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_338ld"]
-height = 0.1
-radius = 0.8
 
 [node name="campus_lindholmen" type="Node3D"]
 script = ExtResource("1_bghy0")
@@ -94,13 +80,8 @@ collision_mask = 2
 [node name="lindholmen" parent="." instance=ExtResource("5_32ols")]
 script = ExtResource("6_vgfen")
 
-[node name="LittleDude" parent="." instance=ExtResource("7_dpk8t")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -40.4331, 0, -175.714)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="LittleDude"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 10, 0)
-layers = 1024
-mesh = SubResource("CylinderMesh_682jy")
+[node name="BaseCharacter" parent="." instance=ExtResource("24_r2aeb")]
+transform = Transform3D(-3.9894, 0, -0.291073, 0, 4, 0, 0.291073, 0, -3.9894, -30.7394, 0, -173.553)
 
 [node name="svea" parent="." instance=ExtResource("8_u2u80")]
 transform = Transform3D(1.98056, 0, 3.47525, 0, 4, 0, -3.47525, 0, 1.98056, -105.922, 0, 9.3275)
@@ -253,32 +234,3 @@ render_target_update_mode = 0
 transform = Transform3D(0.422618, -0.906308, -3.9616e-08, 0, -4.37114e-08, 1, -0.906308, -0.422618, -1.84732e-08, -115.179, 250, 0)
 cull_mask = 1048573
 near = 0.01
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(20, 0, 0, 0, -8.74228e-07, -20, 0, 20, -8.74228e-07, 12.1167, 25.2028, -41.321)
-layers = 1024
-texture = ExtResource("23_bgv1d")
-script = ExtResource("24_1gvsc")
-
-[node name="Area3D" type="Area3D" parent="Sprite3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Sprite3D/Area3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0136029, 0, -0.116074)
-shape = SubResource("CylinderShape3D_338ld")
-
-[node name="HoverText" type="Label3D" parent="Sprite3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.80157, 0)
-visible = false
-billboard = 1
-shaded = true
-double_sided = false
-modulate = Color(0, 0, 0, 1)
-text = "Press F to change campus"
-font_size = 150
-outline_size = 15
-
-[node name="tester" parent="." instance=ExtResource("25_gas8w")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -29.1387, 0, -174.237)
-
-[connection signal="mouse_entered" from="Sprite3D/Area3D" to="Sprite3D" method="_on_area_3d_mouse_entered"]
-[connection signal="mouse_exited" from="Sprite3D/Area3D" to="Sprite3D" method="_on_area_3d_mouse_exited"]

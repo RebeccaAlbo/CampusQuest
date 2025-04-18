@@ -2,6 +2,7 @@ extends Control
 
 @onready var minimap: PanelContainer = $"../Minimap"
 
+
 var _is_paused: bool = false:
 	set = set_paused
 	

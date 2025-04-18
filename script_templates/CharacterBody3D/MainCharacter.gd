@@ -15,10 +15,11 @@ const LERP_VAL = .15
 var can_move: bool = true
 
 var skin_colors = [
-	Color(1.0, 0.8, 0.6),  # Light
-	Color(0.8, 0.6, 0.4),  # Tan
-	Color(0.5, 0.3, 0.2),  # Medium brown
-	Color(0.3, 0.2, 0.1)   # Dark brown	
+	Color(0.98, 0.9, 0.78),   # Very light cream 
+	Color(0.95, 0.82, 0.65),  # Light 
+	Color(0.75, 0.6, 0.45),   # Tan 
+	Color(0.45, 0.35, 0.25),  # Medium brown 
+	Color(0.28, 0.2, 0.12)    # Dark brown 
 ]
 
 var hair_styles = [
@@ -39,6 +40,7 @@ var pant_colors = [
 ]
 
 var shirt_colors = [
+	Color(0.95, 0.95, 0.95),     # Off-White / Light Gray-White
 	Color(0.05, 0.05, 0.05),     # Black
 	Color(0.7, 0.5, 0.1),        # Muted Orange
 	Color(0.5, 0.0, 0.0),        # Dark Red
@@ -192,7 +194,7 @@ func change_shoes_color(direction: int):
 	update_shoes_color()
 
 func update_shoes_color():
-	var shoes = $Armature/Skeleton3D/Shoes
+	var shoes = $Armature/Skeleton3D/Shoe
 	var material = shoes.get_surface_override_material(0)
 	if material == null:
 		material = shoes.get_active_material(0).duplicate()
@@ -244,7 +246,7 @@ func update_character(skin_index: int, hair_index: int, pant_index: int, shirt_i
 		shirt_material.albedo_color = shirt_colors[shirt_index]
 	
 	#Set correct shoes color
-	var shoes = $Armature/Skeleton3D/Shoes
+	var shoes = $Armature/Skeleton3D/Shoe
 	var shoes_material = shoes.get_surface_override_material(0)
 	if shoes_material == null:
 		var active_material = shoes.get_active_material(0)

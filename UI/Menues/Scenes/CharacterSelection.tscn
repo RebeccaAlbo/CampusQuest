@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://227gpca37dhl"]
 
-[ext_resource type="PackedScene" uid="uid://c85xldxotb6jh" path="res://player/tester.tscn" id="1_vgf5s"]
+[ext_resource type="PackedScene" uid="uid://3kjk4w0wer4" path="res://player/BaseCharacter/Scene/base_character.tscn" id="1_1c120"]
 [ext_resource type="Script" path="res://UI/Menues/Skripts/CharacterSelection.gd" id="2_c618p"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_83x61"]
@@ -61,8 +61,8 @@ shape = SubResource("BoxShape3D_5olvj")
 transform = Transform3D(-1, 8.74228e-08, 0, 8.74228e-08, 1, 8.74228e-08, 7.64274e-15, 8.74228e-08, -1, 0, 5.8102, -11.5114)
 current = true
 
-[node name="tester" parent="." instance=ExtResource("1_vgf5s")]
-transform = Transform3D(-5, 0, -4.37114e-07, 0, 5, 0, 4.37114e-07, 0, -5, 0, 0, 0)
+[node name="BaseCharacter" parent="." instance=ExtResource("1_1c120")]
+transform = Transform3D(-6, 0, -5.24537e-07, 0, 6, 0, 5.24537e-07, 0, -6, 0, 0, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
