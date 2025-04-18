@@ -1,10 +1,9 @@
-[gd_scene load_steps=35 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=34 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="Script" path="res://script_templates/Node3D/campus.gd" id="1_wef5f"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI2/UI.tscn" id="2_hmtsy"]
 [ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="3_p4gww"]
 [ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="4_0g13b"]
-[ext_resource type="PackedScene" uid="uid://chmkvv0nt5cvf" path="res://player/BaseCharacter/Scene/little_dude.tscn" id="5_25c86"]
 [ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://busStop/bus_stop.tscn" id="6_jjioq"]
 [ext_resource type="PackedScene" uid="uid://c6qp18idoxerc" path="res://player/NPC/Scene/npc_2.tscn" id="7_b36ec"]
 [ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="8_qbc84"]
@@ -87,11 +86,8 @@ transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, -305, 0, -126)
 collision_layer = 32
 collision_mask = 2
 
-[node name="testerJ" parent="." instance=ExtResource("28_mncjf")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -298.849, 0, -89.5384)
-
-[node name="LittleDude" parent="." instance=ExtResource("5_25c86")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -294.008, 0, -99.4269)
+[node name="testerJ" parent="." groups=["player"] instance=ExtResource("28_mncjf")]
+transform = Transform3D(-4.97834, 0, -0.464894, 0, 5, 0, 0.464894, 0, -4.97834, -298.849, 0, -89.5384)
 
 [node name="architecture" parent="." instance=ExtResource("7_b36ec")]
 transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, -137.485, -0.926676, 158.449)

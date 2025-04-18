@@ -129,6 +129,37 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_2q25x")
 text = "Shirt
 "
 
+[node name="Pants" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3fnv1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yyrn8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mojp0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2q25x")
+text = "Pants
+"
+
+[node name="Shoes" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3fnv1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yyrn8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mojp0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2q25x")
+text = "Shoes"
+
 [node name="Continue" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 1
@@ -155,4 +186,6 @@ text = "Continue"
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Hair" to="CanvasLayer/Control" method="_on_hair_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Skin" to="CanvasLayer/Control" method="_on_skin_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Shirt" to="CanvasLayer/Control" method="_on_shirt_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Pants" to="CanvasLayer/Control" method="_on_pants_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Shoes" to="CanvasLayer/Control" method="_on_shoes_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Continue" to="CanvasLayer/Control" method="_on_continue_pressed"]
