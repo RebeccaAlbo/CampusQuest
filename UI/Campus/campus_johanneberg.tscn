@@ -49,7 +49,7 @@ border_width_left = 6
 border_width_top = 6
 border_width_right = 6
 border_width_bottom = 6
-border_color = Color(0.255659, 0.255659, 0.255659, 1)
+border_color = Color(0.14418, 0.274037, 0.139583, 1)
 
 [node name="campus_johanneberg" type="Node3D"]
 script = ExtResource("1_wef5f")
@@ -268,20 +268,21 @@ visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -282.567
-offset_top = 19.8986
-offset_right = -20.567
-offset_bottom = 281.899
+offset_left = -156.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = 156.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_mxwxs")
 script = ExtResource("26_et1t8")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Minimap"]
 layout_mode = 2
+stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(250, 250)
+size = Vector2i(138, 138)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]

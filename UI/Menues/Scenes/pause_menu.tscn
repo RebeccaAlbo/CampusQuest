@@ -62,32 +62,43 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ntu06")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Label" type="Label" parent="ColorRect/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -177.0
-offset_top = -136.0
-offset_right = 177.0
-offset_bottom = 136.0
+offset_left = -117.0
+offset_top = -161.0
+offset_right = 117.0
+offset_bottom = -85.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 20
-
-[node name="Label" type="Label" parent="VBoxContainer"]
-layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 10
 theme_override_fonts/font = ExtResource("2_5n084")
-theme_override_font_sizes/font_size = 85
+theme_override_font_sizes/font_size = 75
 text = "Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Resume" type="Button" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -11.0
+offset_right = 105.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="Resume" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
@@ -95,7 +106,7 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0tfa3")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qib7c")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_kigma")
@@ -103,7 +114,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_0k6ik")
 text = "Resume
 "
 
-[node name="QuitGame" type="Button" parent="VBoxContainer"]
+[node name="QuitGame" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
@@ -111,12 +122,12 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0tfa3")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qib7c")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_kigma")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0k6ik")
 text = "Quit game"
 
-[connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitGame" to="." method="_on_quit_game_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/QuitGame" to="." method="_on_quit_game_pressed"]
