@@ -31,4 +31,5 @@ func _on_resume_pressed() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_quit_game_pressed() -> void:
+	GameState.save_game()
 	get_tree().quit()

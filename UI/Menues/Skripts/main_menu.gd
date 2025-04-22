@@ -17,3 +17,8 @@ func _on_exit_pressed() -> void:
 func _on_controls_pressed() -> void:
 	SceneManager.prev_scene_path = "res://UI/Menues/Scenes/main_menu.tscn"
 	get_tree().change_scene_to_file("res://UI/Menues/Scenes/controls.tscn")
+
+
+func _on_contiue_pressed() -> void:
+	GameState.load_game()
+	get_tree().change_scene_to_file("res://UI/Menues/Scenes/choose_campus.tscn")

@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 SceneManager="*res://UI/Menues/Skripts/SceneManager.gd"
 CharacterCust="*res://UI/Menues/Skripts/CharacterCust.gd"
+GameState="*res://gamifying/scripts/gameState.gd"
 
 [dialogue_manager]
 

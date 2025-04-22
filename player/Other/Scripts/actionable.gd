@@ -44,6 +44,7 @@ func action() -> void:
 	
 	# Set up for dialoque envoronment
 	player.in_dialogue()
+	GameState.add_npc_point(npc.name)
 	npc.face_toward(player)
 	npc.animation("Talking", 0.3)
 	var balloon: Node = Balloon.instantiate()
