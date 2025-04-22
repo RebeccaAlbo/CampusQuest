@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c3ynfcpspetng"]
+[gd_scene load_steps=32 format=3 uid="uid://c3ynfcpspetng"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_lindholmen.gd" id="1_bghy0"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI2/UI.tscn" id="2_hyq3a"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://d2k4cl3wm4rd0" path="res://player/Other/Scenes/chat_detection_area.tscn" id="12_vdjft"]
 [ext_resource type="PackedScene" uid="uid://emdkw05ycyav" path="res://player/Other/Scenes/wave_zone.tscn" id="13_3p1t0"]
 [ext_resource type="PackedScene" uid="uid://06ccq6sqvbif" path="res://player/NPC/Scene/kuggen.tscn" id="14_c7uvx"]
+[ext_resource type="Texture2D" uid="uid://dqphkalnuma64" path="res://UI/Images/exlamation.png" id="14_qthte"]
 [ext_resource type="PackedScene" uid="uid://cviwhmht567mj" path="res://player/NPC/Scene/jupiter.tscn" id="15_vem1b"]
 [ext_resource type="PackedScene" uid="uid://rlj0t4a7yxjj" path="res://player/NPC/Scene/saga.tscn" id="16_4hqyw"]
 [ext_resource type="PackedScene" uid="uid://debrevchux61e" path="res://player/NPC/Scene/patricia.tscn" id="17_8uv6s"]
@@ -38,6 +39,15 @@ size = Vector2(10000, 10000)
 [sub_resource type="Environment" id="Environment_35y5l"]
 background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_771xr"]
+albedo_color = Color(0.74902, 0.231373, 0.215686, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_d6y6t"]
+material = SubResource("StandardMaterial3D_771xr")
+top_radius = 2.0
+bottom_radius = 2.0
+height = 0.001
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28ls7"]
 bg_color = Color(0, 0, 0, 1)
@@ -84,6 +94,11 @@ script = ExtResource("6_vgfen")
 [node name="BaseCharacter" parent="." instance=ExtResource("24_r2aeb")]
 transform = Transform3D(-3.9894, 0, -0.291073, 0, 4, 0, 0.291073, 0, -3.9894, -30.7394, 0, -173.553)
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter"]
+transform = Transform3D(1, 0, 4.47035e-08, 0, 1, 0, -4.47035e-08, 0, 1, 0, 1.85939, 0)
+layers = 1024
+mesh = SubResource("CylinderMesh_d6y6t")
+
 [node name="svea" parent="." instance=ExtResource("8_u2u80")]
 transform = Transform3D(1.98056, 0, 3.47525, 0, 4, 0, -3.47525, 0, 1.98056, -105.922, 0, 9.3275)
 
@@ -96,6 +111,11 @@ transform = Transform3D(1.98056, 0, 3.47525, 0, 4, 0, -3.47525, 0, 1.98056, -105
 [node name="ChatDetectionArea" parent="svea" instance=ExtResource("12_vdjft")]
 
 [node name="WaveZone" parent="svea" instance=ExtResource("13_3p1t0")]
+
+[node name="Sprite3D" type="Sprite3D" parent="svea"]
+transform = Transform3D(-1.98595, -0.236669, 1.03452e-08, -3.30282e-15, -8.74228e-08, -2, 0.236669, -1.98595, 8.68085e-08, 0, 4, 0)
+layers = 1024
+texture = ExtResource("14_qthte")
 
 [node name="kuggen" parent="." instance=ExtResource("14_c7uvx")]
 transform = Transform3D(-3.33373, 0, -2.21048, 0, 4, 0, 2.21048, 0, -3.33373, 0.403141, 0, -57.8886)
@@ -110,6 +130,11 @@ transform = Transform3D(-3.33373, 0, -2.21048, 0, 4, 0, 2.21048, 0, -3.33373, 0.
 
 [node name="WaveZone" parent="kuggen" instance=ExtResource("13_3p1t0")]
 
+[node name="Sprite3D" type="Sprite3D" parent="kuggen"]
+transform = Transform3D(1.71753, 1.02475, -4.47931e-08, -3.30282e-15, -8.74228e-08, -2, -1.02475, 1.71753, -7.50755e-08, 0, 5, 0)
+layers = 1024
+texture = ExtResource("14_qthte")
+
 [node name="jupiter" parent="." instance=ExtResource("15_vem1b")]
 transform = Transform3D(-2.5789, 0, -3.05766, 0, 4, 0, 3.05766, 0, -2.5789, -25.836, 0, -8.12006)
 
@@ -122,6 +147,11 @@ transform = Transform3D(-2.5789, 0, -3.05766, 0, 4, 0, 3.05766, 0, -2.5789, -25.
 [node name="ChatDetectionArea" parent="jupiter" instance=ExtResource("12_vdjft")]
 
 [node name="WaveZone" parent="jupiter" instance=ExtResource("13_3p1t0")]
+
+[node name="Sprite3D" type="Sprite3D" parent="jupiter"]
+transform = Transform3D(1.94902, 0.448678, -1.96124e-08, -3.30282e-15, -8.74228e-08, -2, -0.448678, 1.94902, -8.51945e-08, 0, 4, 0)
+layers = 1024
+texture = ExtResource("14_qthte")
 
 [node name="saga" parent="." instance=ExtResource("16_4hqyw")]
 transform = Transform3D(0.955897, 0, 3.8841, 0, 4, 0, -3.8841, 0, 0.955897, -59.1846, 0, 34.7213)
@@ -136,6 +166,11 @@ transform = Transform3D(0.955897, 0, 3.8841, 0, 4, 0, -3.8841, 0, 0.955897, -59.
 
 [node name="WaveZone" parent="saga" instance=ExtResource("13_3p1t0")]
 
+[node name="Sprite3D" type="Sprite3D" parent="saga"]
+transform = Transform3D(-1.94989, 0.444901, -1.94472e-08, -3.30282e-15, -8.74228e-08, -2, -0.444901, -1.94989, 8.52323e-08, 0, 4, 0)
+layers = 1024
+texture = ExtResource("14_qthte")
+
 [node name="patricia" parent="." instance=ExtResource("17_8uv6s")]
 transform = Transform3D(1.43966, 0, 3.73194, 0, 4, 0, -3.73194, 0, 1.43966, -83.7594, 0, -33.1025)
 
@@ -148,6 +183,11 @@ transform = Transform3D(1.43966, 0, 3.73194, 0, 4, 0, -3.73194, 0, 1.43966, -83.
 [node name="ChatDetectionArea" parent="patricia" instance=ExtResource("12_vdjft")]
 
 [node name="WaveZone" parent="patricia" instance=ExtResource("13_3p1t0")]
+
+[node name="Sprite3D" type="Sprite3D" parent="patricia"]
+transform = Transform3D(-1.98364, 0.255306, -1.11598e-08, -3.30282e-15, -8.74228e-08, -2, -0.255306, -1.98364, 8.67076e-08, 0, 4, 0)
+layers = 1024
+texture = ExtResource("14_qthte")
 
 [node name="aran" parent="." instance=ExtResource("18_rf5dy")]
 transform = Transform3D(-3.92355, 0, 0.778307, 0, 4, 0, -0.778307, 0, -3.92355, -78.7897, 0, 97.2154)
@@ -162,6 +202,11 @@ transform = Transform3D(-3.92355, 0, 0.778307, 0, 4, 0, -0.778307, 0, -3.92355, 
 
 [node name="WaveZone" parent="aran" instance=ExtResource("13_3p1t0")]
 
+[node name="Sprite3D" type="Sprite3D" parent="aran"]
+transform = Transform3D(0.328649, 1.97281, -8.62344e-08, -3.30282e-15, -8.74228e-08, -2, -1.97281, 0.328649, -1.43657e-08, 0, 4, 0)
+layers = 1024
+texture = ExtResource("14_qthte")
+
 [node name="anglia" parent="." instance=ExtResource("19_0lpak")]
 transform = Transform3D(-3.871, 0, -1.00767, 0, 4, 0, 1.00767, 0, -3.871, -119.953, 0, 198.521)
 
@@ -174,6 +219,11 @@ transform = Transform3D(-3.871, 0, -1.00767, 0, 4, 0, 1.00767, 0, -3.871, -119.9
 [node name="ChatDetectionArea" parent="anglia" instance=ExtResource("12_vdjft")]
 
 [node name="WaveZone" parent="anglia" instance=ExtResource("13_3p1t0")]
+
+[node name="Sprite3D" type="Sprite3D" parent="anglia"]
+transform = Transform3D(1.24907, 1.562, -6.8277e-08, -3.30282e-15, -8.74228e-08, -2, -1.562, 1.24907, -5.45985e-08, 0, 4, 0)
+layers = 1024
+texture = ExtResource("14_qthte")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

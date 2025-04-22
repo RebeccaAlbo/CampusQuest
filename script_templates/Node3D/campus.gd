@@ -28,3 +28,4 @@ func send_to_flutter(message):
 	var flutterPlugin = Engine.get_singleton("FlutterGodotPlugin")
 	if flutterPlugin:
 		flutterPlugin.sendMessageToFlutter(message)
+		

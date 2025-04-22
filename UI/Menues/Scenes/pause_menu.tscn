@@ -6,7 +6,7 @@
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ntu06"]
 texture = ExtResource("2_hxty5")
-modulate_color = Color(0.288518, 0.288518, 0.288518, 1)
+modulate_color = Color(0.407843, 0.407843, 0.407843, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0tfa3"]
 

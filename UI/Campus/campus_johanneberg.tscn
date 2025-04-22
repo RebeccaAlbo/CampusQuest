@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=38 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="Script" path="res://script_templates/Node3D/campus.gd" id="1_wef5f"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI2/UI.tscn" id="2_hmtsy"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://d2k4cl3wm4rd0" path="res://player/Other/Scenes/chat_detection_area.tscn" id="11_dvbsa"]
 [ext_resource type="PackedScene" uid="uid://emdkw05ycyav" path="res://player/Other/Scenes/wave_zone.tscn" id="12_dlir3"]
 [ext_resource type="PackedScene" uid="uid://dbn7fmsdl1yi8" path="res://player/NPC/Scene/computer.tscn" id="13_3doim"]
+[ext_resource type="Texture2D" uid="uid://dqphkalnuma64" path="res://UI/Images/exlamation.png" id="13_aiayi"]
 [ext_resource type="PackedScene" uid="uid://dd6d57l0bjch1" path="res://player/NPC/Scene/electrical.tscn" id="14_x75fr"]
 [ext_resource type="PackedScene" uid="uid://baxs73larwsr1" path="res://player/NPC/Scene/industrial.tscn" id="15_k23oj"]
 [ext_resource type="PackedScene" uid="uid://bmhumysegegtc" path="res://player/NPC/Scene/physics.tscn" id="16_gybfq"]
@@ -27,6 +28,7 @@
 [ext_resource type="Script" path="res://UI/Menues/Skripts/minimap.gd" id="26_et1t8"]
 [ext_resource type="PackedScene" uid="uid://3kjk4w0wer4" path="res://player/BaseCharacter/Scene/base_character.tscn" id="27_c0edl"]
 [ext_resource type="Script" path="res://UI/Menues/Skripts/big_map.gd" id="27_rjjvf"]
+[ext_resource type="Script" path="res://UI/Campus/panel.gd" id="29_6t16t"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
 
@@ -43,6 +45,15 @@ size = Vector2(10000, 10000)
 [sub_resource type="Environment" id="Environment_wt17y"]
 background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cy1fy"]
+albedo_color = Color(0.74902, 0.231373, 0.215686, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wd84n"]
+material = SubResource("StandardMaterial3D_cy1fy")
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.001
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxwxs"]
 border_width_left = 6
@@ -89,6 +100,11 @@ collision_mask = 2
 [node name="BaseCharacter" parent="." instance=ExtResource("27_c0edl")]
 transform = Transform3D(-4.86744, 0, 1.14371, 0, 5, 0, -1.14371, 0, -4.86744, -298, 0, -112)
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter"]
+transform = Transform3D(1, 0, 4.47035e-08, 0, 1, 0, -4.47035e-08, 0, 1, 0, 1.85939, 0)
+layers = 1024
+mesh = SubResource("CylinderMesh_wd84n")
+
 [node name="architecture" parent="." instance=ExtResource("7_b36ec")]
 transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, -137.485, -0.926676, 158.449)
 
@@ -101,6 +117,11 @@ transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, -137.4
 [node name="ChatDetectionArea" parent="architecture" instance=ExtResource("11_dvbsa")]
 
 [node name="WaveZone" parent="architecture" instance=ExtResource("12_dlir3")]
+
+[node name="Sprite3D" type="Sprite3D" parent="architecture"]
+transform = Transform3D(1.81262, 0.845237, -3.69465e-08, 0, -8.74228e-08, -2, -0.845237, 1.81262, -7.92319e-08, 0, 4, 0)
+layers = 1024
+texture = ExtResource("13_aiayi")
 
 [node name="computer" parent="." instance=ExtResource("13_3doim")]
 transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, -23.4675, -1, 107.536)
@@ -115,6 +136,11 @@ transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, -23.46
 
 [node name="ChatDetectionArea" parent="computer" instance=ExtResource("11_dvbsa")]
 
+[node name="Sprite3D" type="Sprite3D" parent="computer"]
+transform = Transform3D(1.81262, 0.845237, -3.69465e-08, 0, -8.74228e-08, -2, -0.845237, 1.81262, -7.92319e-08, 0, 4, 0)
+layers = 1024
+texture = ExtResource("13_aiayi")
+
 [node name="electrical" parent="." instance=ExtResource("14_x75fr")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 21.0247, -1, 134.023)
 
@@ -127,6 +153,11 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 21.0247, -1, 134.023)
 [node name="ChatDetectionArea" parent="electrical" instance=ExtResource("11_dvbsa")]
 
 [node name="WaveZone" parent="electrical" instance=ExtResource("12_dlir3")]
+
+[node name="Sprite3D" type="Sprite3D" parent="electrical"]
+transform = Transform3D(0.880286, -1.79586, 7.84994e-08, 2.22873e-15, -8.74228e-08, -2, 1.79586, 0.880286, -3.84785e-08, 0, 4, 0)
+layers = 1024
+texture = ExtResource("13_aiayi")
 
 [node name="industrial" parent="." instance=ExtResource("15_k23oj")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -84.2536, -0.999998, -7.0776)
@@ -141,6 +172,11 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -84.2536, -0.999998, -7.0776)
 
 [node name="WaveZone" parent="industrial" instance=ExtResource("12_dlir3")]
 
+[node name="Sprite3D" type="Sprite3D" parent="industrial"]
+transform = Transform3D(0.606204, -1.90592, 8.33102e-08, 0, -8.74228e-08, -2, 1.90592, 0.606204, -2.6498e-08, 0, 4, 0)
+layers = 1024
+texture = ExtResource("13_aiayi")
+
 [node name="physics" parent="." instance=ExtResource("16_gybfq")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -188.973, -1, -195.699)
 
@@ -153,6 +189,11 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -188.973, -1, -195.699)
 [node name="ChatDetectionArea" parent="physics" instance=ExtResource("11_dvbsa")]
 
 [node name="WaveZone" parent="physics" instance=ExtResource("12_dlir3")]
+
+[node name="Sprite3D" type="Sprite3D" parent="physics"]
+transform = Transform3D(0.64975, -1.89151, 8.26807e-08, 2.22873e-15, -8.74228e-08, -2, 1.89151, 0.64975, -2.84015e-08, 0, 4, 0)
+layers = 1024
+texture = ExtResource("13_aiayi")
 
 [node name="chemistry" parent="." instance=ExtResource("17_qw3c1")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -59.7977, -1, -233.436)
@@ -167,6 +208,11 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -59.7977, -1, -233.436)
 
 [node name="WaveZone" parent="chemistry" instance=ExtResource("12_dlir3")]
 
+[node name="Sprite3D" type="Sprite3D" parent="chemistry"]
+transform = Transform3D(0.885767, -1.79316, 7.83815e-08, 2.22873e-15, -8.74228e-08, -2, 1.79316, 0.885767, -3.87181e-08, 0, 4, 0)
+layers = 1024
+texture = ExtResource("13_aiayi")
+
 [node name="life" parent="." instance=ExtResource("18_wkhe0")]
 transform = Transform3D(-2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, -124.785, -1, -182.024)
 
@@ -180,6 +226,11 @@ transform = Transform3D(-2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, -124.7
 
 [node name="WaveZone" parent="life" instance=ExtResource("12_dlir3")]
 
+[node name="Sprite3D" type="Sprite3D" parent="life"]
+transform = Transform3D(-1.86684, -0.717583, 3.13666e-08, 2.22873e-15, -8.74228e-08, -2, 0.717583, -1.86684, 8.1602e-08, 0, 4, 0)
+layers = 1024
+texture = ExtResource("13_aiayi")
+
 [node name="math" parent="." instance=ExtResource("19_u6e35")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -48.2272, -1, -149.427)
 
@@ -192,6 +243,11 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -48.2272, -1, -149.427)
 [node name="ChatDetectionArea" parent="math" instance=ExtResource("11_dvbsa")]
 
 [node name="WaveZone" parent="math" instance=ExtResource("12_dlir3")]
+
+[node name="Sprite3D" type="Sprite3D" parent="math"]
+transform = Transform3D(0.859888, -1.80571, 7.89302e-08, 2.22873e-15, -8.74228e-08, -2, 1.80571, 0.859888, -3.75869e-08, 0, 4, 0)
+layers = 1024
+texture = ExtResource("13_aiayi")
 
 [node name="mechanics" parent="." instance=ExtResource("20_i3yk2")]
 transform = Transform3D(-2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, 14.7081, -1, -34.798)
@@ -207,6 +263,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.222486, 1, 0)
 
 [node name="WaveZone" parent="mechanics" instance=ExtResource("12_dlir3")]
 
+[node name="Sprite3D" type="Sprite3D" parent="mechanics"]
+transform = Transform3D(-1.85932, -0.736833, 3.2208e-08, -6.77626e-22, -8.74228e-08, -2, 0.736833, -1.85932, 8.12735e-08, 0, 4, 0)
+layers = 1024
+texture = ExtResource("13_aiayi")
+
 [node name="micro" parent="." instance=ExtResource("21_ga0cy")]
 transform = Transform3D(4.23862, 0, 2.65219, 0, 5, 0, -2.65219, 0, 4.23862, -182.789, -1, -279.331)
 
@@ -219,6 +280,11 @@ transform = Transform3D(4.23862, 0, 2.65219, 0, 5, 0, -2.65219, 0, 4.23862, -182
 [node name="ChatDetectionArea" parent="micro" instance=ExtResource("11_dvbsa")]
 
 [node name="WaveZone" parent="micro" instance=ExtResource("12_dlir3")]
+
+[node name="Sprite3D" type="Sprite3D" parent="micro"]
+transform = Transform3D(-0.281388, -1.98011, 8.65532e-08, 2.22873e-15, -8.74228e-08, -2, 1.98011, -0.281388, 1.22999e-08, 0, 4, 0)
+layers = 1024
+texture = ExtResource("13_aiayi")
 
 [node name="space" parent="." instance=ExtResource("22_fbe7f")]
 transform = Transform3D(-4.34047, 0, -2.48199, 0, 5, 0, 2.48199, 0, -4.34047, 3, -1, 54)
@@ -233,6 +299,11 @@ transform = Transform3D(-4.34047, 0, -2.48199, 0, 5, 0, 2.48199, 0, -4.34047, 3,
 
 [node name="WaveZone" parent="space" instance=ExtResource("12_dlir3")]
 
+[node name="Sprite3D" type="Sprite3D" parent="space"]
+transform = Transform3D(0.307317, 1.97625, -8.63845e-08, 2.22873e-15, -8.74228e-08, -2, -1.97625, 0.307317, -1.34332e-08, 0, 4, 0)
+layers = 1024
+texture = ExtResource("13_aiayi")
+
 [node name="economic" parent="." instance=ExtResource("23_sk0v5")]
 transform = Transform3D(4.63176, 0, 1.8833, 0, 5, 0, -1.8833, 0, 4.63176, -187.96, -1, -480.266)
 
@@ -246,6 +317,11 @@ transform = Transform3D(4.63176, 0, 1.8833, 0, 5, 0, -1.8833, 0, 4.63176, -187.9
 
 [node name="WaveZone" parent="economic" instance=ExtResource("12_dlir3")]
 
+[node name="Sprite3D" type="Sprite3D" parent="economic"]
+transform = Transform3D(1.81262, 0.845237, -3.69465e-08, 0, -8.74228e-08, -2, -0.845237, 1.81262, -7.92319e-08, 0, 4, 0)
+layers = 1024
+texture = ExtResource("13_aiayi")
+
 [node name="science" parent="." instance=ExtResource("24_mx7op")]
 transform = Transform3D(1.93581, 0, -4.61006, 0, 5, 0, 4.61006, 0, 1.93581, -33.474, -0.999998, -187.82)
 
@@ -258,6 +334,11 @@ transform = Transform3D(1.93581, 0, -4.61006, 0, 5, 0, 4.61006, 0, 1.93581, -33.
 [node name="ChatDetectionArea" parent="science" instance=ExtResource("11_dvbsa")]
 
 [node name="WaveZone" parent="science" instance=ExtResource("12_dlir3")]
+
+[node name="Sprite3D" type="Sprite3D" parent="science"]
+transform = Transform3D(1.99779, 0.0940735, -4.11208e-09, 2.22873e-15, -8.74228e-08, -2, -0.0940735, 1.99779, -8.7326e-08, 0, 4, 0)
+layers = 1024
+texture = ExtResource("13_aiayi")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -285,14 +366,13 @@ handle_input_locally = false
 size = Vector2i(138, 138)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
+[node name="MinimapCamera" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -298.251, 100, -100.675)
 cull_mask = 1048573
 size = 100.0
 
 [node name="BigMap" type="Control" parent="CanvasLayer"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -302,7 +382,6 @@ grow_vertical = 2
 script = ExtResource("27_rjjvf")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/BigMap"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -315,11 +394,201 @@ stretch = true
 handle_input_locally = false
 size = Vector2i(1000, 500)
 size_2d_override_stretch = true
-render_target_update_mode = 0
+render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="CanvasLayer/BigMap/SubViewportContainer/SubViewport"]
+[node name="BigMapCamera" type="Camera3D" parent="CanvasLayer/BigMap/SubViewportContainer/SubViewport"]
 transform = Transform3D(-0.422618, -0.906308, -3.9616e-08, 0, -4.37114e-08, 1, -0.906308, 0.422618, 1.84732e-08, -113.817, 300, -23.153)
 cull_mask = 1048573
 near = 0.01
 
+[node name="ArchiIII" type="Panel" parent="CanvasLayer/BigMap"]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 168.0
+offset_right = 239.0
+offset_bottom = 195.0
+tooltip_text = "Heelluuu
+"
+script = ExtResource("29_6t16t")
+
+[node name="Label" type="Label" parent="CanvasLayer/BigMap/ArchiIII"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -11.5
+offset_right = 68.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Samhällsbyggnad III
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MC2" type="Panel" parent="CanvasLayer/BigMap/ArchiIII"]
+offset_left = 681.0
+offset_top = 79.0
+offset_right = 767.0
+offset_bottom = 106.0
+tooltip_text = "Heelluuu
+"
+script = ExtResource("29_6t16t")
+
+[node name="Label" type="Label" parent="CanvasLayer/BigMap/ArchiIII/MC2"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -10.0
+offset_right = 19.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "MC2-huset"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArchiI-II" type="Panel" parent="CanvasLayer/BigMap"]
+offset_left = 278.0
+offset_top = 169.0
+offset_right = 436.0
+offset_bottom = 196.0
+tooltip_text = "Heelluuu
+"
+script = ExtResource("29_6t16t")
+
+[node name="Label" type="Label" parent="CanvasLayer/BigMap/ArchiI-II"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0411392
+anchor_top = 0.0740741
+anchor_right = 0.958861
+anchor_bottom = 0.925926
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Samhällsbyggnad I-II
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Physics" type="Panel" parent="CanvasLayer/BigMap"]
+offset_left = 657.0
+offset_top = 276.0
+offset_right = 707.0
+offset_bottom = 303.0
+tooltip_text = "Heelluuu
+"
+script = ExtResource("29_6t16t")
+
+[node name="Label" type="Label" parent="CanvasLayer/BigMap/Physics"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -10.0
+offset_right = 19.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Fysik
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Chemistry" type="Panel" parent="CanvasLayer/BigMap"]
+offset_left = 677.0
+offset_top = 369.0
+offset_right = 765.0
+offset_bottom = 436.0
+tooltip_text = "Heelluuu
+"
+script = ExtResource("29_6t16t")
+
+[node name="Label" type="Label" parent="CanvasLayer/BigMap/Chemistry"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.5
+offset_top = -33.0
+offset_right = 38.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Kemi
+och
+Kemiteknik
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MV" type="Panel" parent="CanvasLayer/BigMap"]
+offset_left = 572.0
+offset_top = 324.0
+offset_right = 650.0
+offset_bottom = 351.0
+tooltip_text = "Heelluuu
+"
+script = ExtResource("29_6t16t")
+
+[node name="Label" type="Label" parent="CanvasLayer/BigMap/MV"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -10.0
+offset_right = 19.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "MV-huset"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="mouse_entered" from="CanvasLayer/BigMap/ArchiIII" to="CanvasLayer/BigMap/ArchiIII" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BigMap/ArchiIII" to="CanvasLayer/BigMap/ArchiIII" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/BigMap/ArchiIII/MC2" to="CanvasLayer/BigMap/ArchiIII/MC2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BigMap/ArchiIII/MC2" to="CanvasLayer/BigMap/ArchiIII/MC2" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/BigMap/ArchiI-II" to="CanvasLayer/BigMap/ArchiI-II" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BigMap/ArchiI-II" to="CanvasLayer/BigMap/ArchiI-II" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/BigMap/Physics" to="CanvasLayer/BigMap/Physics" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BigMap/Physics" to="CanvasLayer/BigMap/Physics" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/BigMap/Chemistry" to="CanvasLayer/BigMap/Chemistry" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BigMap/Chemistry" to="CanvasLayer/BigMap/Chemistry" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/BigMap/MV" to="CanvasLayer/BigMap/MV" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BigMap/MV" to="CanvasLayer/BigMap/MV" method="_on_mouse_exited"]
