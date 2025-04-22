@@ -11,7 +11,7 @@ modulate_color = Color(0.407843, 0.407843, 0.407843, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0tfa3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qib7c"]
-bg_color = Color(0.666569, 0.666569, 0.666569, 1)
+bg_color = Color(0.756863, 0.631373, 0.458824, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -19,7 +19,7 @@ corner_radius_bottom_left = 16
 shadow_size = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kigma"]
-bg_color = Color(0.435192, 0.435192, 0.435192, 1)
+bg_color = Color(0.564706, 0.454902, 0.298039, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -27,7 +27,7 @@ corner_radius_bottom_left = 16
 shadow_size = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0k6ik"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0.909804, 0.831373, 0.72549, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -75,6 +75,7 @@ offset_right = 117.0
 offset_bottom = -85.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.647059, 0.458824, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 10
 theme_override_fonts/font = ExtResource("2_5n084")

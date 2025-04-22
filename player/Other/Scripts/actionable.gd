@@ -44,6 +44,9 @@ func action() -> void:
 	
 	# Set up for dialoque envoronment
 	player.in_dialogue()
+	if npc.name not in GameState.talked_to_npcs:
+		print("npc not in talked to")
+		npc.change_mark()
 	GameState.add_npc_point(npc.name)
 	npc.face_toward(player)
 	npc.animation("Talking", 0.3)

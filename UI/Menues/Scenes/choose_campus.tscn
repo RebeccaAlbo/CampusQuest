@@ -8,32 +8,6 @@
 texture = ExtResource("1_s02qh")
 modulate_color = Color(0.408329, 0.408329, 0.408329, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4174q"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqnme"]
-bg_color = Color(0.666569, 0.666569, 0.666569, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06j1p"]
-bg_color = Color(0.435192, 0.435192, 0.435192, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8d842"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 5
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4jee1"]
 bg_color = Color(0.962007, 0.96593, 0.963888, 1)
 corner_radius_top_left = 15
@@ -45,6 +19,32 @@ expand_margin_top = 8.0
 expand_margin_right = 8.0
 expand_margin_bottom = 8.0
 shadow_size = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4174q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqnme"]
+bg_color = Color(0.757279, 0.632418, 0.459061, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06j1p"]
+bg_color = Color(0.563474, 0.454029, 0.299765, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8d842"]
+bg_color = Color(0.909804, 0.831373, 0.72549, 0.796078)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
 
 [node name="ChooseCampus" type="Control"]
 layout_mode = 3
@@ -79,46 +79,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="lindholmen" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 22
-theme_override_styles/focus = SubResource("StyleBoxEmpty_4174q")
-theme_override_styles/hover = SubResource("StyleBoxFlat_yqnme")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_06j1p")
-theme_override_styles/normal = SubResource("StyleBoxFlat_8d842")
-text = "Lindholmen"
-
-[node name="johanneberg" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 22
-theme_override_styles/focus = SubResource("StyleBoxEmpty_4174q")
-theme_override_styles/hover = SubResource("StyleBoxFlat_yqnme")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_06j1p")
-theme_override_styles/normal = SubResource("StyleBoxFlat_8d842")
-text = "Johanneberg"
-
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -255.0
-offset_top = 17.0
+offset_top = 28.0
 offset_right = 255.0
-offset_bottom = 156.0
+offset_bottom = 167.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0.647343, 0.459373, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 10
 theme_override_fonts/font = ExtResource("2_6llcm")
@@ -128,6 +99,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="title" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -145,5 +117,69 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_4jee1")
 text = "Where would you like to start exploring?"
 
-[connection signal="pressed" from="VBoxContainer/lindholmen" to="." method="_on_lindholmen_pressed"]
-[connection signal="pressed" from="VBoxContainer/johanneberg" to="." method="_on_johanneberg_pressed"]
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -67.0
+offset_right = 360.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.66908, 0.580888, 0.35169, 1)
+theme_override_font_sizes/font_size = 28
+text = "Where would you like your 
+epic journey to begin?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -201.0
+offset_top = 57.0
+offset_right = 201.0
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 120
+
+[node name="lindholmen" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4174q")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yqnme")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_06j1p")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8d842")
+text = "  Lindholmen  "
+
+[node name="johanneberg" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4174q")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yqnme")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_06j1p")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8d842")
+text = "  Johanneberg  "
+
+[connection signal="pressed" from="HBoxContainer/lindholmen" to="." method="_on_lindholmen_pressed"]
+[connection signal="pressed" from="HBoxContainer/johanneberg" to="." method="_on_johanneberg_pressed"]

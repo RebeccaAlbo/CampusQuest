@@ -1,11 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://c262jelbr7551"]
+[gd_scene load_steps=8 format=3 uid="uid://c262jelbr7551"]
 
 [ext_resource type="Script" path="res://UI/Menues/Skripts/control.gd" id="1_5viqy"]
+[ext_resource type="Texture2D" uid="uid://bryejuohsdw34" path="res://UI/Images/Background.png" id="2_08nlj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l4454"]
+texture = ExtResource("2_08nlj")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qmoke"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ur1j"]
-bg_color = Color(0.666569, 0.666569, 0.666569, 1)
+bg_color = Color(0.756863, 0.631373, 0.458824, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -13,7 +17,7 @@ corner_radius_bottom_left = 16
 shadow_size = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4ruw"]
-bg_color = Color(0.435192, 0.435192, 0.435192, 1)
+bg_color = Color(0.564706, 0.454902, 0.298039, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -21,7 +25,7 @@ corner_radius_bottom_left = 16
 shadow_size = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofqi2"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0.909804, 0.831373, 0.72549, 0.796078)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -45,6 +49,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_l4454")
 
 [node name="exit" type="Button" parent="."]
 layout_mode = 1
@@ -75,6 +80,8 @@ offset_left = 52.0
 offset_top = 110.0
 offset_right = 623.0
 offset_bottom = 436.0
+theme_override_colors/font_color = Color(0.163692, 0.13363, 0.0567829, 1)
+theme_override_colors/font_shadow_color = Color(0.164706, 0.133333, 0.054902, 1)
 theme_override_font_sizes/font_size = 30
 text = "Forward:                      W or ↑
 Walk Backward:          S or ↓ 
@@ -89,6 +96,8 @@ offset_left = 52.0
 offset_top = 24.0
 offset_right = 623.0
 offset_bottom = 108.0
+theme_override_colors/font_color = Color(0.164706, 0.133333, 0.054902, 1)
+theme_override_colors/font_shadow_color = Color(0.164706, 0.133333, 0.054902, 1)
 theme_override_font_sizes/font_size = 55
 text = "Controls"
 

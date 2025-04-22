@@ -11,7 +11,7 @@ modulate_color = Color(0.408329, 0.408329, 0.408329, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_as84c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5vo6"]
-bg_color = Color(0.666569, 0.666569, 0.666569, 1)
+bg_color = Color(0.756863, 0.631373, 0.458824, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -19,7 +19,7 @@ corner_radius_bottom_left = 16
 shadow_size = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d15f3"]
-bg_color = Color(0.435192, 0.435192, 0.435192, 1)
+bg_color = Color(0.564706, 0.454902, 0.298039, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -27,7 +27,7 @@ corner_radius_bottom_left = 16
 shadow_size = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mr66t"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0.909804, 0.831373, 0.72549, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -131,14 +131,18 @@ text = "Exit"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -255.0
-offset_top = 17.0
+offset_top = -222.0
 offset_right = 255.0
-offset_bottom = 156.0
+offset_bottom = -83.0
 grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.647059, 0.458824, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 10
 theme_override_fonts/font = ExtResource("3_v4ur8")
