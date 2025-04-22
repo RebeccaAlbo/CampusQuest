@@ -1,8 +1,6 @@
 extends Control
 
 @onready var minimap: PanelContainer = $"../Minimap"
-@onready var building_name: Label = $BuildingName
-@onready var panel: Panel = $Panel
 
 
 var _is_paused: bool = false:

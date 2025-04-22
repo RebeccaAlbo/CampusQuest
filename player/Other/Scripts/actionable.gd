@@ -34,7 +34,7 @@ func action() -> void:
 			if node3d:
 				spring_arm = node3d.get_node_or_null("SpringArm3D")
 				if spring_arm:
-					camera = spring_arm.get_node_or_null("Camera3D")  # Finally, get Camera3D
+					camera = spring_arm.get_node_or_null("MainCamera")  # Finally, get Camera3D
 
 	if camera:
 		print("camera found: ", camera.name)
