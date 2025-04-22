@@ -117,7 +117,7 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_4jee1")
 text = "Where would you like to start exploring?"
 
-[node name="Label2" type="Label" parent="."]
+[node name="Chose" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -132,8 +132,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.66908, 0.580888, 0.35169, 1)
 theme_override_font_sizes/font_size = 28
-text = "Where would you like your 
-epic journey to begin?"
+text = "Where would you like 
+your journey to begin?"
 horizontal_alignment = 1
 vertical_alignment = 1
 

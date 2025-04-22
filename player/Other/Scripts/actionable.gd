@@ -37,7 +37,6 @@ func action() -> void:
 					camera = spring_arm.get_node_or_null("MainCamera")  # Finally, get Camera3D
 
 	if camera:
-		print("camera found: ", camera.name)
 		original_camera_position = camera.global_transform.origin
 		var target_position = npc.global_transform.origin + zoom_offset
 		smooth_camera_zoom(target_position)
@@ -47,7 +46,7 @@ func action() -> void:
 	if npc.name not in GameState.talked_to_npcs:
 		print("npc not in talked to")
 		npc.change_mark()
-	GameState.add_npc_point(npc.name)
+	GameState.add_npc_point(npc)
 	npc.face_toward(player)
 	npc.animation("Talking", 0.3)
 	var balloon: Node = Balloon.instantiate()

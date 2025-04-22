@@ -1,6 +1,18 @@
 extends Node
 
+@onready var base_character: CharacterBody3D = $BaseCharacter
+
 func _ready():
+	
+	# Update saved states
+	base_character.update_character(CharacterCust.skin_index, CharacterCust.hair_index, CharacterCust.pant_index, CharacterCust.shirt_index, CharacterCust.shoes_index)
+	for npc_name in GameState.talked_to_npcs.keys():
+		var npc = get_node_or_null(npc_name)
+		print(npc)
+		if npc:
+			print("changing mark")
+			npc.change_mark()
+	
 	# Get the reference to our Flutter plugin
 	var flutterPlugin = Engine.get_singleton("FlutterGodotPlugin")
 	if flutterPlugin:

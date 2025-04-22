@@ -16,6 +16,9 @@ func _ready() -> void:
 	shirt_chosen = false
 	pants_chosen = false
 	shoes_chosen = false
+	
+	character.can_move = false
+	character.update_character(0, 0, 0, 0, 0)
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if skin_chosen:

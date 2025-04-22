@@ -3,9 +3,9 @@ extends Node
 var score = 0
 var talked_to_npcs = {}
 
-func add_npc_point(npc_id: String):
-	if not talked_to_npcs.has(npc_id):
-		talked_to_npcs[npc_id] = true
+func add_npc_point(npc: Node):
+	if not talked_to_npcs.has(npc.name):
+		talked_to_npcs[npc.name] = true
 		score += 1
 		print("score: ", score)
 		
@@ -49,7 +49,6 @@ func load_game():
 			CharacterCust.pant_index = appearance.get("pant", 0)
 			CharacterCust.shoes_index = appearance.get("shoes", 0)
 		
-		print("game loaded")
 		
 	else:
 		print("no saved file")

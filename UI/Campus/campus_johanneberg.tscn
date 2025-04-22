@@ -1,12 +1,11 @@
-[gd_scene load_steps=58 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=47 format=3 uid="uid://lulw05as8mxr"]
 
-[ext_resource type="Script" path="res://script_templates/Node3D/campus.gd" id="1_wef5f"]
+[ext_resource type="Script" path="res://UI/Campus/campus_johanneberg.gd" id="1_p1r2s"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI2/UI.tscn" id="2_hmtsy"]
 [ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="3_p4gww"]
 [ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="4_0g13b"]
 [ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://busStop/bus_stop.tscn" id="6_jjioq"]
 [ext_resource type="PackedScene" uid="uid://c6qp18idoxerc" path="res://player/NPC/Scene/npc_2.tscn" id="7_b36ec"]
-[ext_resource type="Script" path="res://player/NPC/Script/npc_2.gd" id="8_ntlsp"]
 [ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="8_qbc84"]
 [ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/Other/Scenes/camera_controll.tscn" id="9_ukpfr"]
 [ext_resource type="PackedScene" uid="uid://bui3dm2ac1fqp" path="res://player/Other/Scenes/camera_controll_collision.tscn" id="10_88hal"]
@@ -20,29 +19,19 @@
 [ext_resource type="PackedScene" uid="uid://chk66t6vfn5qb" path="res://player/NPC/Scene/chemistry.tscn" id="17_qw3c1"]
 [ext_resource type="Script" path="res://player/NPC/Script/computer.gd" id="17_uyq1m"]
 [ext_resource type="PackedScene" uid="uid://ckdfjc7flpwdm" path="res://player/NPC/Scene/life.tscn" id="18_wkhe0"]
-[ext_resource type="Script" path="res://player/NPC/Script/electrical.gd" id="19_65tt2"]
 [ext_resource type="PackedScene" uid="uid://caqb5ropfs36q" path="res://player/NPC/Scene/math.tscn" id="19_u6e35"]
 [ext_resource type="PackedScene" uid="uid://8tormtv14q07" path="res://player/NPC/Scene/mechanics.tscn" id="20_i3yk2"]
-[ext_resource type="Script" path="res://player/NPC/Script/industrial.gd" id="21_4jdnf"]
 [ext_resource type="PackedScene" uid="uid://cj7le52ks7iqq" path="res://player/NPC/Scene/micro.tscn" id="21_ga0cy"]
 [ext_resource type="PackedScene" uid="uid://dsvtw2vrku8p1" path="res://player/NPC/Scene/space.tscn" id="22_fbe7f"]
 [ext_resource type="PackedScene" uid="uid://d0heqcl0pg1n3" path="res://player/NPC/Scene/economic.tscn" id="23_sk0v5"]
-[ext_resource type="Script" path="res://player/NPC/Scene/physics.gd" id="23_wn4ye"]
 [ext_resource type="PackedScene" uid="uid://cb8cpqr0olva4" path="res://player/NPC/Scene/science.tscn" id="24_mx7op"]
 [ext_resource type="Texture2D" uid="uid://bwq7j8ak5c7jh" path="res://UI/Images/Check.png" id="25_b457s"]
 [ext_resource type="PackedScene" uid="uid://b5elambvpjdk3" path="res://UI/Menues/Scenes/pause_menu.tscn" id="25_bfsex"]
-[ext_resource type="Script" path="res://player/NPC/Script/chemistry.gd" id="25_w2wu5"]
 [ext_resource type="Script" path="res://UI/Menues/Skripts/minimap.gd" id="26_et1t8"]
 [ext_resource type="PackedScene" uid="uid://3kjk4w0wer4" path="res://player/BaseCharacter/Scene/base_character.tscn" id="27_c0edl"]
-[ext_resource type="Script" path="res://player/NPC/Script/life.gd" id="27_p47uf"]
 [ext_resource type="Script" path="res://UI/Menues/Skripts/big_map.gd" id="27_rjjvf"]
 [ext_resource type="Script" path="res://UI/Campus/panel.gd" id="29_6t16t"]
-[ext_resource type="Script" path="res://player/NPC/Script/math.gd" id="29_rjs1d"]
-[ext_resource type="Script" path="res://player/NPC/Script/mechanics.gd" id="31_nr0cj"]
-[ext_resource type="Script" path="res://player/NPC/Script/micro.gd" id="33_8tgfe"]
-[ext_resource type="Script" path="res://player/NPC/Script/space.gd" id="35_ctu84"]
 [ext_resource type="Script" path="res://player/NPC/Script/economic.gd" id="37_kvtch"]
-[ext_resource type="Script" path="res://player/NPC/Script/science.gd" id="39_bscag"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
 
@@ -89,7 +78,7 @@ border_color = Color(0.14418, 0.274037, 0.139583, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5nqni"]
 
 [node name="campus_johanneberg" type="Node3D"]
-script = ExtResource("1_wef5f")
+script = ExtResource("1_p1r2s")
 
 [node name="ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -133,7 +122,6 @@ mesh = SubResource("CylinderMesh_wd84n")
 
 [node name="architecture" parent="." instance=ExtResource("7_b36ec")]
 transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, -137.485, -0.926676, 158.449)
-script = ExtResource("8_ntlsp")
 
 [node name="NPCCollision" parent="architecture" instance=ExtResource("8_qbc84")]
 
@@ -183,7 +171,6 @@ texture = ExtResource("25_b457s")
 
 [node name="electrical" parent="." instance=ExtResource("14_x75fr")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 21.0247, -1, 134.023)
-script = ExtResource("19_65tt2")
 
 [node name="NPCCollision" parent="electrical" instance=ExtResource("8_qbc84")]
 
@@ -196,19 +183,18 @@ script = ExtResource("19_65tt2")
 [node name="WaveZone" parent="electrical" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="electrical"]
-transform = Transform3D(1.81262, 0.845237, -3.69465e-08, 0, -8.74228e-08, -2, -0.845237, 1.81262, -7.92319e-08, 0, 4, 0)
+transform = Transform3D(0.892302, -1.78992, 7.82396e-08, 0, -8.74228e-08, -2, 1.78992, 0.892302, -3.90038e-08, 0, 4, 0)
 layers = 1024
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="electrical"]
-transform = Transform3D(1.35946, 0.633927, -2.77099e-08, 0, -6.55671e-08, -1.5, -0.633927, 1.35946, -5.9424e-08, 0, 4.03428, 0)
+transform = Transform3D(0.669226, -1.34243, 5.86798e-08, -1.80173e-15, -6.55671e-08, -1.5, 1.34243, 0.669226, -2.92529e-08, 0, 4.03428, 0)
 visible = false
 layers = 1024
 texture = ExtResource("25_b457s")
 
 [node name="industrial" parent="." instance=ExtResource("15_k23oj")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -84.2536, -0.999998, -7.0776)
-script = ExtResource("21_4jdnf")
 
 [node name="NPCCollision" parent="industrial" instance=ExtResource("8_qbc84")]
 
@@ -221,19 +207,18 @@ script = ExtResource("21_4jdnf")
 [node name="WaveZone" parent="industrial" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="industrial"]
-transform = Transform3D(1.81262, 0.845237, -3.69465e-08, 0, -8.74228e-08, -2, -0.845237, 1.81262, -7.92319e-08, 0, 4, 0)
+transform = Transform3D(0.882668, -1.79469, 7.84482e-08, 0, -8.74228e-08, -2, 1.79469, 0.882668, -3.85826e-08, 0, 4, 0)
 layers = 1024
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="industrial"]
-transform = Transform3D(1.35946, 0.633927, -2.77099e-08, 0, -6.55671e-08, -1.5, -0.633927, 1.35946, -5.9424e-08, 0, 4.03428, 0)
+transform = Transform3D(0.662, -1.34601, 5.88362e-08, -1.80173e-15, -6.55671e-08, -1.5, 1.34601, 0.662, -2.8937e-08, 0, 4.03428, 0)
 visible = false
 layers = 1024
 texture = ExtResource("25_b457s")
 
 [node name="physics" parent="." instance=ExtResource("16_gybfq")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -188.973, -1, -195.699)
-script = ExtResource("23_wn4ye")
 
 [node name="NPCCollision" parent="physics" instance=ExtResource("8_qbc84")]
 
@@ -246,19 +231,18 @@ script = ExtResource("23_wn4ye")
 [node name="WaveZone" parent="physics" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="physics"]
-transform = Transform3D(1.81262, 0.845237, -3.69465e-08, 0, -8.74228e-08, -2, -0.845237, 1.81262, -7.92319e-08, 0, 4, 0)
+transform = Transform3D(0.883607, -1.79423, 7.8428e-08, 0, -8.74228e-08, -2, 1.79423, 0.883607, -3.86237e-08, 0, 4, 0)
 layers = 1024
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="physics"]
-transform = Transform3D(1.35946, 0.633927, -2.77099e-08, 0, -6.55671e-08, -1.5, -0.633927, 1.35946, -5.9424e-08, 0, 4.03428, 0)
+transform = Transform3D(0.662705, -1.34567, 5.8821e-08, -1.80173e-15, -6.55671e-08, -1.5, 1.34567, 0.662705, -2.89678e-08, 0, 4.03428, 0)
 visible = false
 layers = 1024
 texture = ExtResource("25_b457s")
 
 [node name="chemistry" parent="." instance=ExtResource("17_qw3c1")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -59.7977, -1, -233.436)
-script = ExtResource("25_w2wu5")
 
 [node name="NPCCollision" parent="chemistry" instance=ExtResource("8_qbc84")]
 
@@ -271,19 +255,18 @@ script = ExtResource("25_w2wu5")
 [node name="WaveZone" parent="chemistry" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="chemistry"]
-transform = Transform3D(1.81262, 0.845237, -3.69465e-08, 0, -8.74228e-08, -2, -0.845237, 1.81262, -7.92319e-08, 0, 4, 0)
+transform = Transform3D(0.863794, -1.80385, 7.88486e-08, 0, -8.74228e-08, -2, 1.80385, 0.863794, -3.77577e-08, 0, 4, 0)
 layers = 1024
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="chemistry"]
-transform = Transform3D(1.35946, 0.633927, -2.77099e-08, 0, -6.55671e-08, -1.5, -0.633927, 1.35946, -5.9424e-08, 0, 4.03428, 0)
+transform = Transform3D(0.647845, -1.35288, 5.91365e-08, -1.80173e-15, -6.55671e-08, -1.5, 1.35288, 0.647845, -2.83183e-08, 0, 4.03428, 0)
 visible = false
 layers = 1024
 texture = ExtResource("25_b457s")
 
 [node name="life" parent="." instance=ExtResource("18_wkhe0")]
 transform = Transform3D(-2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, -124.785, -1, -182.024)
-script = ExtResource("27_p47uf")
 
 [node name="NPCCollision" parent="life" instance=ExtResource("8_qbc84")]
 
@@ -296,19 +279,18 @@ script = ExtResource("27_p47uf")
 [node name="WaveZone" parent="life" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="life"]
-transform = Transform3D(1.81262, 0.845237, -3.69465e-08, 0, -8.74228e-08, -2, -0.845237, 1.81262, -7.92319e-08, 0, 4, 0)
+transform = Transform3D(-1.80255, -0.866501, 3.7876e-08, 0, -8.74228e-08, -2, 0.866501, -1.80255, 7.87918e-08, 0, 4, 0)
 layers = 1024
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="life"]
-transform = Transform3D(1.35946, 0.633927, -2.77099e-08, 0, -6.55671e-08, -1.5, -0.633927, 1.35946, -5.9424e-08, 0, 4.03428, 0)
+transform = Transform3D(-1.35191, -0.649875, 2.8407e-08, -1.80173e-15, -6.55671e-08, -1.5, 0.649875, -1.35191, 5.90939e-08, 0, 4.03428, 0)
 visible = false
 layers = 1024
 texture = ExtResource("25_b457s")
 
 [node name="math" parent="." instance=ExtResource("19_u6e35")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -48.2272, -1, -149.427)
-script = ExtResource("29_rjs1d")
 
 [node name="NPCCollision" parent="math" instance=ExtResource("8_qbc84")]
 
@@ -321,19 +303,18 @@ script = ExtResource("29_rjs1d")
 [node name="WaveZone" parent="math" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="math"]
-transform = Transform3D(1.81262, 0.845237, -3.69465e-08, 0, -8.74228e-08, -2, -0.845237, 1.81262, -7.92319e-08, 0, 4, 0)
+transform = Transform3D(0.843244, -1.81355, 7.92725e-08, 0, -8.74228e-08, -2, 1.81355, 0.843244, -3.68594e-08, 0, 4, 0)
 layers = 1024
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="math"]
-transform = Transform3D(1.35946, 0.633927, -2.77099e-08, 0, -6.55671e-08, -1.5, -0.633927, 1.35946, -5.9424e-08, 0, 4.03428, 0)
+transform = Transform3D(0.632432, -1.36016, 5.94544e-08, -1.80173e-15, -6.55671e-08, -1.5, 1.36016, 0.632432, -2.76446e-08, 0, 4.03428, 0)
 visible = false
 layers = 1024
 texture = ExtResource("25_b457s")
 
 [node name="mechanics" parent="." instance=ExtResource("20_i3yk2")]
 transform = Transform3D(-2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, 14.7081, -1, -34.798)
-script = ExtResource("31_nr0cj")
 
 [node name="NPCCollision" parent="mechanics" instance=ExtResource("8_qbc84")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.222486, 1, 0)
@@ -347,19 +328,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.222486, 1, 0)
 [node name="WaveZone" parent="mechanics" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="mechanics"]
-transform = Transform3D(1.81262, 0.845237, -3.69465e-08, 0, -8.74228e-08, -2, -0.845237, 1.81262, -7.92319e-08, 0, 4, 0)
+transform = Transform3D(-1.79862, -0.87464, 3.82318e-08, 0, -8.74228e-08, -2, 0.87464, -1.79862, 7.86198e-08, 0, 4, 0)
 layers = 1024
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="mechanics"]
-transform = Transform3D(1.35946, 0.633927, -2.77099e-08, 0, -6.55671e-08, -1.5, -0.633927, 1.35946, -5.9424e-08, 0, 4.03428, 0)
+transform = Transform3D(-1.34896, -0.655979, 2.86738e-08, -1.80173e-15, -6.55671e-08, -1.5, 0.655979, -1.34896, 5.89649e-08, 0, 4.03428, 0)
 visible = false
 layers = 1024
 texture = ExtResource("25_b457s")
 
 [node name="micro" parent="." instance=ExtResource("21_ga0cy")]
 transform = Transform3D(4.23862, 0, 2.65219, 0, 5, 0, -2.65219, 0, 4.23862, -182.789, -1, -279.331)
-script = ExtResource("33_8tgfe")
 
 [node name="NPCCollision" parent="micro" instance=ExtResource("8_qbc84")]
 
@@ -372,19 +352,18 @@ script = ExtResource("33_8tgfe")
 [node name="WaveZone" parent="micro" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="micro"]
-transform = Transform3D(1.81262, 0.845237, -3.69465e-08, 0, -8.74228e-08, -2, -0.845237, 1.81262, -7.92319e-08, 0, 4, 0)
+transform = Transform3D(-0.168297, -1.99291, 8.71127e-08, 0, -8.74228e-08, -2, 1.99291, -0.168297, 7.35635e-09, 0, 4, 0)
 layers = 1024
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="micro"]
-transform = Transform3D(1.35946, 0.633927, -2.77099e-08, 0, -6.55671e-08, -1.5, -0.633927, 1.35946, -5.9424e-08, 0, 4.03428, 0)
+transform = Transform3D(-0.126221, -1.49468, 6.53346e-08, -1.80173e-15, -6.55671e-08, -1.5, 1.49468, -0.126221, 5.51726e-09, 0, 4.03428, 0)
 visible = false
 layers = 1024
 texture = ExtResource("25_b457s")
 
 [node name="space" parent="." instance=ExtResource("22_fbe7f")]
 transform = Transform3D(-4.34047, 0, -2.48199, 0, 5, 0, 2.48199, 0, -4.34047, 3, -1, 54)
-script = ExtResource("35_ctu84")
 
 [node name="NPCCollision" parent="space" instance=ExtResource("8_qbc84")]
 
@@ -397,12 +376,12 @@ script = ExtResource("35_ctu84")
 [node name="WaveZone" parent="space" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="space"]
-transform = Transform3D(1.81262, 0.845237, -3.69465e-08, 0, -8.74228e-08, -2, -0.845237, 1.81262, -7.92319e-08, 0, 4, 0)
+transform = Transform3D(0.185195, 1.99141, -8.70472e-08, 0, -8.74228e-08, -2, -1.99141, 0.185195, -8.09497e-09, 0, 4, 0)
 layers = 1024
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="space"]
-transform = Transform3D(1.35946, 0.633927, -2.77099e-08, 0, -6.55671e-08, -1.5, -0.633927, 1.35946, -5.9424e-08, 0, 4.03428, 0)
+transform = Transform3D(0.138894, 1.49355, -6.52854e-08, -1.80173e-15, -6.55671e-08, -1.5, -1.49355, 0.138894, -6.07126e-09, 0, 4.03428, 0)
 visible = false
 layers = 1024
 texture = ExtResource("25_b457s")
@@ -422,19 +401,18 @@ script = ExtResource("37_kvtch")
 [node name="WaveZone" parent="economic" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="economic"]
-transform = Transform3D(1.81262, 0.845237, -3.69465e-08, 0, -8.74228e-08, -2, -0.845237, 1.81262, -7.92319e-08, 0, 4, 0)
+transform = Transform3D(0.163076, -1.99334, 8.71317e-08, 0, -8.74228e-08, -2, 1.99334, 0.163076, -7.12837e-09, 0, 4, 0)
 layers = 1024
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="economic"]
-transform = Transform3D(1.35946, 0.633927, -2.77099e-08, 0, -6.55671e-08, -1.5, -0.633927, 1.35946, -5.9424e-08, 0, 4.03428, 0)
+transform = Transform3D(0.122308, -1.495, 6.53488e-08, -1.80173e-15, -6.55671e-08, -1.5, 1.495, 0.122308, -5.34629e-09, 0, 4.03428, 0)
 visible = false
 layers = 1024
 texture = ExtResource("25_b457s")
 
 [node name="science" parent="." instance=ExtResource("24_mx7op")]
 transform = Transform3D(1.93581, 0, -4.61006, 0, 5, 0, 4.61006, 0, 1.93581, -33.474, -0.999998, -187.82)
-script = ExtResource("39_bscag")
 
 [node name="NPCCollision" parent="science" instance=ExtResource("8_qbc84")]
 
@@ -447,12 +425,12 @@ script = ExtResource("39_bscag")
 [node name="WaveZone" parent="science" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="science"]
-transform = Transform3D(1.81262, 0.845237, -3.69465e-08, 0, -8.74228e-08, -2, -0.845237, 1.81262, -7.92319e-08, 0, 4, 0)
+transform = Transform3D(1.99184, 0.180569, -7.89301e-09, 0, -8.74228e-08, -2, -0.180569, 1.99184, -8.70657e-08, 0, 4, 0)
 layers = 1024
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="science"]
-transform = Transform3D(1.35946, 0.633927, -2.77099e-08, 0, -6.55671e-08, -1.5, -0.633927, 1.35946, -5.9424e-08, 0, 4.03428, 0)
+transform = Transform3D(1.49387, 0.135428, -5.91977e-09, -1.80173e-15, -6.55671e-08, -1.5, -0.135428, 1.49387, -6.52994e-08, 0, 4.03428, 0)
 visible = false
 layers = 1024
 texture = ExtResource("25_b457s")
@@ -515,7 +493,7 @@ size_2d_override_stretch = true
 render_target_update_mode = 0
 
 [node name="BigMapCamera" type="Camera3D" parent="CanvasLayer/BigMap/SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.422618, -0.906308, -3.9616e-08, 0, -4.37114e-08, 1, -0.906308, 0.422618, 1.84732e-08, -113.817, 300, -23.153)
+transform = Transform3D(-0.422618, -0.906308, -3.9616e-08, 0, -4.37114e-08, 1, -0.906308, 0.422618, 1.84732e-08, -113.817, 300, -99.5864)
 cull_mask = 1048573
 near = 0.01
 

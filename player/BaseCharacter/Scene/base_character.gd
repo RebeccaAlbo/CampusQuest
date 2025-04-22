@@ -69,12 +69,6 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	add_to_group("player")
 	prev_hair = hair_styles[current_hair_index]
-	
-	if get_tree().current_scene.name == "CharacterSelection":
-		can_move = false
-		update_character(0, 0, 0, 0, 0)
-	elif get_tree().current_scene.name == "campus_johanneberg" or get_tree().current_scene.name == "campus_lindholmen":
-		update_character(CharacterCust.skin_index, CharacterCust.hair_index, CharacterCust.pant_index, CharacterCust.shirt_index, CharacterCust.shoes_index)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse control viewpoint
@@ -203,9 +197,6 @@ func update_shoes_color():
 	material.albedo_color = shoes_colors[current_shoes_index]
 
 func update_character(skin_index: int, hair_index: int, pant_index: int, shirt_index: int, shoes_index: int):
-	print("skin index: ", skin_index)
-	print("hair index: ", hair_index)
-	print("pant index: ", pant_index)
 	
 	#Set correct skin color
 	var skin = $Armature/Skeleton3D/Body
