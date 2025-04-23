@@ -2,7 +2,6 @@ extends Control
 
 @onready var character: CharacterBody3D = $"../../BaseCharacter"
 
-
 var hair_chosen: bool
 var skin_chosen: bool
 var shirt_chosen: bool
@@ -21,6 +20,7 @@ func _ready() -> void:
 	character.update_character(0, 0, 0, 0, 0)
 
 func _unhandled_input(_event: InputEvent) -> void:
+	# Changes character customization options based on which category is selected and input direction
 	if skin_chosen:
 		if Input.is_action_just_pressed("left"):
 			character.change_skin_color(-1)
@@ -54,6 +54,7 @@ func _on_hair_pressed() -> void:
 	pants_chosen = false
 	shoes_chosen = false
 	
+	# Unpresses all buttons in the container except the Hair button
 	for button in $VBoxContainer.get_children():
 		if button != $VBoxContainer/Hair:
 			button.call_deferred("set_pressed", false)
@@ -65,6 +66,7 @@ func _on_skin_pressed() -> void:
 	pants_chosen = false
 	shoes_chosen = false
 	
+	# Unpresses all buttons in the container except the Skin button
 	for button in $VBoxContainer.get_children():
 		if button != $VBoxContainer/Skin:
 			button.call_deferred("set_pressed", false)
@@ -76,6 +78,7 @@ func _on_shirt_pressed() -> void:
 	pants_chosen = false
 	shoes_chosen = false
 	
+	# Unpresses all buttons in the container except the Shirt button
 	for button in $VBoxContainer.get_children():
 		if button != $VBoxContainer/Shirt:
 			button.call_deferred("set_pressed", false)
@@ -87,6 +90,7 @@ func _on_pants_pressed() -> void:
 	pants_chosen = true
 	shoes_chosen = false
 	
+	# Unpresses all buttons in the container except the Pants button
 	for button in $VBoxContainer.get_children():
 		if button != $VBoxContainer/Pants:
 			button.call_deferred("set_pressed", false)
@@ -98,10 +102,12 @@ func _on_shoes_pressed() -> void:
 	pants_chosen = false
 	shoes_chosen = true
 	
+	# Unpresses all buttons in the container except the Shoes button
 	for button in $VBoxContainer.get_children():
 		if button != $VBoxContainer/Shoes:
 			button.call_deferred("set_pressed", false)
 
+# Saves the current look of the character and switch scene
 func _on_continue_pressed() -> void:
 	CharacterCust.skin_index = character.current_skin_index
 	CharacterCust.hair_index = character.current_hair_index

@@ -51,12 +51,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_l4454")
 
-[node name="exit" type="Button" parent="."]
+[node name="GoBack" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -116.0
+offset_left = -161.0
 offset_top = 17.0
 offset_right = -27.0
 offset_bottom = 59.0
@@ -72,7 +72,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_qmoke")
 theme_override_styles/hover = SubResource("StyleBoxFlat_8ur1j")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_y4ruw")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ofqi2")
-text = "Exit"
+text = "Go back"
 
 [node name="instructions" type="Label" parent="."]
 layout_mode = 0
@@ -101,4 +101,4 @@ theme_override_colors/font_shadow_color = Color(0.164706, 0.133333, 0.054902, 1)
 theme_override_font_sizes/font_size = 55
 text = "Controls"
 
-[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="GoBack" to="." method="_on_go_back_pressed"]

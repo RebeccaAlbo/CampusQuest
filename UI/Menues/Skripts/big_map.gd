@@ -5,7 +5,8 @@ extends Control
 
 var _is_paused: bool = false:
 	set = set_paused
-	
+
+# Handles user input to toggle pause state and control minimap visibility
 func _unhandled_input(event: InputEvent) -> void:	
 	if event.is_action_pressed("map"):
 		if _is_paused == false:
@@ -16,7 +17,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_tree().paused = _is_paused
 			minimap.visible = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+
+# Sets the paused state, hides the minimap, and updates the game pause state accordingly
 func set_paused(value:bool) -> void:
 	_is_paused = value
 	minimap.visible = false

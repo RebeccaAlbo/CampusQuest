@@ -13,6 +13,9 @@ func _ready():
 			print("changing mark")
 			npc.change_mark()
 	
+	# Disable mouse during gameplay
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
 	# Get the reference to our Flutter plugin
 	var flutterPlugin = Engine.get_singleton("FlutterGodotPlugin")
 	if flutterPlugin:

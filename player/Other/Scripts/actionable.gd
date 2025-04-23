@@ -36,6 +36,7 @@ func action() -> void:
 				if spring_arm:
 					camera = spring_arm.get_node_or_null("MainCamera")  # Finally, get Camera3D
 
+	# If the camera exists, store original position and smoothly zoom it toward the NPC
 	if camera:
 		original_camera_position = camera.global_transform.origin
 		var target_position = npc.global_transform.origin + zoom_offset
@@ -60,7 +61,7 @@ func action() -> void:
 	npc.face_back()
 	reset_camera_position()
 
-
+# Smoothly zooms the camera toward a target position by adjusting the spring arm's position and length with a tween
 func smooth_camera_zoom(target_pos: Vector3) -> void:
 	if camera:
 		if !initial_camera_pos:
@@ -71,6 +72,7 @@ func smooth_camera_zoom(target_pos: Vector3) -> void:
 		var tween = get_tree().create_tween()
 		tween.tween_property(spring_arm, "global_transform:origin", target_pos, 0.7).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
+# Reset the camera to it original position after ended dialogue
 func reset_camera_position() -> void:
 		spring_arm.spring_length = original_spring_arm_length
 		if camera:

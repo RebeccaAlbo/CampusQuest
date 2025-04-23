@@ -1,7 +1,8 @@
 extends Control
 
+
 func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("menu"):
+	if Input.is_action_just_pressed("esc"):
 		get_tree().quit()
 
 func _on_start_pressed() -> void:
