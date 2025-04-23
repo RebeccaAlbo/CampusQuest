@@ -24,6 +24,5 @@ func animation(anim : String, time : float):
 	animation_player.play(anim, time)
 	
 func change_mark():
-	print("changing mark")
 	get_node("Check").visible = true
 	get_node("Exlamation").visible = false

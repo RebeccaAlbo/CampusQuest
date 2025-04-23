@@ -2,23 +2,32 @@ extends Control
 
 @onready var minimap: PanelContainer = $"../Minimap"
 @onready var score: Label = $Score
+@onready var big_map: Control = $"../BigMap"
 
-
+# Paused by other menues
+var paused: bool = false
+# Paused by self
 var _is_paused: bool = false:
 	set = set_paused
 
 # Handles the "esc" key input to toggle the pause state, show/hide the minimap, 
 # and control mouse visibility
 func _unhandled_input(event: InputEvent) -> void:	
+	if paused:
+		return
+	
 	if event.is_action_pressed("esc"):
 		if _is_paused == false:
 			_is_paused =  true
+			big_map.paused = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
 			_is_paused =  false
 			get_tree().paused = _is_paused
 			minimap.visible = true
+			big_map.paused = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			
 
 # Sets the paused state, hides the minimap, updates the game pause state, 
 #and controls the visibility of the UI
@@ -34,6 +43,7 @@ func _on_resume_pressed() -> void:
 	_is_paused = false
 	get_tree().paused = _is_paused
 	minimap.visible = true
+	big_map.paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 # Saves the game and quits the application

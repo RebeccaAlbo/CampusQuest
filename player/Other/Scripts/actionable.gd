@@ -11,6 +11,7 @@ var original_camera_position: Vector3
 var zoom_offset: Vector3 = Vector3(0, 1, 1)  # Adjust zoom position
 var initial_camera_pos: Vector3
 var original_spring_arm_length: float
+var original_camera_v_offset: float
 
 var player
 var npc
@@ -45,7 +46,6 @@ func action() -> void:
 	# Set up for dialoque envoronment
 	player.in_dialogue()
 	if npc.name not in GameState.talked_to_npcs:
-		print("npc not in talked to")
 		npc.change_mark()
 	GameState.add_npc_point(npc)
 	npc.face_toward(player)
@@ -67,14 +67,17 @@ func smooth_camera_zoom(target_pos: Vector3) -> void:
 		if !initial_camera_pos:
 			initial_camera_pos = spring_arm.global_transform.origin # Save initial position if not already set
 		original_spring_arm_length = spring_arm.spring_length
+		original_camera_v_offset = camera.v_offset
 		# zoom-in
-		spring_arm.spring_length = 5.0
+		spring_arm.spring_length = 4.0
+		camera.v_offset = 7.0
 		var tween = get_tree().create_tween()
 		tween.tween_property(spring_arm, "global_transform:origin", target_pos, 0.7).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 # Reset the camera to it original position after ended dialogue
 func reset_camera_position() -> void:
 		spring_arm.spring_length = original_spring_arm_length
+		camera.v_offset = original_camera_v_offset
 		if camera:
 			var tween = get_tree().create_tween()
 			tween.tween_property(spring_arm, "global_transform:origin", initial_camera_pos, 0.7).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)

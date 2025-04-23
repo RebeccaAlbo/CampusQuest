@@ -9,7 +9,6 @@ func add_npc_point(npc: Node):
 	if not talked_to_npcs.has(npc.name):
 		talked_to_npcs[npc.name] = true
 		score += 1
-		print("score: ", score)
 		
 func save_game():
 	# Creates a dictionary to store the player's score, NPC interaction data, 

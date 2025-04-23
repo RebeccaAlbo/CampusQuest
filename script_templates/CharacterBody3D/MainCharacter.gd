@@ -203,10 +203,6 @@ func update_shoes_color():
 	material.albedo_color = shoes_colors[current_shoes_index]
 
 func update_character(skin_index: int, hair_index: int, pant_index: int, shirt_index: int, shoes_index: int):
-	print("skin index: ", skin_index)
-	print("hair index: ", hair_index)
-	print("pant index: ", pant_index)
-	
 	#Set correct skin color
 	var skin = $Armature/Skeleton3D/Body
 	var skin_material = skin.get_surface_override_material(0)

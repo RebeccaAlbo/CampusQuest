@@ -13,9 +13,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_body_entered(_body: Node3D) -> void:
-	print("start info dialog")
 	dialog_manager.start_dialog(0)
 
 func _on_body_exited(_body: Node3D) -> void:
-	print("end info dialog")
 	dialog_manager.end_dialog()

@@ -122,7 +122,6 @@ func change_skin_color(direction: int):
 func update_skin_color():
 	var skin = $Armature/Skeleton3D/Body
 	if skin == null:
-		print("skin not found")
 		return
 		
 	var material = skin.get_surface_override_material(0)

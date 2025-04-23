@@ -462,7 +462,7 @@ size = Vector2i(138, 138)
 render_target_update_mode = 4
 
 [node name="MinimapCamera" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -298.251, 100, -100.675)
+transform = Transform3D(-0.34202, -0.939693, -4.10753e-08, 0, -4.37114e-08, 1, -0.939693, 0.34202, 1.49502e-08, -298.251, 100, -100.675)
 cull_mask = 1048573
 size = 100.0
 
@@ -499,12 +499,10 @@ near = 0.01
 
 [node name="SamhallIII" type="Panel" parent="CanvasLayer/BigMap"]
 layout_mode = 0
-offset_left = 91.0
-offset_top = 147.0
-offset_right = 256.0
-offset_bottom = 214.0
-tooltip_text = "
-"
+offset_left = 39.0
+offset_top = 110.0
+offset_right = 204.0
+offset_bottom = 177.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_pd5kg")
 script = ExtResource("29_6t16t")
 
@@ -531,12 +529,10 @@ vertical_alignment = 1
 
 [node name="SamhallII" type="Panel" parent="CanvasLayer/BigMap"]
 layout_mode = 0
-offset_left = 278.0
-offset_top = 151.0
-offset_right = 436.0
-offset_bottom = 218.0
-tooltip_text = "Heelluuu
-"
+offset_left = 274.0
+offset_top = 127.0
+offset_right = 432.0
+offset_bottom = 194.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2mxfc")
 script = ExtResource("29_6t16t")
 
@@ -563,12 +559,10 @@ vertical_alignment = 1
 
 [node name="Chemistry" type="Panel" parent="CanvasLayer/BigMap"]
 layout_mode = 0
-offset_left = 677.0
-offset_top = 330.0
-offset_right = 757.0
-offset_bottom = 476.0
-tooltip_text = "Heelluuu
-"
+offset_left = 615.0
+offset_top = 297.0
+offset_right = 695.0
+offset_bottom = 443.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_w6r6d")
 script = ExtResource("29_6t16t")
 
@@ -595,12 +589,10 @@ vertical_alignment = 1
 
 [node name="MV" type="Panel" parent="CanvasLayer/BigMap"]
 layout_mode = 0
-offset_left = 581.0
-offset_top = 309.0
-offset_right = 639.0
-offset_bottom = 370.0
-tooltip_text = "Heelluuu
-"
+offset_left = 500.0
+offset_top = 272.0
+offset_right = 558.0
+offset_bottom = 333.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3y14g")
 script = ExtResource("29_6t16t")
 
@@ -626,12 +618,10 @@ vertical_alignment = 1
 
 [node name="MC2" type="Panel" parent="CanvasLayer/BigMap"]
 layout_mode = 0
-offset_left = 772.0
-offset_top = 221.0
-offset_right = 858.0
-offset_bottom = 313.0
-tooltip_text = "Heelluuu
-"
+offset_left = 694.0
+offset_top = 182.0
+offset_right = 780.0
+offset_bottom = 274.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_8fc4c")
 script = ExtResource("29_6t16t")
 
@@ -657,12 +647,10 @@ vertical_alignment = 1
 
 [node name="Edit" type="Panel" parent="CanvasLayer/BigMap"]
 layout_mode = 0
-offset_left = 222.0
-offset_top = 284.0
-offset_right = 370.0
-offset_bottom = 386.0
-tooltip_text = "
-"
+offset_left = 144.0
+offset_top = 245.0
+offset_right = 292.0
+offset_bottom = 347.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_pd5kg")
 script = ExtResource("29_6t16t")
 
@@ -689,12 +677,10 @@ vertical_alignment = 1
 
 [node name="M" type="Panel" parent="CanvasLayer/BigMap"]
 layout_mode = 0
-offset_left = 379.0
-offset_top = 284.0
-offset_right = 541.0
-offset_bottom = 384.0
-tooltip_text = "
-"
+offset_left = 301.0
+offset_top = 245.0
+offset_right = 463.0
+offset_bottom = 345.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_pd5kg")
 script = ExtResource("29_6t16t")
 
@@ -718,18 +704,16 @@ text = "M-huset"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Physics2" type="Panel" parent="CanvasLayer/BigMap"]
+[node name="Karhuset" type="Panel" parent="CanvasLayer/BigMap"]
 layout_mode = 0
-offset_left = 508.0
-offset_top = 82.0
-offset_right = 631.0
-offset_bottom = 135.0
-tooltip_text = "Heelluuu
-"
+offset_left = 431.0
+offset_top = 42.0
+offset_right = 554.0
+offset_bottom = 95.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5nqni")
 script = ExtResource("29_6t16t")
 
-[node name="Label" type="Label" parent="CanvasLayer/BigMap/Physics2"]
+[node name="Label" type="Label" parent="CanvasLayer/BigMap/Karhuset"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -751,12 +735,10 @@ vertical_alignment = 1
 
 [node name="Library" type="Panel" parent="CanvasLayer/BigMap"]
 layout_mode = 0
-offset_left = 592.0
-offset_top = 416.0
-offset_right = 670.0
-offset_bottom = 464.0
-tooltip_text = "Heelluuu
-"
+offset_left = 518.0
+offset_top = 385.0
+offset_right = 596.0
+offset_bottom = 433.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3y14g")
 script = ExtResource("29_6t16t")
 
@@ -782,12 +764,10 @@ vertical_alignment = 1
 
 [node name="Fysik" type="Panel" parent="CanvasLayer/BigMap"]
 layout_mode = 0
-offset_left = 621.0
-offset_top = 272.0
-offset_right = 735.0
-offset_bottom = 305.0
-tooltip_text = "Heelluuu
-"
+offset_left = 551.0
+offset_top = 235.0
+offset_right = 665.0
+offset_bottom = 268.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3y14g")
 script = ExtResource("29_6t16t")
 
@@ -826,8 +806,8 @@ vertical_alignment = 1
 [connection signal="mouse_exited" from="CanvasLayer/BigMap/Edit" to="CanvasLayer/BigMap/Edit" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="CanvasLayer/BigMap/M" to="CanvasLayer/BigMap/M" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/BigMap/M" to="CanvasLayer/BigMap/M" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/BigMap/Physics2" to="CanvasLayer/BigMap/Physics2" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/BigMap/Physics2" to="CanvasLayer/BigMap/Physics2" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/BigMap/Karhuset" to="CanvasLayer/BigMap/Karhuset" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BigMap/Karhuset" to="CanvasLayer/BigMap/Karhuset" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="CanvasLayer/BigMap/Library" to="CanvasLayer/BigMap/Library" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/BigMap/Library" to="CanvasLayer/BigMap/Library" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="CanvasLayer/BigMap/Fysik" to="CanvasLayer/BigMap/Fysik" method="_on_mouse_entered"]
