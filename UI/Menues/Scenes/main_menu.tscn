@@ -6,7 +6,7 @@
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mvco5"]
 texture = ExtResource("2_4navf")
-modulate_color = Color(0.408329, 0.408329, 0.408329, 1)
+modulate_color = Color(0.572988, 0.572988, 0.572988, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_as84c"]
 
@@ -114,21 +114,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_d15f3")
 theme_override_styles/normal = SubResource("StyleBoxFlat_mr66t")
 text = "Controls"
 
-[node name="Exit" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/focus = SubResource("StyleBoxEmpty_as84c")
-theme_override_styles/hover = SubResource("StyleBoxFlat_c5vo6")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_d15f3")
-theme_override_styles/normal = SubResource("StyleBoxFlat_mr66t")
-text = "Exit"
-
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -142,7 +127,7 @@ offset_right = 255.0
 offset_bottom = -83.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.647059, 0.458824, 0, 1)
+theme_override_colors/font_color = Color(0.76412, 0.544499, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 10
 theme_override_fonts/font = ExtResource("3_v4ur8")
@@ -151,7 +136,30 @@ text = "CampusQuest"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Exit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -161.0
+offset_top = 17.0
+offset_right = -27.0
+offset_bottom = 59.0
+grow_horizontal = 0
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_as84c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c5vo6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_d15f3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mr66t")
+text = "Exit"
+
 [connection signal="pressed" from="VBoxContainer/StartGame" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Contiue" to="." method="_on_contiue_pressed"]
 [connection signal="pressed" from="VBoxContainer/Controls" to="." method="_on_controls_pressed"]
-[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

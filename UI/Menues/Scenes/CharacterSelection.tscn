@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://227gpca37dhl"]
+[gd_scene load_steps=11 format=3 uid="uid://227gpca37dhl"]
 
 [ext_resource type="PackedScene" uid="uid://3kjk4w0wer4" path="res://player/BaseCharacter/Scene/base_character.tscn" id="1_1c120"]
 [ext_resource type="Script" path="res://UI/Menues/Skripts/CharacterSelection.gd" id="2_c618p"]
@@ -6,8 +6,14 @@
 [sub_resource type="BoxMesh" id="BoxMesh_83x61"]
 size = Vector3(100, 0.01, 100)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3608h"]
+albedo_color = Color(0.162812, 0.122062, 0.0628289, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_5olvj"]
 size = Vector3(100, 0.01, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xk351"]
+albedo_color = Color(0.164706, 0.121569, 0.0627451, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3fnv1"]
 
@@ -44,6 +50,7 @@ transform = Transform3D(-0.999961, 0, 0.00877878, 0.00736834, 0.543614, 0.839303
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 mesh = SubResource("BoxMesh_83x61")
+surface_material_override/0 = SubResource("StandardMaterial3D_3608h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_5olvj")
@@ -52,7 +59,9 @@ shape = SubResource("BoxShape3D_5olvj")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 9.99416, 9.95541)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00785065, 0.0373764, -0.121883)
 mesh = SubResource("BoxMesh_83x61")
+surface_material_override/0 = SubResource("StandardMaterial3D_xk351")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
 shape = SubResource("BoxShape3D_5olvj")
@@ -170,10 +179,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 664.0
-offset_top = 15.0
-offset_right = 757.0
-offset_bottom = 43.0
+offset_left = 663.0
+offset_top = 59.0
+offset_right = 756.0
+offset_bottom = 87.0
 grow_horizontal = 0
 size_flags_vertical = 3
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
@@ -188,9 +197,33 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_mojp0")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2q25x")
 text = "Continue"
 
+[node name="GoBack" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 663.0
+offset_top = 18.0
+offset_right = 756.0
+offset_bottom = 46.0
+grow_horizontal = 0
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3fnv1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yyrn8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mojp0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2q25x")
+text = "Go back"
+
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Hair" to="CanvasLayer/Control" method="_on_hair_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Skin" to="CanvasLayer/Control" method="_on_skin_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Shirt" to="CanvasLayer/Control" method="_on_shirt_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Pants" to="CanvasLayer/Control" method="_on_pants_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Shoes" to="CanvasLayer/Control" method="_on_shoes_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Continue" to="CanvasLayer/Control" method="_on_continue_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/GoBack" to="CanvasLayer/Control" method="_on_go_back_pressed"]

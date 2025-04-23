@@ -6,7 +6,7 @@
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ntu06"]
 texture = ExtResource("2_hxty5")
-modulate_color = Color(0.407843, 0.407843, 0.407843, 1)
+modulate_color = Color(0.572549, 0.572549, 0.572549, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0tfa3"]
 
@@ -75,7 +75,7 @@ offset_right = 117.0
 offset_bottom = -85.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.647059, 0.458824, 0, 1)
+theme_override_colors/font_color = Color(0.764706, 0.545098, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 10
 theme_override_fonts/font = ExtResource("2_5n084")

@@ -1,5 +1,7 @@
 extends Control
 
+func _ready() -> void:
+	SceneManager.prev_scene_path = "res://UI/Menues/Scenes/main_menu.tscn"
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("esc"):
@@ -14,7 +16,6 @@ func _on_exit_pressed() -> void:
 
 
 func _on_controls_pressed() -> void:
-	SceneManager.prev_scene_path = "res://UI/Menues/Scenes/main_menu.tscn"
 	get_tree().change_scene_to_file("res://UI/Menues/Scenes/controls.tscn")
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://nccqi682d71x"]
+[gd_scene load_steps=14 format=3 uid="uid://nccqi682d71x"]
 
 [ext_resource type="Script" path="res://UI/Menues/Skripts/choose_campus.gd" id="1_8f0m3"]
 [ext_resource type="Texture2D" uid="uid://bryejuohsdw34" path="res://UI/Images/Background.png" id="1_s02qh"]
@@ -6,7 +6,7 @@
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c7wxc"]
 texture = ExtResource("1_s02qh")
-modulate_color = Color(0.408329, 0.408329, 0.408329, 1)
+modulate_color = Color(0.572549, 0.572549, 0.572549, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4jee1"]
 bg_color = Color(0.962007, 0.96593, 0.963888, 1)
@@ -19,6 +19,32 @@ expand_margin_top = 8.0
 expand_margin_right = 8.0
 expand_margin_bottom = 8.0
 shadow_size = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a2t7h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbonu"]
+bg_color = Color(0.756863, 0.631373, 0.458824, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evlxa"]
+bg_color = Color(0.564706, 0.454902, 0.298039, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sa3af"]
+bg_color = Color(0.909804, 0.831373, 0.72549, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4174q"]
 
@@ -89,7 +115,7 @@ offset_top = 28.0
 offset_right = 255.0
 offset_bottom = 167.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0.647343, 0.459373, 0, 1)
+theme_override_colors/font_color = Color(0.764706, 0.545098, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 10
 theme_override_fonts/font = ExtResource("2_6llcm")
@@ -137,6 +163,29 @@ your journey to begin?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="GoBack" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -161.0
+offset_top = 17.0
+offset_right = -27.0
+offset_bottom = 59.0
+grow_horizontal = 0
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a2t7h")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vbonu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_evlxa")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sa3af")
+text = "Go back"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -181,5 +230,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_06j1p")
 theme_override_styles/normal = SubResource("StyleBoxFlat_8d842")
 text = "  Johanneberg  "
 
+[connection signal="pressed" from="GoBack" to="." method="_on_go_back_pressed"]
 [connection signal="pressed" from="HBoxContainer/lindholmen" to="." method="_on_lindholmen_pressed"]
 [connection signal="pressed" from="HBoxContainer/johanneberg" to="." method="_on_johanneberg_pressed"]

@@ -9,6 +9,7 @@ var pants_chosen: bool
 var shoes_chosen: bool
 
 func _ready() -> void:
+	SceneManager.prev_scene_path = "res://UI/Menues/Scenes/main_menu.tscn"
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	hair_chosen = false
 	skin_chosen = false
@@ -115,5 +116,9 @@ func _on_continue_pressed() -> void:
 	CharacterCust.shirt_index = character.current_shirt_index
 	CharacterCust.shoes_index = character.current_shoes_index
 	
+	SceneManager.prev_scene_path = "res://UI/Menues/Scenes/CharacterSelection.tscn"
+	print(SceneManager.prev_scene_path)
 	get_tree().change_scene_to_file("res://UI/Menues/Scenes/choose_campus.tscn")
-	
+
+func _on_go_back_pressed() -> void:
+	get_tree().change_scene_to_file(SceneManager.prev_scene_path)

@@ -5,6 +5,7 @@
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l4454"]
 texture = ExtResource("2_08nlj")
+modulate_color = Color(0.572549, 0.572549, 0.572549, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qmoke"]
 
@@ -25,7 +26,7 @@ corner_radius_bottom_left = 16
 shadow_size = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofqi2"]
-bg_color = Color(0.909804, 0.831373, 0.72549, 0.796078)
+bg_color = Color(0.909804, 0.831373, 0.72549, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -74,14 +75,25 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_y4ruw")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ofqi2")
 text = "Go back"
 
-[node name="instructions" type="Label" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 52.0
-offset_top = 110.0
-offset_right = 623.0
-offset_bottom = 436.0
-theme_override_colors/font_color = Color(0.163692, 0.13363, 0.0567829, 1)
-theme_override_colors/font_shadow_color = Color(0.164706, 0.133333, 0.054902, 1)
+offset_left = 46.0
+offset_top = 31.0
+offset_right = 530.0
+offset_bottom = 426.0
+color = Color(0.811765, 0.690196, 0.52549, 0.729412)
+
+[node name="instructions" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = -308.0
+offset_right = 471.0
+offset_bottom = -27.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "Forward:                      W or ↑
 Walk Backward:          S or ↓ 
@@ -90,14 +102,12 @@ Move Right:                  D or →
 Interact:                        F
 Pause:                           ENTER"
 
-[node name="title" type="Label" parent="."]
-layout_mode = 0
-offset_left = 52.0
-offset_top = 24.0
-offset_right = 623.0
-offset_bottom = 108.0
-theme_override_colors/font_color = Color(0.164706, 0.133333, 0.054902, 1)
-theme_override_colors/font_shadow_color = Color(0.164706, 0.133333, 0.054902, 1)
+[node name="title" type="Label" parent="ColorRect"]
+layout_mode = 1
+offset_left = 23.0
+offset_right = 272.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 55
 text = "Controls"
 
