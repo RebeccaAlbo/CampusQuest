@@ -3,7 +3,8 @@ extends Control
 @onready var lindholmen: Button = $Panel/HBoxContainer/lindholmen
 @onready var johanneberg: Button = $Panel/HBoxContainer/johanneberg
 @onready var h_box_container: HBoxContainer = $Panel/HBoxContainer
-@onready var chose: Label = $Chose
+@onready var chose: Label = $Panel/Chose
+
 
 var temp: bool = false
 

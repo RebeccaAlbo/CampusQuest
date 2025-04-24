@@ -2,7 +2,7 @@ extends Node
 
 var score = 0
 var talked_to_npcs = {}
-var is_mobile := true
+var is_mobile := false
 
 func _ready() -> void:
 	if OS.get_name() == "Android":

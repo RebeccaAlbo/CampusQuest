@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bq8tdhh7ogese"]
-
-[ext_resource type="Script" path="res://UI2/UImanager.gd" id="1_dm5n8"]
-[ext_resource type="PackedScene" uid="uid://dg5bqncln4h4m" path="res://UI2/joystick/touch_controls.tscn" id="2_qw5j8"]
-
-[node name="Manager" type="Node"]
-script = ExtResource("1_dm5n8")
-
-[node name="TouchControls" parent="." instance=ExtResource("2_qw5j8")]

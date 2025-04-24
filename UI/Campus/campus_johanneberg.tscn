@@ -1,7 +1,6 @@
-[gd_scene load_steps=56 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=55 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_johanneberg.gd" id="1_p1r2s"]
-[ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI2/UI.tscn" id="2_hmtsy"]
 [ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="3_p4gww"]
 [ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="4_0g13b"]
 [ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://busStop/bus_stop.tscn" id="6_jjioq"]
@@ -49,7 +48,7 @@ size = Vector2(10000, 10000)
 background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
 
-[sub_resource type="GDScript" id="GDScript_qj6rq"]
+[sub_resource type="GDScript" id="GDScript_434tg"]
 script/source = "extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -61,7 +60,6 @@ script/source = "extends CharacterBody3D
 @onready var phone_camera: Camera3D = $PhoneCamera
 
 const SPEED = 30.0
-const JUMP_VELOCITY = 4.5
 const LERP_VAL = .15
 
 var can_move: bool = true
@@ -141,10 +139,6 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if !can_move:
 		return
-		
-	# Handle jump.
-	if Input.is_action_just_pressed(\"jump\") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -153,13 +147,19 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector(\"left\", \"right\", \"up\", \"down\")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	# Mouse control direction of character
-	direction = direction.rotated(Vector3.UP, spring_arm_pivot.rotation.y)
-	if direction:
+	if input_dir != Vector2.ZERO:
+		var cam_y_rotation = spring_arm_pivot.global_transform.basis
+		var forward = -cam_y_rotation.z
+		var right = cam_y_rotation.x
+		
+		var direction = (right * input_dir.x + forward * input_dir.y).normalized()
+		
 		velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
 		velocity.z = lerp(velocity.z, direction.z * SPEED, LERP_VAL)
-		armature.rotation.y = lerp_angle(armature.rotation.y, atan2(-velocity.x, -velocity.z), LERP_VAL)
+		
+		var target_rot = atan2(-direction.x, -direction.z)
+		armature.rotation.y = lerp_angle(armature.rotation.y, target_rot, LERP_VAL)
+		
 	else:
 		velocity.x = lerp(velocity.x, 0.0, LERP_VAL)
 		velocity.z = lerp(velocity.z, 0.0, LERP_VAL)
@@ -301,7 +301,6 @@ func update_character(skin_index: int, hair_index: int, pant_index: int, shirt_i
 	if shoes_material != null:
 		shoes_material.albedo_color = shoes_colors[shoes_index]	
 	
-
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cy1fy"]
@@ -408,8 +407,6 @@ environment = SubResource("Environment_wt17y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 95.0384, 0)
 light_color = Color(1, 0.941176, 0.941176, 1)
 
-[node name="Manager" parent="." instance=ExtResource("2_hmtsy")]
-
 [node name="johanneberg" parent="." instance=ExtResource("3_p4gww")]
 
 [node name="ground2" parent="." instance=ExtResource("4_0g13b")]
@@ -420,8 +417,8 @@ collision_layer = 32
 collision_mask = 2
 
 [node name="BaseCharacter" parent="." instance=ExtResource("27_c0edl")]
-transform = Transform3D(-4.86744, 0, 1.14371, 0, 5, 0, -1.14371, 0, -4.86744, -298, 0, -112)
-script = SubResource("GDScript_qj6rq")
+transform = Transform3D(-5, 0, -4.37114e-07, 0, 5, 0, 4.37114e-07, 0, -5, -298, 0, -112)
+script = SubResource("GDScript_434tg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter"]
 transform = Transform3D(1, 0, 4.47035e-08, 0, 1, 0, -4.47035e-08, 0, 1, 0, 1.85939, 0)

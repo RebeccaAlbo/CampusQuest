@@ -9,7 +9,6 @@ extends CharacterBody3D
 @onready var phone_camera: Camera3D = $PhoneCamera
 
 const SPEED = 30.0
-const JUMP_VELOCITY = 4.5
 const LERP_VAL = .15
 
 var can_move: bool = true
@@ -89,10 +88,6 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if !can_move:
 		return
-		
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
 	
 	# Add the gravity.
 	if not is_on_floor():

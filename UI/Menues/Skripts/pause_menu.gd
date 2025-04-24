@@ -23,7 +23,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			_is_paused =  false
 			get_tree().paused = _is_paused
-			minimap.visible = true
+			if !GameState.is_mobile:
+				minimap.visible = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			
 
@@ -32,7 +33,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func set_paused(value:bool) -> void:
 	update_score_label()
 	_is_paused = value
-	minimap.visible = false
+	if !GameState.is_mobile:
+		minimap.visible = false
 	get_tree().paused = _is_paused
 	visible = _is_paused
 
@@ -40,7 +42,8 @@ func set_paused(value:bool) -> void:
 func _on_resume_pressed() -> void:
 	_is_paused = false
 	get_tree().paused = _is_paused
-	minimap.visible = true
+	if !GameState.is_mobile:
+		minimap.visible = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 # Saves the game and quits the application
