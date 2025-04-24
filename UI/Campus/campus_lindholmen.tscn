@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c3ynfcpspetng"]
+[gd_scene load_steps=41 format=3 uid="uid://c3ynfcpspetng"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_lindholmen.gd" id="1_bghy0"]
 [ext_resource type="PackedScene" uid="uid://bq8tdhh7ogese" path="res://UI2/UI.tscn" id="2_hyq3a"]
@@ -43,6 +43,260 @@ size = Vector2(10000, 10000)
 background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
 
+[sub_resource type="GDScript" id="GDScript_skem0"]
+script/source = "extends CharacterBody3D
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var armature: Node3D = $Armature
+@onready var spring_arm_pivot: Node3D = $SpringArmPivot
+@onready var spring_arm: SpringArm3D = $SpringArmPivot/SpringArm3D
+@onready var anim_tree: AnimationTree = $AnimationTree
+@onready var actionable_finder: Area3D = $Direction/ActionableFinder
+@onready var phone_camera: Camera3D = $PhoneCamera
+
+const SPEED = 30.0
+const JUMP_VELOCITY = 4.5
+const LERP_VAL = .15
+
+var can_move: bool = true
+
+var skin_colors = [
+	Color(0.98, 0.9, 0.78),   # Very light cream 
+	Color(0.95, 0.82, 0.65),  # Light 
+	Color(0.75, 0.6, 0.45),   # Tan 
+	Color(0.45, 0.35, 0.25),  # Medium brown 
+	Color(0.28, 0.2, 0.12)    # Dark brown 
+]
+
+var hair_styles = [
+	$Armature/Skeleton3D/Hair1,
+	$Armature/Skeleton3D/Hair2,
+	$Armature/Skeleton3D/Hair3,
+	$Armature/Skeleton3D/Hair4,
+	$Armature/Skeleton3D/Hair5,
+	$Armature/Skeleton3D/Hair6
+]
+
+var pant_colors = [
+	Color(0.05, 0.05, 0.05),     # Black
+	Color(0.6, 0.8, 1.0),        # Light Blue
+	Color(0.1, 0.2, 0.4),        # Dark Blue
+	Color(0.9, 0.85, 0.7),       # Light Beige
+	Color(0.6, 0.5, 0.35)        # Dark Beige
+]
+
+var shirt_colors = [
+	Color(0.95, 0.95, 0.95),     # Off-White / Light Gray-White
+	Color(0.05, 0.05, 0.05),     # Black
+	Color(0.7, 0.5, 0.1),        # Muted Orange
+	Color(0.5, 0.0, 0.0),        # Dark Red
+	Color(0.15, 0.3, 0.15),      # Muted Green
+	Color(0.1, 0.2, 0.4),        # Desaturated Blue
+	Color(0.5, 0.3, 0.4),        # Dusty Pink
+	Color(0.7, 0.6, 0.1)         # Warm Muted Yellow
+]
+
+var shoes_colors = [
+	Color(0.95, 0.95, 0.95),     # Off-White / Light Gray-White
+	Color(0.05, 0.05, 0.05),     # Black
+	Color(0.4, 0.3, 0.2),        # Dark Brown
+	Color(0.7, 0.55, 0.4),       # Light Brown / Tan
+	Color(0.2, 0.3, 0.5)         # Muted Navy Blue
+]
+
+var current_skin_index = 0
+var current_hair_index = 0
+var current_pant_index = 0
+var current_shirt_index = 0
+var current_shoes_index = 0
+var prev_hair
+
+func _ready():
+	add_to_group(\"player\")
+	prev_hair = hair_styles[current_hair_index]
+	
+	if GameState.is_mobile and get_tree().current_scene.name != \"CharacterSelection\":
+		phone_camera.current = true
+		
+func _unhandled_input(event: InputEvent) -> void:
+	# Mouse control viewpoint
+	if event is InputEventMouseMotion:
+		spring_arm_pivot.rotate_y(-event.relative.x * .001)
+		spring_arm.rotate_x(-event.relative.y * .001)
+		# No infinite rotation
+		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/4, PI/4)
+		
+	if Input.is_action_just_pressed(\"interact\"):
+		var actionables = actionable_finder.get_overlapping_areas()
+		if actionables.size() > 0:
+			actionables[0].action()
+			return
+
+func _physics_process(delta: float) -> void:
+	if !can_move:
+		return
+		
+	# Handle jump.
+	if Input.is_action_just_pressed(\"jump\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+	
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var input_dir := Input.get_vector(\"left\", \"right\", \"up\", \"down\")
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	# Mouse control direction of character
+	direction = direction.rotated(Vector3.UP, spring_arm_pivot.rotation.y)
+	if direction:
+		velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
+		velocity.z = lerp(velocity.z, direction.z * SPEED, LERP_VAL)
+		armature.rotation.y = lerp_angle(armature.rotation.y, atan2(-velocity.x, -velocity.z), LERP_VAL)
+	else:
+		velocity.x = lerp(velocity.x, 0.0, LERP_VAL)
+		velocity.z = lerp(velocity.z, 0.0, LERP_VAL)
+		
+	anim_tree.set(\"parameters/BlendSpace1D/blend_position\", velocity.length() / SPEED)
+
+	move_and_slide()
+	
+func in_dialogue():
+	velocity = Vector3.ZERO
+	anim_tree.set(\"parameters/BlendSpace1D/blend_position\", 0.0)
+	can_move = false
+	
+func end_dialoque():
+	can_move = true
+	
+func change_skin_color(direction: int):
+	current_skin_index = (current_skin_index + direction) % skin_colors.size()
+	if current_skin_index < 0:
+		current_skin_index = skin_colors.size() - 1
+	update_skin_color()
+
+func update_skin_color():
+	var skin = $Armature/Skeleton3D/Body
+	if skin == null:
+		print(\"skin not found\")
+		return
+		
+	var material = skin.get_surface_override_material(0)
+	
+	if material == null:
+		material = skin.get_active_material(0).duplicate()
+		skin.set_surface_override_material(0, material)
+
+	material.albedo_color = skin_colors[current_skin_index]
+
+func change_hair(direction: int):
+	current_hair_index = (current_hair_index + direction) % hair_styles.size()
+	if current_hair_index < 0:
+		current_hair_index = hair_styles.size() - 1
+	update_hair_style()
+		
+func update_hair_style():
+	prev_hair.visible = false
+	var current_hair = hair_styles[current_hair_index]
+	current_hair.visible = true
+	prev_hair = current_hair
+
+func change_pant_color(direction: int):
+	current_pant_index = (current_pant_index + direction) % pant_colors.size()
+	if current_pant_index < 0:
+		current_pant_index = pant_colors.size() - 1
+	update_pant_color()
+
+func update_pant_color():
+	var pant = $Armature/Skeleton3D/Pants1
+	var material = pant.get_surface_override_material(0)
+	if material == null:
+		material = pant.get_active_material(0).duplicate()
+		pant.set_surface_override_material(0, material)
+	material.albedo_color = pant_colors[current_pant_index]
+
+func change_shirt_color(direction: int):
+	current_shirt_index = (current_shirt_index + direction) % shirt_colors.size()
+	if current_shirt_index < 0:
+		current_shirt_index = shirt_colors.size() - 1
+	update_shirt_color()	
+	
+func update_shirt_color():
+	var shirt = $Armature/Skeleton3D/Shirt
+	var material = shirt.get_surface_override_material(0)
+	if material == null:
+		material = shirt.get_active_material(0).duplicate()
+		shirt.set_surface_override_material(0, material)
+	material.albedo_color = shirt_colors[current_shirt_index]
+	
+func change_shoes_color(direction: int):
+	current_shoes_index = (current_shoes_index + direction) % shoes_colors.size()
+	if current_shoes_index < 0:
+		current_shoes_index = shoes_colors.size() - 1
+	update_shoes_color()
+
+func update_shoes_color():
+	var shoes = $Armature/Skeleton3D/Shoe
+	var material = shoes.get_surface_override_material(0)
+	if material == null:
+		material = shoes.get_active_material(0).duplicate()
+		shoes.set_surface_override_material(0, material)
+	material.albedo_color = shoes_colors[current_shoes_index]
+
+func update_character(skin_index: int, hair_index: int, pant_index: int, shirt_index: int, shoes_index: int):
+	#Set correct skin color
+	var skin = $Armature/Skeleton3D/Body
+	var skin_material = skin.get_surface_override_material(0)
+	if skin_material == null:
+		var base_mat = skin.get_active_material(0)
+		if base_mat != null:
+			skin_material = base_mat.duplicate()
+			skin.set_surface_override_material(0, skin_material)
+	if skin_material != null:
+		skin_material.albedo_color = skin_colors[skin_index]
+	
+	#Set correct hair style
+	for hair in hair_styles:
+		hair.visible = false
+	var current_hair = hair_styles[hair_index]
+	current_hair.visible = true
+	
+	#Set correct pant color
+	var pants = $Armature/Skeleton3D/Pants1
+	var pants_material = pants.get_surface_override_material(0)
+	if pants_material == null:
+		var active_material = pants.get_active_material(0)
+		if active_material != null:
+			pants_material = active_material.duplicate()
+			pants.set_surface_override_material(0, pants_material)
+	if pants_material != null:
+		pants_material.albedo_color = pant_colors[pant_index]
+	
+	#Set correct shirt color
+	var shirt = $Armature/Skeleton3D/Shirt
+	var shirt_material = shirt.get_surface_override_material(0)
+	if shirt_material == null:
+		var active_material = shirt.get_active_material(0)
+		if active_material != null:
+			shirt_material = active_material.duplicate()
+			shirt.set_surface_override_material(0, shirt_material)
+	if shirt_material != null:
+		shirt_material.albedo_color = shirt_colors[shirt_index]
+	
+	#Set correct shoes color
+	var shoes = $Armature/Skeleton3D/Shoe
+	var shoes_material = shoes.get_surface_override_material(0)
+	if shoes_material == null:
+		var active_material = shoes.get_active_material(0)
+		if active_material != null:
+			shoes_material = active_material.duplicate()
+			shoes.set_surface_override_material(0, shoes_material)
+	if shoes_material != null:
+		shoes_material.albedo_color = shoes_colors[shoes_index]	
+	
+"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_771xr"]
 albedo_color = Color(0.74902, 0.231373, 0.215686, 1)
 
@@ -51,6 +305,32 @@ material = SubResource("StandardMaterial3D_771xr")
 top_radius = 2.0
 bottom_radius = 2.0
 height = 0.001
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ss630"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bnox7"]
+bg_color = Color(0.756863, 0.631373, 0.458824, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4n42"]
+bg_color = Color(0.564706, 0.454902, 0.298039, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qf7wc"]
+bg_color = Color(0.909804, 0.831373, 0.72549, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28ls7"]
 bg_color = Color(0, 0, 0, 1)
@@ -98,6 +378,7 @@ script = ExtResource("6_vgfen")
 
 [node name="BaseCharacter" parent="." instance=ExtResource("24_r2aeb")]
 transform = Transform3D(-3.9894, 0, -0.291073, 0, 4, 0, 0.291073, 0, -3.9894, -30.7394, 0, -173.553)
+script = SubResource("GDScript_skem0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter"]
 transform = Transform3D(1, 0, 4.47035e-08, 0, 1, 0, -4.47035e-08, 0, 1, 0, 1.85939, 0)
@@ -276,6 +557,25 @@ texture = ExtResource("16_84c18")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="MenuButton" type="Button" parent="CanvasLayer"]
+visible = false
+offset_left = 12.0
+offset_top = 13.0
+offset_right = 146.0
+offset_bottom = 55.0
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ss630")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bnox7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x4n42")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qf7wc")
+text = "Menu"
+
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("20_3lu4g")]
 visible = false
 
@@ -307,6 +607,7 @@ size = 100.0
 
 [node name="BigMap" type="Control" parent="CanvasLayer"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -328,12 +629,35 @@ stretch = true
 handle_input_locally = false
 size = Vector2i(1000, 500)
 size_2d_override_stretch = true
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="BigMapCamera" type="Camera3D" parent="CanvasLayer/BigMap/SubViewportContainer/SubViewport"]
 transform = Transform3D(0.422618, -0.906308, -3.9616e-08, 0, -4.37114e-08, 1, -0.906308, -0.422618, -1.84732e-08, -115.179, 250, 0)
 cull_mask = 1048573
 near = 0.01
+
+[node name="GoBack" type="Button" parent="CanvasLayer/BigMap"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -161.0
+offset_top = 17.0
+offset_right = -27.0
+offset_bottom = 59.0
+grow_horizontal = 0
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ss630")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bnox7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x4n42")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qf7wc")
+text = "Go back"
 
 [node name="Anglia" type="Panel" parent="CanvasLayer/BigMap"]
 layout_mode = 0
@@ -552,6 +876,7 @@ text = "Jupiter"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="pressed" from="CanvasLayer/BigMap/GoBack" to="CanvasLayer/BigMap" method="_on_go_back_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/BigMap/Anglia" to="CanvasLayer/BigMap/Anglia" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/BigMap/Anglia" to="CanvasLayer/BigMap/Anglia" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="CanvasLayer/BigMap/Aran" to="CanvasLayer/BigMap/Aran" method="_on_mouse_entered"]

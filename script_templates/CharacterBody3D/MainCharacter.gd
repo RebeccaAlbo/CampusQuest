@@ -6,7 +6,7 @@ extends CharacterBody3D
 @onready var spring_arm: SpringArm3D = $SpringArmPivot/SpringArm3D
 @onready var anim_tree: AnimationTree = $AnimationTree
 @onready var actionable_finder: Area3D = $Direction/ActionableFinder
-
+@onready var phone_camera: Camera3D = $PhoneCamera
 
 const SPEED = 30.0
 const JUMP_VELOCITY = 4.5
@@ -66,16 +66,12 @@ var current_shoes_index = 0
 var prev_hair
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	add_to_group("player")
 	prev_hair = hair_styles[current_hair_index]
 	
-	if get_tree().current_scene.name == "CharacterSelection":
-		can_move = false
-		update_character(0, 0, 0, 0, 0)
-	elif get_tree().current_scene.name == "campus_johanneberg" or get_tree().current_scene.name == "campus_lindholmen":
-		update_character(CharacterCust.skin_index, CharacterCust.hair_index, CharacterCust.pant_index, CharacterCust.shirt_index, CharacterCust.shoes_index)
-
+	if GameState.is_mobile and get_tree().current_scene.name != "CharacterSelection":
+		phone_camera.current = true
+		
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse control viewpoint
 	if event is InputEventMouseMotion:

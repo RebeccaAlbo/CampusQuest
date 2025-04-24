@@ -90,22 +90,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_c7wxc")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -81.0
-offset_top = 11.0
-offset_right = 81.0
-offset_bottom = 131.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 20
-
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="Panel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -124,7 +109,7 @@ text = "CampusQuest"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="title" type="Label" parent="."]
+[node name="title" type="Label" parent="Panel"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -132,9 +117,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -147.0
+offset_left = -195.0
 offset_top = -46.0
-offset_right = 147.0
+offset_right = 195.0
 offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -143,7 +128,7 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_4jee1")
 text = "Where would you like to start exploring?"
 
-[node name="Chose" type="Label" parent="."]
+[node name="Chose" type="Label" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -157,13 +142,13 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.66908, 0.580888, 0.35169, 1)
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 30
 text = "Where would you like 
 your journey to begin?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GoBack" type="Button" parent="."]
+[node name="GoBack" type="Button" parent="Panel"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -186,7 +171,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_evlxa")
 theme_override_styles/normal = SubResource("StyleBoxFlat_sa3af")
 text = "Go back"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -196,12 +181,12 @@ anchor_bottom = 0.5
 offset_left = -201.0
 offset_top = 57.0
 offset_right = 201.0
-offset_bottom = 113.0
+offset_bottom = 122.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 120
 
-[node name="lindholmen" type="Button" parent="HBoxContainer"]
+[node name="lindholmen" type="Button" parent="Panel/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -215,7 +200,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_06j1p")
 theme_override_styles/normal = SubResource("StyleBoxFlat_8d842")
 text = "  Lindholmen  "
 
-[node name="johanneberg" type="Button" parent="HBoxContainer"]
+[node name="johanneberg" type="Button" parent="Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
@@ -230,6 +215,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_06j1p")
 theme_override_styles/normal = SubResource("StyleBoxFlat_8d842")
 text = "  Johanneberg  "
 
-[connection signal="pressed" from="GoBack" to="." method="_on_go_back_pressed"]
-[connection signal="pressed" from="HBoxContainer/lindholmen" to="." method="_on_lindholmen_pressed"]
-[connection signal="pressed" from="HBoxContainer/johanneberg" to="." method="_on_johanneberg_pressed"]
+[connection signal="pressed" from="Panel/GoBack" to="." method="_on_go_back_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/lindholmen" to="." method="_on_lindholmen_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/johanneberg" to="." method="_on_johanneberg_pressed"]

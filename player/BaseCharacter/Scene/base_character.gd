@@ -6,6 +6,8 @@ extends CharacterBody3D
 @onready var spring_arm: SpringArm3D = $SpringArmPivot/SpringArm3D
 @onready var anim_tree: AnimationTree = $AnimationTree
 @onready var actionable_finder: Area3D = $Direction/ActionableFinder
+@onready var pc_camera: Camera3D = $SpringArmPivot/SpringArm3D/PCCamera
+@onready var phone_camera: Camera3D = $PhoneCamera
 
 
 const SPEED = 30.0
@@ -63,6 +65,7 @@ var prev_hair
 func _ready():
 	add_to_group("player")
 	prev_hair = hair_styles[current_hair_index]
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse control viewpoint

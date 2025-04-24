@@ -1,7 +1,13 @@
 extends Control
 
+@onready var controls: Button = $Panel/VBoxContainer/Controls
+
+var temp: bool = false
+
 func _ready() -> void:
 	SceneManager.prev_scene_path = "res://UI/Menues/Scenes/main_menu.tscn"
+	if GameState.is_mobile:
+		controls.visible = false
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("esc"):

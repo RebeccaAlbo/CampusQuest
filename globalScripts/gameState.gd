@@ -2,6 +2,16 @@ extends Node
 
 var score = 0
 var talked_to_npcs = {}
+var is_mobile := true
+
+func _ready() -> void:
+	if OS.get_name() == "Android":
+		is_mobile = true
+		
+	if is_mobile:
+		set_mobile_resolution()
+	else:
+		set_pc_resolution()
 
 # Adds a point to the score for interacting with a new NPC
 # Tracks the interaction to avoid repetition
@@ -61,5 +71,13 @@ func load_game():
 		
 	else:
 		print("no saved file")
-		
-		
+
+# Adjust resolution for mobile
+func set_mobile_resolution():
+	var mobile_resolution = Vector2i(580, 290)
+	DisplayServer.window_set_size(mobile_resolution)
+	
+# Adjust resolution for PC
+func set_pc_resolution():
+	var pc_resolution = Vector2i(1000,500)
+	DisplayServer.window_set_size(pc_resolution)

@@ -53,68 +53,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_mvco5")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -177.0
-offset_top = -66.0
-offset_right = 177.0
-offset_bottom = 178.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 20
-
-[node name="StartGame" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/focus = SubResource("StyleBoxEmpty_as84c")
-theme_override_styles/hover = SubResource("StyleBoxFlat_c5vo6")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_d15f3")
-theme_override_styles/normal = SubResource("StyleBoxFlat_mr66t")
-text = "Start new game"
-
-[node name="Contiue" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/focus = SubResource("StyleBoxEmpty_as84c")
-theme_override_styles/hover = SubResource("StyleBoxFlat_c5vo6")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_d15f3")
-theme_override_styles/normal = SubResource("StyleBoxFlat_mr66t")
-text = "Continue
-"
-
-[node name="Controls" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/focus = SubResource("StyleBoxEmpty_as84c")
-theme_override_styles/hover = SubResource("StyleBoxFlat_c5vo6")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_d15f3")
-theme_override_styles/normal = SubResource("StyleBoxFlat_mr66t")
-text = "Controls"
-
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -136,7 +75,7 @@ text = "CampusQuest"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Exit" type="Button" parent="."]
+[node name="Exit" type="Button" parent="Panel"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -159,7 +98,68 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_d15f3")
 theme_override_styles/normal = SubResource("StyleBoxFlat_mr66t")
 text = "Exit"
 
-[connection signal="pressed" from="VBoxContainer/StartGame" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/Contiue" to="." method="_on_contiue_pressed"]
-[connection signal="pressed" from="VBoxContainer/Controls" to="." method="_on_controls_pressed"]
-[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -177.0
+offset_top = -66.0
+offset_right = 177.0
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="StartGame" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_as84c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c5vo6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_d15f3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mr66t")
+text = "Start new game"
+
+[node name="Contiue" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_as84c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c5vo6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_d15f3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mr66t")
+text = "Continue
+"
+
+[node name="Controls" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_as84c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c5vo6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_d15f3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mr66t")
+text = "Controls"
+
+[connection signal="pressed" from="Panel/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/StartGame" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Contiue" to="." method="_on_contiue_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Controls" to="." method="_on_controls_pressed"]

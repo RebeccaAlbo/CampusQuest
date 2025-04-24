@@ -3,7 +3,7 @@ extends Area3D
 @export var dialoque_resource : DialogueResource
 @export var dialoque_start : String = ""
 
-const Balloon = preload("res://Dialogue/balloon.tscn")
+const Balloon = preload("res://dialogue/balloon.tscn")
 # For zooming in on NPC during conversation
 var camera: Camera3D = null
 var spring_arm: SpringArm3D
@@ -35,8 +35,8 @@ func action() -> void:
 			if node3d:
 				spring_arm = node3d.get_node_or_null("SpringArm3D")
 				if spring_arm:
-					camera = spring_arm.get_node_or_null("MainCamera")  # Finally, get Camera3D
-
+					camera = spring_arm.get_node_or_null("PCCamera")  # Finally, get Camera3D
+	
 	# If the camera exists, store original position and smoothly zoom it toward the NPC
 	if camera:
 		original_camera_position = camera.global_transform.origin

@@ -1,12 +1,18 @@
 extends Control
 
 @onready var character: CharacterBody3D = $"../../BaseCharacter"
+@onready var v_box_container: VBoxContainer = $VBoxContainer
+@onready var v_box_container_2: VBoxContainer = $VBoxContainer2
+@onready var left: Button = $HBoxContainer/Left
+@onready var right: Button = $HBoxContainer/Right
 
 var hair_chosen: bool
 var skin_chosen: bool
 var shirt_chosen: bool
 var pants_chosen: bool
 var shoes_chosen: bool
+
+var temp: bool =  false
 
 func _ready() -> void:
 	SceneManager.prev_scene_path = "res://UI/Menues/Scenes/main_menu.tscn"
@@ -19,6 +25,9 @@ func _ready() -> void:
 	
 	character.can_move = false
 	character.update_character(0, 0, 0, 0, 0)
+	
+	if GameState.is_mobile and temp:
+		phone_layout()
 
 func _unhandled_input(_event: InputEvent) -> void:
 	# Changes character customization options based on which category is selected and input direction
@@ -122,3 +131,36 @@ func _on_continue_pressed() -> void:
 
 func _on_go_back_pressed() -> void:
 	get_tree().change_scene_to_file(SceneManager.prev_scene_path)
+	
+func phone_layout():
+	v_box_container.size.x = 220
+	v_box_container.size.y = 440
+	v_box_container_2.size.x = 148
+	v_box_container_2.size.y = 103
+	v_box_container_2.position.x = 848
+	left.visible = true
+	right.visible = true
+
+func _on_left_pressed() -> void:
+	if skin_chosen:
+		character.change_skin_color(-1)
+	elif hair_chosen:
+		character.change_hair(-1)
+	elif pants_chosen:
+		character.change_pant_color(-1)
+	elif shirt_chosen:
+		character.change_shirt_color(-1)
+	elif shoes_chosen:
+		character.change_shoes_color(-1)
+
+func _on_right_pressed() -> void:
+	if skin_chosen:
+		character.change_skin_color(-1)
+	elif hair_chosen:
+		character.change_hair(-1)
+	elif pants_chosen:
+		character.change_pant_color(-1)
+	elif shirt_chosen:
+		character.change_shirt_color(-1)
+	elif shoes_chosen:
+		character.change_shoes_color(-1)
