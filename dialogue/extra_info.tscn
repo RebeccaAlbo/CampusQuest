@@ -1,0 +1,80 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddlyrvsij0w4l"]
+
+[ext_resource type="Script" path="res://dialogue/extra_info.gd" id="1_ntbr3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ioh02"]
+bg_color = Color(0.56691, 0.363232, 0.17642, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m20gh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icmvr"]
+bg_color = Color(0.756863, 0.631373, 0.458824, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ftu24"]
+bg_color = Color(0.564706, 0.454902, 0.298039, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8aalv"]
+bg_color = Color(0.909804, 0.831373, 0.72549, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[node name="ExtraInfo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ntbr3")
+
+[node name="DataBaseText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_ioh02")
+text = "Test text"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -146.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = 54.0
+grow_horizontal = 0
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m20gh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_icmvr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ftu24")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8aalv")
+text = "Exit"
+
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

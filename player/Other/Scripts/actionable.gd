@@ -52,6 +52,7 @@ func action() -> void:
 	npc.animation("Talking", 0.3)
 	var balloon: Node = Balloon.instantiate()
 	get_tree().current_scene.add_child(balloon)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	balloon.start(dialoque_resource, dialoque_start)
 	
 	# Wait for end of dialogue, then reset everything
@@ -59,6 +60,7 @@ func action() -> void:
 	player.end_dialoque()
 	npc.animation("Idle", 0.3)
 	npc.face_back()
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	reset_camera_position()
 
 # Smoothly zooms the camera toward a target position by adjusting the spring arm's position and length with a tween

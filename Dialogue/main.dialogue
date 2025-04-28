@@ -140,6 +140,11 @@ Oh hello there!
 We are currently standing infront of Kuggen
 
 Would you like to know more about it?
+- Yes
+	do show_extra_info(true)
+- No
+	do show_extra_info(false)
+	=> END
 => END!
 
 ~ anglia

@@ -2,7 +2,7 @@ extends Node
 
 var score = 0
 var talked_to_npcs = {}
-var is_mobile := true
+var is_mobile := false
 
 func _ready() -> void:
 	if OS.get_name() == "Android":
@@ -81,3 +81,11 @@ func set_mobile_resolution():
 func set_pc_resolution():
 	var pc_resolution = Vector2i(1000,500)
 	DisplayServer.window_set_size(pc_resolution)
+
+func show_extra_info(yes: bool):
+	if yes:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		var node = get_tree().current_scene.get_node("CanvasLayer/ExtraInfo")
+		node.visible = true
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

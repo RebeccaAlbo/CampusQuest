@@ -1,10 +1,10 @@
-[gd_scene load_steps=56 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=58 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_johanneberg.gd" id="1_p1r2s"]
 [ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="3_p4gww"]
 [ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="4_0g13b"]
 [ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://busStop/bus_stop.tscn" id="6_jjioq"]
-[ext_resource type="PackedScene" uid="uid://c6qp18idoxerc" path="res://player/NPC/Scene/npc_2.tscn" id="7_b36ec"]
+[ext_resource type="PackedScene" uid="uid://cnb2h5dy2in10" path="res://player/NPC/Scene/architecture.tscn" id="7_b36ec"]
 [ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="8_qbc84"]
 [ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/Other/Scenes/camera_controll.tscn" id="9_ukpfr"]
 [ext_resource type="PackedScene" uid="uid://bui3dm2ac1fqp" path="res://player/Other/Scenes/camera_controll_collision.tscn" id="10_88hal"]
@@ -31,6 +31,7 @@
 [ext_resource type="Script" path="res://UI/Menues/Skripts/big_map.gd" id="27_rjjvf"]
 [ext_resource type="Script" path="res://UI/Campus/panel.gd" id="29_6t16t"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="32_oqewd"]
+[ext_resource type="PackedScene" uid="uid://ddlyrvsij0w4l" path="res://dialogue/extra_info.tscn" id="34_4jer0"]
 [ext_resource type="Script" path="res://player/NPC/Script/economic.gd" id="37_kvtch"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
@@ -307,6 +308,9 @@ top_radius = 1.0
 bottom_radius = 1.0
 height = 0.001
 
+[sub_resource type="Resource" id="Resource_gx8vd"]
+metadata/__load_path__ = "res://dialogue/architecture.dialogue"
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qynfc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xd2ns"]
@@ -426,6 +430,7 @@ transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, -137.4
 [node name="NPCCollision" parent="architecture" instance=ExtResource("8_qbc84")]
 
 [node name="CameraControll" parent="architecture" instance=ExtResource("9_ukpfr")]
+dialoque_resource = SubResource("Resource_gx8vd")
 
 [node name="CameraControllCollision" parent="architecture/CameraControll" instance=ExtResource("10_88hal")]
 
@@ -736,6 +741,9 @@ layers = 1024
 texture = ExtResource("25_b457s")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ExtraInfo" parent="CanvasLayer" instance=ExtResource("34_4jer0")]
+visible = false
 
 [node name="Virtual Joystick" parent="CanvasLayer" instance=ExtResource("32_oqewd")]
 z_index = 2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c3ynfcpspetng"]
+[gd_scene load_steps=42 format=3 uid="uid://c3ynfcpspetng"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_lindholmen.gd" id="1_bghy0"]
 [ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="3_vo4v6"]
@@ -26,6 +26,7 @@
 [ext_resource type="Script" path="res://UI/Campus/panel.gd" id="24_2oniu"]
 [ext_resource type="PackedScene" uid="uid://3kjk4w0wer4" path="res://player/BaseCharacter/Scene/base_character.tscn" id="24_r2aeb"]
 [ext_resource type="Script" path="res://player/NPC/Script/äran.gd" id="25_va2l2"]
+[ext_resource type="PackedScene" uid="uid://ddlyrvsij0w4l" path="res://dialogue/extra_info.tscn" id="27_syvvn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k1vra"]
 
@@ -604,7 +605,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(138, 138)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="MinimapCamera" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
@@ -882,6 +883,9 @@ theme_override_font_sizes/font_size = 16
 text = "Jupiter"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ExtraInfo" parent="CanvasLayer" instance=ExtResource("27_syvvn")]
+visible = false
 
 [connection signal="pressed" from="CanvasLayer/MenuButton" to="CanvasLayer/PauseMenu" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BigMap/GoBack" to="CanvasLayer/BigMap" method="_on_go_back_pressed"]
