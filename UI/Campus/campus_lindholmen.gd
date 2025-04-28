@@ -9,6 +9,9 @@ func _ready():
 	if GameState.is_mobile:
 		menu_button.visible = true
 		minimap.visible = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	# Update saved states
 	base_character.update_character(CharacterCust.skin_index, CharacterCust.hair_index, CharacterCust.pant_index, CharacterCust.shirt_index, CharacterCust.shoes_index)
@@ -16,9 +19,7 @@ func _ready():
 		var npc = get_node_or_null(npc_name)
 		if npc:
 			npc.change_mark()
-	
-	# Disable mouse during gameplay
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		
 	
 	# Get the reference to our Flutter plugin
 	var flutterPlugin = Engine.get_singleton("FlutterGodotPlugin")

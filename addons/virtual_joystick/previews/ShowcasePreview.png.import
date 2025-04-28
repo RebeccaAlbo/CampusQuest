@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc6paavcnnwf6"
-path="res://.godot/imported/stick_pressed.png-6fcc4628acef23adfbfbed05707c47f5.ctex"
+uid="uid://bdlhmnhqku1rl"
+path="res://.godot/imported/ShowcasePreview.png-70f7a50f53e5fc814a0e306c3f1e556a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/virtual_joystick/sprites/stick_pressed.png"
-dest_files=["res://.godot/imported/stick_pressed.png-6fcc4628acef23adfbfbed05707c47f5.ctex"]
+source_file="res://addons/virtual_joystick/previews/ShowcasePreview.png"
+dest_files=["res://.godot/imported/ShowcasePreview.png-70f7a50f53e5fc814a0e306c3f1e556a.ctex"]
 
 [params]
 

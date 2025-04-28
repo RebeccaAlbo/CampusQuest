@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=56 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_johanneberg.gd" id="1_p1r2s"]
 [ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="3_p4gww"]
@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://3kjk4w0wer4" path="res://player/BaseCharacter/Scene/base_character.tscn" id="27_c0edl"]
 [ext_resource type="Script" path="res://UI/Menues/Skripts/big_map.gd" id="27_rjjvf"]
 [ext_resource type="Script" path="res://UI/Campus/panel.gd" id="29_6t16t"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="32_oqewd"]
 [ext_resource type="Script" path="res://player/NPC/Script/economic.gd" id="37_kvtch"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
@@ -736,6 +737,20 @@ texture = ExtResource("25_b457s")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="Virtual Joystick" parent="CanvasLayer" instance=ExtResource("32_oqewd")]
+z_index = 2
+offset_left = 10.0
+offset_top = -116.0
+offset_right = 252.0
+offset_bottom = 101.0
+scale = Vector2(0.5, 0.5)
+pressed_color = Color(0.654902, 0.341176, 0.168627, 1)
+clampzone_size = 20.0
+action_left = "left"
+action_right = "right"
+action_up = "up"
+action_down = "down"
+
 [node name="MenuButton" type="Button" parent="CanvasLayer"]
 visible = false
 offset_left = 12.0
@@ -1133,6 +1148,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="pressed" from="CanvasLayer/MenuButton" to="CanvasLayer/PauseMenu" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BigMap/GoBack" to="CanvasLayer/BigMap" method="_on_go_back_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/BigMap/SamhallIII" to="CanvasLayer/BigMap/SamhallIII" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/BigMap/SamhallIII" to="CanvasLayer/BigMap/SamhallIII" method="_on_mouse_exited"]
