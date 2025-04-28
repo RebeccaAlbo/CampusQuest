@@ -512,7 +512,6 @@ grow_vertical = 0
 theme_override_constants/separation = 120
 
 [node name="Left" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
@@ -528,7 +527,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_6s5ri")
 text = "  <  "
 
 [node name="Right" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3

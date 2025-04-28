@@ -70,7 +70,7 @@ func _ready():
 	
 	if GameState.is_mobile and get_tree().current_scene.name != "CharacterSelection":
 		phone_camera.current = true
-		
+			
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse control viewpoint
 	if event is InputEventMouseMotion:

@@ -48,7 +48,7 @@ size = Vector2(10000, 10000)
 background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
 
-[sub_resource type="GDScript" id="GDScript_434tg"]
+[sub_resource type="GDScript" id="GDScript_t1ls7"]
 script/source = "extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -121,7 +121,7 @@ func _ready():
 	
 	if GameState.is_mobile and get_tree().current_scene.name != \"CharacterSelection\":
 		phone_camera.current = true
-		
+			
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse control viewpoint
 	if event is InputEventMouseMotion:
@@ -147,19 +147,13 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector(\"left\", \"right\", \"up\", \"down\")
-	if input_dir != Vector2.ZERO:
-		var cam_y_rotation = spring_arm_pivot.global_transform.basis
-		var forward = -cam_y_rotation.z
-		var right = cam_y_rotation.x
-		
-		var direction = (right * input_dir.x + forward * input_dir.y).normalized()
-		
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	# Mouse control direction of character
+	direction = direction.rotated(Vector3.UP, spring_arm_pivot.rotation.y)
+	if direction:
 		velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
 		velocity.z = lerp(velocity.z, direction.z * SPEED, LERP_VAL)
-		
-		var target_rot = atan2(-direction.x, -direction.z)
-		armature.rotation.y = lerp_angle(armature.rotation.y, target_rot, LERP_VAL)
-		
+		armature.rotation.y = lerp_angle(armature.rotation.y, atan2(-velocity.x, -velocity.z), LERP_VAL)
 	else:
 		velocity.x = lerp(velocity.x, 0.0, LERP_VAL)
 		velocity.z = lerp(velocity.z, 0.0, LERP_VAL)
@@ -418,7 +412,7 @@ collision_mask = 2
 
 [node name="BaseCharacter" parent="." instance=ExtResource("27_c0edl")]
 transform = Transform3D(-5, 0, -4.37114e-07, 0, 5, 0, 4.37114e-07, 0, -5, -298, 0, -112)
-script = SubResource("GDScript_434tg")
+script = SubResource("GDScript_t1ls7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter"]
 transform = Transform3D(1, 0, 4.47035e-08, 0, 1, 0, -4.47035e-08, 0, 1, 0, 1.85939, 0)
