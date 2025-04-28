@@ -2,8 +2,6 @@ extends Control
 
 @onready var controls: Button = $Panel/VBoxContainer/Controls
 
-var temp: bool = false
-
 func _ready() -> void:
 	SceneManager.prev_scene_path = "res://UI/Menues/Scenes/main_menu.tscn"
 	if GameState.is_mobile:

@@ -25,7 +25,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_tree().paused = _is_paused
 			if !GameState.is_mobile:
 				minimap.visible = true
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			
 
 # Sets the paused state, hides the minimap, updates the game pause state, 
@@ -44,7 +44,7 @@ func _on_resume_pressed() -> void:
 	get_tree().paused = _is_paused
 	if !GameState.is_mobile:
 		minimap.visible = true
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 # Saves the game and quits the application
 func _on_quit_game_pressed() -> void:
@@ -57,3 +57,7 @@ func update_score_label():
 
 func _on_open_map_pressed() -> void:
 	big_map.visible = true
+
+func _on_menu_button_pressed() -> void:
+	print("menu button pressed")
+	_is_paused =  true

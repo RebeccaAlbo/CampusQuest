@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=56 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_johanneberg.gd" id="1_p1r2s"]
 [ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="3_p4gww"]
@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://3kjk4w0wer4" path="res://player/BaseCharacter/Scene/base_character.tscn" id="27_c0edl"]
 [ext_resource type="Script" path="res://UI/Menues/Skripts/big_map.gd" id="27_rjjvf"]
 [ext_resource type="Script" path="res://UI/Campus/panel.gd" id="29_6t16t"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="32_oqewd"]
 [ext_resource type="Script" path="res://player/NPC/Script/economic.gd" id="37_kvtch"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
@@ -48,7 +49,7 @@ size = Vector2(10000, 10000)
 background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
 
-[sub_resource type="GDScript" id="GDScript_434tg"]
+[sub_resource type="GDScript" id="GDScript_t1ls7"]
 script/source = "extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -121,7 +122,7 @@ func _ready():
 	
 	if GameState.is_mobile and get_tree().current_scene.name != \"CharacterSelection\":
 		phone_camera.current = true
-		
+			
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse control viewpoint
 	if event is InputEventMouseMotion:
@@ -147,19 +148,13 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector(\"left\", \"right\", \"up\", \"down\")
-	if input_dir != Vector2.ZERO:
-		var cam_y_rotation = spring_arm_pivot.global_transform.basis
-		var forward = -cam_y_rotation.z
-		var right = cam_y_rotation.x
-		
-		var direction = (right * input_dir.x + forward * input_dir.y).normalized()
-		
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	# Mouse control direction of character
+	direction = direction.rotated(Vector3.UP, spring_arm_pivot.rotation.y)
+	if direction:
 		velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
 		velocity.z = lerp(velocity.z, direction.z * SPEED, LERP_VAL)
-		
-		var target_rot = atan2(-direction.x, -direction.z)
-		armature.rotation.y = lerp_angle(armature.rotation.y, target_rot, LERP_VAL)
-		
+		armature.rotation.y = lerp_angle(armature.rotation.y, atan2(-velocity.x, -velocity.z), LERP_VAL)
 	else:
 		velocity.x = lerp(velocity.x, 0.0, LERP_VAL)
 		velocity.z = lerp(velocity.z, 0.0, LERP_VAL)
@@ -418,7 +413,7 @@ collision_mask = 2
 
 [node name="BaseCharacter" parent="." instance=ExtResource("27_c0edl")]
 transform = Transform3D(-5, 0, -4.37114e-07, 0, 5, 0, 4.37114e-07, 0, -5, -298, 0, -112)
-script = SubResource("GDScript_434tg")
+script = SubResource("GDScript_t1ls7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter"]
 transform = Transform3D(1, 0, 4.47035e-08, 0, 1, 0, -4.47035e-08, 0, 1, 0, 1.85939, 0)
@@ -741,6 +736,20 @@ layers = 1024
 texture = ExtResource("25_b457s")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Virtual Joystick" parent="CanvasLayer" instance=ExtResource("32_oqewd")]
+z_index = 2
+offset_left = 10.0
+offset_top = -116.0
+offset_right = 252.0
+offset_bottom = 101.0
+scale = Vector2(0.5, 0.5)
+pressed_color = Color(0.654902, 0.341176, 0.168627, 1)
+clampzone_size = 20.0
+action_left = "left"
+action_right = "right"
+action_up = "up"
+action_down = "down"
 
 [node name="MenuButton" type="Button" parent="CanvasLayer"]
 visible = false
@@ -1139,6 +1148,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="pressed" from="CanvasLayer/MenuButton" to="CanvasLayer/PauseMenu" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BigMap/GoBack" to="CanvasLayer/BigMap" method="_on_go_back_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/BigMap/SamhallIII" to="CanvasLayer/BigMap/SamhallIII" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/BigMap/SamhallIII" to="CanvasLayer/BigMap/SamhallIII" method="_on_mouse_exited"]
