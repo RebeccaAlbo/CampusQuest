@@ -6,9 +6,6 @@ var web_mode := OS.has_feature("web")
 # Variable to hold the JavaScript callback function
 var js_callback
 
-# Store pending requests for dialogs by speaker name
-var pending_requests := {}
-
 # Flag to track if Flutter is ready
 var flutter_ready := false
 
@@ -54,6 +51,7 @@ func _setup_js_bridge():
 			switch (message.type) {
 				case 'dialog_receive':
 				case 'flutter_ready':
+				case 'speakers_request':
 					if (window.godotBridge) {
 						const json = JSON.stringify(message);
 						window.godotBridge.sendMessage(json);
@@ -74,6 +72,12 @@ func _setup_js_bridge():
 	print("[FlutterBridge] Godot bridge is ready!")
 
 # Request a dialog from Flutter by speaker name
+#returns a list of dialogues
+#use like this:
+#	var dialog_data := await FlutterBridge.request_dialog("Fysik")
+#	for dialog in dialog_data:
+#		print("Line:", dialog["content"])
+
 func request_dialog(speaker: String) -> Array:
 	if not web_mode:
 		print("[FlutterBridge] Web platform not available.")
@@ -102,7 +106,6 @@ func request_dialog(speaker: String) -> Array:
 	print("[FlutterBridge] Dialog response received for speaker:", speaker)
 	
 	print("[FlutterBridge] result:", result)
-	pending_requests.erase(speaker)
 	return result
 
 
@@ -136,5 +139,11 @@ func _on_js_message(args: Array):
 					emit_signal("dialog_received", speaker, dialog_data)
 				else:
 					print("[FlutterBridge] dialog_receive data is not an array")
+			"speakers_request":
+				var speakers = ['Fyisk', 'Bio']
+				var speakers_json = JSON.stringify(speakers)
+				var js = "window.parent.postMessage({ type: 'speakers_receive', data: " + speakers_json + " }, '*');"
+				JavaScriptBridge.eval(js)
+				
 	else:
 		print("[FlutterBridge] Failed to parse JSON")
