@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://36wmcll8n0bt"]
+[gd_scene load_steps=4 format=3 uid="uid://pblypu2h1pga"]
 
-[ext_resource type="PackedScene" uid="uid://cosslq5g50hd3" path="res://props/imports/key.glb" id="1_5hcel"]
-[ext_resource type="Script" path="res://props/scripts/key.gd" id="2_f7efd"]
+[ext_resource type="PackedScene" uid="uid://b2gyypu5fwiun" path="res://props/imports/coffeeMug.glb" id="1_u23gb"]
+[ext_resource type="Script" path="res://props/scenes/coffee_mug.gd" id="2_1mb0d"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_1q5mc"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_2fiyo"]
 radius = 2.0
 
-[node name="key" instance=ExtResource("1_5hcel")]
-script = ExtResource("2_f7efd")
+[node name="coffeeMug" instance=ExtResource("1_u23gb")]
+script = ExtResource("2_1mb0d")
+
+[node name="CoffeeMug" parent="." index="0"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.286417, 0)
 
 [node name="Area3D" type="Area3D" parent="." index="1"]
 collision_layer = 32
@@ -15,10 +18,10 @@ collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.279231)
-shape = SubResource("SphereShape3D_1q5mc")
+shape = SubResource("SphereShape3D_2fiyo")
 
 [node name="HoverText" type="Label3D" parent="." index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45135, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.46971, 0)
 visible = false
 billboard = 1
 shaded = true

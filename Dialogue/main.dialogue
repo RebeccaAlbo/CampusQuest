@@ -2,163 +2,308 @@
 Oh hello there!
 
 We are currently standing infront of the department of Architecture and Civil engineering
+- Learn more about the department
+	do show_extra_info(true, "architecture")
+	=> END
+- End conversation
 
-Would you like to know more about it?
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END
 
 ~ computer
 Oh hello there!
 
 We are currently standing infront of the department of Computer and Information technology
-
-Would you like to know more about it?
+- Learn more about the department
+	do show_extra_info(true, "computer")
+	=> END
+- Help with a task
+	if inventory["coffee"].has("coffeeComputer")
+		Is there anything else I can do for you?
+		- I was sent to bring you this coffee
+		That was very kind, thank you
+		do remove_item("coffee", "coffeeComputer")
+		do score += 1
+	else:
+		You have already helped me
+		- End conversation
+	
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END
 
 ~ electrical
 Oh hello there!
 
 We are currently standing infront of the department of Electrical engineering
+- Learn more about the department
+	do show_extra_info(true, "electrical")
+	=> END
+- End conversation
 
-Would you like to know more about it?
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
 
 ~ physics
 Oh hello there!
 
 We are currently standing infront of the department of Physics
+- Learn more about the department
+	do show_extra_info(true, "physics")
+	=> END
+- End conversation
 
-Would you like to know more about it?
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
 
 ~ industrial
 Oh hello there!
 
 We are currently standing infront of the department of Industrial and Materials science
+- Learn more about the department
+	do show_extra_info(true, "industrial")
+	=> END
+- End conversation
 
-Would you like to know more about it?
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
 
 ~ chemistry
 Oh hello there!
 
 We are currently standing infront of the department of Chemistry and chemical engineering
+- Learn more about the department
+	do show_extra_info(true, "chemistry")
+	=> END
+- End conversation
 
-Would you like to know more about it?
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
 
 ~ life
 Oh hello there!
 
 We are currently standing infront of the department of Life Sciences
+- Learn more about the department
+	do show_extra_info(true, "life")
+	=> END
+- End conversation
 
-Would you like to know more about it?
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
 
 ~ math
 Oh hello there!
 
 We are currently standing infront of the department of Mathematical sciences
+- Learn more about the department
+	do show_extra_info(true, "math")
+	=> END
+- Help with a task
+	if not picked_up_items.has("walletMath") or inventory.get("wallet", 0) > 0
+		I seem to have lost my wallet, have you seen it?
+		if inventory.get("wallet", 0) > 0 and picked_up_items.has("walletMath"):
+			- Yes, here you go
+			Thank you so much
+			do remove_item("wallet")
+			do score +=1
+		else:
+			- No, do you know where you lost it?
+			Near Äran at Lindholmen I believe
+			- I'll try to find it
+	else:
+		You have already helped me
+		- End conversation
 
-Would you like to know more about it?
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
 
 ~ mechanics
 Oh hello there!
 
 We are currently standing infront of the department of Mechanics and Maritime Sciences
+- Learn more about the department
+	do show_extra_info(true, "mechanics")
+	=> END
+- End conversation
 
-Would you like to know more about it?
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
 
 ~ micro
 Oh hello there!
 
 We are currently standing infront of the department of Microtechnology and Nanoscience
+- Learn more about the department
+	do show_extra_info(true, "micro")
+	=> END
+- Help with a task
+	if not picked_up_items.has("bookMicro")
+		I seem to have borrowed the wrong book from the library, would you mind returning it?
+		- Yes, of course
+			Thank you so much
+			do add_item("book", "bookMicro")
+			do picked_up_items.append("bookMicro")
+		- No, not right now
+			Okey, come back if you change your mind
+	else:
+		You have already helped me
+		- End conversation
 
-Would you like to know more about it?
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
 
 ~ space
 Oh hello there!
 
 We are currently standing infront of the department of Space, Geo and Environmental sciences
+- Learn more about the department
+	do show_extra_info(true, "space")
+	=> END
+- End conversation
 
-Would you like to know more about it?
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
 
 ~ economic
 Oh hello there!
 
 We are currently standing infront of the department of Economics and Organization of technology
+- Learn more about the department
+	do show_extra_info(true, "economic")
+	=> END
+- End conversation
 
-Would you like to know more about it?
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
 
 ~ science
 Oh hello there!
 
 We are currently standing infront of the department of Science communication and learning
+- Learn more about the department
+	do show_extra_info(true, "science")
+	=> END
+- End conversation
 
-Would you like to know more about it?
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
 
 ~ svea
 Oh hello there!
 
 We are currently standing infront of Svea
+- Learn more about the department
+	do show_extra_info(true, "svea")
+	=> END
+- Help with a task
+	if not picked_up_items.has("coffeeComputer")
+		Would you mind bringing this coffee to the person outside the Computer department, I think he is outside of EDIT
+		- Yes, of course
+			Thank you so much
+			do add_item("coffee", "coffeeComputer")
+			do picked_up_items.append("coffeeComputer")
+		- No, not right now
+			Okey, come back if you change your mind
+	else: 
+		You have already helped me
+		- End conversation
 
-Would you like to know more about it?
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
 
 ~ saga
 Oh hello there!
 
 We are currently standing infront of Saga
+- Learn more about the department
+	do show_extra_info(true, "saga")
+- End conversation
 
-Would you like to know more about it?
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
 
 ~ aran
 Oh hello there!
 
 We are currently standing infront of Äran
+- Learn more about the department
+	do show_extra_info(true, "aran")
+	=> END
+- Help with a task
+	if not picked_up_items.has("bookAran")
+		I have this book I need to return to the library today, would you mind doing it for me?
+		- Yes, of course
+			Thank you so much
+			do add_item("book", "bookAran")
+			do picked_up_items.append("bookAran")
+		- No, not right now
+			Okey, come back if you change your mind
+	else:
+		You have already helped me
+		- End conversation
 
-Would you like to know more about it?
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
 
 ~ jupiter
 Oh hello there!
 
 We are currently standing infront of Jupiter
-
-Would you like to know more about it?
+- Learn more about the department
+	do show_extra_info(true, "jupiter")
+	=> END
+- End conversation
+	
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
 
 ~ kuggen
 Oh hello there!
 
 We are currently standing infront of Kuggen
-
-Would you like to know more about it?
-- Yes
+- Learn more about the department
 	do show_extra_info(true, "kuggen")
-- No
-	do show_extra_info(false)
 	=> END
+- Help with a task
+	if not picked_up_items.has("keyKuggen") or inventory.get("key", 0) > 0
+		I seem to have lost the key to my office, have you seen it?
+		if inventory.get("key", 0) > 0 and picked_up_items.has("keyKuggen"):
+			- Yes, here you go
+			Thank you so much
+			do remove_item("key")
+			do score +=1
+			do set_mouse_state(GameState.MouseState.GAMEPLAY)
+		else:
+			- No, do you know where you lost it?
+			Near Jupiter I believe
+			- I'll try to find it
+	else:
+		You have already helped me
+		- End conversation
+
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
 
 ~ anglia
 Oh hello there!
 
 We are currently standing infront of Anglia
+- Learn more about the department
+	do show_extra_info(true, "anglia")
+	=> END
+- End conversation
 
-Would you like to know more about it?
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
 
 ~ patricia
 Oh hello there!
 
 We are currently standing infront of Patricia
+- Learn more about the department
+	do show_extra_info(true, "patricia")
+	=> END
+- End conversation
 
-Would you like to know more about it?
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!

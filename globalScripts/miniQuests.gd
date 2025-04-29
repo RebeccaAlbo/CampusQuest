@@ -2,22 +2,64 @@ extends Node
 
 signal inventory_updated
 
+# Keep track of number of items in inventory
 var inventory: = {
 	"key": 0,
 	"wallet": 0,
-	"book": 0,
+	"book": [],
 	"food": 0,
-	"coffee": 0
+	"coffee": []
 }
 
+# Keeps track of picked up items
 var picked_up_items := []
 
-func add_item(item_name: String) -> void:
-	if inventory.has(item_name):
+var order_lunch := false
+
+func get_item_count(item_name: String) -> int:
+	if not inventory.has(item_name):
+		return 0
+	
+	var value = inventory[item_name]
+	
+	match typeof(value):
+		TYPE_INT:
+			return value
+		TYPE_ARRAY:
+			return value.size()
+		_:
+			return 0
+
+# Add certain item to inventory
+func add_item(item_name: String, item_detail: String = "") -> void:
+	if not inventory.has(item_name):
+		return
+	
+	var value = inventory[item_name]
+	
+	if typeof(value) == TYPE_INT:
 		inventory[item_name] += 1
-		inventory_updated.emit()
+	elif typeof(value) == TYPE_ARRAY:
+		if item_detail != "":
+			inventory[item_name].append(item_detail)
+	
+	print(inventory["coffee"])
+	inventory_updated.emit()
 		
-func remove_item(item_name: String) -> void:
-	if inventory.has(item_name):
+# Remove certain item from inventory
+func remove_item(item_name: String, item_detail: String = "") -> void:
+	if not inventory.has(item_name):
+		return
+	
+	var value = inventory[item_name]
+	
+	if typeof(value) == TYPE_INT:
 		inventory[item_name] -= 1
-		inventory_updated.emit()
+	elif typeof(value) == TYPE_ARRAY:
+		if item_name == "book":
+			inventory[item_name].clear()
+		elif item_detail != "":
+			inventory[item_name].erase(item_detail)
+	
+	print(inventory["coffee"].size())
+	inventory_updated.emit()
