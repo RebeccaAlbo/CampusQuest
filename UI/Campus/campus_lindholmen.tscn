@@ -1,8 +1,8 @@
-[gd_scene load_steps=42 format=3 uid="uid://c3ynfcpspetng"]
+[gd_scene load_steps=44 format=3 uid="uid://c3ynfcpspetng"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_lindholmen.gd" id="1_bghy0"]
 [ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="3_vo4v6"]
-[ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://busStop/bus_stop.tscn" id="4_b004s"]
+[ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://props/scenes/bus_stop.tscn" id="4_b004s"]
 [ext_resource type="PackedScene" uid="uid://bmxn8658qh64v" path="res://campus/lindholmen/lindholmen.tscn" id="5_32ols"]
 [ext_resource type="Script" path="res://campus/lindholmen/lindholmen.gd" id="6_vgfen"]
 [ext_resource type="PackedScene" uid="uid://bx0yjeuw1ojxn" path="res://player/NPC/Scene/svea.tscn" id="8_u2u80"]
@@ -27,6 +27,8 @@
 [ext_resource type="PackedScene" uid="uid://3kjk4w0wer4" path="res://player/BaseCharacter/Scene/base_character.tscn" id="24_r2aeb"]
 [ext_resource type="Script" path="res://player/NPC/Script/äran.gd" id="25_va2l2"]
 [ext_resource type="PackedScene" uid="uid://ddlyrvsij0w4l" path="res://dialogue/extra_info.tscn" id="27_syvvn"]
+[ext_resource type="PackedScene" uid="uid://36wmcll8n0bt" path="res://props/scenes/key.tscn" id="28_206b2"]
+[ext_resource type="PackedScene" uid="uid://b1pvrh7buxg0p" path="res://props/scenes/wallet.tscn" id="29_d8f1n"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k1vra"]
 
@@ -605,7 +607,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(138, 138)
 render_target_update_mode = 4
 
 [node name="MinimapCamera" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
@@ -886,6 +888,12 @@ vertical_alignment = 1
 
 [node name="ExtraInfo" parent="CanvasLayer" instance=ExtResource("27_syvvn")]
 visible = false
+
+[node name="key12" parent="." instance=ExtResource("28_206b2")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 8.94026, 0, 32.7219)
+
+[node name="wallet" parent="." instance=ExtResource("29_d8f1n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62, 0, 183)
 
 [connection signal="pressed" from="CanvasLayer/MenuButton" to="CanvasLayer/PauseMenu" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BigMap/GoBack" to="CanvasLayer/BigMap" method="_on_go_back_pressed"]

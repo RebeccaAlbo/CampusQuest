@@ -3,6 +3,7 @@ extends Control
 @onready var minimap: PanelContainer = $"../Minimap"
 @onready var score: Label = $ColorRect/Score
 @onready var big_map: Control = $"../BigMap"
+@onready var inventory: Control = $ColorRect/Inventory
 
 # Paused by other menues
 var paused: bool = false
@@ -61,3 +62,6 @@ func _on_open_map_pressed() -> void:
 func _on_menu_button_pressed() -> void:
 	print("menu button pressed")
 	_is_paused =  true
+	
+func _on_inventory_pressed() -> void:
+	inventory.visible = true

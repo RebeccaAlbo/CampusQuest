@@ -3,17 +3,17 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dhw6aqaxqmilk"
-path="res://.godot/imported/busStop.glb-9a20d69ffb7d2c88ba8fe0fe17fe15b9.scn"
+uid="uid://cosslq5g50hd3"
+path="res://.godot/imported/key.glb-7862ad931734dfd7fd13aef525172e97.scn"
 
 [deps]
 
-source_file="res://busStop/busStop.glb"
-dest_files=["res://.godot/imported/busStop.glb-9a20d69ffb7d2c88ba8fe0fe17fe15b9.scn"]
+source_file="res://props/imports/key.glb"
+dest_files=["res://.godot/imported/key.glb-7862ad931734dfd7fd13aef525172e97.scn"]
 
 [params]
 
-nodes/root_type="StaticBody3D"
+nodes/root_type=""
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0

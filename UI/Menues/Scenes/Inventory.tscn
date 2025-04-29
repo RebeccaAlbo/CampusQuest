@@ -1,0 +1,251 @@
+[gd_scene load_steps=18 format=3 uid="uid://ncnfniaaeoud"]
+
+[ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="1_6ft6b"]
+[ext_resource type="Script" path="res://UI/Menues/Skripts/inventory.gd" id="1_w08wo"]
+[ext_resource type="Texture2D" uid="uid://b2yanklhivps" path="res://props/images/Key.png" id="2_3haq2"]
+[ext_resource type="Texture2D" uid="uid://iiqjl7r0kfdx" path="res://props/images/Coffee.png" id="3_qxvka"]
+[ext_resource type="Texture2D" uid="uid://dqfl804endd23" path="res://props/images/Food.png" id="4_idroe"]
+[ext_resource type="Texture2D" uid="uid://c4jr6d58xqjyl" path="res://props/images/Book.png" id="5_7nx0e"]
+[ext_resource type="Texture2D" uid="uid://cjnam661xsr2v" path="res://props/images/Wallet.png" id="6_xwmub"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l0ggt"]
+bg_color = Color(0.562937, 0.42195, 0.226031, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p3wml"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1al1h"]
+bg_color = Color(0.756863, 0.631373, 0.458824, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_68d05"]
+bg_color = Color(0.564706, 0.454902, 0.298039, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfgdj"]
+bg_color = Color(0.909804, 0.831373, 0.72549, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oe827"]
+texture = ExtResource("2_3haq2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bcodp"]
+texture = ExtResource("3_qxvka")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1dxw0"]
+texture = ExtResource("4_idroe")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_opqf3"]
+texture = ExtResource("5_7nx0e")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0lcq1"]
+texture = ExtResource("6_xwmub")
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w08wo")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l0ggt")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -255.0
+offset_top = 28.0
+offset_right = 255.0
+offset_bottom = 167.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.764706, 0.545098, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_fonts/font = ExtResource("1_6ft6b")
+theme_override_font_sizes/font_size = 85
+text = "Inventory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exit" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -161.0
+offset_top = 17.0
+offset_right = -27.0
+offset_bottom = 59.0
+grow_horizontal = 0
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_6ft6b")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_p3wml")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1al1h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_68d05")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yfgdj")
+text = "Exit"
+
+[node name="ImageContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 218.0
+offset_right = -15.0
+offset_bottom = -107.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="KeyImage" type="Panel" parent="Panel/ImageContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_oe827")
+
+[node name="CoffeImage" type="Panel" parent="Panel/ImageContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_bcodp")
+
+[node name="FoodImage" type="Panel" parent="Panel/ImageContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_1dxw0")
+
+[node name="BookImage" type="Panel" parent="Panel/ImageContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_opqf3")
+
+[node name="WalletImage" type="Panel" parent="Panel/ImageContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_0lcq1")
+
+[node name="TitleContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 155.0
+offset_bottom = 205.0
+grow_horizontal = 2
+
+[node name="Key" type="Label" parent="Panel/TitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_6ft6b")
+theme_override_font_sizes/font_size = 36
+text = "Key"
+horizontal_alignment = 1
+
+[node name="Coffee" type="Label" parent="Panel/TitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_6ft6b")
+theme_override_font_sizes/font_size = 36
+text = "Coffee"
+horizontal_alignment = 1
+
+[node name="Food" type="Label" parent="Panel/TitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_6ft6b")
+theme_override_font_sizes/font_size = 36
+text = "Food"
+horizontal_alignment = 1
+
+[node name="Book" type="Label" parent="Panel/TitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_6ft6b")
+theme_override_font_sizes/font_size = 36
+text = "Book"
+horizontal_alignment = 1
+
+[node name="Wallet" type="Label" parent="Panel/TitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_6ft6b")
+theme_override_font_sizes/font_size = 36
+text = "Wallet"
+horizontal_alignment = 1
+
+[node name="AmountContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 393.0
+offset_bottom = 443.0
+grow_horizontal = 2
+
+[node name="Key" type="Label" parent="Panel/AmountContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_6ft6b")
+theme_override_font_sizes/font_size = 36
+text = "0
+"
+horizontal_alignment = 1
+
+[node name="Coffee" type="Label" parent="Panel/AmountContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_6ft6b")
+theme_override_font_sizes/font_size = 36
+text = "0"
+horizontal_alignment = 1
+
+[node name="Food" type="Label" parent="Panel/AmountContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_6ft6b")
+theme_override_font_sizes/font_size = 36
+text = "0"
+horizontal_alignment = 1
+
+[node name="Book" type="Label" parent="Panel/AmountContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_6ft6b")
+theme_override_font_sizes/font_size = 36
+text = "0"
+horizontal_alignment = 1
+
+[node name="Wallet" type="Label" parent="Panel/AmountContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_6ft6b")
+theme_override_font_sizes/font_size = 36
+text = "0"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Panel/Exit" to="." method="_on_exit_pressed"]

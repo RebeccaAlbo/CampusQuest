@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://47qx37tnfxug"]
 
-[ext_resource type="PackedScene" uid="uid://dhw6aqaxqmilk" path="res://busStop/busStop.glb" id="1_ge4yq"]
-[ext_resource type="Script" path="res://busStop/bus_stop.gd" id="2_ecyc3"]
+[ext_resource type="PackedScene" uid="uid://dhw6aqaxqmilk" path="res://props/imports/busStop.glb" id="1_ge4yq"]
+[ext_resource type="Script" path="res://props/scripts/bus_stop.gd" id="2_ecyc3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mwfuk"]
 size = Vector3(0.3, 5, 4.6)

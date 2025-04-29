@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://36wmcll8n0bt"]
+
+[ext_resource type="PackedScene" uid="uid://cosslq5g50hd3" path="res://props/imports/key.glb" id="1_5hcel"]
+[ext_resource type="Script" path="res://props/scenes/key.gd" id="2_f7efd"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1q5mc"]
+radius = 2.0
+
+[node name="key" instance=ExtResource("1_5hcel")]
+script = ExtResource("2_f7efd")
+
+[node name="Area3D" type="Area3D" parent="." index="1"]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.279231)
+shape = SubResource("SphereShape3D_1q5mc")
+
+[node name="HoverText" type="Label3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45135, 0)
+visible = false
+billboard = 1
+shaded = true
+double_sided = false
+modulate = Color(0, 0, 0, 1)
+text = "Press F to pickup"
+font_size = 54
+outline_size = 15
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
