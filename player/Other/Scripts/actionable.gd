@@ -6,6 +6,7 @@ extends Area3D
 const Balloon = preload("res://dialogue/balloon.tscn")
 # For zooming in on NPC during conversation
 var camera: Camera3D = null
+var dialogue_camera: Camera3D = null
 var spring_arm: SpringArm3D
 var original_camera_position: Vector3
 var zoom_offset: Vector3 = Vector3(0, 1, 1)  # Adjust zoom position
@@ -32,19 +33,20 @@ func action() -> void:
 		player = get_tree().get_first_node_in_group("player")
 		if player:
 			var node3d = player.get_node_or_null("SpringArmPivot")
-			if node3d:
+			var neck = player.get_node_or_null("Neck")
+			if node3d and neck:
+				dialogue_camera = neck.get_node_or_null("DialogueCamera")
 				spring_arm = node3d.get_node_or_null("SpringArm3D")
 				if spring_arm:
 					camera = spring_arm.get_node_or_null("PCCamera")  # Finally, get Camera3D
 	
 	# If the camera exists, store original position and smoothly zoom it toward the NPC
-	if camera:
-		original_camera_position = camera.global_transform.origin
-		var target_position = npc.global_transform.origin + zoom_offset
-		smooth_camera_zoom(target_position)
+	if camera and dialogue_camera:
+		camera.current = false
+		dialogue_camera.current = true
 	
 	# Set up for dialoque envoronment
-	player.in_dialogue()
+	player.in_dialogue(npc)
 	if npc.name not in GameState.talked_to_npcs:
 		npc.change_mark()
 	GameState.add_npc_point(npc)
@@ -60,27 +62,5 @@ func action() -> void:
 	player.end_dialoque()
 	npc.animation("Idle", 0.3)
 	npc.face_back()
-	reset_camera_position()
-
-# Smoothly zooms the camera toward a target position by adjusting the spring arm's position and length with a tween
-func smooth_camera_zoom(target_pos: Vector3) -> void:
-	if camera:
-		if !initial_camera_pos:
-			initial_camera_pos = spring_arm.position # Save initial position if not already set
-		original_spring_arm_length = spring_arm.spring_length
-		original_camera_v_offset = camera.v_offset
-		# zoom-in
-		spring_arm.spring_length = 4.0
-		camera.v_offset = 7.0
-		
-		var local_target = spring_arm.to_local(target_pos)
-		var tween = get_tree().create_tween()
-		tween.tween_property(spring_arm, "position", local_target, 0.7).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-
-# Reset the camera to it original position after ended dialogue
-func reset_camera_position() -> void:
-		spring_arm.spring_length = original_spring_arm_length
-		camera.v_offset = original_camera_v_offset
-		if camera:
-			var tween = get_tree().create_tween()
-			tween.tween_property(spring_arm, "position", initial_camera_pos, 0.7).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	dialogue_camera.current = false
+	camera.current = true

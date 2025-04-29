@@ -24,7 +24,7 @@
 [ext_resource type="Script" path="res://UI/Menues/Skripts/big_map.gd" id="22_4s3ad"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="22_o3ee8"]
 [ext_resource type="Script" path="res://UI/Campus/panel.gd" id="24_2oniu"]
-[ext_resource type="PackedScene" uid="uid://3kjk4w0wer4" path="res://player/BaseCharacter/Scene/base_character.tscn" id="24_r2aeb"]
+[ext_resource type="PackedScene" uid="uid://3kjk4w0wer4" path="res://player/BaseCharacter/base_character.tscn" id="24_r2aeb"]
 [ext_resource type="Script" path="res://player/NPC/Script/äran.gd" id="25_va2l2"]
 [ext_resource type="PackedScene" uid="uid://ddlyrvsij0w4l" path="res://dialogue/extra_info.tscn" id="27_syvvn"]
 [ext_resource type="PackedScene" uid="uid://36wmcll8n0bt" path="res://props/scenes/key.tscn" id="28_206b2"]
@@ -48,7 +48,7 @@ size = Vector2(10000, 10000)
 background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
 
-[sub_resource type="GDScript" id="GDScript_uyss7"]
+[sub_resource type="GDScript" id="GDScript_myo24"]
 script/source = "extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -63,6 +63,7 @@ const SPEED = 30.0
 const LERP_VAL = .15
 
 var can_move: bool = true
+var original_pos
 
 var skin_colors = [
 	Color(0.98, 0.9, 0.78),   # Very light cream 
@@ -162,14 +163,29 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
-func in_dialogue():
+func in_dialogue(npc: Node3D):
 	velocity = Vector3.ZERO
 	anim_tree.set(\"parameters/BlendSpace1D/blend_position\", 0.0)
 	can_move = false
+	face_toward(npc)
 	
 func end_dialoque():
 	can_move = true
+	face_back()
 	
+# Rotates the object to face toward the target node, keeping the rotation level on the horizontal axis
+func face_toward(target_node: Node3D):
+	original_pos = rotation
+	var direction = (target_node.global_transform.origin - global_transform.origin)
+	direction.y = 0  # Keep it level, no vertical tilt
+	direction = direction.normalized()
+
+	var target_rotation = Vector3(0, atan2(direction.x, direction.z), 0)
+	rotation = target_rotation
+
+func face_back():
+		rotation = original_pos
+
 func change_skin_color(direction: int):
 	current_skin_index = (current_skin_index + direction) % skin_colors.size()
 	if current_skin_index < 0:
@@ -295,6 +311,7 @@ func update_character(skin_index: int, hair_index: int, pant_index: int, shirt_i
 	if shoes_material != null:
 		shoes_material.albedo_color = shoes_colors[shoes_index]	
 	
+
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_771xr"]
@@ -376,7 +393,7 @@ script = ExtResource("6_vgfen")
 
 [node name="BaseCharacter" parent="." instance=ExtResource("24_r2aeb")]
 transform = Transform3D(-4, 0, -3.49691e-07, 0, 4, 0, 3.49691e-07, 0, -4, -41.2879, 0, -173.553)
-script = SubResource("GDScript_uyss7")
+script = SubResource("GDScript_myo24")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter"]
 transform = Transform3D(1, 0, 4.47035e-08, 0, 1, 0, -4.47035e-08, 0, 1, 0, 1.85939, 0)

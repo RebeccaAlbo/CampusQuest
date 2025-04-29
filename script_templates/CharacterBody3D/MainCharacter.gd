@@ -12,6 +12,7 @@ const SPEED = 30.0
 const LERP_VAL = .15
 
 var can_move: bool = true
+var original_pos
 
 var skin_colors = [
 	Color(0.98, 0.9, 0.78),   # Very light cream 
@@ -111,14 +112,29 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
-func in_dialogue():
+func in_dialogue(npc: Node3D):
 	velocity = Vector3.ZERO
 	anim_tree.set("parameters/BlendSpace1D/blend_position", 0.0)
 	can_move = false
+	face_toward(npc)
 	
 func end_dialoque():
 	can_move = true
+	face_back()
 	
+# Rotates the object to face toward the target node, keeping the rotation level on the horizontal axis
+func face_toward(target_node: Node3D):
+	original_pos = rotation
+	var direction = (target_node.global_transform.origin - global_transform.origin)
+	direction.y = 0  # Keep it level, no vertical tilt
+	direction = direction.normalized()
+
+	var target_rotation = Vector3(0, atan2(direction.x, direction.z), 0)
+	rotation = target_rotation
+
+func face_back():
+		rotation = original_pos
+
 func change_skin_color(direction: int):
 	current_skin_index = (current_skin_index + direction) % skin_colors.size()
 	if current_skin_index < 0:
