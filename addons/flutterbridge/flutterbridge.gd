@@ -12,7 +12,7 @@ var flutter_ready := false
 # Signal to notify when Flutter is ready
 signal flutter_ready_signal
 #Signal to notify that a dialogue has been received
-signal dialog_received(speaker: String, dialogues: Array)
+signal dialog_received(speaker: String, dialogues: String)
 
 
 
@@ -28,7 +28,7 @@ func _ready():
 func _setup_js_bridge():
 	# Check if web mode is supported (JavaScriptBridge)
 	if not web_mode:
-		print("[FlutterBridge] JavaScriptBridge not available on this platform.")
+		print("[Godot]  JavaScriptBridge not available on this platform.")
 		return
 
 	# Create the JavaScript callback that will handle messages from JS
@@ -69,7 +69,7 @@ func _setup_js_bridge():
 
 	# Notify Flutter that Godot is ready
 	JavaScriptBridge.eval("window.parent.postMessage({ type: 'godot_ready' }, '*');", true)
-	print("[FlutterBridge] Godot bridge is ready!")
+	print("[Godot]  Godot bridge is ready!")
 
 # Request a dialog from Flutter by speaker name
 #returns a list of dialogues
@@ -78,42 +78,39 @@ func _setup_js_bridge():
 #	for dialog in dialog_data:
 #		print("Line:", dialog["content"])
 
-func request_dialog(speaker: String) -> Array:
+func request_dialog(speaker: String) -> String:
 	if not web_mode:
-		print("[FlutterBridge] Web platform not available.")
-		return []
+		print("[Godot]  Web platform not available.")
+		return ""
 
 	if not flutter_ready:
-		print("[FlutterBridge] Waiting for Flutter to become ready...")
+		print("[Godot]  Waiting for Flutter to become ready...")
 		await flutter_ready_signal
-		print("[FlutterBridge] Flutter is now ready!")
+		print("[Godot]  Flutter is now ready!")
 
-	print("[FlutterBridge] Requesting dialog for:", speaker)
+	print("[Godot]  Requesting dialog for:", speaker)
 
 	# Send the request
 	var js := "window.parent.postMessage({ type: 'dialog_request', speaker: '" + speaker + "' }, '*');"
 	JavaScriptBridge.eval(js, true)
 
 	# Await dialog response
-	print("[FlutterBridge] Waiting for dialog response for speaker:", speaker)
+	print("[Godot]  Waiting for dialog response for speaker:", speaker)
 
 	var args = await dialog_received
 	print("speaker: ", args[0])
 	print("data: ", args[1])
 	
-	var result = args[1] if args != null and args.size() > 1 else []
+	var result = args[1] if args != null else ""
 
-	print("[FlutterBridge] Dialog response received for speaker:", speaker)
-	
-	print("[FlutterBridge] result:", result)
+	print("[Godot]  Dialog response received for ", speaker, ": ", result)
 	return result
-
 
 # This function is called when a message is received from JavaScript
 func _on_js_message(args: Array):
 	# If no arguments were passed from JS, return early
 	if args.size() == 0:
-		print("[FlutterBridge] No arguments passed from JS")
+		print("[Godot]  No arguments passed from JS")
 		return
 
 	# Parse the JSON string received from JS
@@ -125,20 +122,21 @@ func _on_js_message(args: Array):
 		match parsed.get("type", ""):
 			# Handle Flutter ready signal
 			"flutter_ready":
-				print("[FlutterBridge] Flutter is ready!")
+				print("[Godot]  Flutter is ready!")
 				flutter_ready = true  # Set the flag that Flutter is ready
 				emit_signal("flutter_ready_signal")  # Emit signal to notify waiting functions
-
+				request_dialog("Fysik")
+				
 			# Handle dialog data reception
 			"dialog_receive":
-				var dialog_data: Array = parsed.get("data", [])
+				var dialog_data: String = parsed.get("data", "")
 				var speaker: String = parsed.get("speaker", "Unknown")
 
-				if dialog_data is Array:
-					print("[FlutterBridge] Dialog received for speaker:", speaker, "Data:", dialog_data)
+				if dialog_data is String:
+					print("[Godot]  Dialog received for speaker:", speaker, "Data:", dialog_data)
 					emit_signal("dialog_received", speaker, dialog_data)
 				else:
-					print("[FlutterBridge] dialog_receive data is not an array")
+					print("[Godot]  dialog_receive data is not an array")
 			"speakers_request":
 				var speakers = ['Fyisk', 'Bio']
 				var speakers_json = JSON.stringify(speakers)
@@ -146,4 +144,4 @@ func _on_js_message(args: Array):
 				JavaScriptBridge.eval(js)
 				
 	else:
-		print("[FlutterBridge] Failed to parse JSON")
+		print("[Godot]  Failed to parse JSON")
