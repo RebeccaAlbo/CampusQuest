@@ -6,6 +6,6 @@ extends Control
 func _on_exit_pressed() -> void:
 	self.visible = false
 	pause_menu.paused = false
+	GameState.set_mouse_state(GameState.MouseState.GAMEPLAY)
 	if !GameState.is_mobile:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		minimap.visible = true

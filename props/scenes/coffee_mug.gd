@@ -2,7 +2,7 @@ extends Node3D
 
 @onready var hover_text: Label3D = $HoverText
 
-var node_name := ""
+var node_name := "coffee"
 var player
 var player_in_pickup_zone: bool = false
 

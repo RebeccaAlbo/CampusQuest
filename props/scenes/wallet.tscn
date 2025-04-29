@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b1pvrh7buxg0p"]
 
 [ext_resource type="PackedScene" uid="uid://buukaslg4d0pv" path="res://props/imports/wallet.glb" id="1_yemfo"]
-[ext_resource type="Script" path="res://props/scenes/wallet.gd" id="2_8njia"]
+[ext_resource type="Script" path="res://props/scripts/wallet.gd" id="2_8njia"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_30pkq"]
 radius = 5.0

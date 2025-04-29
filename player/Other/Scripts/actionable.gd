@@ -52,7 +52,7 @@ func action() -> void:
 	npc.animation("Talking", 0.3)
 	var balloon: Node = Balloon.instantiate()
 	get_tree().current_scene.add_child(balloon)
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	GameState.set_mouse_state(GameState.MouseState.UI)
 	balloon.start(dialoque_resource, dialoque_start)
 	
 	# Wait for end of dialogue, then reset everything
@@ -60,21 +60,22 @@ func action() -> void:
 	player.end_dialoque()
 	npc.animation("Idle", 0.3)
 	npc.face_back()
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	reset_camera_position()
 
 # Smoothly zooms the camera toward a target position by adjusting the spring arm's position and length with a tween
 func smooth_camera_zoom(target_pos: Vector3) -> void:
 	if camera:
 		if !initial_camera_pos:
-			initial_camera_pos = spring_arm.global_transform.origin # Save initial position if not already set
+			initial_camera_pos = spring_arm.position # Save initial position if not already set
 		original_spring_arm_length = spring_arm.spring_length
 		original_camera_v_offset = camera.v_offset
 		# zoom-in
 		spring_arm.spring_length = 4.0
 		camera.v_offset = 7.0
+		
+		var local_target = spring_arm.to_local(target_pos)
 		var tween = get_tree().create_tween()
-		tween.tween_property(spring_arm, "global_transform:origin", target_pos, 0.7).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		tween.tween_property(spring_arm, "position", local_target, 0.7).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 # Reset the camera to it original position after ended dialogue
 func reset_camera_position() -> void:
@@ -82,4 +83,4 @@ func reset_camera_position() -> void:
 		camera.v_offset = original_camera_v_offset
 		if camera:
 			var tween = get_tree().create_tween()
-			tween.tween_property(spring_arm, "global_transform:origin", initial_camera_pos, 0.7).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+			tween.tween_property(spring_arm, "position", initial_camera_pos, 0.7).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)

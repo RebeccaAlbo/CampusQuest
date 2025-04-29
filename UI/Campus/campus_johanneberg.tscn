@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=59 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_johanneberg.gd" id="1_p1r2s"]
 [ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="3_p4gww"]
@@ -32,6 +32,7 @@
 [ext_resource type="Script" path="res://UI/Campus/panel.gd" id="29_6t16t"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="32_oqewd"]
 [ext_resource type="PackedScene" uid="uid://ddlyrvsij0w4l" path="res://dialogue/extra_info.tscn" id="34_4jer0"]
+[ext_resource type="PackedScene" uid="uid://cbad6500e7nqy" path="res://props/scenes/book_box.tscn" id="34_ngb0i"]
 [ext_resource type="Script" path="res://player/NPC/Script/economic.gd" id="37_kvtch"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
@@ -809,6 +810,7 @@ size = 100.0
 
 [node name="BigMap" type="Control" parent="CanvasLayer"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -830,7 +832,7 @@ stretch = true
 handle_input_locally = false
 size = Vector2i(1000, 500)
 size_2d_override_stretch = true
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="BigMapCamera" type="Camera3D" parent="CanvasLayer/BigMap/SubViewportContainer/SubViewport"]
 transform = Transform3D(-0.422618, -0.906308, -3.9616e-08, 0, -4.37114e-08, 1, -0.906308, 0.422618, 1.84732e-08, -113.817, 300, -99.5864)
@@ -1153,6 +1155,9 @@ theme_override_font_sizes/font_size = 16
 text = "Fysik"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="bookBox" parent="." instance=ExtResource("34_ngb0i")]
+transform = Transform3D(0.633927, 0, -1.35946, 0, 1.5, 0, 1.35946, 0, 0.633927, -15.976, 0.0723877, -173.181)
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="CanvasLayer/MenuButton" to="CanvasLayer/PauseMenu" method="_on_menu_button_pressed"]

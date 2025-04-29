@@ -4,6 +4,9 @@ var score = 0
 var talked_to_npcs = {}
 var is_mobile := false
 
+enum MouseState {GAMEPLAY, UI}
+var current_state: MouseState = MouseState.UI
+
 func _ready() -> void:
 	if OS.get_name() == "Android":
 		is_mobile = true
@@ -12,6 +15,15 @@ func _ready() -> void:
 		set_mobile_resolution()
 	else:
 		set_pc_resolution()
+
+func set_mouse_state(state: MouseState):
+	current_state = state
+	
+	match state:
+		MouseState.GAMEPLAY:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		MouseState.UI:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 # Adds a point to the score for interacting with a new NPC
 # Tracks the interaction to avoid repetition
@@ -87,11 +99,11 @@ func set_pc_resolution():
 	var pc_resolution = Vector2i(1000,500)
 	DisplayServer.window_set_size(pc_resolution)
 	
+# In dialogue, show extra information about department from database
 func show_extra_info(yes: bool, name: String):
 	if yes:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		var node = get_tree().current_scene.get_node("CanvasLayer/ExtraInfo")
-		node.visible = true
+		var info_node = get_tree().current_scene.get_node("CanvasLayer/ExtraInfo")
+		var minimap_node = get_tree().current_scene.get_node("CanvasLayer/Minimap")
+		info_node.visible = true
+		minimap_node.visible = false
 		#Calling some function with the name variable ???
-	else:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbad6500e7nqy"]
+
+[ext_resource type="PackedScene" uid="uid://fiofyvrgs340" path="res://props/imports/bookBox.glb" id="1_8uvy3"]
+[ext_resource type="Script" path="res://props/scenes/book_box.gd" id="2_o3yum"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5pb21"]
+radius = 4.0
+
+[node name="bookBox" instance=ExtResource("1_8uvy3")]
+script = ExtResource("2_o3yum")
+
+[node name="Area3D" type="Area3D" parent="." index="2"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.279231)
+shape = SubResource("SphereShape3D_5pb21")
+
+[node name="HoverText" type="Label3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.26727, 0)
+visible = false
+billboard = 1
+shaded = true
+double_sided = false
+modulate = Color(0, 0, 0, 1)
+text = "Press F to interact"
+font_size = 200
+outline_size = 15
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
