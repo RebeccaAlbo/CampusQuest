@@ -9,14 +9,59 @@ var js_callback
 # Flag to track if Flutter is ready
 var flutter_ready := false
 
+var speakers = [
+
+"anglia",
+
+"architecture",
+
+"chemistry",
+
+"computer",
+
+'economic',
+
+"electrical",
+
+"industrial",
+
+"jupiter",
+
+"kuggen",
+
+"life",
+
+"math",
+
+"mechanics",
+
+"micro",
+
+"npc_2",
+
+"patricia",
+
+"physics",
+
+"saga",
+
+"science",
+
+"space",
+
+"svea",
+
+"äran"]
+
 # Signal to notify when Flutter is ready
 signal flutter_ready_signal
 #Signal to notify that a dialogue has been received
 signal dialog_received(speaker: String, dialogues: String)
 
 
-
 func _ready():
+	print("[Godot _ready]  Available speakers: ", speakers)
+	
 	# Skip execution in the editor mode
 	if Engine.is_editor_hint():
 		return
@@ -74,9 +119,7 @@ func _setup_js_bridge():
 # Request a dialog from Flutter by speaker name
 #returns a list of dialogues
 #use like this:
-#	var dialog_data := await FlutterBridge.request_dialog("Fysik")
-#	for dialog in dialog_data:
-#		print("Line:", dialog["content"])
+#var dialog_data := await FlutterBridge.request_dialog("Fysik")
 
 func request_dialog(speaker: String) -> String:
 	if not web_mode:
@@ -138,10 +181,29 @@ func _on_js_message(args: Array):
 				else:
 					print("[Godot]  dialog_receive data is not an array")
 			"speakers_request":
-				var speakers = ['Fyisk', 'Bio']
+				print("[Godot]  Available speakers: ", speakers)
 				var speakers_json = JSON.stringify(speakers)
+				print("[Godot]  Available speakers(JSON): ", speakers)
 				var js = "window.parent.postMessage({ type: 'speakers_receive', data: " + speakers_json + " }, '*');"
 				JavaScriptBridge.eval(js)
 				
 	else:
 		print("[Godot]  Failed to parse JSON")
+		
+func get_scene_names_in_folder(path: String) -> Array[String]:
+	var scene_names: Array[String] = []
+	var dir := DirAccess.open(path)
+
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+
+		while file_name != "":
+			if not dir.current_is_dir() and file_name.ends_with(".tscn"):
+				scene_names.append(file_name.get_basename()) # Without extension
+			file_name = dir.get_next()
+
+		dir.list_dir_end()
+	else:
+		print("[Godot] Failed to open directory: ", path)
+	return scene_names
