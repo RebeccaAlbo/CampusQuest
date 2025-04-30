@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://fiofyvrgs340"
-path="res://.godot/imported/bookBox.glb-5883daefcd18fe5178c2c07fd15ae2f8.scn"
+uid="uid://7vpmtaarexh7"
+path="res://.godot/imported/foodStall.glb-d1345d6a43c74586fa2c9bd1d1733de1.scn"
 
 [deps]
 
-source_file="res://props/imports/bookBox.glb"
-dest_files=["res://.godot/imported/bookBox.glb-5883daefcd18fe5178c2c07fd15ae2f8.scn"]
+source_file="res://props/imports/foodStall.glb"
+dest_files=["res://.godot/imported/foodStall.glb-d1345d6a43c74586fa2c9bd1d1733de1.scn"]
 
 [params]
 

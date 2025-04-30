@@ -7,7 +7,6 @@ var player_in_interact_zone: bool = false
 
 # Makes hover_text visible when player is in close proximity
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	print("here")
 	if body.is_in_group("player"):
 		player = body
 		player_in_interact_zone = true
@@ -16,17 +15,16 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 # If interactions, add item to inventory and mark as picked up
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("interact") and player_in_interact_zone:
-		var count = MiniQuests.get_item_count("book")
-		if count > 0:
-			if count > 1:
-				hover_text.text = "Books returned"
-			else:
-				hover_text.text = "Book returned"
-			
-			MiniQuests.remove_item("book")
-			GameState.score += count
+		var orders = MiniQuests.food_orders
+		var order_count = orders.size()
+		if order_count > 0:
+			for food in orders:
+				MiniQuests.add_item("food", food)
+				MiniQuests.picked_up_items.append(food)
+			MiniQuests.food_orders.clear()
+			hover_text.text = "You have received your orders"
 		else:
-			hover_text.text = "You have no book to return"
+			hover_text.text = "You have no food orders"
 
 # Makes hover_text invisible when player no longer is in close proximity
 func _on_area_3d_body_exited(_body: Node3D) -> void:

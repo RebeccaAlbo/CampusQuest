@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://wok612jj01x"]
+
+[ext_resource type="PackedScene" uid="uid://7vpmtaarexh7" path="res://props/imports/foodStall.glb" id="1_xw86l"]
+[ext_resource type="Script" path="res://props/scenes/food_stall.gd" id="2_ks6w2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yjao5"]
+size = Vector3(6, 5, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i18w8"]
+size = Vector3(5.70239, 3.87836, 4.37408)
+
+[node name="foodStall" instance=ExtResource("1_xw86l")]
+script = ExtResource("2_ks6w2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47864, -1.43291)
+shape = SubResource("BoxShape3D_yjao5")
+
+[node name="Area3D" type="Area3D" parent="." index="2"]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0291748, 0.927887, 1.68704)
+shape = SubResource("BoxShape3D_i18w8")
+
+[node name="HoverText" type="Label3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.15802, -1.4455)
+visible = false
+billboard = 1
+shaded = true
+double_sided = false
+modulate = Color(0, 0, 0, 1)
+text = "Press F to interact"
+font_size = 250
+outline_size = 15
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
