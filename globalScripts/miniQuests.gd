@@ -7,14 +7,14 @@ var inventory: = {
 	"key": 0,
 	"wallet": 0,
 	"book": [],
-	"food": 0,
+	"food": [],
 	"coffee": []
 }
 
 # Keeps track of picked up items
 var picked_up_items := []
 
-var order_lunch := false
+var food_orders := []
 
 func get_item_count(item_name: String) -> int:
 	if not inventory.has(item_name):
@@ -43,7 +43,7 @@ func add_item(item_name: String, item_detail: String = "") -> void:
 		if item_detail != "":
 			inventory[item_name].append(item_detail)
 	
-	print(inventory["coffee"])
+	print(inventory["food"])
 	inventory_updated.emit()
 		
 # Remove certain item from inventory

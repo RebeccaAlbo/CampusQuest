@@ -15,7 +15,6 @@ func _ready() -> void:
 		set_mobile_resolution()
 	else:
 		set_pc_resolution()
-		score = await FlutterBridge.request_score()
 
 func set_mouse_state(state: MouseState):
 	current_state = state
@@ -41,6 +40,7 @@ func save_game():
 		"talked_to_npcs": talked_to_npcs,
 		"inventory": MiniQuests.inventory,
 		"picked_up_items": MiniQuests.picked_up_items,
+		"food_orders": MiniQuests.food_orders,
 		"player_appearance": {
 			"shirt": CharacterCust.shirt_index,
 			"hair": CharacterCust.hair_index,
@@ -78,6 +78,7 @@ func load_game():
 			
 			MiniQuests.inventory = save_data.get("inventory", {})
 			MiniQuests.picked_up_items = save_data.get("picked_up_items", [])
+			MiniQuests.food_orders = save_data.get("food_orders", [])
 		
 			var appearance = save_data.get("player_appearance", {})
 			CharacterCust.shirt_index = appearance.get("shirt", 0)
@@ -101,14 +102,14 @@ func set_pc_resolution():
 	DisplayServer.window_set_size(pc_resolution)
 	
 # In dialogue, show extra information about department from database
-func show_extra_info(yes: bool, NPCName: String):
+func show_extra_info(yes: bool, npc_name: String):
 	if yes:
 		var info_node = get_tree().current_scene.get_node("CanvasLayer/ExtraInfo")
 		var minimap_node = get_tree().current_scene.get_node("CanvasLayer/Minimap")
 		info_node.visible = true
 		minimap_node.visible = false
 		#Calling some function with the name variable
-		var dialog_data := await FlutterBridge.request_dialog(NPCName)
+		var dialog_data := await FlutterBridge.request_dialog(npc_name)
 		var data_label = info_node.get_node("DataBaseText")
 		data_label.text = dialog_data
 		

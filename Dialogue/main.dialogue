@@ -74,7 +74,22 @@ We are currently standing infront of the department of Chemistry and chemical en
 - Learn more about the department
 	do show_extra_info(true, "chemistry")
 	=> END
-- End conversation
+- Help with a task
+	if not picked_up_items.has("keyChemistry") or inventory.get("key", 0) > 0
+		I have lost the key to the chemistry lab, have you seen it?
+		if inventory.get("key", 0) > 0 and picked_up_items.has("keyChemistry"):
+			- Yes, here you go
+			Thank you so much
+			do remove_item("key")
+			do score +=1
+			do set_mouse_state(GameState.MouseState.GAMEPLAY)
+		else:
+			- No, do you know where you lost it?
+			Near the MC2 building I think
+			- I'll try to find it
+	else:
+		You have already helped me
+		- End conversation
 
 do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
@@ -252,7 +267,21 @@ We are currently standing infront of Jupiter
 - Learn more about the department
 	do show_extra_info(true, "jupiter")
 	=> END
-- End conversation
+- Help with a task
+	if not picked_up_items.has("foodJupiter"):
+		I really need lunch, but I also have to prepare for a lecture. Would you mind fetching me some lunch?
+		- Not at all
+			Thank you so much
+			do food_orders.append("foodJupiter")
+		- No, not right now
+			Okey, come back if you change your mind
+	elif inventory["food"].has("foodJupiter"):
+		- Here is your lunch
+		Thank you so much
+		do inventory["food"].erase("foodJupiter")
+	else:
+		You have already helped me
+		- End conversation
 	
 do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!

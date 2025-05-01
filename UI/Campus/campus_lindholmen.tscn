@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://c3ynfcpspetng"]
+[gd_scene load_steps=47 format=3 uid="uid://c3ynfcpspetng"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_lindholmen.gd" id="1_bghy0"]
 [ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="3_vo4v6"]
@@ -26,6 +26,7 @@
 [ext_resource type="Script" path="res://UI/Campus/panel.gd" id="24_2oniu"]
 [ext_resource type="PackedScene" uid="uid://3kjk4w0wer4" path="res://player/BaseCharacter/base_character.tscn" id="24_r2aeb"]
 [ext_resource type="Script" path="res://player/NPC/Script/äran.gd" id="25_va2l2"]
+[ext_resource type="PackedScene" uid="uid://wok612jj01x" path="res://props/scenes/food_stall.tscn" id="26_ocyoq"]
 [ext_resource type="PackedScene" uid="uid://ddlyrvsij0w4l" path="res://dialogue/extra_info.tscn" id="27_syvvn"]
 [ext_resource type="PackedScene" uid="uid://36wmcll8n0bt" path="res://props/scenes/key.tscn" id="28_206b2"]
 [ext_resource type="PackedScene" uid="uid://b1pvrh7buxg0p" path="res://props/scenes/wallet.tscn" id="29_d8f1n"]
@@ -570,6 +571,21 @@ visible = false
 layers = 1024
 texture = ExtResource("16_84c18")
 
+[node name="keyKuggen" parent="anglia" instance=ExtResource("28_206b2")]
+transform = Transform3D(-1.20968, 0, 0.314896, 0, 1.25, 0, -0.314896, 0, -1.20968, -41.6075, 0.00114989, 32.0148)
+
+[node name="walletMath" parent="anglia" instance=ExtResource("29_d8f1n")]
+transform = Transform3D(-0.241937, 0, 0.0629792, 0, 0.25, 0, -0.0629792, 0, -0.241937, -15.5829, -0.10445, -0.0305862)
+
+[node name="coffeeMug" parent="anglia" instance=ExtResource("30_ma2ue")]
+transform = Transform3D(-0.362905, 0, 0.0944688, 0, 0.375, 0, -0.0944688, 0, -0.362905, -38.2263, 1.21733, 47.7994)
+
+[node name="bookBox" parent="anglia" instance=ExtResource("31_nwhd2")]
+transform = Transform3D(0.212893, 0, 0.30871, 0, 0.375, 0, -0.30871, 0, 0.212893, -42.2896, 0.00114989, 52.3555)
+
+[node name="foodStall" parent="anglia" instance=ExtResource("26_ocyoq")]
+transform = Transform3D(0.459943, 0, -0.385295, 0, 0.6, 0, 0.385295, 0, 0.459943, -25.1364, 0.00114989, 46.0398)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Virtual Joystick" parent="CanvasLayer" instance=ExtResource("22_o3ee8")]
@@ -907,18 +923,6 @@ vertical_alignment = 1
 
 [node name="ExtraInfo" parent="CanvasLayer" instance=ExtResource("27_syvvn")]
 visible = false
-
-[node name="keyKuggen" parent="." instance=ExtResource("28_206b2")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 8.94026, 0, 32.7219)
-
-[node name="walletMath" parent="." instance=ExtResource("29_d8f1n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.5098, -0.422401, 182.994)
-
-[node name="coffeeMug" parent="." instance=ExtResource("30_ma2ue")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -20.0542, 4.86474, -24.9731)
-
-[node name="bookBox" parent="." instance=ExtResource("31_nwhd2")]
-transform = Transform3D(-0.51303, 0, -1.40954, 0, 1.5, 0, 1.40954, 0, -0.51303, -8.91617, 0, -46.704)
 
 [connection signal="pressed" from="CanvasLayer/MenuButton" to="CanvasLayer/PauseMenu" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BigMap/GoBack" to="CanvasLayer/BigMap" method="_on_go_back_pressed"]
