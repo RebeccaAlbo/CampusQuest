@@ -15,6 +15,7 @@ func _ready() -> void:
 		set_mobile_resolution()
 	else:
 		set_pc_resolution()
+		score = await FlutterBridge.request_score()
 
 func set_mouse_state(state: MouseState):
 	current_state = state
@@ -100,14 +101,14 @@ func set_pc_resolution():
 	DisplayServer.window_set_size(pc_resolution)
 	
 # In dialogue, show extra information about department from database
-func show_extra_info(yes: bool, name: String):
+func show_extra_info(yes: bool, NPCName: String):
 	if yes:
 		var info_node = get_tree().current_scene.get_node("CanvasLayer/ExtraInfo")
 		var minimap_node = get_tree().current_scene.get_node("CanvasLayer/Minimap")
 		info_node.visible = true
 		minimap_node.visible = false
 		#Calling some function with the name variable
-		var dialog_data := await FlutterBridge.request_dialog(name)
+		var dialog_data := await FlutterBridge.request_dialog(NPCName)
 		var data_label = info_node.get_node("DataBaseText")
 		data_label.text = dialog_data
 		

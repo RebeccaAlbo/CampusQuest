@@ -57,6 +57,8 @@ var speakers = [
 signal flutter_ready_signal
 #Signal to notify that a dialogue has been received
 signal dialog_received(speaker: String, dialogues: String)
+#Signal to notify that a score has been received
+signal score_received(score: int)
 
 
 func _ready():
@@ -94,9 +96,11 @@ func _setup_js_bridge():
 			if (!message?.type) return;
 
 			switch (message.type) {
-				case 'dialog_receive':
+				case 'dialog_response':
 				case 'flutter_ready':
 				case 'speakers_request':
+				case 'score_response':
+				case 'game_score_request':
 					if (window.godotBridge) {
 						const json = JSON.stringify(message);
 						window.godotBridge.sendMessage(json);
@@ -149,6 +153,31 @@ func request_dialog(speaker: String) -> String:
 	print("[Godot]  Dialog response received for ", speaker, ": ", result)
 	return result
 
+func request_score() -> int:
+	if not web_mode:
+		print("[Godot]  Web platform not available.")
+		return 0
+
+	if not flutter_ready:
+		print("[Godot]  Waiting for Flutter to become ready...")
+		await flutter_ready_signal
+		print("[Godot]  Flutter is now ready!")
+
+	print("[Godot]  Requesting score from Flutter...")
+
+	# Send score request to Flutter
+	var js := "window.parent.postMessage({ type: 'score_request' }, '*');"
+	JavaScriptBridge.eval(js, true)
+
+	# Wait for the score to be received
+	var score = await score_received
+	print("[Godot]  Score received: ", score)
+	return score
+
+
+func request_game_score() -> int:
+	return 0
+
 # This function is called when a message is received from JavaScript
 func _on_js_message(args: Array):
 	# If no arguments were passed from JS, return early
@@ -171,7 +200,7 @@ func _on_js_message(args: Array):
 				request_dialog("Fysik")
 				
 			# Handle dialog data reception
-			"dialog_receive":
+			"dialog_response":
 				var dialog_data: String = parsed.get("data", "")
 				var speaker: String = parsed.get("speaker", "Unknown")
 
@@ -179,31 +208,22 @@ func _on_js_message(args: Array):
 					print("[Godot]  Dialog received for speaker:", speaker, "Data:", dialog_data)
 					emit_signal("dialog_received", speaker, dialog_data)
 				else:
-					print("[Godot]  dialog_receive data is not an array")
+					print("[Godot]  dialog_response data is not an array")
 			"speakers_request":
 				print("[Godot]  Available speakers: ", speakers)
 				var speakers_json = JSON.stringify(speakers)
 				print("[Godot]  Available speakers(JSON): ", speakers)
-				var js = "window.parent.postMessage({ type: 'speakers_receive', data: " + speakers_json + " }, '*');"
+				var js = "window.parent.postMessage({ type: 'speakers_response', data: " + speakers_json + " }, '*');"
+				JavaScriptBridge.eval(js)
+			"score_response":
+				var score_val = int(parsed.get("data", 0))
+				print("[Godot]  Score response received: ", score_val)
+				emit_signal("score_received", score_val)
+	
+			"game_score_request":
+				var score = request_game_score()
+				var js = "window.parent.postMessage({ type: 'game_score_response', data: " + score + " }, '*');"
 				JavaScriptBridge.eval(js)
 				
 	else:
 		print("[Godot]  Failed to parse JSON")
-		
-func get_scene_names_in_folder(path: String) -> Array[String]:
-	var scene_names: Array[String] = []
-	var dir := DirAccess.open(path)
-
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-
-		while file_name != "":
-			if not dir.current_is_dir() and file_name.ends_with(".tscn"):
-				scene_names.append(file_name.get_basename()) # Without extension
-			file_name = dir.get_next()
-
-		dir.list_dir_end()
-	else:
-		print("[Godot] Failed to open directory: ", path)
-	return scene_names

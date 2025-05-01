@@ -20,9 +20,9 @@ config/icon="res://icon.svg"
 SceneManager="*res://globalScripts/SceneManager.gd"
 CharacterCust="*res://globalScripts/CharacterCust.gd"
 GameState="*res://globalScripts/gameState.gd"
+MiniQuests="*res://globalScripts/miniQuests.gd"
 FlutterBridge="*res://addons/flutterbridge/flutterbridge.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-MiniQuests="*res://globalScripts/miniQuests.gd"
 
 [dialogue_manager]
 
@@ -38,7 +38,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/flutterbridge/plugin.cfg", "res://addons/scene_manifest_generator/plugin.cfg")
 
 [input]
 
