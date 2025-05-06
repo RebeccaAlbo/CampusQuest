@@ -15,6 +15,7 @@ func _ready() -> void:
 		set_mobile_resolution()
 	else:
 		set_pc_resolution()
+		score = await FlutterBridge.request_score()
 
 func set_mouse_state(state: MouseState):
 	current_state = state
@@ -28,6 +29,7 @@ func set_mouse_state(state: MouseState):
 # Adds a point to the score for interacting with a new NPC
 # Tracks the interaction to avoid repetition
 func add_npc_point(npc: Node):
+	print(talked_to_npcs)
 	if not talked_to_npcs.has(npc.name):
 		talked_to_npcs[npc.name] = true
 		score += 1
@@ -50,47 +52,76 @@ func save_game():
 		}
 	}
 	
+	
 	# Converts the save data to a JSON string, writes it to a file, 
 	# and saves the game state to disk
 	var json_data = JSON.stringify(save_data)
 	var file = FileAccess.open("user://save_game.json", FileAccess.WRITE)
 	file.store_string(json_data)
 	file.close()
+	
+	# send the data to flutter 
+	if (!is_mobile):
+		var result := await FlutterBridge.save_game(save_data)
+	else: 
+		pass #TODO add mobile
 	print("game saved")
 	
+func quit_game():
+	if (!is_mobile):
+		await FlutterBridge.quit_game() #send back a true or false if successful
+	else: #mobile 
+		get_tree().quit()
+	
 func load_game():
-	# Checks if the save game file exists, opens it for reading, parses the JSON data
-	# and then closes the file
-	if FileAccess.file_exists("user://save_game.json"):
-		var file = FileAccess.open("user://save_game.json", FileAccess.READ)
-		var json = JSON.new()
-		var result = json.parse(file.get_as_text())
-		file.close()
-		
-		# Loads and parses the saved game data, updates score, NPC interaction data, 
-		# and player appearance based on saved values
-		if result == OK:
-			var save_data = json.get_data()
-			file.close()
-			
-			score = save_data.get("score", 0)
-			talked_to_npcs = save_data.get("talked_to_npcs", {})
-			
-			MiniQuests.inventory = save_data.get("inventory", {})
-			MiniQuests.picked_up_items = save_data.get("picked_up_items", [])
-			MiniQuests.food_orders = save_data.get("food_orders", [])
-			print(MiniQuests.food_orders)
-		
-			var appearance = save_data.get("player_appearance", {})
-			CharacterCust.shirt_index = appearance.get("shirt", 0)
-			CharacterCust.hair_index = appearance.get("hair", 0)
-			CharacterCust.skin_index = appearance.get("skin", 0)
-			CharacterCust.pant_index = appearance.get("pant", 0)
-			CharacterCust.shoes_index = appearance.get("shoes", 0)
-		
-		
+	if FlutterBridge.web_mode:
+		print("[Godot] Running on Web with JS available – requesting save from Flutter")
+		var flutter_data = await FlutterBridge.request_game()
+
+		if flutter_data.is_empty():
+			print("[Godot] Flutter returned empty character data")
+			return
+
+		score = flutter_data.get("score", 0)
+		talked_to_npcs = flutter_data.get("talked_to_npcs", {})
+
+		MiniQuests.inventory = flutter_data.get("inventory", {})
+		MiniQuests.picked_up_items = flutter_data.get("picked_up_items", [])
+		MiniQuests.food_orders = flutter_data.get("food_orders", [])
+
+		var appearance = flutter_data.get("player_appearance", {})
+		CharacterCust.shirt_index = appearance.get("shirt", 0)
+		CharacterCust.hair_index = appearance.get("hair", 0)
+		CharacterCust.skin_index = appearance.get("skin", 0)
+		CharacterCust.pant_index = appearance.get("pant", 0)
+		CharacterCust.shoes_index = appearance.get("shoes", 0)
 	else:
 		print("no saved file")
+		# Fallback to local save
+		if FileAccess.file_exists("user://save_game.json"):
+			var file = FileAccess.open("user://save_game.json", FileAccess.READ)
+			var json = JSON.new()
+			var result = json.parse(file.get_as_text())
+			file.close()
+
+			if result == OK:
+				var save_data = json.get_data()
+
+				score = save_data.get("score", 0)
+				talked_to_npcs = save_data.get("talked_to_npcs", {})
+
+				MiniQuests.inventory = save_data.get("inventory", {})
+				MiniQuests.picked_up_items = save_data.get("picked_up_items", [])
+				MiniQuests.food_orders = save_data.get("food_orders", [])
+
+				var appearance = save_data.get("player_appearance", {})
+				CharacterCust.shirt_index = appearance.get("shirt", 0)
+				CharacterCust.hair_index = appearance.get("hair", 0)
+				CharacterCust.skin_index = appearance.get("skin", 0)
+				CharacterCust.pant_index = appearance.get("pant", 0)
+				CharacterCust.shoes_index = appearance.get("shoes", 0)
+		else:
+			print("No saved file")
 
 # Adjust resolution for mobile
 func set_mobile_resolution():
