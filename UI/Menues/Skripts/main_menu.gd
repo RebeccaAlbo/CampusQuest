@@ -16,7 +16,8 @@ func _on_start_pressed() -> void:
 
 
 func _on_exit_pressed() -> void:
-	get_tree().quit()
+	GameState.save_game()
+	GameState.quit_game()
 
 
 func _on_controls_pressed() -> void:

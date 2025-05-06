@@ -50,7 +50,8 @@ func _on_resume_pressed() -> void:
 # Saves the game and quits the application
 func _on_quit_game_pressed() -> void:
 	GameState.save_game()
-	get_tree().quit()
+	GameState.quit_game()
+	print("[Godot pause_menue] saved and quited")
 
 # Updates the score label with the current score value from the game state
 func update_score_label():

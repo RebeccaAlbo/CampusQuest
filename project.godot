@@ -38,7 +38,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/flutterbridge/plugin.cfg", "res://addons/scene_manifest_generator/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/flutterbridge/plugin.cfg")
 
 [input]
 
