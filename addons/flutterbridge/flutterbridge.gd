@@ -38,8 +38,6 @@ var speakers = [
 signal flutter_readied
 # Signal to notify when Flutter saved the game
 signal game_saved(success: bool)
-# Signal to notify when Flutter saved the game
-signal game_quited(success: bool)
 #Signal to notify that a dialogue has been received
 signal dialog_received(speaker: String, dialogues: String)
 #Signal to notify that a score has been received
@@ -86,10 +84,8 @@ func _setup_js_bridge():
 				case 'dialog_response':
 				case 'flutter_ready':
 				case 'speakers_request':
-				case 'score_response':
 				case 'game_response':
 				case 'save_response':
-				case 'quit_response':
 					if (window.godotBridge) {
 						const json = JSON.stringify(message);
 						window.godotBridge.sendMessage(json);
@@ -141,30 +137,6 @@ func request_dialog(speaker: String) -> String:
 
 	print("[Godot]  Dialog response received for ", speaker, ": ", result)
 	return result
-# Request the score from Flutter
-#returns a score
-#use like this:
-#var score := await FlutterBridge.request_score()
-func request_score() -> int:
-	if not web_mode:
-		print("[Godot]  Web platform not available.")
-		return 0
-
-	if not flutter_ready:
-		print("[Godot]  Waiting for Flutter to become ready...")
-		await flutter_readied
-		print("[Godot]  Flutter is now ready!")
-
-	print("[Godot]  Requesting score from Flutter...")
-
-	# Send score request to Flutter
-	var js := "window.parent.postMessage({ type: 'score_request' }, '*');"
-	JavaScriptBridge.eval(js, true)
-
-	# Wait for the score to be received
-	var score = await score_received
-	print("[Godot]  Score received: ", score)
-	return score
 
 func request_game() -> Dictionary:
 	if not web_mode:
@@ -197,7 +169,7 @@ func save_game(data: Dictionary) -> bool:
 		print("[Godot] Flutter is now ready!")
 
 	var payload = {
-		"type": "save_game"
+		"type": "save_request"
 	}
 	payload.merge(data, true)
 
@@ -210,7 +182,7 @@ func save_game(data: Dictionary) -> bool:
 	var result = await game_saved
 	print("[Godot] Save result: ", result)
 	return result
-func quit_game () -> bool:
+func quit_game ():
 	if not web_mode:
 		print("[Godot] Web platform not available.")
 		return false
@@ -220,12 +192,23 @@ func quit_game () -> bool:
 		await flutter_readied
 		print("[Godot] Flutter is now ready!")
 
+	print("[Godot] quit game")
 	var js = "window.parent.postMessage({ type: 'quit_game'}, '*');"
 	JavaScriptBridge.eval(js)
+	
+func play_tts(speaker: String) -> void:
+	if not web_mode:
+		print("[Godot] Web platform not available.")
+		return
 
-	print("[Godot] Awaiting game_quited from Flutter...")
-	var result = await game_quited
-	return result
+	if not flutter_ready:
+		print("[Godot] Flutter is not ready yet. Cannot send TTS request.")
+		return
+
+	print("[Godot] Sending play_tts request to Flutter with speaker:", speaker)
+
+	var js := "window.parent.postMessage({ type: 'play_tts', data: '" + speaker + "' }, '*');"
+	JavaScriptBridge.eval(js, true)
 
 # This function is called when a message is received from JavaScript
 func _on_js_message(args: Array):
@@ -246,7 +229,6 @@ func _on_js_message(args: Array):
 				print("[Godot]  Flutter is ready!")
 				flutter_ready = true  # Set the flag that Flutter is ready
 				emit_signal("flutter_readied")  # Emit signal to notify waiting functions
-				request_dialog("Fysik")
 				
 			# Handle dialog data reception
 			"dialog_response":
@@ -264,10 +246,6 @@ func _on_js_message(args: Array):
 				print("[Godot]  Available speakers(JSON): ", speakers)
 				var js = "window.parent.postMessage({ type: 'speakers_response', data: " + speakers_json + " }, '*');"
 				JavaScriptBridge.eval(js)
-			"score_response":
-				var score_val = int(parsed.get("data", 0))
-				print("[Godot]  Score response received: ", score_val)
-				emit_signal("score_received", score_val)
 			"game_response":
 				var game_data = parsed.get("data", {})
 				if game_data is Dictionary:
@@ -279,11 +257,6 @@ func _on_js_message(args: Array):
 				var success = bool(parsed.get("success", false))
 				print("[Godot] Save game ACK received: ", success)
 				emit_signal("game_saved", success)
-			"quit_response":
-				print("[Godot] Quit ACK reveived")
-				var success = bool(parsed.get("success", false))
-				print("[Godot] Quit game ACK received: ", success)
-				emit_signal("game_quited", success)
 
 				
 	else:
