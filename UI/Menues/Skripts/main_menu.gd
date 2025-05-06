@@ -16,7 +16,6 @@ func _on_start_pressed() -> void:
 
 
 func _on_exit_pressed() -> void:
-	GameState.save_game()
 	GameState.quit_game()
 
 
