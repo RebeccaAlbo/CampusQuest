@@ -79,6 +79,7 @@ func load_game():
 			MiniQuests.inventory = save_data.get("inventory", {})
 			MiniQuests.picked_up_items = save_data.get("picked_up_items", [])
 			MiniQuests.food_orders = save_data.get("food_orders", [])
+			print(MiniQuests.food_orders)
 		
 			var appearance = save_data.get("player_appearance", {})
 			CharacterCust.shirt_index = appearance.get("shirt", 0)

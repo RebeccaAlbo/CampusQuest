@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://47qx37tnfxug"]
+[gd_scene load_steps=8 format=3 uid="uid://47qx37tnfxug"]
 
 [ext_resource type="PackedScene" uid="uid://dhw6aqaxqmilk" path="res://props/imports/busStop.glb" id="1_ge4yq"]
 [ext_resource type="Script" path="res://props/scripts/bus_stop.gd" id="2_ecyc3"]
+[ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="3_nc5e8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mwfuk"]
 size = Vector3(0.3, 5, 4.6)
@@ -50,14 +51,13 @@ shape = SubResource("SphereShape3D_p04xi")
 
 [node name="HoverText" type="Label3D" parent="." index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.80157, 0)
-visible = false
 billboard = 1
 shaded = true
 double_sided = false
 modulate = Color(0, 0, 0, 1)
 text = "Press F to change campus"
-font_size = 150
-outline_size = 15
+font = ExtResource("3_nc5e8")
+font_size = 210
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

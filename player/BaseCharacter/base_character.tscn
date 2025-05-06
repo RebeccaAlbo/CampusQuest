@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://3kjk4w0wer4"]
+[gd_scene load_steps=10 format=3 uid="uid://3kjk4w0wer4"]
 
 [ext_resource type="PackedScene" uid="uid://dwa2t136eppp" path="res://player/BaseCharacter/BaseCharacter.glb" id="1_7qjkn"]
+[ext_resource type="Script" path="res://player/BaseCharacter/pc_camera.gd" id="2_evs34"]
 
 [sub_resource type="GDScript" id="GDScript_vpnrk"]
 script/source = "extends CharacterBody3D
@@ -287,14 +288,14 @@ collision_mask = 3
 script = SubResource("GDScript_vpnrk")
 
 [node name="Skeleton3D" parent="Armature" index="1"]
-bones/0/position = Vector3(4.00812e-10, 0.656249, -4.00778e-09)
+bones/0/position = Vector3(2.34292e-10, 0.650208, -6.03274e-09)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/rotation = Quaternion(-0.101219, -0.000264807, 0.0135792, 0.994771)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/rotation = Quaternion(0.083879, 0.000415142, -0.0112401, 0.996412)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/position = Vector3(0.0586908, 0.196302, 0.000453804)
-bones/3/rotation = Quaternion(-0.0366786, -0.00282005, -0.811827, 0.582738)
+bones/3/position = Vector3(0.0587421, 0.188157, 0.000837415)
+bones/3/rotation = Quaternion(-0.01757, -0.0163854, -0.81182, 0.583413)
 bones/4/rotation = Quaternion(-0.0362898, 0.0128226, -0.332907, 0.942174)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(0.0712842, 0.000848591, -0.223144, 0.972175)
@@ -321,8 +322,8 @@ bones/18/rotation = Quaternion(0.310948, -0.0143828, 0.102768, 0.944745)
 bones/19/rotation = Quaternion(0.0179618, 0.00278789, -0.0561577, 0.998256)
 bones/20/rotation = Quaternion(-0.00990388, 0.014878, -0.0363639, 0.999179)
 bones/20/scale = Vector3(1, 1, 1)
-bones/21/position = Vector3(-0.058565, 0.195565, 0.000488477)
-bones/21/rotation = Quaternion(-0.0326509, 0.00550041, 0.815514, 0.577789)
+bones/21/position = Vector3(-0.0585137, 0.187421, 0.00087209)
+bones/21/rotation = Quaternion(-0.0167967, 0.0169044, 0.815464, 0.578317)
 bones/22/rotation = Quaternion(-0.0360134, -0.0135793, 0.352553, 0.935)
 bones/22/scale = Vector3(1, 1, 1)
 bones/23/rotation = Quaternion(0.071137, -0.000881364, 0.231761, 0.970168)
@@ -351,15 +352,15 @@ bones/40/rotation = Quaternion(1.88448e-14, 7.27596e-12, 1.28694e-10, 1)
 bones/41/rotation = Quaternion(0.884629, 5.23129e-10, -0.000130766, 0.466296)
 bones/41/scale = Vector3(1, 1, 1)
 bones/42/rotation = Quaternion(0.748984, 5.3239e-10, -0.000110715, 0.662589)
-bones/44/rotation = Quaternion(0.00912984, 0.176183, 0.982721, -0.0560023)
-bones/45/rotation = Quaternion(-0.360326, 0.00284251, -0.0440812, 0.93178)
+bones/44/rotation = Quaternion(0.00886355, 0.186912, 0.980638, -0.0577461)
+bones/45/rotation = Quaternion(-0.383658, 0.00281352, -0.0469355, 0.922278)
 bones/45/scale = Vector3(1, 1, 1)
-bones/46/rotation = Quaternion(0.766491, 0.0145104, -0.0062975, 0.64206)
-bones/47/rotation = Quaternion(-0.0101715, 0.176107, 0.983284, 0.0451114)
+bones/46/rotation = Quaternion(0.775523, 0.0159757, -0.00532732, 0.631095)
+bones/47/rotation = Quaternion(-0.010024, 0.186854, 0.981218, 0.0468703)
 bones/47/scale = Vector3(1, 1, 0.999998)
-bones/48/rotation = Quaternion(-0.360325, -0.00284266, 0.0440807, 0.93178)
+bones/48/rotation = Quaternion(-0.383657, -0.00281367, 0.046935, 0.922278)
 bones/48/scale = Vector3(1, 1, 1)
-bones/49/rotation = Quaternion(0.766492, -0.0145097, 0.00629757, 0.64206)
+bones/49/rotation = Quaternion(0.775523, -0.015975, 0.00532742, 0.631094)
 bones/49/scale = Vector3(1, 1, 1)
 bones/51/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 bones/53/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
@@ -417,13 +418,14 @@ shape = SubResource("CapsuleShape3D_f5v2i")
 visible = false
 
 [node name="SpringArm3D" type="SpringArm3D" parent="SpringArmPivot" index="0"]
-collision_mask = 128
-spring_length = 10.0
+collision_mask = 129
+spring_length = 8.0
 
 [node name="PCCamera" type="Camera3D" parent="SpringArmPivot/SpringArm3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 1.37829, 0)
 cull_mask = 1047551
-v_offset = 20.0
+v_offset = 10.0
+script = ExtResource("2_evs34")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="4"]
 tree_root = SubResource("AnimationNodeBlendTree_qjth7")
@@ -441,7 +443,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.230567, -0.56815)
 shape = SubResource("SphereShape3D_q3a5t")
 
 [node name="PhoneCamera" type="Camera3D" parent="." index="6"]
-transform = Transform3D(0.965926, 0.258819, 0, 1.13133e-08, -4.2222e-08, 1, 0.258819, -0.965926, -4.37114e-08, 0, 9.56903, 0)
+transform = Transform3D(0.965926, 0.258819, 4.67586e-14, 1.13133e-08, -4.2222e-08, 1, 0.258819, -0.965926, -4.37114e-08, 0, 5.50763, 0)
 cull_mask = 1047551
 projection = 1
 fov = 115.0

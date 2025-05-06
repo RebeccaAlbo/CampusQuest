@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bmhumysegegtc"]
 
-[ext_resource type="PackedScene" uid="uid://cjnqm3py3g5a5" path="res://player/NPC/Imports/Johanneberg/physics.glb" id="1_2up7l"]
+[ext_resource type="PackedScene" uid="uid://cfiwonqx846rl" path="res://player/NPC/Imports/Johanneberg/physics.glb" id="1_2up7l"]
 [ext_resource type="Script" path="res://player/NPC/Script/physics.gd" id="2_nf1dc"]
 
 [node name="physics" instance=ExtResource("1_2up7l")]
