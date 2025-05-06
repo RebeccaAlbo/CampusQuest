@@ -19,6 +19,8 @@ func add_collision_to_mesh(mesh_instance: MeshInstance3D):
 	static_body.add_child(collision_shape)
 
 	if mesh_instance.mesh:
+		if mesh_instance.name.to_lower() == "map_20_osm_paths_cycleway" or mesh_instance.name.to_lower() == "map_15_osm_forest" or mesh_instance.name.to_lower() == "map_17_osm_areas_pedestrian":
+			return
 		var shape = mesh_instance.mesh.create_trimesh_shape()
 		if shape:
 			collision_shape.shape = shape

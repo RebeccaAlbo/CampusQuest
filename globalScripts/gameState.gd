@@ -37,6 +37,7 @@ func add_npc_point(npc: Node):
 func save_game():
 	# Creates a dictionary to store the player's score, NPC interaction data, 
 	# and character customization choices for saving
+	print("keys: ", MiniQuests.get_item_count("key"))
 	var save_data = {
 		"score": score,
 		"talked_to_npcs": talked_to_npcs,
@@ -52,6 +53,8 @@ func save_game():
 		}
 	}
 	
+	var json = '{"key": 1}'
+	var parsed = JSON.parse_string(json)
 	
 	# Converts the save data to a JSON string, writes it to a file, 
 	# and saves the game state to disk
@@ -95,6 +98,7 @@ func load_game():
 		CharacterCust.skin_index = appearance.get("skin", 0)
 		CharacterCust.pant_index = appearance.get("pant", 0)
 		CharacterCust.shoes_index = appearance.get("shoes", 0)
+	
 	else:
 		print("no saved file")
 		# Fallback to local save

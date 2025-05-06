@@ -4,8 +4,8 @@ signal inventory_updated
 
 # Keep track of number of items in inventory
 var inventory: = {
-	"key": 0,
-	"wallet": 0,
+	"key": 0.0,
+	"wallet": 0.0,
 	"book": [],
 	"food": [],
 	"coffee": []
@@ -23,7 +23,7 @@ func get_item_count(item_name: String) -> int:
 	var value = inventory[item_name]
 	
 	match typeof(value):
-		TYPE_INT:
+		TYPE_FLOAT:
 			return value
 		TYPE_ARRAY:
 			return value.size()
@@ -36,8 +36,9 @@ func add_item(item_name: String, item_detail: String = "") -> void:
 		return
 	
 	var value = inventory[item_name]
+	print(item_name, " ", item_detail)
 	
-	if typeof(value) == TYPE_INT:
+	if typeof(value) == TYPE_FLOAT:
 		inventory[item_name] += 1
 	elif typeof(value) == TYPE_ARRAY:
 		if item_detail != "":
@@ -53,7 +54,7 @@ func remove_item(item_name: String, item_detail: String = "") -> void:
 	
 	var value = inventory[item_name]
 	
-	if typeof(value) == TYPE_INT:
+	if typeof(value) == TYPE_FLOAT:
 		inventory[item_name] -= 1
 	elif typeof(value) == TYPE_ARRAY:
 		if item_name == "book":

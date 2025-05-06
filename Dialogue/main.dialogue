@@ -25,7 +25,7 @@ We are currently standing infront of the department of Computer and Information 
 		do remove_item("coffee", "coffeeComputer")
 		do score += 1
 	else:
-		You have already helped me
+		There is nothing you can do for me
 		- End conversation
 	
 do set_mouse_state(GameState.MouseState.GAMEPLAY)
@@ -212,8 +212,8 @@ We are currently standing infront of Svea
 	=> END
 - Help with a task
 	if not picked_up_items.has("coffeeComputer")
-		Would you mind bringing this coffee to the person outside the Computer department, I think he is outside of EDIT
-		- Yes, of course
+		Would you mind bringing this coffee my friend at the Computer department, I think they are outside of EDIT
+		- Ofcourse I can
 			Thank you so much
 			do add_item("coffee", "coffeeComputer")
 			do picked_up_items.append("coffeeComputer")

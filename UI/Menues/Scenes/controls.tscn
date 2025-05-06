@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c262jelbr7551"]
+[gd_scene load_steps=9 format=3 uid="uid://c262jelbr7551"]
 
 [ext_resource type="Script" path="res://UI/Menues/Skripts/control.gd" id="1_5viqy"]
 [ext_resource type="Texture2D" uid="uid://bryejuohsdw34" path="res://UI/Images/Background.png" id="2_08nlj"]
+[ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="3_ge31i"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l4454"]
 texture = ExtResource("2_08nlj")
@@ -68,6 +69,7 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ge31i")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qmoke")
 theme_override_styles/hover = SubResource("StyleBoxFlat_8ur1j")
@@ -88,26 +90,29 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 28.0
-offset_top = -308.0
-offset_right = 471.0
-offset_bottom = -27.0
+offset_left = 11.0
+offset_top = -300.0
+offset_right = 470.0
+offset_bottom = -26.0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("3_ge31i")
+theme_override_font_sizes/font_size = 33
 text = "Forward:                      W or ↑
 Walk Backward:          S or ↓ 
 Move Left:                    A or ← 
 Move Right:                  D or → 
 Interact:                        F
-Pause:                           ENTER"
+Pause:                           ESC"
 
 [node name="title" type="Label" parent="Panel/ColorRect"]
 layout_mode = 1
 offset_left = 23.0
+offset_top = 15.0
 offset_right = 272.0
-offset_bottom = 84.0
+offset_bottom = 71.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ge31i")
 theme_override_font_sizes/font_size = 55
 text = "Controls"
 
