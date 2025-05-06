@@ -569,17 +569,17 @@ visible = false
 layers = 1024
 texture = ExtResource("16_84c18")
 
-[node name="keyKuggen" parent="anglia" instance=ExtResource("28_206b2")]
-transform = Transform3D(-1.20968, 0, 0.314896, 0, 1.25, 0, -0.314896, 0, -1.20968, -55.6402, 0.133474, 42.7249)
+[node name="keyKuggen" parent="." instance=ExtResource("28_206b2")]
+transform = Transform3D(2.49999, 0, -3.03984e-06, 0, 2.5, 0, 3.03984e-06, 0, 2.49999, 8.6809, 0.262349, 32.165)
 
-[node name="walletMath" parent="anglia" instance=ExtResource("29_d8f1n")]
-transform = Transform3D(-0.241937, 0, 0.0629792, 0, 0.25, 0, -0.0629792, 0, -0.241937, -13.5906, 2.25242, -7.68425)
+[node name="walletMath" parent="." instance=ExtResource("29_d8f1n")]
+transform = Transform3D(0.5, 0, -1.63913e-07, 0, 0.5, 0, 1.63913e-07, 0, 0.5, -82.4874, 4.50025, 208.371)
 
-[node name="bookBox" parent="anglia" instance=ExtResource("31_nwhd2")]
-transform = Transform3D(0.212893, 0, 0.30871, 0, 0.375, 0, -0.30871, 0, 0.212893, -56.0291, 0.00114989, 69.1235)
+[node name="bookBox" parent="." instance=ExtResource("31_nwhd2")]
+transform = Transform3D(-0.256516, 0, -0.70477, 0, 0.75, 0, 0.70477, 0, -0.256516, -9.0132, -0.00229979, -45.3639)
 
-[node name="foodStall" parent="anglia" instance=ExtResource("26_ocyoq")]
-transform = Transform3D(0.459943, 0, -0.385295, 0, 0.6, 0, 0.385295, 0, 0.459943, -34.0308, 0.637029, 60.1811)
+[node name="foodStall" parent="." instance=ExtResource("26_ocyoq")]
+transform = Transform3D(-1.08434, 0, 0.514003, 0, 1.2, 0, -0.514003, 0, -1.08434, -84.3167, 1.26946, 64.9518)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
