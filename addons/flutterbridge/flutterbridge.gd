@@ -2,37 +2,13 @@ extends Node
 
 # Check if the platform supports web features (for JavaScriptBridge)
 var web_mode := OS.has_feature("web")
-
-
-# Variable to hold the JavaScript callback function
-var js_callback
-
 # Flag to track if Flutter is ready
 var flutter_ready := false
+#if tts isnt active do not send the message to flutter
+var tts_active := false 
 
-var speakers = [
-	"anglia",
-	"architecture",
-	"chemistry",
-	"computer",
-	'economic',
-	"electrical",
-	"industrial",
-	"jupiter",
-	"kuggen",
-	"life",
-	"math",
-	"mechanics",
-	"micro",
-	"npc_2",
-	"patricia",
-	"physics",
-	"saga",
-	"science",
-	"space",
-	"svea",
-	"äran"
-]
+signal extra_info_ended
+var running_extra_info := false
 
 # Signal to notify when Flutter is ready
 signal flutter_readied
@@ -40,14 +16,13 @@ signal flutter_readied
 signal game_saved(success: bool)
 #Signal to notify that a dialogue has been received
 signal dialog_received(speaker: String, dialogues: String)
-#Signal to notify that a score has been received
-signal score_received(score: int)
 #Signal to notify that a game info has been received
 signal game_received(game_data: Dictionary)
 
+# Variable to hold the JavaScript callback function
+var js_callback
 
 func _ready():
-	print("[Godot _ready]  Available speakers: ", speakers)
 	
 	# Skip execution in the editor mode
 	if Engine.is_editor_hint():
@@ -116,57 +91,41 @@ func request_dialog(speaker: String) -> String:
 		return ""
 
 	if not flutter_ready:
-		print("[Godot]  Waiting for Flutter to become ready...")
 		await flutter_readied
-		print("[Godot]  Flutter is now ready!")
-
-	print("[Godot]  Requesting dialog for:", speaker)
 
 	# Send the request
 	var js := "window.parent.postMessage({ type: 'dialog_request', speaker: '" + speaker + "' }, '*');"
 	JavaScriptBridge.eval(js, true)
 
 	# Await dialog response
-	print("[Godot]  Waiting for dialog response for speaker:", speaker)
-
 	var args = await dialog_received
-	print("speaker: ", args[0])
-	print("data: ", args[1])
 	
 	var result = args[1] if args != null else ""
-
-	print("[Godot]  Dialog response received for ", speaker, ": ", result)
 	return result
 
 func request_game() -> Dictionary:
-	if not web_mode:
-		print("[Godot] Web platform not available.")
+	if not web_mode:	
+		print("[Godot]  Web platform not available.") 
 		return {}
 
-	if not flutter_ready:
-		print("[Godot] Waiting for Flutter to become ready...")
+	if not flutter_ready: 
 		await flutter_readied
-		print("[Godot] Flutter is now ready!")
-
-	print("[Godot] Requesting game data from Flutter...")
-
+		
 	var js := "window.parent.postMessage({ type: 'game_request' }, '*');"
 	JavaScriptBridge.eval(js, true)
 
 	var data = await game_received
-	print("[Godot] game data received: ", data)
 	return data
 
 #var result := await FlutterBridge.save_game()
 func save_game(data: Dictionary) -> bool:
 	if not web_mode:
-		print("[Godot] Web platform not available.")
+		print("[Godot]  Web platform not available.")
 		return false
 
 	if not flutter_ready:
-		print("[Godot] Waiting for Flutter to become ready...")
 		await flutter_readied
-		print("[Godot] Flutter is now ready!")
+		 
 
 	var payload = {
 		"type": "save_request"
@@ -175,39 +134,34 @@ func save_game(data: Dictionary) -> bool:
 
 	var json_str := JSON.stringify(payload)
 	var js := "window.parent.postMessage(" + json_str + ", '*');"
-	print("[Godot] Sending save game data to Flutter...")
 	JavaScriptBridge.eval(js, true)
 
-	print("[Godot] Awaiting game_saved from Flutter...")
 	var result = await game_saved
-	print("[Godot] Save result: ", result)
 	return result
 func quit_game ():
 	if not web_mode:
-		print("[Godot] Web platform not available.")
+		print("[Godot]  Web platform not available.")
 		return false
 
 	if not flutter_ready:
-		print("[Godot] Waiting for Flutter to become ready...")
+		 
 		await flutter_readied
-		print("[Godot] Flutter is now ready!")
-
-	print("[Godot] quit game")
+		 
 	var js = "window.parent.postMessage({ type: 'quit_game'}, '*');"
 	JavaScriptBridge.eval(js)
 	
-func play_tts(speaker: String) -> void:
+func play_tts(text: String) -> void:
+	if not tts_active:
+		return
+	
 	if not web_mode:
-		print("[Godot] Web platform not available.")
+		print("[Godot]  Web platform not available.")
 		return
 
 	if not flutter_ready:
-		print("[Godot] Flutter is not ready yet. Cannot send TTS request.")
 		return
 
-	print("[Godot] Sending play_tts request to Flutter with speaker:", speaker)
-
-	var js := "window.parent.postMessage({ type: 'play_tts', data: '" + speaker + "' }, '*');"
+	var js := "window.parent.postMessage({ type: 'play_tts', text: '" + text + "' }, '*');"
 	JavaScriptBridge.eval(js, true)
 
 # This function is called when a message is received from JavaScript
@@ -229,7 +183,6 @@ func _on_js_message(args: Array):
 				print("[Godot]  Flutter is ready!")
 				flutter_ready = true  # Set the flag that Flutter is ready
 				emit_signal("flutter_readied")  # Emit signal to notify waiting functions
-				
 			# Handle dialog data reception
 			"dialog_response":
 				var dialog_data: String = parsed.get("data", "")
@@ -240,12 +193,6 @@ func _on_js_message(args: Array):
 					emit_signal("dialog_received", speaker, dialog_data)
 				else:
 					print("[Godot]  dialog_response data is not an array")
-			"speakers_request":
-				print("[Godot]  Available speakers: ", speakers)
-				var speakers_json = JSON.stringify(speakers)
-				print("[Godot]  Available speakers(JSON): ", speakers)
-				var js = "window.parent.postMessage({ type: 'speakers_response', data: " + speakers_json + " }, '*');"
-				JavaScriptBridge.eval(js)
 			"game_response":
 				var game_data = parsed.get("data", {})
 				if game_data is Dictionary:
@@ -257,7 +204,5 @@ func _on_js_message(args: Array):
 				var success = bool(parsed.get("success", false))
 				print("[Godot] Save game ACK received: ", success)
 				emit_signal("game_saved", success)
-
-				
 	else:
 		print("[Godot]  Failed to parse JSON")

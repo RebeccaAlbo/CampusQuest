@@ -41,6 +41,10 @@ var dialogue_line: DialogueLine:
 			await ready
 
 		dialogue_line = next_dialogue_line
+		
+		#use TTS
+		if FlutterBridge.web_mode and FlutterBridge.tts_active and not dialogue_line.text.is_empty(): #we check if tts_is active here and in flutterbridge, might be redundant
+			FlutterBridge.play_tts(dialogue_line.text)
 
 		character_label.visible = not dialogue_line.character.is_empty()
 		character_label.text = tr(dialogue_line.character, "dialogue")

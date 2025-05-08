@@ -52,6 +52,7 @@ func action() -> void:
 	GameState.add_npc_point(npc)
 	npc.face_toward(player)
 	npc.animation("Talking", 0.3)
+	
 	var balloon: Node = Balloon.instantiate()
 	get_tree().current_scene.add_child(balloon)
 	GameState.set_mouse_state(GameState.MouseState.UI)
@@ -59,6 +60,8 @@ func action() -> void:
 	
 	# Wait for end of dialogue, then reset everything
 	await DialogueManager.dialogue_ended
+	if (FlutterBridge.running_extra_info):
+		await FlutterBridge.extra_info_ended
 	player.end_dialoque()
 	npc.animation("Idle", 0.3)
 	npc.face_back()

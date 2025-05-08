@@ -7,7 +7,6 @@ var player_in_interact_zone: bool = false
 
 # Makes hover_text visible when player is in close proximity
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	print("here")
 	if body.is_in_group("player"):
 		player = body
 		player_in_interact_zone = true

@@ -15,7 +15,6 @@ func _ready() -> void:
 		set_mobile_resolution()
 	else:
 		set_pc_resolution()
-		score = await FlutterBridge.request_score()
 
 func set_mouse_state(state: MouseState):
 	current_state = state
@@ -34,7 +33,7 @@ func add_npc_point(npc: Node):
 		talked_to_npcs[npc.name] = true
 		score += 1
 		
-func save_game():
+func save_game() -> bool:
 	# Creates a dictionary to store the player's score, NPC interaction data, 
 	# and character customization choices for saving
 	print("keys: ", MiniQuests.get_item_count("key"))
@@ -64,20 +63,20 @@ func save_game():
 	file.close()
 	
 	# send the data to flutter 
-	if (!is_mobile):
-		var result := await FlutterBridge.save_game(save_data)
+	if (!is_mobile and FlutterBridge.web_mode):
+		return await FlutterBridge.save_game(save_data)
 	else: 
-		pass #TODO add mobile
+		return true #TODO add mobile
 	print("game saved")
 	
 func quit_game():
-	if (!is_mobile):
-		await FlutterBridge.quit_game() #send back a true or false if successful
+	if (!is_mobile and FlutterBridge.web_mode):
+		FlutterBridge.quit_game() #send back a true or false if successful
 	else: #mobile 
 		get_tree().quit()
 	
 func load_game():
-	if FlutterBridge.web_mode:
+	if (!is_mobile and FlutterBridge.web_mode):
 		print("[Godot] Running on Web with JS available – requesting save from Flutter")
 		var flutter_data = await FlutterBridge.request_game()
 
@@ -139,13 +138,18 @@ func set_pc_resolution():
 	
 # In dialogue, show extra information about department from database
 func show_extra_info(yes: bool, npc_name: String):
+	FlutterBridge.running_extra_info = true;
 	if yes:
 		var info_node = get_tree().current_scene.get_node("CanvasLayer/ExtraInfo")
 		var minimap_node = get_tree().current_scene.get_node("CanvasLayer/Minimap")
 		info_node.visible = true
 		minimap_node.visible = false
 		#Calling some function with the name variable
-		var dialog_data := await FlutterBridge.request_dialog(npc_name)
-		var data_label = info_node.get_node("DataBaseText")
+		var dialog_data
+		if (FlutterBridge.web_mode): dialog_data = await FlutterBridge.request_dialog(npc_name)
+		else: dialog_data = "You are now standing before a building on Chalmers campus. Its purpose is not immediately clear, but something about it suggests there's more to discover if you take a closer look around"
+		var data_label = info_node.get_node("Panel/DataBaseText")
 		data_label.text = dialog_data
+		FlutterBridge.play_tts(dialog_data)
+		
 		

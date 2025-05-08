@@ -26,3 +26,8 @@ func _on_controls_pressed() -> void:
 func _on_contiue_pressed() -> void:
 	GameState.load_game()
 	get_tree().change_scene_to_file("res://UI/Menues/Scenes/choose_campus.tscn")
+
+func _on_tts_pressed() -> void:
+	FlutterBridge.tts_active = not FlutterBridge.tts_active
+	if (FlutterBridge.tts_active): $Panel/VBoxContainer/TTS.text = "Text-To-Speech ON"
+	else: $Panel/VBoxContainer/TTS.text = "Text-To-Speech OFF"
