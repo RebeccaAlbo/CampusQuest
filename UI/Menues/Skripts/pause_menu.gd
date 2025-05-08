@@ -4,7 +4,6 @@ extends Control
 @onready var score: Label = $ColorRect/Score
 @onready var big_map: Control = $"../BigMap"
 @onready var inventory: Control = $ColorRect/Inventory
-
 # Paused by other menues
 var paused: bool = false
 # Paused by self
@@ -49,9 +48,13 @@ func _on_resume_pressed() -> void:
 
 # Saves the game and quits the application
 func _on_quit_game_pressed() -> void:
-	GameState.save_game()
-	GameState.quit_game()
-	print("[Godot pause_menue] saved and quited")
+	var save_success = await GameState.save_game()
+	if save_success:
+		print("[Godot pause_menu] Save successful.")
+		GameState.quit_game()
+	else:
+		print("[Godot pause_menu] Save failed.")
+
 
 # Updates the score label with the current score value from the game state
 func update_score_label():
