@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://thys5b7hn1ga"]
+
+[ext_resource type="PackedScene" uid="uid://cibdxsv5dd11s" path="res://props/imports/bug.glb" id="1_vwsm0"]
+
+[node name="bug" instance=ExtResource("1_vwsm0")]
