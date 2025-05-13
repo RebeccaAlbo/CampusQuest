@@ -2,7 +2,7 @@ extends Node
 
 var score = 0
 var talked_to_npcs = {}
-var is_mobile := false
+var is_mobile := true
 
 enum MouseState {GAMEPLAY, UI}
 var current_state: MouseState = MouseState.UI

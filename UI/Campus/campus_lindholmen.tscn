@@ -51,7 +51,7 @@ size = Vector2(10000, 10000)
 background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
 
-[sub_resource type="GDScript" id="GDScript_myo24"]
+[sub_resource type="GDScript" id="GDScript_3cnnn"]
 script/source = "extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -67,6 +67,8 @@ const LERP_VAL = .15
 
 var can_move: bool = true
 var original_pos
+
+var interactButton: Button
 
 var skin_colors = [
 	Color(0.98, 0.9, 0.78),   # Very light cream 
@@ -133,7 +135,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		spring_arm.rotate_x(-event.relative.y * .001)
 		# No infinite rotation
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/4, PI/4)
-		
+	
 	if Input.is_action_just_pressed(\"interact\"):
 		interact()
 
@@ -146,6 +148,7 @@ func interact():
 		actionables[0].action()
 		return
 
+
 func _physics_process(delta: float) -> void:
 	if !can_move:
 		return
@@ -157,6 +160,8 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector(\"left\", \"right\", \"up\", \"down\")
+	if GameState.is_mobile:
+		input_dir = Input.get_vector(\"right\", \"left\", \"down\", \"up\")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	# Mouse control direction of character
 	direction = direction.rotated(Vector3.UP, spring_arm_pivot.rotation.y)
@@ -319,6 +324,7 @@ func update_character(skin_index: int, hair_index: int, pant_index: int, shirt_i
 			shoes.set_surface_override_material(0, shoes_material)
 	if shoes_material != null:
 		shoes_material.albedo_color = shoes_colors[shoes_index]	
+	
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_771xr"]
@@ -426,7 +432,7 @@ collision_mask = 2
 
 [node name="BaseCharacter" parent="." instance=ExtResource("24_r2aeb")]
 transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -41.2879, 0, -173.553)
-script = SubResource("GDScript_myo24")
+script = SubResource("GDScript_3cnnn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter"]
 transform = Transform3D(1, 0, 4.47035e-08, 0, 1, 0, -4.47035e-08, 0, 1, 0, 1.85939, 0)
@@ -602,6 +608,13 @@ transform = Transform3D(0.938659, 1.17001, -5.11427e-08, 0, -6.55671e-08, -1.5, 
 visible = false
 layers = 1024
 texture = ExtResource("16_84c18")
+
+[node name="Creators" parent="." instance=ExtResource("32_1v130")]
+transform = Transform3D(-1.64465, 0, 1.13804, 0, 2, 0, -1.13804, 0, -1.64465, -132.995, 0, -85.4451)
+
+[node name="bug" parent="." instance=ExtResource("20_njr0y")]
+transform = Transform3D(-0.852932, 0, -0.522022, 0, 1, 0, 0.522022, 0, -0.852932, 13.6584, 0, 165.276)
+visible = false
 
 [node name="keyKuggen" parent="." instance=ExtResource("28_206b2")]
 transform = Transform3D(2.49999, 0, -3.03984e-06, 0, 2.5, 0, 3.03984e-06, 0, 2.49999, 8.6809, 0.262349, 32.165)
@@ -983,13 +996,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_h4ldv")
 toggle_mode = true
 text = "Interact
 "
-
-[node name="Creators" parent="." instance=ExtResource("32_1v130")]
-transform = Transform3D(-1.64465, 0, 1.13804, 0, 2, 0, -1.13804, 0, -1.64465, -132.995, 0, -85.4451)
-
-[node name="bug" parent="." instance=ExtResource("20_njr0y")]
-transform = Transform3D(-0.852932, 0, -0.522022, 0, 1, 0, 0.522022, 0, -0.852932, 13.6584, 0, 165.276)
-visible = false
 
 [connection signal="pressed" from="CanvasLayer/MenuButton" to="CanvasLayer/PauseMenu" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BigMap/GoBack" to="CanvasLayer/BigMap" method="_on_go_back_pressed"]

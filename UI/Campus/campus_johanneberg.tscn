@@ -55,7 +55,7 @@ size = Vector2(10000, 10000)
 background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
 
-[sub_resource type="GDScript" id="GDScript_hwa5c"]
+[sub_resource type="GDScript" id="GDScript_mopl8"]
 script/source = "extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -131,8 +131,6 @@ func _ready():
 	
 	if GameState.is_mobile and get_tree().current_scene.name != \"CharacterSelection\":
 		phone_camera.current = true
-		interactButton = get_tree().current_scene.get_node(\"CanvasLayer\").get_node(\"Interact\")
-		print(interactButton)
 			
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse control viewpoint
@@ -141,8 +139,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		spring_arm.rotate_x(-event.relative.y * .001)
 		# No infinite rotation
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/4, PI/4)
-	
-	
 	
 	if Input.is_action_just_pressed(\"interact\"):
 		interact()
@@ -155,7 +151,8 @@ func interact():
 	if actionables.size() > 0:
 		actionables[0].action()
 		return
-		
+
+
 func _physics_process(delta: float) -> void:
 	if !can_move:
 		return
@@ -167,6 +164,8 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector(\"left\", \"right\", \"up\", \"down\")
+	if GameState.is_mobile:
+		input_dir = Input.get_vector(\"right\", \"left\", \"down\", \"up\")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	# Mouse control direction of character
 	direction = direction.rotated(Vector3.UP, spring_arm_pivot.rotation.y)
@@ -330,6 +329,7 @@ func update_character(skin_index: int, hair_index: int, pant_index: int, shirt_i
 	if shoes_material != null:
 		shoes_material.albedo_color = shoes_colors[shoes_index]	
 	
+
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cy1fy"]
@@ -476,7 +476,7 @@ collision_mask = 2
 
 [node name="BaseCharacter" parent="." instance=ExtResource("27_c0edl")]
 transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -296.995, 0.545874, -108.713)
-script = SubResource("GDScript_hwa5c")
+script = SubResource("GDScript_mopl8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter"]
 transform = Transform3D(2, 0, 8.9407e-08, 0, 2, 0, -8.9407e-08, 0, 2, 0, 3.13048, 0)
