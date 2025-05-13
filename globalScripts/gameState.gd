@@ -39,6 +39,7 @@ func save_game() -> bool:
 	print("keys: ", MiniQuests.get_item_count("key"))
 	var save_data = {
 		"score": score,
+		"bug_state": MiniQuests.bug_state,
 		"talked_to_npcs": talked_to_npcs,
 		"inventory": MiniQuests.inventory,
 		"picked_up_items": MiniQuests.picked_up_items,
@@ -90,6 +91,7 @@ func load_game():
 		MiniQuests.inventory = flutter_data.get("inventory", {})
 		MiniQuests.picked_up_items = flutter_data.get("picked_up_items", [])
 		MiniQuests.food_orders = flutter_data.get("food_orders", [])
+		MiniQuests.bug_state = flutter_data.get("bug_state", {})
 
 		var appearance = flutter_data.get("player_appearance", {})
 		CharacterCust.shirt_index = appearance.get("shirt", 0)
@@ -116,6 +118,7 @@ func load_game():
 				MiniQuests.inventory = save_data.get("inventory", {})
 				MiniQuests.picked_up_items = save_data.get("picked_up_items", [])
 				MiniQuests.food_orders = save_data.get("food_orders", [])
+				MiniQuests.bug_state = save_data.get("bug_state", {})
 
 				var appearance = save_data.get("player_appearance", {})
 				CharacterCust.shirt_index = appearance.get("shirt", 0)
@@ -151,5 +154,4 @@ func show_extra_info(yes: bool, npc_name: String):
 		var data_label = info_node.get_node("Panel/DataBaseText")
 		data_label.text = dialog_data
 		FlutterBridge.play_tts(dialog_data)
-		
-		
+	

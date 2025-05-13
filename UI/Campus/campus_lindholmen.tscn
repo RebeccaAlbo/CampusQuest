@@ -924,7 +924,8 @@ visible = false
 transform = Transform3D(-1.64465, 0, 1.13804, 0, 2, 0, -1.13804, 0, -1.64465, -132.995, 0, -85.4451)
 
 [node name="bug" parent="." instance=ExtResource("20_njr0y")]
-transform = Transform3D(0.0260199, 0, 0.999661, 0, 1, 0, -0.999661, 0, 0.0260199, -152.953, 0, 143.869)
+transform = Transform3D(-0.852932, 0, -0.522022, 0, 1, 0, 0.522022, 0, -0.852932, 13.6584, 0, 165.276)
+visible = false
 
 [connection signal="pressed" from="CanvasLayer/MenuButton" to="CanvasLayer/PauseMenu" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BigMap/GoBack" to="CanvasLayer/BigMap" method="_on_go_back_pressed"]

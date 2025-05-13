@@ -20,7 +20,6 @@ var department: String
 
 func _ready():
 	npc = get_parent()
-	print("npc is: ", npc)
 	if npc:
 		department = npc.name
 		if dialoque_start == "":
@@ -32,7 +31,6 @@ func action() -> void:
 	#Find the camera
 	if camera == null:
 		player = get_tree().get_first_node_in_group("player")
-		print("player is: ", player)
 		if player:
 			var node3d = player.get_node_or_null("SpringArmPivot")
 			var neck = player.get_node_or_null("Neck")
@@ -49,9 +47,9 @@ func action() -> void:
 	
 	# Set up for dialoque envoronment
 	player.in_dialogue(npc)
-	if npc.name not in GameState.talked_to_npcs:
+	if npc.name not in GameState.talked_to_npcs and npc.name != "Rebecca":
 		npc.change_mark()
-	GameState.add_npc_point(npc)
+		GameState.add_npc_point(npc)
 	npc.face_toward(player)
 	npc.animation("Talking", 0.3)
 	

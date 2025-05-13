@@ -1,6 +1,7 @@
 extends Node
 
 signal inventory_updated
+signal bug_visible
 
 # Keep track of number of items in inventory
 var inventory: = {
@@ -13,11 +14,14 @@ var inventory: = {
 
 # Keeps track of picked up items
 var picked_up_items := []
-
-var bug_quest_given := false
-var bug_found := false
-
 var food_orders := []
+
+# Keeps track of the bug quest
+var bug_state = {
+	"quest_given": false,
+	"found": false,
+	"reported": false
+}
 
 func get_item_count(item_name: String) -> int:
 	if not inventory.has(item_name):
@@ -67,3 +71,9 @@ func remove_item(item_name: String, item_detail: String = "") -> void:
 	
 	print(inventory["coffee"].size())
 	inventory_updated.emit()
+	
+# When bug quest is done, creators are removed from game
+func remove_creators():
+	var cur_scene = get_tree().current_scene
+	var creators = cur_scene.get_node("Creators")
+	creators.visible = false

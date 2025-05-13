@@ -7,9 +7,15 @@ var player
 var player_in_pickup_zone: bool = false
 
 func _ready() -> void:
+	MiniQuests.bug_visible.connect(bug_visible)
 	# Check if item has already been picked up
-	if MiniQuests.bug_quest_given:
-		self.visible = true
+	print("MiniQuests.bug_state is: ", MiniQuests.bug_state)
+	if MiniQuests.bug_state["quest_given"] and !MiniQuests.bug_state["found"]:
+		bug_visible()
+		
+func bug_visible():
+	self.visible = true
+	self.collision_layer = 6
 
 # Makes hover_text visible when player is in close proximity
 func _on_area_3d_body_entered(body: Node3D) -> void:
@@ -23,7 +29,8 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("interact") and player_in_pickup_zone:
 		hover_text.visible = false
 		self.visible = false
-		MiniQuests.bug_found = true
+		MiniQuests.bug_state["found"] =  true
+		GameState.score += 1
 
 # Makes hover_text invisible when player no longer is in close proximity
 func _on_area_3d_body_exited(_body: Node3D) -> void:

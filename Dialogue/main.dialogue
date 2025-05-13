@@ -338,16 +338,27 @@ do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
 
 ~ Rebecca
-Oh hello there!
+if not bug_state["quest_given"]:
+	Pssst... Over here!
+	We are Rebecca and Amanda, the creators of this game.
+	Just between us, there is a sneaky little bug still hiding in the game.
+	It is quick and clever... it is probably laughing at us as we speak.
+	If you see it, squash it for us, will you?
+	- Do you have any idea where it is?
+	Somewhere here at Lindholmen, that is all we know.
+	Oh, and it likes water!
+	- I will try to find it
+	
+	do bug_state["quest_given"] = true
+	do bug_visible.emit()
+elif bug_state["quest_given"] and not bug_state["found"]:
+	[[We’re not saying it’s alive... but we did hear a tiny laugh from inside the codebase.|Still no sign of it? Don’t worry. It’s only been evading us for, oh... weeks.|We believe in you. Mostly. Kind of. Okay, we’re mildly hopeful.|We ran a diagnostic. The bug ran faster.]]
+elif bug_state["found"]:
+	You found the bug? It's... it's finally over? Thank you!
+	You’ve fixed what we could not. Farewell, brave debugger. 
+	Should you find any more bugs… pretend you didn’t.
+	do remove_creators()
+	do bug_state["reported"] = true
 
-We are Rebecca and Amanda, the creators of this game.
-We are here because there is one last bug we can't locate.
-Maybe you could help us find it?
-- Sure, do you have any idea where it is?
-Somewhere here at Lindholmen, that is all we know.
-If you see it, simply remove it and then let us know about it
-- Will do!
-
-do bug_quest_given = true
 do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!

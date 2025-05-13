@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://d14wl5jmres2q"
+path="res://.godot/imported/removeThis.dialogue-4d7c9080f2ac06edcdadc19c3d002d9c.tres"
+
+[deps]
+
+source_file="res://removeThis.dialogue"
+dest_files=["res://.godot/imported/removeThis.dialogue-4d7c9080f2ac06edcdadc19c3d002d9c.tres"]
+
+[params]
+
+defaults=true

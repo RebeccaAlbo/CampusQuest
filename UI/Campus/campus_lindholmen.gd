@@ -4,6 +4,7 @@ extends Node
 @onready var menu_button: Button = $CanvasLayer/MenuButton
 @onready var minimap: PanelContainer = $CanvasLayer/Minimap
 @onready var virtual_joystick: VirtualJoystick = $"CanvasLayer/Virtual Joystick"
+@onready var creators: Node3D = $Creators
 
 
 func _ready():
@@ -21,3 +22,6 @@ func _ready():
 		var npc = get_node_or_null(npc_name)
 		if npc:
 			npc.change_mark()
+	
+	if MiniQuests.bug_state["found"]:
+		creators.visible = false
