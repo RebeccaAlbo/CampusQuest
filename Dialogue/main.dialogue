@@ -336,3 +336,18 @@ We are currently standing infront of Patricia
 
 do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
+
+~ Rebecca
+Oh hello there!
+
+We are Rebecca and Amanda, the creators of this game.
+We are here because there is one last bug we can't locate.
+Maybe you could help us find it?
+- Sure, do you have any idea where it is?
+Somewhere here at Lindholmen, that is all we know.
+If you see it, simply remove it and then let us know about it
+- Will do!
+
+do bug_quest_given = true
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
+=> END!

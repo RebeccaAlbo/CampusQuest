@@ -20,6 +20,7 @@ var department: String
 
 func _ready():
 	npc = get_parent()
+	print("npc is: ", npc)
 	if npc:
 		department = npc.name
 		if dialoque_start == "":
@@ -31,6 +32,7 @@ func action() -> void:
 	#Find the camera
 	if camera == null:
 		player = get_tree().get_first_node_in_group("player")
+		print("player is: ", player)
 		if player:
 			var node3d = player.get_node_or_null("SpringArmPivot")
 			var neck = player.get_node_or_null("Neck")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://kooep0sw35n3"]
 
-[ext_resource type="PackedScene" uid="uid://ceyg63p5ony3q" path="res://player/NPC/Imports/Rebecca.glb" id="1_tof17"]
+[ext_resource type="PackedScene" uid="uid://bm0dewsu73jun" path="res://player/NPC/Imports/Rebecca.glb" id="1_tof17"]
 
 [sub_resource type="GDScript" id="GDScript_0j4lg"]
 script/source = "extends CharacterBody3D
@@ -33,8 +33,9 @@ func animation(anim : String, time : float):
 
 # Updates which Sprite3D is visible above NPC on maps
 func change_mark():
-	get_node(\"Check\").visible = true
-	get_node(\"Exlamation\").visible = false
+	if get_node(\"Exlamation\"):
+		get_node(\"Check\").visible = true
+		get_node(\"Exlamation\").visible = false
 "
 
 [node name="Rebecca" instance=ExtResource("1_tof17")]

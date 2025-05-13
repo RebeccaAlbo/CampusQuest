@@ -14,6 +14,9 @@ var inventory: = {
 # Keeps track of picked up items
 var picked_up_items := []
 
+var bug_quest_given := false
+var bug_found := false
+
 var food_orders := []
 
 func get_item_count(item_name: String) -> int:
