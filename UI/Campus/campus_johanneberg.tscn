@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=67 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_johanneberg.gd" id="1_p1r2s"]
 [ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="3_p4gww"]
@@ -35,7 +35,9 @@
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="32_oqewd"]
 [ext_resource type="PackedScene" uid="uid://ddlyrvsij0w4l" path="res://dialogue/extra_info.tscn" id="34_4jer0"]
 [ext_resource type="PackedScene" uid="uid://cbad6500e7nqy" path="res://props/scenes/book_box.tscn" id="34_ngb0i"]
+[ext_resource type="PackedScene" uid="uid://bvj0ua283ron" path="res://UI/Menues/Scenes/add_point.tscn" id="37_cqyav"]
 [ext_resource type="Script" path="res://player/NPC/Script/economic.gd" id="37_kvtch"]
+[ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="38_75e1w"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
 
@@ -53,7 +55,7 @@ size = Vector2(10000, 10000)
 background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
 
-[sub_resource type="GDScript" id="GDScript_ub1jl"]
+[sub_resource type="GDScript" id="GDScript_hwa5c"]
 script/source = "extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -69,6 +71,8 @@ const LERP_VAL = .15
 
 var can_move: bool = true
 var original_pos
+
+var interactButton: Button
 
 var skin_colors = [
 	Color(0.98, 0.9, 0.78),   # Very light cream 
@@ -127,6 +131,8 @@ func _ready():
 	
 	if GameState.is_mobile and get_tree().current_scene.name != \"CharacterSelection\":
 		phone_camera.current = true
+		interactButton = get_tree().current_scene.get_node(\"CanvasLayer\").get_node(\"Interact\")
+		print(interactButton)
 			
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse control viewpoint
@@ -135,13 +141,21 @@ func _unhandled_input(event: InputEvent) -> void:
 		spring_arm.rotate_x(-event.relative.y * .001)
 		# No infinite rotation
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/4, PI/4)
-		
+	
+	
+	
 	if Input.is_action_just_pressed(\"interact\"):
-		var actionables = actionable_finder.get_overlapping_areas()
-		if actionables.size() > 0:
-			actionables[0].action()
-			return
+		interact()
 
+func _on_interact_pressed() -> void:
+	interact()
+
+func interact():
+	var actionables = actionable_finder.get_overlapping_areas()
+	if actionables.size() > 0:
+		actionables[0].action()
+		return
+		
 func _physics_process(delta: float) -> void:
 	if !can_move:
 		return
@@ -401,6 +415,32 @@ shadow_size = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5nqni"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_136lp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7gtrq"]
+bg_color = Color(0.756863, 0.631373, 0.458824, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugjea"]
+bg_color = Color(0.564706, 0.454902, 0.298039, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1hvf3"]
+bg_color = Color(0.909804, 0.831373, 0.72549, 0.796078)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
 [node name="campus_johanneberg" type="Node3D"]
 script = ExtResource("1_p1r2s")
 
@@ -436,7 +476,7 @@ collision_mask = 2
 
 [node name="BaseCharacter" parent="." instance=ExtResource("27_c0edl")]
 transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -296.995, 0.545874, -108.713)
-script = SubResource("GDScript_ub1jl")
+script = SubResource("GDScript_hwa5c")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter"]
 transform = Transform3D(2, 0, 8.9407e-08, 0, 2, 0, -8.9407e-08, 0, 2, 0, 3.13048, 0)
@@ -1185,6 +1225,37 @@ text = "Fysik"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AddPoint" parent="CanvasLayer" instance=ExtResource("37_cqyav")]
+
+[node name="Interact" type="Button" parent="CanvasLayer"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -164.0
+offset_top = -78.0
+offset_right = -32.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("38_75e1w")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_136lp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7gtrq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ugjea")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1hvf3")
+toggle_mode = true
+text = "Interact
+"
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="CanvasLayer/MenuButton" to="CanvasLayer/PauseMenu" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BigMap/GoBack" to="CanvasLayer/BigMap" method="_on_go_back_pressed"]
@@ -1208,3 +1279,4 @@ vertical_alignment = 1
 [connection signal="mouse_exited" from="CanvasLayer/BigMap/Library" to="CanvasLayer/BigMap/Library" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="CanvasLayer/BigMap/Fysik" to="CanvasLayer/BigMap/Fysik" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/BigMap/Fysik" to="CanvasLayer/BigMap/Fysik" method="_on_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/Interact" to="BaseCharacter" method="_on_interact_pressed"]

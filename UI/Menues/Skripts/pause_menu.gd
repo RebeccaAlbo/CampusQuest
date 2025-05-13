@@ -4,6 +4,8 @@ extends Control
 @onready var score: Label = $ColorRect/Score
 @onready var big_map: Control = $"../BigMap"
 @onready var inventory: Control = $ColorRect/Inventory
+@onready var interact: Button = $"../Interact"
+
 # Paused by other menues
 var paused: bool = false
 # Paused by self
@@ -35,6 +37,8 @@ func set_paused(value:bool) -> void:
 	_is_paused = value
 	if !GameState.is_mobile:
 		minimap.visible = false
+	else:
+		interact.visible = false
 	get_tree().paused = _is_paused
 	visible = _is_paused
 
@@ -45,6 +49,8 @@ func _on_resume_pressed() -> void:
 	GameState.set_mouse_state(GameState.MouseState.GAMEPLAY)
 	if !GameState.is_mobile:
 		minimap.visible = true
+	else:
+		interact.visible = true
 
 # Saves the game and quits the application
 func _on_quit_game_pressed() -> void:

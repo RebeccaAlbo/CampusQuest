@@ -5,12 +5,14 @@ extends Node
 @onready var minimap: PanelContainer = $CanvasLayer/Minimap
 @onready var virtual_joystick: VirtualJoystick = $"CanvasLayer/Virtual Joystick"
 @onready var creators: Node3D = $Creators
+@onready var interact: Button = $CanvasLayer/Interact
 
 
 func _ready():
 	if GameState.is_mobile:
 		menu_button.visible = true
 		minimap.visible = false
+		interact.visible = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

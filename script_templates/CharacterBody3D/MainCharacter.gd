@@ -14,6 +14,8 @@ const LERP_VAL = .15
 var can_move: bool = true
 var original_pos
 
+var interactButton: Button
+
 var skin_colors = [
 	Color(0.98, 0.9, 0.78),   # Very light cream 
 	Color(0.95, 0.82, 0.65),  # Light 
@@ -79,12 +81,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		spring_arm.rotate_x(-event.relative.y * .001)
 		# No infinite rotation
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/4, PI/4)
-		
+	
 	if Input.is_action_just_pressed("interact"):
 		var actionables = actionable_finder.get_overlapping_areas()
 		if actionables.size() > 0:
 			actionables[0].action()
 			return
+
+
 
 func _physics_process(delta: float) -> void:
 	if !can_move:
