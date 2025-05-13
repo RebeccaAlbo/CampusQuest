@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://c3ynfcpspetng"]
+[gd_scene load_steps=53 format=3 uid="uid://c3ynfcpspetng"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_lindholmen.gd" id="1_bghy0"]
 [ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="3_vo4v6"]
@@ -30,9 +30,10 @@
 [ext_resource type="PackedScene" uid="uid://ddlyrvsij0w4l" path="res://dialogue/extra_info.tscn" id="27_syvvn"]
 [ext_resource type="PackedScene" uid="uid://36wmcll8n0bt" path="res://props/scenes/key.tscn" id="28_206b2"]
 [ext_resource type="PackedScene" uid="uid://b1pvrh7buxg0p" path="res://props/scenes/wallet.tscn" id="29_d8f1n"]
+[ext_resource type="PackedScene" uid="uid://bvj0ua283ron" path="res://UI/Menues/Scenes/add_point.tscn" id="31_3ncv0"]
 [ext_resource type="PackedScene" uid="uid://cbad6500e7nqy" path="res://props/scenes/book_box.tscn" id="31_nwhd2"]
-[ext_resource type="PackedScene" uid="uid://be030gbpikbb8" path="res://player/NPC/Scene/amanda.tscn" id="32_8klwn"]
-[ext_resource type="PackedScene" uid="uid://kooep0sw35n3" path="res://player/NPC/Scene/rebecca.tscn" id="33_qglfs"]
+[ext_resource type="PackedScene" uid="uid://cd5wttsnu0crk" path="res://player/NPC/Scene/creators.tscn" id="32_1v130"]
+[ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="32_ml7ul"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k1vra"]
 
@@ -134,10 +135,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/4, PI/4)
 		
 	if Input.is_action_just_pressed(\"interact\"):
-		var actionables = actionable_finder.get_overlapping_areas()
-		if actionables.size() > 0:
-			actionables[0].action()
-			return
+		interact()
+
+func _on_interact_pressed() -> void:
+	interact()
+
+func interact():
+	var actionables = actionable_finder.get_overlapping_areas()
+	if actionables.size() > 0:
+		actionables[0].action()
+		return
 
 func _physics_process(delta: float) -> void:
 	if !can_move:
@@ -312,8 +319,6 @@ func update_character(skin_index: int, hair_index: int, pant_index: int, shirt_i
 			shoes.set_surface_override_material(0, shoes_material)
 	if shoes_material != null:
 		shoes_material.albedo_color = shoes_colors[shoes_index]	
-	
-
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_771xr"]
@@ -360,6 +365,32 @@ border_width_bottom = 6
 border_color = Color(0.145098, 0.27451, 0.141176, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yj4i7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hebtq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6l4of"]
+bg_color = Color(0.756863, 0.631373, 0.458824, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8m66b"]
+bg_color = Color(0.564706, 0.454902, 0.298039, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h4ldv"]
+bg_color = Color(0.909804, 0.831373, 0.72549, 0.796078)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
 
 [node name="campus_lindholmen" type="Node3D"]
 script = ExtResource("1_bghy0")
@@ -547,9 +578,6 @@ transform = Transform3D(0.295228, 1.47066, -6.42846e-08, 0, -6.55671e-08, -1.5, 
 visible = false
 layers = 1024
 texture = ExtResource("16_84c18")
-
-[node name="bug" parent="aran" instance=ExtResource("20_njr0y")]
-transform = Transform3D(0.191551, 0, 0.461854, 0, 0.5, 0, -0.461854, 0, 0.191551, -36.4504, 3.05176e-05, 24.4508)
 
 [node name="anglia" parent="." instance=ExtResource("19_0lpak")]
 transform = Transform3D(-1.9355, 0, -0.503833, 0, 2, 0, 0.503833, 0, -1.9355, -119.862, -0.00459957, 198.578)
@@ -925,23 +953,43 @@ vertical_alignment = 1
 [node name="ExtraInfo" parent="CanvasLayer" instance=ExtResource("27_syvvn")]
 visible = false
 
-[node name="Amanda" parent="." instance=ExtResource("32_8klwn")]
-transform = Transform3D(-0.0636588, 0, -1.99899, 0, 2, 0, 1.99899, 0, -0.0636588, 4.58545, 0, 60.7172)
+[node name="AddPoint" parent="CanvasLayer" instance=ExtResource("31_3ncv0")]
 
-[node name="CameraControll" parent="Amanda" instance=ExtResource("10_xw84y")]
+[node name="Interact" type="Button" parent="CanvasLayer"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -164.0
+offset_top = -78.0
+offset_right = -32.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("32_ml7ul")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hebtq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6l4of")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8m66b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_h4ldv")
+toggle_mode = true
+text = "Interact
+"
 
-[node name="CameraControllCollision" parent="Amanda/CameraControll" instance=ExtResource("11_ghfee")]
+[node name="Creators" parent="." instance=ExtResource("32_1v130")]
+transform = Transform3D(-1.64465, 0, 1.13804, 0, 2, 0, -1.13804, 0, -1.64465, -132.995, 0, -85.4451)
 
-[node name="NPCCollision" parent="Amanda" instance=ExtResource("9_4hias")]
-
-[node name="WaveZone" parent="Amanda" instance=ExtResource("13_3p1t0")]
-
-[node name="Rebecca" parent="." instance=ExtResource("33_qglfs")]
-transform = Transform3D(-1.62947, 0, -1.15967, 0, 2, 0, 1.15967, 0, -1.62947, 0.974243, 0, 66.7683)
-
-[node name="NPCCollision" parent="Rebecca" instance=ExtResource("9_4hias")]
-
-[node name="WaveZone" parent="Rebecca" instance=ExtResource("13_3p1t0")]
+[node name="bug" parent="." instance=ExtResource("20_njr0y")]
+transform = Transform3D(-0.852932, 0, -0.522022, 0, 1, 0, 0.522022, 0, -0.852932, 13.6584, 0, 165.276)
+visible = false
 
 [connection signal="pressed" from="CanvasLayer/MenuButton" to="CanvasLayer/PauseMenu" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BigMap/GoBack" to="CanvasLayer/BigMap" method="_on_go_back_pressed"]
@@ -959,3 +1007,4 @@ transform = Transform3D(-1.62947, 0, -1.15967, 0, 2, 0, 1.15967, 0, -1.62947, 0.
 [connection signal="mouse_exited" from="CanvasLayer/BigMap/Kuggen" to="CanvasLayer/BigMap/Kuggen" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="CanvasLayer/BigMap/Jupiter" to="CanvasLayer/BigMap/Jupiter" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/BigMap/Jupiter" to="CanvasLayer/BigMap/Jupiter" method="_on_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/Interact" to="BaseCharacter" method="_on_interact_pressed"]

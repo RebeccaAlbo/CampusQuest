@@ -6,13 +6,8 @@ extends Area3D
 const Balloon = preload("res://dialogue/balloon.tscn")
 # For zooming in on NPC during conversation
 var camera: Camera3D = null
+var phone_camera: Camera3D = null
 var dialogue_camera: Camera3D = null
-var spring_arm: SpringArm3D
-var original_camera_position: Vector3
-var zoom_offset: Vector3 = Vector3(0, 1, 1)  # Adjust zoom position
-var initial_camera_pos: Vector3
-var original_spring_arm_length: float
-var original_camera_v_offset: float
 
 var player
 var npc
@@ -34,22 +29,23 @@ func action() -> void:
 		if player:
 			var node3d = player.get_node_or_null("SpringArmPivot")
 			var neck = player.get_node_or_null("Neck")
+			phone_camera = player.get_node_or_null("PhoneCamera")
 			if node3d and neck:
 				dialogue_camera = neck.get_node_or_null("DialogueCamera")
-				spring_arm = node3d.get_node_or_null("SpringArm3D")
+				var spring_arm = node3d.get_node_or_null("SpringArm3D")
 				if spring_arm:
 					camera = spring_arm.get_node_or_null("PCCamera")  # Finally, get Camera3D
 	
 	# If the camera exists, store original position and smoothly zoom it toward the NPC
-	if camera and dialogue_camera:
+	if camera and dialogue_camera and phone_camera:
 		camera.current = false
+		phone_camera.current = false
 		dialogue_camera.current = true
+	else:
+		print("not all cameras found")
 	
 	# Set up for dialoque envoronment
 	player.in_dialogue(npc)
-	if npc.name not in GameState.talked_to_npcs:
-		npc.change_mark()
-	GameState.add_npc_point(npc)
 	npc.face_toward(player)
 	npc.animation("Talking", 0.3)
 	
@@ -66,4 +62,11 @@ func action() -> void:
 	npc.animation("Idle", 0.3)
 	npc.face_back()
 	dialogue_camera.current = false
-	camera.current = true
+	if GameState.is_mobile:
+		phone_camera.current = true
+	else:
+		camera.current = true
+	GameState.set_mouse_state(GameState.MouseState.GAMEPLAY)
+	if npc.name not in GameState.talked_to_npcs and not npc.name == "Rebecca":
+		npc.change_mark()
+		GameState.add_npc_point(npc)

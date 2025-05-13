@@ -21,17 +21,16 @@ func set_mouse_state(state: MouseState):
 	
 	match state:
 		MouseState.GAMEPLAY:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			if not GameState.is_mobile:
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		MouseState.UI:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 # Adds a point to the score for interacting with a new NPC
 # Tracks the interaction to avoid repetition
 func add_npc_point(npc: Node):
-	print(talked_to_npcs)
 	if not talked_to_npcs.has(npc.name):
 		talked_to_npcs[npc.name] = true
-		score += 1
 		
 func save_game() -> bool:
 	# Creates a dictionary to store the player's score, NPC interaction data, 
@@ -39,6 +38,7 @@ func save_game() -> bool:
 	print("keys: ", MiniQuests.get_item_count("key"))
 	var save_data = {
 		"score": score,
+		"bug_state": MiniQuests.bug_state,
 		"talked_to_npcs": talked_to_npcs,
 		"inventory": MiniQuests.inventory,
 		"picked_up_items": MiniQuests.picked_up_items,
@@ -90,6 +90,7 @@ func load_game():
 		MiniQuests.inventory = flutter_data.get("inventory", {})
 		MiniQuests.picked_up_items = flutter_data.get("picked_up_items", [])
 		MiniQuests.food_orders = flutter_data.get("food_orders", [])
+		MiniQuests.bug_state = flutter_data.get("bug_state", {})
 
 		var appearance = flutter_data.get("player_appearance", {})
 		CharacterCust.shirt_index = appearance.get("shirt", 0)
@@ -116,6 +117,7 @@ func load_game():
 				MiniQuests.inventory = save_data.get("inventory", {})
 				MiniQuests.picked_up_items = save_data.get("picked_up_items", [])
 				MiniQuests.food_orders = save_data.get("food_orders", [])
+				MiniQuests.bug_state = save_data.get("bug_state", {})
 
 				var appearance = save_data.get("player_appearance", {})
 				CharacterCust.shirt_index = appearance.get("shirt", 0)
@@ -146,10 +148,17 @@ func show_extra_info(yes: bool, npc_name: String):
 		minimap_node.visible = false
 		#Calling some function with the name variable
 		var dialog_data
-		if (FlutterBridge.web_mode): dialog_data = await FlutterBridge.request_dialog(npc_name)
-		else: dialog_data = "You are now standing before a building on Chalmers campus. Its purpose is not immediately clear, but something about it suggests there's more to discover if you take a closer look around"
+		if (FlutterBridge.web_mode): 
+			dialog_data = await FlutterBridge.request_dialog(npc_name)
+		else: 
+			dialog_data = "You are now standing before a building on Chalmers campus. Its purpose is not immediately clear, but something about it suggests there's more to discover if you take a closer look around"
 		var data_label = info_node.get_node("Panel/DataBaseText")
 		data_label.text = dialog_data
 		FlutterBridge.play_tts(dialog_data)
-		
-		
+	
+func add_score(s: int):
+	score += s
+	var scene = get_tree().current_scene
+	var points_popup = scene.get_node("CanvasLayer").get_node("AddPoint").get_node("PointsPopup")
+	points_popup.text = "+" + str(s) + " Point" + ("!" if score == 1 else "s!")
+	points_popup.get_node("AnimationPlayer").play("popup")
