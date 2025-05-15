@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://c3ynfcpspetng"]
+[gd_scene load_steps=57 format=3 uid="uid://c3ynfcpspetng"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_lindholmen.gd" id="1_bghy0"]
 [ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="3_vo4v6"]
@@ -338,6 +338,22 @@ top_radius = 2.0
 bottom_radius = 2.0
 height = 0.001
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qmfui"]
+transparency = 1
+albedo_texture = ExtResource("14_qthte")
+emission_enabled = true
+emission_texture = ExtResource("14_qthte")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26663"]
+transparency = 1
+albedo_texture = ExtResource("16_84c18")
+emission_enabled = true
+emission_texture = ExtResource("16_84c18")
+billboard_mode = 1
+billboard_keep_scale = true
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ss630"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bnox7"]
@@ -455,14 +471,16 @@ transform = Transform3D(0.99028, 0, 1.73763, 0, 2, 0, -1.73763, 0, 0.99028, -105
 [node name="WaveZone" parent="svea" instance=ExtResource("13_3p1t0")]
 
 [node name="Exlamation" type="Sprite3D" parent="svea"]
-transform = Transform3D(-1.99354, -0.16064, 7.02189e-09, 0, -8.74228e-08, -2, 0.16064, -1.99354, 8.71403e-08, 0, 8.23656, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_qmfui")
 texture = ExtResource("14_qthte")
 
 [node name="Check" type="Sprite3D" parent="svea"]
-transform = Transform3D(-1.49515, -0.120481, 5.26643e-09, 0, -6.55671e-08, -1.5, 0.120481, -1.49515, 6.53553e-08, 0, 8.27086, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_26663")
 texture = ExtResource("16_84c18")
 
 [node name="kuggen" parent="." instance=ExtResource("14_c7uvx")]
@@ -479,14 +497,16 @@ transform = Transform3D(-1.66687, 0, -1.10524, 0, 2, 0, 1.10524, 0, -1.66687, 0.
 [node name="WaveZone" parent="kuggen" instance=ExtResource("13_3p1t0")]
 
 [node name="Exlamation" type="Sprite3D" parent="kuggen"]
-transform = Transform3D(1.72945, 1.0045, -4.39082e-08, 0, -8.74228e-08, -2, -1.0045, 1.72945, -7.55964e-08, 0, 8.97346, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_qmfui")
 texture = ExtResource("14_qthte")
 
 [node name="Check" type="Sprite3D" parent="kuggen"]
-transform = Transform3D(1.29708, 0.753375, -3.29312e-08, 0, -6.55671e-08, -1.5, -0.753375, 1.29708, -5.66973e-08, 0, 8.97346, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_26663")
 texture = ExtResource("16_84c18")
 
 [node name="jupiter" parent="." instance=ExtResource("15_vem1b")]
@@ -503,14 +523,16 @@ transform = Transform3D(-1.28945, 0, -1.52883, 0, 2, 0, 1.52883, 0, -1.28945, -2
 [node name="WaveZone" parent="jupiter" instance=ExtResource("13_3p1t0")]
 
 [node name="Exlamation" type="Sprite3D" parent="jupiter"]
-transform = Transform3D(1.92845, 0.530203, -2.3176e-08, 0, -8.74228e-08, -2, -0.530203, 1.92845, -8.42948e-08, 0, 8.45346, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_qmfui")
 texture = ExtResource("14_qthte")
 
 [node name="Check" type="Sprite3D" parent="jupiter"]
-transform = Transform3D(1.44633, 0.397652, -1.7382e-08, 0, -6.55671e-08, -1.5, -0.397652, 1.44633, -6.32212e-08, 0, 8.48776, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_26663")
 texture = ExtResource("16_84c18")
 
 [node name="saga" parent="." instance=ExtResource("16_4hqyw")]
@@ -527,14 +549,16 @@ transform = Transform3D(0.477948, 0, 1.94205, 0, 2, 0, -1.94205, 0, 0.477948, -5
 [node name="WaveZone" parent="saga" instance=ExtResource("13_3p1t0")]
 
 [node name="Exlamation" type="Sprite3D" parent="saga"]
-transform = Transform3D(-1.94492, 0.466146, -2.03758e-08, 0, -8.74228e-08, -2, -0.466146, -1.94492, 8.50151e-08, 0, 8.54086, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_qmfui")
 texture = ExtResource("14_qthte")
 
 [node name="Check" type="Sprite3D" parent="saga"]
-transform = Transform3D(-1.45869, 0.349607, -1.52818e-08, 0, -6.55671e-08, -1.5, -0.349607, -1.45869, 6.37614e-08, 0, 8.57516, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_26663")
 texture = ExtResource("16_84c18")
 
 [node name="patricia" parent="." instance=ExtResource("17_8uv6s")]
@@ -551,14 +575,16 @@ transform = Transform3D(0.719826, 0, 1.86597, 0, 2, 0, -1.86597, 0, 0.719826, -8
 [node name="WaveZone" parent="patricia" instance=ExtResource("13_3p1t0")]
 
 [node name="Exlamation" type="Sprite3D" parent="patricia"]
-transform = Transform3D(-1.9875, 0.223321, -9.76155e-09, 0, -8.74228e-08, -2, -0.223321, -1.9875, 8.68761e-08, 0, 7.95146, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_qmfui")
 texture = ExtResource("14_qthte")
 
 [node name="Check" type="Sprite3D" parent="patricia"]
-transform = Transform3D(-1.49062, 0.167489, -7.32117e-09, 0, -6.55671e-08, -1.5, -0.167489, -1.49062, 6.51571e-08, 0, 7.98576, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_26663")
 texture = ExtResource("16_84c18")
 
 [node name="aran" parent="." instance=ExtResource("18_rf5dy")]
@@ -577,14 +603,16 @@ transform = Transform3D(0.999764, 0, -0.0217451, 0, 1, 0, 0.0217451, 0, 0.999764
 [node name="WaveZone" parent="aran" instance=ExtResource("13_3p1t0")]
 
 [node name="Exlamation" type="Sprite3D" parent="aran"]
-transform = Transform3D(0.436663, 1.95175, -8.53137e-08, 3.1401e-15, -8.74228e-08, -2, -1.95175, 0.436663, -1.9087e-08, 0, 7.89156, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_qmfui")
 texture = ExtResource("14_qthte")
 
 [node name="Check" type="Sprite3D" parent="aran"]
-transform = Transform3D(0.295228, 1.47066, -6.42846e-08, 0, -6.55671e-08, -1.5, -1.47066, 0.295228, -1.29048e-08, 0, 7.92586, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_26663")
 texture = ExtResource("16_84c18")
 
 [node name="anglia" parent="." instance=ExtResource("19_0lpak")]
@@ -601,14 +629,16 @@ transform = Transform3D(-1.9355, 0, -0.503833, 0, 2, 0, 0.503833, 0, -1.9355, -1
 [node name="WaveZone" parent="anglia" instance=ExtResource("13_3p1t0")]
 
 [node name="Exlamation" type="Sprite3D" parent="anglia"]
-transform = Transform3D(1.20123, 1.59908, -6.98978e-08, 0, -8.74228e-08, -2, -1.59908, 1.20123, -5.25074e-08, 0, 7.86496, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_qmfui")
 texture = ExtResource("14_qthte")
 
 [node name="Check" type="Sprite3D" parent="anglia"]
-transform = Transform3D(0.938659, 1.17001, -5.11427e-08, 0, -6.55671e-08, -1.5, -1.17001, 0.938659, -4.10302e-08, 0, 7.89926, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_26663")
 texture = ExtResource("16_84c18")
 
 [node name="Creators" parent="." instance=ExtResource("32_1v130")]

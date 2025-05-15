@@ -32,6 +32,18 @@ func add_npc_point(npc: Node):
 	if not talked_to_npcs.has(npc.name):
 		talked_to_npcs[npc.name] = true
 		
+func add_score(s: int, npc_name: String = ""):	
+	score += s
+	var scene = get_tree().current_scene
+	var points_popup = scene.get_node("CanvasLayer").get_node("AddPoint").get_node("PointsPopup")
+	points_popup.text = "+" + str(s) + " Point" + ("!" if score == 1 else "s!")
+	points_popup.get_node("AnimationPlayer").play("popup")
+	if name != "" and !talked_to_npcs.has("name"):
+		talked_to_npcs[name] = true
+		var npc = scene.get_node(npc_name)
+		npc.change_mark()
+		
+		
 func save_game() -> bool:
 	# Creates a dictionary to store the player's score, NPC interaction data, 
 	# and character customization choices for saving
@@ -67,7 +79,6 @@ func save_game() -> bool:
 		return await FlutterBridge.save_game(save_data)
 	else: 
 		return true #TODO add mobile
-	print("game saved")
 	
 func quit_game():
 	if (!is_mobile and FlutterBridge.web_mode):
@@ -155,10 +166,3 @@ func show_extra_info(yes: bool, npc_name: String):
 		var data_label = info_node.get_node("Panel/DataBaseText")
 		data_label.text = dialog_data
 		FlutterBridge.play_tts(dialog_data)
-	
-func add_score(s: int):
-	score += s
-	var scene = get_tree().current_scene
-	var points_popup = scene.get_node("CanvasLayer").get_node("AddPoint").get_node("PointsPopup")
-	points_popup.text = "+" + str(s) + " Point" + ("!" if score == 1 else "s!")
-	points_popup.get_node("AnimationPlayer").play("popup")

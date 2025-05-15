@@ -5,6 +5,7 @@ extends Control
 @onready var big_map: Control = $"../BigMap"
 @onready var inventory: Control = $ColorRect/Inventory
 @onready var interact: Button = $"../Interact"
+@onready var add_point: Control = $"../AddPoint"
 
 # Paused by other menues
 var paused: bool = false
@@ -25,6 +26,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			_is_paused =  false
 			get_tree().paused = _is_paused
+			add_point.visible = true
 			if !GameState.is_mobile:
 				minimap.visible = true
 				GameState.set_mouse_state(GameState.MouseState.GAMEPLAY)
@@ -37,6 +39,7 @@ func set_paused(value:bool) -> void:
 	_is_paused = value
 	if !GameState.is_mobile:
 		minimap.visible = false
+		add_point.visible = false
 	else:
 		interact.visible = false
 	get_tree().paused = _is_paused
@@ -49,6 +52,7 @@ func _on_resume_pressed() -> void:
 	GameState.set_mouse_state(GameState.MouseState.GAMEPLAY)
 	if !GameState.is_mobile:
 		minimap.visible = true
+		add_point.visible = true
 	else:
 		interact.visible = true
 

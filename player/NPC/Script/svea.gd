@@ -21,6 +21,7 @@ func face_back():
 		rotation = original_pos
 		
 func animation(anim : String, time : float):
+	print("playing anim: ", anim)
 	animation_player.play(anim, time)
 	
 func change_mark():
