@@ -27,11 +27,48 @@ var bug_state = {
 	"reported": false
 }
 
+# Quest descriptions for Quest Log
 var quest_description := [
 	{
 		"id": "keyKuggen",
 		"desc": "Find the lost key around Jupiter and give it to Kuggen"
-	}
+	},
+	{
+		"id": "book",
+		"desc": "You have books to return to the library"
+	},
+	{
+		"id": "keyChemistry",
+		"desc": "Find a lost key near MC2 building and return to the department of Chemistry"
+	},
+	{
+		"id": "foodLife",
+		"desc": "Pick up lunch and give it to the department of Life Sciences"
+	},
+	{
+		"id": "walletMath",
+		"desc": "Find the lost wallet near Äran and return it to the department of Mathematical sciences"
+	},
+	{
+		"id": "coffeeSvea",
+		"desc": "Bring coffee to Svea"
+	},
+	{
+		"id": "foodJupiter",
+		"desc": "Pick up lunch and give it to the Jupiter"
+	},
+	{
+		"id": "bug",
+		"desc": "Find the missing bug near the water and report back to Rebecca and Amanda"
+	},
+	{
+		"id": "coffeeElectrical",
+		"desc": "Bring coffee to the department of Electrical Engineering"
+	},
+	{
+		"id": "walletSpace",
+		"desc": "Find the lost wallet near MV and return it to the department of Space"
+	},
 ]
 
 func add_started_quest(id: String):
@@ -83,7 +120,8 @@ func remove_item(item_name: String, item_detail: String = "") -> void:
 	var value = inventory[item_name]
 	
 	if typeof(value) == TYPE_FLOAT:
-		inventory[item_name] -= 1
+		if get_item_count(item_name) > 1:
+			inventory[item_name] -= 1.0
 	elif typeof(value) == TYPE_ARRAY:
 		if item_name == "book":
 			inventory[item_name].clear()

@@ -3,10 +3,12 @@ extends Control
 @onready var minimap: PanelContainer = $"../Minimap"
 @onready var score: Label = $ColorRect/Score
 @onready var big_map: Control = $"../BigMap"
-@onready var inventory: Control = $ColorRect/Inventory
+@onready var inventory: Control = $Inventory
+
 @onready var interact: Button = $"../Interact"
 @onready var add_point: Control = $"../AddPoint"
-@onready var quest_log: Control = $ColorRect/QuestLog
+@onready var quest_log: Control = $QuestLog
+
 
 
 # Paused by other menues

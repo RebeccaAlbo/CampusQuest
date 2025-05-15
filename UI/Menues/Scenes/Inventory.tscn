@@ -164,6 +164,7 @@ grow_horizontal = 2
 [node name="Key" type="Label" parent="Panel/TitleContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.184314, 0.129412, 0.0509804, 1)
 theme_override_fonts/font = ExtResource("1_6ft6b")
 theme_override_font_sizes/font_size = 32
 text = "Key"
@@ -172,6 +173,7 @@ horizontal_alignment = 1
 [node name="Coffee" type="Label" parent="Panel/TitleContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.184314, 0.129412, 0.0509804, 1)
 theme_override_fonts/font = ExtResource("1_6ft6b")
 theme_override_font_sizes/font_size = 32
 text = "Coffee"
@@ -180,6 +182,7 @@ horizontal_alignment = 1
 [node name="Food" type="Label" parent="Panel/TitleContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.184314, 0.129412, 0.0509804, 1)
 theme_override_fonts/font = ExtResource("1_6ft6b")
 theme_override_font_sizes/font_size = 32
 text = "Food"
@@ -188,6 +191,7 @@ horizontal_alignment = 1
 [node name="Book" type="Label" parent="Panel/TitleContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.184314, 0.129412, 0.0509804, 1)
 theme_override_fonts/font = ExtResource("1_6ft6b")
 theme_override_font_sizes/font_size = 32
 text = "Book"
@@ -196,6 +200,7 @@ horizontal_alignment = 1
 [node name="Wallet" type="Label" parent="Panel/TitleContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.184314, 0.129412, 0.0509804, 1)
 theme_override_fonts/font = ExtResource("1_6ft6b")
 theme_override_font_sizes/font_size = 32
 text = "Wallet"
@@ -212,6 +217,7 @@ grow_horizontal = 2
 [node name="Key" type="Label" parent="Panel/AmountContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.184314, 0.129412, 0.0509804, 1)
 theme_override_fonts/font = ExtResource("1_6ft6b")
 theme_override_font_sizes/font_size = 32
 text = "0
@@ -221,6 +227,7 @@ horizontal_alignment = 1
 [node name="Coffee" type="Label" parent="Panel/AmountContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.184314, 0.129412, 0.0509804, 1)
 theme_override_fonts/font = ExtResource("1_6ft6b")
 theme_override_font_sizes/font_size = 32
 text = "0"
@@ -229,6 +236,7 @@ horizontal_alignment = 1
 [node name="Food" type="Label" parent="Panel/AmountContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.184314, 0.129412, 0.0509804, 1)
 theme_override_fonts/font = ExtResource("1_6ft6b")
 theme_override_font_sizes/font_size = 32
 text = "0"
@@ -237,6 +245,7 @@ horizontal_alignment = 1
 [node name="Book" type="Label" parent="Panel/AmountContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.184314, 0.129412, 0.0509804, 1)
 theme_override_fonts/font = ExtResource("1_6ft6b")
 theme_override_font_sizes/font_size = 32
 text = "0"
@@ -245,6 +254,7 @@ horizontal_alignment = 1
 [node name="Wallet" type="Label" parent="Panel/AmountContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.184314, 0.129412, 0.0509804, 1)
 theme_override_fonts/font = ExtResource("1_6ft6b")
 theme_override_font_sizes/font_size = 32
 text = "0"

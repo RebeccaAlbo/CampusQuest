@@ -5,7 +5,8 @@ extends Control
 @onready var food: Label = $Panel/AmountContainer/Food
 @onready var book: Label = $Panel/AmountContainer/Book
 @onready var wallet: Label = $Panel/AmountContainer/Wallet
-@onready var pause_menu: Control = $"../.."
+@onready var pause_menu: Control = $".."
+
 
 
 func _ready():

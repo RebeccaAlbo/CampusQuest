@@ -1,7 +1,7 @@
 extends Control
 
 @onready var quest_descriptions: Label = $Panel/QuestDescriptions
-@onready var pause_menu: Control = $"../.."
+@onready var pause_menu: Control = $".."
 
 
 
@@ -17,9 +17,8 @@ func update_quest():
 	for id in MiniQuests.started_quests:
 		for q in MiniQuests.quest_description:
 			if q["id"] == id:
-				text = q["desc"]
+				text += "• " + q["desc"] + "\n"
 				break
-		break
 	quest_descriptions.text = text if text != "" else "No active quests"
 
 func _on_exit_pressed() -> void:
