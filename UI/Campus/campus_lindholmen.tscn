@@ -1,8 +1,8 @@
-[gd_scene load_steps=53 format=3 uid="uid://c3ynfcpspetng"]
+[gd_scene load_steps=55 format=3 uid="uid://c3ynfcpspetng"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_lindholmen.gd" id="1_bghy0"]
 [ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="3_vo4v6"]
-[ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://props/scenes/bus_stop.tscn" id="4_b004s"]
+[ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://props/scenes/questprops/bus_stop.tscn" id="4_b004s"]
 [ext_resource type="PackedScene" uid="uid://bmxn8658qh64v" path="res://campus/lindholmen/lindholmen.tscn" id="5_32ols"]
 [ext_resource type="PackedScene" uid="uid://bx0yjeuw1ojxn" path="res://player/NPC/Scene/svea.tscn" id="8_u2u80"]
 [ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="9_4hias"]
@@ -19,21 +19,23 @@
 [ext_resource type="PackedScene" uid="uid://bkx6evqbw1q8y" path="res://player/NPC/Scene/äran.tscn" id="18_rf5dy"]
 [ext_resource type="PackedScene" uid="uid://lps4artqdiwu" path="res://player/NPC/Scene/anglia.tscn" id="19_0lpak"]
 [ext_resource type="PackedScene" uid="uid://b5elambvpjdk3" path="res://UI/Menues/Scenes/pause_menu.tscn" id="20_3lu4g"]
-[ext_resource type="PackedScene" uid="uid://thys5b7hn1ga" path="res://props/scenes/bug.tscn" id="20_njr0y"]
+[ext_resource type="PackedScene" uid="uid://thys5b7hn1ga" path="res://props/scenes/questprops/bug.tscn" id="20_njr0y"]
 [ext_resource type="Script" path="res://UI/Menues/Skripts/minimap.gd" id="21_gp3iv"]
 [ext_resource type="Script" path="res://UI/Menues/Skripts/big_map.gd" id="22_4s3ad"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="22_o3ee8"]
 [ext_resource type="Script" path="res://UI/Campus/panel.gd" id="24_2oniu"]
 [ext_resource type="PackedScene" uid="uid://3kjk4w0wer4" path="res://player/BaseCharacter/base_character.tscn" id="24_r2aeb"]
 [ext_resource type="Script" path="res://player/NPC/Script/äran.gd" id="25_va2l2"]
-[ext_resource type="PackedScene" uid="uid://wok612jj01x" path="res://props/scenes/food_stall.tscn" id="26_ocyoq"]
+[ext_resource type="PackedScene" uid="uid://wok612jj01x" path="res://props/scenes/questprops/food_stall.tscn" id="26_ocyoq"]
 [ext_resource type="PackedScene" uid="uid://ddlyrvsij0w4l" path="res://dialogue/extra_info.tscn" id="27_syvvn"]
-[ext_resource type="PackedScene" uid="uid://36wmcll8n0bt" path="res://props/scenes/key.tscn" id="28_206b2"]
-[ext_resource type="PackedScene" uid="uid://b1pvrh7buxg0p" path="res://props/scenes/wallet.tscn" id="29_d8f1n"]
+[ext_resource type="PackedScene" uid="uid://36wmcll8n0bt" path="res://props/scenes/questprops/key.tscn" id="28_206b2"]
+[ext_resource type="PackedScene" uid="uid://b1pvrh7buxg0p" path="res://props/scenes/questprops/wallet.tscn" id="29_d8f1n"]
 [ext_resource type="PackedScene" uid="uid://bvj0ua283ron" path="res://UI/Menues/Scenes/add_point.tscn" id="31_3ncv0"]
-[ext_resource type="PackedScene" uid="uid://cbad6500e7nqy" path="res://props/scenes/book_box.tscn" id="31_nwhd2"]
+[ext_resource type="PackedScene" uid="uid://cbad6500e7nqy" path="res://props/scenes/questprops/book_box.tscn" id="31_nwhd2"]
 [ext_resource type="PackedScene" uid="uid://cd5wttsnu0crk" path="res://player/NPC/Scene/creators.tscn" id="32_1v130"]
 [ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="32_ml7ul"]
+[ext_resource type="PackedScene" uid="uid://4g2mnr4jo1py" path="res://props/scenes/environment/tall_tree.tscn" id="35_i7tim"]
+[ext_resource type="PackedScene" uid="uid://dhvtsqyeyixsj" path="res://props/scenes/environment/fir.tscn" id="36_cxmbh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k1vra"]
 
@@ -435,7 +437,7 @@ transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -41.28
 script = SubResource("GDScript_3cnnn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter"]
-transform = Transform3D(1, 0, 4.47035e-08, 0, 1, 0, -4.47035e-08, 0, 1, 0, 1.85939, 0)
+transform = Transform3D(2, 0, 8.9407e-08, 0, 2, 0, -8.9407e-08, 0, 2, 0, 1.85939, 0)
 layers = 1024
 mesh = SubResource("CylinderMesh_d6y6t")
 
@@ -453,12 +455,12 @@ transform = Transform3D(0.99028, 0, 1.73763, 0, 2, 0, -1.73763, 0, 0.99028, -105
 [node name="WaveZone" parent="svea" instance=ExtResource("13_3p1t0")]
 
 [node name="Exlamation" type="Sprite3D" parent="svea"]
-transform = Transform3D(-1.99354, -0.16064, 7.0219e-09, 0, -8.74228e-08, -2, 0.16064, -1.99354, 8.71403e-08, 0, 22.0423, 0)
+transform = Transform3D(-1.99354, -0.16064, 7.02189e-09, 0, -8.74228e-08, -2, 0.16064, -1.99354, 8.71403e-08, 0, 8.23656, 0)
 layers = 1024
 texture = ExtResource("14_qthte")
 
 [node name="Check" type="Sprite3D" parent="svea"]
-transform = Transform3D(-1.49515, -0.120481, 5.26643e-09, 0, -6.55671e-08, -1.5, 0.120481, -1.49515, 6.53553e-08, 0, 22.0766, 0)
+transform = Transform3D(-1.49515, -0.120481, 5.26643e-09, 0, -6.55671e-08, -1.5, 0.120481, -1.49515, 6.53553e-08, 0, 8.27086, 0)
 visible = false
 layers = 1024
 texture = ExtResource("16_84c18")
@@ -477,12 +479,12 @@ transform = Transform3D(-1.66687, 0, -1.10524, 0, 2, 0, 1.10524, 0, -1.66687, 0.
 [node name="WaveZone" parent="kuggen" instance=ExtResource("13_3p1t0")]
 
 [node name="Exlamation" type="Sprite3D" parent="kuggen"]
-transform = Transform3D(1.72945, 1.0045, -4.39082e-08, 0, -8.74228e-08, -2, -1.0045, 1.72945, -7.55964e-08, 0, 22.7792, 0)
+transform = Transform3D(1.72945, 1.0045, -4.39082e-08, 0, -8.74228e-08, -2, -1.0045, 1.72945, -7.55964e-08, 0, 8.97346, 0)
 layers = 1024
 texture = ExtResource("14_qthte")
 
 [node name="Check" type="Sprite3D" parent="kuggen"]
-transform = Transform3D(1.29708, 0.753375, -3.29312e-08, 0, -6.55671e-08, -1.5, -0.753375, 1.29708, -5.66973e-08, 0, 22.7792, 0)
+transform = Transform3D(1.29708, 0.753375, -3.29312e-08, 0, -6.55671e-08, -1.5, -0.753375, 1.29708, -5.66973e-08, 0, 8.97346, 0)
 visible = false
 layers = 1024
 texture = ExtResource("16_84c18")
@@ -501,12 +503,12 @@ transform = Transform3D(-1.28945, 0, -1.52883, 0, 2, 0, 1.52883, 0, -1.28945, -2
 [node name="WaveZone" parent="jupiter" instance=ExtResource("13_3p1t0")]
 
 [node name="Exlamation" type="Sprite3D" parent="jupiter"]
-transform = Transform3D(1.92845, 0.530203, -2.3176e-08, 0, -8.74228e-08, -2, -0.530203, 1.92845, -8.42948e-08, 0, 22.2592, 0)
+transform = Transform3D(1.92845, 0.530203, -2.3176e-08, 0, -8.74228e-08, -2, -0.530203, 1.92845, -8.42948e-08, 0, 8.45346, 0)
 layers = 1024
 texture = ExtResource("14_qthte")
 
 [node name="Check" type="Sprite3D" parent="jupiter"]
-transform = Transform3D(1.44633, 0.397652, -1.7382e-08, 0, -6.55671e-08, -1.5, -0.397652, 1.44633, -6.32212e-08, 0, 22.2935, 0)
+transform = Transform3D(1.44633, 0.397652, -1.7382e-08, 0, -6.55671e-08, -1.5, -0.397652, 1.44633, -6.32212e-08, 0, 8.48776, 0)
 visible = false
 layers = 1024
 texture = ExtResource("16_84c18")
@@ -525,12 +527,12 @@ transform = Transform3D(0.477948, 0, 1.94205, 0, 2, 0, -1.94205, 0, 0.477948, -5
 [node name="WaveZone" parent="saga" instance=ExtResource("13_3p1t0")]
 
 [node name="Exlamation" type="Sprite3D" parent="saga"]
-transform = Transform3D(-1.94492, 0.466146, -2.03758e-08, 0, -8.74228e-08, -2, -0.466146, -1.94492, 8.50151e-08, 0, 22.3466, 0)
+transform = Transform3D(-1.94492, 0.466146, -2.03758e-08, 0, -8.74228e-08, -2, -0.466146, -1.94492, 8.50151e-08, 0, 8.54086, 0)
 layers = 1024
 texture = ExtResource("14_qthte")
 
 [node name="Check" type="Sprite3D" parent="saga"]
-transform = Transform3D(-1.45869, 0.349607, -1.52818e-08, 0, -6.55671e-08, -1.5, -0.349607, -1.45869, 6.37614e-08, 0, 22.3809, 0)
+transform = Transform3D(-1.45869, 0.349607, -1.52818e-08, 0, -6.55671e-08, -1.5, -0.349607, -1.45869, 6.37614e-08, 0, 8.57516, 0)
 visible = false
 layers = 1024
 texture = ExtResource("16_84c18")
@@ -549,12 +551,12 @@ transform = Transform3D(0.719826, 0, 1.86597, 0, 2, 0, -1.86597, 0, 0.719826, -8
 [node name="WaveZone" parent="patricia" instance=ExtResource("13_3p1t0")]
 
 [node name="Exlamation" type="Sprite3D" parent="patricia"]
-transform = Transform3D(-1.9875, 0.223321, -9.76155e-09, 0, -8.74228e-08, -2, -0.223321, -1.9875, 8.68761e-08, 0, 21.7572, 0)
+transform = Transform3D(-1.9875, 0.223321, -9.76155e-09, 0, -8.74228e-08, -2, -0.223321, -1.9875, 8.68761e-08, 0, 7.95146, 0)
 layers = 1024
 texture = ExtResource("14_qthte")
 
 [node name="Check" type="Sprite3D" parent="patricia"]
-transform = Transform3D(-1.49062, 0.167489, -7.32117e-09, 0, -6.55671e-08, -1.5, -0.167489, -1.49062, 6.51571e-08, 0, 21.7915, 0)
+transform = Transform3D(-1.49062, 0.167489, -7.32117e-09, 0, -6.55671e-08, -1.5, -0.167489, -1.49062, 6.51571e-08, 0, 7.98576, 0)
 visible = false
 layers = 1024
 texture = ExtResource("16_84c18")
@@ -575,12 +577,12 @@ transform = Transform3D(0.999764, 0, -0.0217451, 0, 1, 0, 0.0217451, 0, 0.999764
 [node name="WaveZone" parent="aran" instance=ExtResource("13_3p1t0")]
 
 [node name="Exlamation" type="Sprite3D" parent="aran"]
-transform = Transform3D(0.436663, 1.95175, -8.53137e-08, 3.1401e-15, -8.74228e-08, -2, -1.95175, 0.436663, -1.9087e-08, 0, 21.6973, 0)
+transform = Transform3D(0.436663, 1.95175, -8.53137e-08, 3.1401e-15, -8.74228e-08, -2, -1.95175, 0.436663, -1.9087e-08, 0, 7.89156, 0)
 layers = 1024
 texture = ExtResource("14_qthte")
 
 [node name="Check" type="Sprite3D" parent="aran"]
-transform = Transform3D(0.295228, 1.47066, -6.42846e-08, 0, -6.55671e-08, -1.5, -1.47066, 0.295228, -1.29048e-08, 0, 21.7316, 0)
+transform = Transform3D(0.295228, 1.47066, -6.42846e-08, 0, -6.55671e-08, -1.5, -1.47066, 0.295228, -1.29048e-08, 0, 7.92586, 0)
 visible = false
 layers = 1024
 texture = ExtResource("16_84c18")
@@ -599,12 +601,12 @@ transform = Transform3D(-1.9355, 0, -0.503833, 0, 2, 0, 0.503833, 0, -1.9355, -1
 [node name="WaveZone" parent="anglia" instance=ExtResource("13_3p1t0")]
 
 [node name="Exlamation" type="Sprite3D" parent="anglia"]
-transform = Transform3D(1.20123, 1.59908, -6.98978e-08, 0, -8.74228e-08, -2, -1.59908, 1.20123, -5.25074e-08, 0, 21.6707, 0)
+transform = Transform3D(1.20123, 1.59908, -6.98978e-08, 0, -8.74228e-08, -2, -1.59908, 1.20123, -5.25074e-08, 0, 7.86496, 0)
 layers = 1024
 texture = ExtResource("14_qthte")
 
 [node name="Check" type="Sprite3D" parent="anglia"]
-transform = Transform3D(0.938659, 1.17001, -5.11427e-08, 0, -6.55671e-08, -1.5, -1.17001, 0.938659, -4.10302e-08, 0, 21.705, 0)
+transform = Transform3D(0.938659, 1.17001, -5.11427e-08, 0, -6.55671e-08, -1.5, -1.17001, 0.938659, -4.10302e-08, 0, 7.89926, 0)
 visible = false
 layers = 1024
 texture = ExtResource("16_84c18")
@@ -996,6 +998,15 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_h4ldv")
 toggle_mode = true
 text = "Interact
 "
+
+[node name="tallTree" parent="." instance=ExtResource("35_i7tim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.7649, 0, 59.3055)
+
+[node name="tallTree2" parent="." instance=ExtResource("35_i7tim")]
+transform = Transform3D(-0.0315055, 0, -0.799379, 0, 0.8, 0, 0.799379, 0, -0.0315055, -41.5958, 0, 48.988)
+
+[node name="fir" parent="." instance=ExtResource("36_cxmbh")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -39.3579, 0, 45.9173)
 
 [connection signal="pressed" from="CanvasLayer/MenuButton" to="CanvasLayer/PauseMenu" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BigMap/GoBack" to="CanvasLayer/BigMap" method="_on_go_back_pressed"]

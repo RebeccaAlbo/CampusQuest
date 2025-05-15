@@ -23,6 +23,7 @@ extends Node
 
 
 func _ready():
+	# Adaptations for mobile version
 	if GameState.is_mobile:
 		menu_button.visible = true
 		minimap.visible = false
@@ -39,10 +40,13 @@ func _ready():
 		base_character.scale = Vector3(5, 5, 5)
 		creators.scale = Vector3(5, 5, 5)
 		bug.scale = Vector3(5, 5, 5)
+		bug.get_node("HoverText").visible = false
 		book_box.scale = Vector3(3, 3, 3)
+		book_box.get_node("HoverText").visible = false
 		food_stall.scale = Vector3(3, 3, 3)
 		key_kuggen.scale = Vector3(5, 5, 5)
 		wallet_math.scale = Vector3(5, 5, 5)
+		
 		
 		
 	else:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cbad6500e7nqy"]
 
 [ext_resource type="PackedScene" uid="uid://fiofyvrgs340" path="res://props/imports/bookBox.glb" id="1_8uvy3"]
-[ext_resource type="Script" path="res://props/scenes/book_box.gd" id="2_o3yum"]
+[ext_resource type="Script" path="res://props/scenes/questprops/book_box.gd" id="2_o3yum"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5pb21"]
 radius = 4.0

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://UI/Campus/campus_johanneberg.gd" id="1_p1r2s"]
 [ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="3_p4gww"]
 [ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="4_0g13b"]
-[ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://props/scenes/bus_stop.tscn" id="6_jjioq"]
+[ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://props/scenes/questprops/bus_stop.tscn" id="6_jjioq"]
 [ext_resource type="PackedScene" uid="uid://cnb2h5dy2in10" path="res://player/NPC/Scene/architecture.tscn" id="7_b36ec"]
 [ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="8_qbc84"]
 [ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/Other/Scenes/camera_controll.tscn" id="9_ukpfr"]
@@ -30,11 +30,11 @@
 [ext_resource type="PackedScene" uid="uid://3kjk4w0wer4" path="res://player/BaseCharacter/base_character.tscn" id="27_c0edl"]
 [ext_resource type="Script" path="res://UI/Menues/Skripts/big_map.gd" id="27_rjjvf"]
 [ext_resource type="Script" path="res://UI/Campus/panel.gd" id="29_6t16t"]
-[ext_resource type="PackedScene" uid="uid://36wmcll8n0bt" path="res://props/scenes/key.tscn" id="29_fe313"]
-[ext_resource type="PackedScene" uid="uid://wok612jj01x" path="res://props/scenes/food_stall.tscn" id="30_4acdi"]
+[ext_resource type="PackedScene" uid="uid://36wmcll8n0bt" path="res://props/scenes/questprops/key.tscn" id="29_fe313"]
+[ext_resource type="PackedScene" uid="uid://wok612jj01x" path="res://props/scenes/questprops/food_stall.tscn" id="30_4acdi"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="32_oqewd"]
 [ext_resource type="PackedScene" uid="uid://ddlyrvsij0w4l" path="res://dialogue/extra_info.tscn" id="34_4jer0"]
-[ext_resource type="PackedScene" uid="uid://cbad6500e7nqy" path="res://props/scenes/book_box.tscn" id="34_ngb0i"]
+[ext_resource type="PackedScene" uid="uid://cbad6500e7nqy" path="res://props/scenes/questprops/book_box.tscn" id="34_ngb0i"]
 [ext_resource type="PackedScene" uid="uid://bvj0ua283ron" path="res://UI/Menues/Scenes/add_point.tscn" id="37_cqyav"]
 [ext_resource type="Script" path="res://player/NPC/Script/economic.gd" id="37_kvtch"]
 [ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="38_75e1w"]
@@ -869,7 +869,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(138, 138)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="MinimapCamera" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
