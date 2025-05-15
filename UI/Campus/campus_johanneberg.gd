@@ -7,6 +7,7 @@ extends Node
 @onready var interact: Button = $CanvasLayer/Interact
 
 func _ready():
+	SoundManager.play_johanneberg_music()
 	if GameState.is_mobile:
 		menu_button.visible = true
 		minimap.visible = false
