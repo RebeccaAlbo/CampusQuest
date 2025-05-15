@@ -1,9 +1,9 @@
-[gd_scene load_steps=67 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=69 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_johanneberg.gd" id="1_p1r2s"]
 [ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/sprites/johanneberg.tscn" id="3_p4gww"]
 [ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="4_0g13b"]
-[ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://props/scenes/bus_stop.tscn" id="6_jjioq"]
+[ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://props/scenes/questprops/bus_stop.tscn" id="6_jjioq"]
 [ext_resource type="PackedScene" uid="uid://cnb2h5dy2in10" path="res://player/NPC/Scene/architecture.tscn" id="7_b36ec"]
 [ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="8_qbc84"]
 [ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/Other/Scenes/camera_controll.tscn" id="9_ukpfr"]
@@ -30,12 +30,12 @@
 [ext_resource type="PackedScene" uid="uid://3kjk4w0wer4" path="res://player/BaseCharacter/base_character.tscn" id="27_c0edl"]
 [ext_resource type="Script" path="res://UI/Menues/Skripts/big_map.gd" id="27_rjjvf"]
 [ext_resource type="Script" path="res://UI/Campus/panel.gd" id="29_6t16t"]
-[ext_resource type="PackedScene" uid="uid://36wmcll8n0bt" path="res://props/scenes/key.tscn" id="29_fe313"]
-[ext_resource type="PackedScene" uid="uid://wok612jj01x" path="res://props/scenes/food_stall.tscn" id="30_4acdi"]
+[ext_resource type="PackedScene" uid="uid://36wmcll8n0bt" path="res://props/scenes/questprops/key.tscn" id="29_fe313"]
+[ext_resource type="PackedScene" uid="uid://wok612jj01x" path="res://props/scenes/questprops/food_stall.tscn" id="30_4acdi"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="32_oqewd"]
 [ext_resource type="PackedScene" uid="uid://ddlyrvsij0w4l" path="res://dialogue/extra_info.tscn" id="34_4jer0"]
-[ext_resource type="PackedScene" uid="uid://cbad6500e7nqy" path="res://props/scenes/book_box.tscn" id="34_ngb0i"]
-[ext_resource type="PackedScene" uid="uid://cppigdi7yhkjv" path="res://UI/Menues/Scenes/add_point.tscn" id="37_cqyav"]
+[ext_resource type="PackedScene" uid="uid://cbad6500e7nqy" path="res://props/scenes/questprops/book_box.tscn" id="34_ngb0i"]
+[ext_resource type="PackedScene" uid="uid://bvj0ua283ron" path="res://UI/Menues/Scenes/add_point.tscn" id="37_cqyav"]
 [ext_resource type="Script" path="res://player/NPC/Script/economic.gd" id="37_kvtch"]
 [ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="38_75e1w"]
 
@@ -55,7 +55,7 @@ size = Vector2(10000, 10000)
 background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
 
-[sub_resource type="GDScript" id="GDScript_hwa5c"]
+[sub_resource type="GDScript" id="GDScript_mopl8"]
 script/source = "extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -131,8 +131,6 @@ func _ready():
 	
 	if GameState.is_mobile and get_tree().current_scene.name != \"CharacterSelection\":
 		phone_camera.current = true
-		interactButton = get_tree().current_scene.get_node(\"CanvasLayer\").get_node(\"Interact\")
-		print(interactButton)
 			
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse control viewpoint
@@ -141,8 +139,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		spring_arm.rotate_x(-event.relative.y * .001)
 		# No infinite rotation
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/4, PI/4)
-	
-	
 	
 	if Input.is_action_just_pressed(\"interact\"):
 		interact()
@@ -155,7 +151,8 @@ func interact():
 	if actionables.size() > 0:
 		actionables[0].action()
 		return
-		
+
+
 func _physics_process(delta: float) -> void:
 	if !can_move:
 		return
@@ -167,6 +164,8 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector(\"left\", \"right\", \"up\", \"down\")
+	if GameState.is_mobile:
+		input_dir = Input.get_vector(\"right\", \"left\", \"down\", \"up\")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	# Mouse control direction of character
 	direction = direction.rotated(Vector3.UP, spring_arm_pivot.rotation.y)
@@ -330,6 +329,7 @@ func update_character(skin_index: int, hair_index: int, pant_index: int, shirt_i
 	if shoes_material != null:
 		shoes_material.albedo_color = shoes_colors[shoes_index]	
 	
+
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cy1fy"]
@@ -343,6 +343,22 @@ height = 0.001
 
 [sub_resource type="Resource" id="Resource_gx8vd"]
 metadata/__load_path__ = "res://dialogue/architecture.dialogue"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4340n"]
+transparency = 1
+albedo_texture = ExtResource("13_aiayi")
+emission_enabled = true
+emission_texture = ExtResource("13_aiayi")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_87jca"]
+transparency = 1
+albedo_texture = ExtResource("25_b457s")
+emission_enabled = true
+emission_texture = ExtResource("25_b457s")
+billboard_mode = 1
+billboard_keep_scale = true
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qynfc"]
 
@@ -476,10 +492,10 @@ collision_mask = 2
 
 [node name="BaseCharacter" parent="." instance=ExtResource("27_c0edl")]
 transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -296.995, 0.545874, -108.713)
-script = SubResource("GDScript_hwa5c")
+script = SubResource("GDScript_mopl8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter"]
-transform = Transform3D(2, 0, 8.9407e-08, 0, 2, 0, -8.9407e-08, 0, 2, 0, 3.13048, 0)
+transform = Transform3D(4, 0, 1.78814e-07, 0, 4, 0, -1.78814e-07, 0, 4, 0, 3.13048, 0)
 layers = 1024
 mesh = SubResource("CylinderMesh_wd84n")
 
@@ -498,14 +514,16 @@ dialoque_resource = SubResource("Resource_gx8vd")
 [node name="WaveZone" parent="architecture" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="architecture"]
-transform = Transform3D(1.81262, 0.845237, -3.69465e-08, 0, -8.74228e-08, -2, -0.845237, 1.81262, -7.92319e-08, 0, 9.54637, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_4340n")
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="architecture"]
-transform = Transform3D(1.35946, 0.633927, -2.77099e-08, 0, -6.55671e-08, -1.5, -0.633927, 1.35946, -5.9424e-08, 0, 9.58065, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_87jca")
 texture = ExtResource("25_b457s")
 
 [node name="computer" parent="." instance=ExtResource("13_3doim")]
@@ -523,14 +541,16 @@ script = ExtResource("17_uyq1m")
 [node name="ChatDetectionArea" parent="computer" instance=ExtResource("11_dvbsa")]
 
 [node name="Exlamation" type="Sprite3D" parent="computer"]
-transform = Transform3D(1.81262, 0.845237, -3.69465e-08, 0, -8.74228e-08, -2, -0.845237, 1.81262, -7.92319e-08, 0, 9.54637, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_4340n")
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="computer"]
-transform = Transform3D(1.35946, 0.633927, -2.77099e-08, 0, -6.55671e-08, -1.5, -0.633927, 1.35946, -5.9424e-08, 0, 9.58065, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_87jca")
 texture = ExtResource("25_b457s")
 
 [node name="electrical" parent="." instance=ExtResource("14_x75fr")]
@@ -547,14 +567,16 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 21.0247, 0.224915, 134.023)
 [node name="WaveZone" parent="electrical" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="electrical"]
-transform = Transform3D(0.892302, -1.78992, 7.82396e-08, 0, -8.74228e-08, -2, 1.78992, 0.892302, -3.90038e-08, 0, 9.54637, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_4340n")
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="electrical"]
-transform = Transform3D(0.669226, -1.34243, 5.86798e-08, -1.80173e-15, -6.55671e-08, -1.5, 1.34243, 0.669226, -2.92529e-08, 0, 9.58065, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_87jca")
 texture = ExtResource("25_b457s")
 
 [node name="industrial" parent="." instance=ExtResource("15_k23oj")]
@@ -571,14 +593,16 @@ transform = Transform3D(-0.68404, 0, 1.87939, 0, 2, 0, -1.87939, 0, -0.68404, -8
 [node name="WaveZone" parent="industrial" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="industrial"]
-transform = Transform3D(-1.98054, -0.278347, 1.21669e-08, 0, -8.74229e-08, -2, 0.278347, -1.98054, 8.6572e-08, 0, 9.54637, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_4340n")
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="industrial"]
-transform = Transform3D(-1.4854, -0.208759, 9.12518e-09, 0, -6.55669e-08, -1.5, 0.208759, -1.4854, 6.4929e-08, 0, 9.58065, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_87jca")
 texture = ExtResource("25_b457s")
 
 [node name="physics" parent="." instance=ExtResource("16_gybfq")]
@@ -595,14 +619,16 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -188.973, 0.224915, -195.699)
 [node name="WaveZone" parent="physics" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="physics"]
-transform = Transform3D(0.883607, -1.79423, 7.8428e-08, 0, -8.74228e-08, -2, 1.79423, 0.883607, -3.86237e-08, 0, 9.54637, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_4340n")
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="physics"]
-transform = Transform3D(0.662705, -1.34567, 5.8821e-08, -1.80173e-15, -6.55671e-08, -1.5, 1.34567, 0.662705, -2.89678e-08, 0, 9.58065, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_87jca")
 texture = ExtResource("25_b457s")
 
 [node name="chemistry" parent="." instance=ExtResource("17_qw3c1")]
@@ -619,14 +645,16 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -59.7977, 0.224915, -233.436)
 [node name="WaveZone" parent="chemistry" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="chemistry"]
-transform = Transform3D(0.863794, -1.80385, 7.88486e-08, 0, -8.74228e-08, -2, 1.80385, 0.863794, -3.77577e-08, 0, 9.54637, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_4340n")
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="chemistry"]
-transform = Transform3D(0.647845, -1.35288, 5.91365e-08, -1.80173e-15, -6.55671e-08, -1.5, 1.35288, 0.647845, -2.83183e-08, 0, 9.58065, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_87jca")
 texture = ExtResource("25_b457s")
 
 [node name="life" parent="." instance=ExtResource("18_wkhe0")]
@@ -643,14 +671,16 @@ transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -124.7
 [node name="WaveZone" parent="life" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="life"]
-transform = Transform3D(-1.80255, -0.866501, 3.7876e-08, 0, -8.74228e-08, -2, 0.866501, -1.80255, 7.87918e-08, 0, 9.54637, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_4340n")
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="life"]
-transform = Transform3D(-1.35191, -0.649875, 2.8407e-08, -1.80173e-15, -6.55671e-08, -1.5, 0.649875, -1.35191, 5.90939e-08, 0, 9.58065, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_87jca")
 texture = ExtResource("25_b457s")
 
 [node name="math" parent="." instance=ExtResource("19_u6e35")]
@@ -667,14 +697,16 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -48.2272, 0.224915, -149.427)
 [node name="WaveZone" parent="math" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="math"]
-transform = Transform3D(0.843244, -1.81355, 7.92725e-08, 0, -8.74228e-08, -2, 1.81355, 0.843244, -3.68594e-08, 0, 9.54637, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_4340n")
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="math"]
-transform = Transform3D(0.632432, -1.36016, 5.94544e-08, -1.80173e-15, -6.55671e-08, -1.5, 1.36016, 0.632432, -2.76446e-08, 0, 9.58065, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_87jca")
 texture = ExtResource("25_b457s")
 
 [node name="mechanics" parent="." instance=ExtResource("20_i3yk2")]
@@ -692,14 +724,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.222486, 1, 0)
 [node name="WaveZone" parent="mechanics" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="mechanics"]
-transform = Transform3D(-1.79862, -0.87464, 3.82318e-08, 0, -8.74228e-08, -2, 0.87464, -1.79862, 7.86198e-08, 0, 9.54637, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_4340n")
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="mechanics"]
-transform = Transform3D(-1.34896, -0.655979, 2.86738e-08, -1.80173e-15, -6.55671e-08, -1.5, 0.655979, -1.34896, 5.89649e-08, 0, 9.58065, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_87jca")
 texture = ExtResource("25_b457s")
 
 [node name="micro" parent="." instance=ExtResource("21_ga0cy")]
@@ -716,14 +750,16 @@ transform = Transform3D(1.69545, 0, 1.06087, 0, 2, 0, -1.06087, 0, 1.69545, -182
 [node name="WaveZone" parent="micro" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="micro"]
-transform = Transform3D(-0.168297, -1.99291, 8.71127e-08, 0, -8.74228e-08, -2, 1.99291, -0.168297, 7.35637e-09, 0, 9.54637, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_4340n")
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="micro"]
-transform = Transform3D(-0.126221, -1.49468, 6.53346e-08, -1.80173e-15, -6.55671e-08, -1.5, 1.49468, -0.126221, 5.51726e-09, 0, 9.58065, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_87jca")
 texture = ExtResource("25_b457s")
 
 [node name="space" parent="." instance=ExtResource("22_fbe7f")]
@@ -740,14 +776,16 @@ transform = Transform3D(-1.73619, 0, -0.9928, 0, 2, 0, 0.9928, 0, -1.73619, 3, 0
 [node name="WaveZone" parent="space" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="space"]
-transform = Transform3D(0.185195, 1.99141, -8.70472e-08, 0, -8.74228e-08, -2, -1.99141, 0.185195, -8.09496e-09, 0, 9.54637, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_4340n")
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="space"]
-transform = Transform3D(0.138894, 1.49355, -6.52854e-08, -1.80173e-15, -6.55671e-08, -1.5, -1.49355, 0.138894, -6.07126e-09, 0, 9.58065, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_87jca")
 texture = ExtResource("25_b457s")
 
 [node name="economic" parent="." instance=ExtResource("23_sk0v5")]
@@ -765,14 +803,16 @@ script = ExtResource("37_kvtch")
 [node name="WaveZone" parent="economic" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="economic"]
-transform = Transform3D(0.163076, -1.99334, 8.71317e-08, 0, -8.74228e-08, -2, 1.99334, 0.163076, -7.12838e-09, 0, 9.54637, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_4340n")
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="economic"]
-transform = Transform3D(0.122308, -1.495, 6.53488e-08, -1.80173e-15, -6.55671e-08, -1.5, 1.495, 0.122308, -5.34629e-09, 0, 9.58065, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_87jca")
 texture = ExtResource("25_b457s")
 
 [node name="science" parent="." instance=ExtResource("24_mx7op")]
@@ -789,14 +829,16 @@ transform = Transform3D(0.774325, 0, -1.84402, 0, 2, 0, 1.84402, 0, 0.774325, -3
 [node name="WaveZone" parent="science" instance=ExtResource("12_dlir3")]
 
 [node name="Exlamation" type="Sprite3D" parent="science"]
-transform = Transform3D(1.99184, 0.180569, -7.89301e-09, 0, -8.74228e-08, -2, -0.180569, 1.99184, -8.70657e-08, 0, 9.54637, 0)
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
+material_override = SubResource("StandardMaterial3D_4340n")
 texture = ExtResource("13_aiayi")
 
 [node name="Check" type="Sprite3D" parent="science"]
-transform = Transform3D(1.49387, 0.135428, -5.91976e-09, -1.80173e-15, -6.55671e-08, -1.5, -0.135428, 1.49387, -6.52994e-08, 0, 9.58065, 0)
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
+material_override = SubResource("StandardMaterial3D_87jca")
 texture = ExtResource("25_b457s")
 
 [node name="bookBox" parent="." instance=ExtResource("34_ngb0i")]
@@ -875,7 +917,8 @@ render_target_update_mode = 4
 [node name="MinimapCamera" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
 transform = Transform3D(-0.34202, -0.939693, -4.10753e-08, 0, -4.37114e-08, 1, -0.939693, 0.34202, 1.49502e-08, -298.251, 100, -100.675)
 cull_mask = 1048573
-size = 100.0
+projection = 1
+size = 150.0
 
 [node name="BigMap" type="Control" parent="CanvasLayer"]
 process_mode = 3
@@ -904,8 +947,10 @@ size_2d_override_stretch = true
 render_target_update_mode = 0
 
 [node name="BigMapCamera" type="Camera3D" parent="CanvasLayer/BigMap/SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.422618, -0.906308, -3.9616e-08, 0, -4.37114e-08, 1, -0.906308, 0.422618, 1.84732e-08, -113.817, 300, -99.5864)
+transform = Transform3D(-0.422618, -0.906308, -3.9616e-08, 0, -4.37114e-08, 1, -0.906308, 0.422618, 1.84732e-08, -131.213, 557.372, -128.454)
 cull_mask = 1048573
+projection = 1
+size = 375.0
 near = 0.01
 
 [node name="GoBack" type="Button" parent="CanvasLayer/BigMap"]

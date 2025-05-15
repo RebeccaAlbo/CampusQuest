@@ -83,11 +83,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/4, PI/4)
 	
 	if Input.is_action_just_pressed("interact"):
-		var actionables = actionable_finder.get_overlapping_areas()
-		if actionables.size() > 0:
-			actionables[0].action()
-			return
+		interact()
 
+func _on_interact_pressed() -> void:
+	interact()
+
+func interact():
+	var actionables = actionable_finder.get_overlapping_areas()
+	if actionables.size() > 0:
+		actionables[0].action()
+		return
 
 
 func _physics_process(delta: float) -> void:
@@ -101,6 +106,8 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("left", "right", "up", "down")
+	if GameState.is_mobile:
+		input_dir = Input.get_vector("right", "left", "down", "up")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	# Mouse control direction of character
 	direction = direction.rotated(Vector3.UP, spring_arm_pivot.rotation.y)

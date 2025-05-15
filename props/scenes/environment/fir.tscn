@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhvtsqyeyixsj"]
+
+[ext_resource type="PackedScene" uid="uid://dg3xhdedta5j8" path="res://props/imports/fir.glb" id="1_wd8en"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7bgx6"]
+height = 9.70704
+radius = 2.648
+
+[node name="fir" instance=ExtResource("1_wd8en")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.84001, 0)
+shape = SubResource("CylinderShape3D_7bgx6")

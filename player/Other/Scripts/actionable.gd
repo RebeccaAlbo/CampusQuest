@@ -47,6 +47,8 @@ func action() -> void:
 	# Set up for dialoque envoronment
 	player.in_dialogue(npc)
 	npc.face_toward(player)
+	print("starting talking animation")
+	await get_tree().create_timer(0.1).timeout
 	npc.animation("Talking", 0.3)
 	
 	var balloon: Node = Balloon.instantiate()
@@ -67,6 +69,6 @@ func action() -> void:
 	else:
 		camera.current = true
 	GameState.set_mouse_state(GameState.MouseState.GAMEPLAY)
-	if npc.name not in GameState.talked_to_npcs and not npc.name == "Rebecca":
-		npc.change_mark()
-		GameState.add_npc_point(npc)
+	#if npc.name not in GameState.talked_to_npcs and not npc.name == "Rebecca":
+	#	npc.change_mark()
+	#	GameState.add_npc_point(npc)

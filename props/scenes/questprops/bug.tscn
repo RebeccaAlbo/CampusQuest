@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://thys5b7hn1ga"]
 
 [ext_resource type="PackedScene" uid="uid://dthq7r2ebba3q" path="res://props/imports/bug.glb" id="1_vwsm0"]
-[ext_resource type="Script" path="res://props/scenes/bug.gd" id="2_cfaqn"]
+[ext_resource type="Script" path="res://props/scenes/questprops/bug.gd" id="2_cfaqn"]
 [ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="3_gq83e"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ok3yt"]

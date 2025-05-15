@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://wok612jj01x"]
 
 [ext_resource type="PackedScene" uid="uid://b8vd2cwx13xii" path="res://props/imports/foodStall.glb" id="1_xw86l"]
-[ext_resource type="Script" path="res://props/scenes/food_stall.gd" id="2_ks6w2"]
+[ext_resource type="Script" path="res://props/scenes/questprops/food_stall.gd" id="2_ks6w2"]
 [ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="3_uo867"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yjao5"]

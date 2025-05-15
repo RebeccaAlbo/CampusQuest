@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://4g2mnr4jo1py"]
+
+[ext_resource type="PackedScene" uid="uid://dhfc5b8u2lisj" path="res://props/imports/tallTree.glb" id="1_2yo0a"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8p1so"]
+height = 5.00615
+radius = 0.820393
+
+[node name="tallTree" instance=ExtResource("1_2yo0a")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.58432, 0)
+shape = SubResource("CylinderShape3D_8p1so")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://pblypu2h1pga"]
 
 [ext_resource type="PackedScene" uid="uid://b2gyypu5fwiun" path="res://props/imports/coffeeMug.glb" id="1_u23gb"]
-[ext_resource type="Script" path="res://props/scenes/coffee_mug.gd" id="2_1mb0d"]
+[ext_resource type="Script" path="res://props/scenes/questprops/coffee_mug.gd" id="2_1mb0d"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2fiyo"]
 radius = 2.0
