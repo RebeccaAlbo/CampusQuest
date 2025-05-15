@@ -330,6 +330,7 @@ We are currently standing infront of Saga
 	do show_extra_info(true, "saga")
 	if not talked_to_npcs.has("saga")
 		do add_score(1, "saga")
+	=> END
 - Help with a task
 	if inventory["coffee"].has("coffeeSaga")
 		Is there anything else I can do for you?
@@ -340,7 +341,6 @@ We are currently standing infront of Saga
 	else:
 		There is nothing you can do for me
 		- End conversation
-	- Help with a task
 
 do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!

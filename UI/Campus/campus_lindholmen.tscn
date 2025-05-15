@@ -30,7 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://ddlyrvsij0w4l" path="res://dialogue/extra_info.tscn" id="27_syvvn"]
 [ext_resource type="PackedScene" uid="uid://36wmcll8n0bt" path="res://props/scenes/questprops/key.tscn" id="28_206b2"]
 [ext_resource type="PackedScene" uid="uid://b1pvrh7buxg0p" path="res://props/scenes/questprops/wallet.tscn" id="29_d8f1n"]
-[ext_resource type="PackedScene" uid="uid://cppigdi7yhkjv" path="res://UI/Menues/Scenes/add_point.tscn" id="31_3ncv0"]
+[ext_resource type="PackedScene" uid="uid://bvj0ua283ron" path="res://UI/Menues/Scenes/add_point.tscn" id="31_3ncv0"]
 [ext_resource type="PackedScene" uid="uid://cbad6500e7nqy" path="res://props/scenes/questprops/book_box.tscn" id="31_nwhd2"]
 [ext_resource type="PackedScene" uid="uid://cd5wttsnu0crk" path="res://player/NPC/Scene/creators.tscn" id="32_1v130"]
 [ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="32_ml7ul"]

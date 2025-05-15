@@ -1,6 +1,7 @@
 extends Control
 
 @onready var quest_descriptions: Label = $Panel/QuestDescriptions
+@onready var pause_menu: Control = $"../.."
 
 
 
@@ -23,3 +24,4 @@ func update_quest():
 
 func _on_exit_pressed() -> void:
 	self.visible = false
+	pause_menu.paused = false
