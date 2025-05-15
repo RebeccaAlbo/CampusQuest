@@ -34,6 +34,7 @@ func add_npc_point(npc: Node):
 		
 func add_score(s: int, npc_name: String = ""):	
 	score += s
+	SoundManager.play_coin()
 	var scene = get_tree().current_scene
 	var points_popup = scene.get_node("CanvasLayer").get_node("AddPoint").get_node("PointsPopup")
 	points_popup.text = "+" + str(s) + " Point" + ("!" if score == 1 else "s!")
