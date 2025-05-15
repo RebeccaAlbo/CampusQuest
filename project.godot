@@ -23,6 +23,7 @@ GameState="*res://globalScripts/gameState.gd"
 FlutterBridge="*res://addons/flutterbridge/flutterbridge.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 MiniQuests="*res://globalScripts/miniQuests.gd"
+SoundManager="*res://globalScripts/SoundManager.gd"
 
 [dialogue_manager]
 

@@ -17,3 +17,4 @@ func _on_exit_pressed() -> void:
 		
 	FlutterBridge.emit_signal("extra_info_ended")
 	FlutterBridge.running_extra_info = false;
+	$Panel/DataBaseText.text = ""
