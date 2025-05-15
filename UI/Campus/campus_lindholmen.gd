@@ -23,6 +23,7 @@ extends Node
 
 
 func _ready():
+	SoundManager.play_lindholmen_music()
 	# Adaptations for mobile version
 	if GameState.is_mobile:
 		menu_button.visible = true

@@ -13,6 +13,7 @@ var pants_chosen: bool
 var shoes_chosen: bool
 
 func _ready() -> void:
+	SoundManager.play_custom_music()
 	SceneManager.prev_scene_path = "res://UI/Menues/Scenes/main_menu.tscn"
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	hair_chosen = false

@@ -21,9 +21,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("esc"):
 		if _is_paused == false:
+			SoundManager.play_pause_music()
 			_is_paused =  true
 			GameState.set_mouse_state(GameState.MouseState.UI)
 		else:
+			SoundManager.exit_pause_music()
 			_is_paused =  false
 			get_tree().paused = _is_paused
 			add_point.visible = true
@@ -55,6 +57,7 @@ func _on_resume_pressed() -> void:
 		add_point.visible = true
 	else:
 		interact.visible = true
+	SoundManager.exit_pause_music()
 
 # Saves the game and quits the application
 func _on_quit_game_pressed() -> void:

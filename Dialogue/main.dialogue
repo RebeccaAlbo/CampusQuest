@@ -262,6 +262,7 @@ We are currently standing infront of Saga
 	do show_extra_info(true, "saga")
 	if not talked_to_npcs.has("saga")
 		do add_score(1, "saga")
+	=> END
 - End conversation
 
 do set_mouse_state(GameState.MouseState.GAMEPLAY)
