@@ -10,7 +10,7 @@ func _ready():
 	npc = get_parent()
 	if GameState.is_mobile:
 		interactButton = get_tree().current_scene.get_node("CanvasLayer").get_node("Interact")
-		print(interactButton)
+		print("interact is: ", interactButton)
 		
 
 # Changes NPC animation to waving when player is in close proximity
@@ -19,7 +19,8 @@ func _on_body_entered(body: Node3D) -> void:
 		player = body
 		player_in_chat_zone = true
 		npc.animation("Waving", 0.3)
-		interactButton.visible =  true
+		if GameState.is_mobile:
+			interactButton.visible =  true
 
 # Changes NPC animation to idle when player is no longer in close proximity
 func _on_body_exited(body: Node3D) -> void:

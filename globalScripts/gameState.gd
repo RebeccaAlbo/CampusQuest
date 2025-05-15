@@ -32,6 +32,7 @@ func add_npc_point(npc: Node):
 	if not talked_to_npcs.has(npc.name):
 		talked_to_npcs[npc.name] = true
 		
+		
 func save_game() -> bool:
 	# Creates a dictionary to store the player's score, NPC interaction data, 
 	# and character customization choices for saving
@@ -158,6 +159,7 @@ func show_extra_info(yes: bool, npc_name: String):
 	
 func add_score(s: int):
 	score += s
+	SoundManager.play_coin()
 	var scene = get_tree().current_scene
 	var points_popup = scene.get_node("CanvasLayer").get_node("AddPoint").get_node("PointsPopup")
 	points_popup.text = "+" + str(s) + " Point" + ("!" if score == 1 else "s!")

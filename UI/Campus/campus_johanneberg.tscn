@@ -35,7 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="32_oqewd"]
 [ext_resource type="PackedScene" uid="uid://ddlyrvsij0w4l" path="res://dialogue/extra_info.tscn" id="34_4jer0"]
 [ext_resource type="PackedScene" uid="uid://cbad6500e7nqy" path="res://props/scenes/book_box.tscn" id="34_ngb0i"]
-[ext_resource type="PackedScene" uid="uid://bvj0ua283ron" path="res://UI/Menues/Scenes/add_point.tscn" id="37_cqyav"]
+[ext_resource type="PackedScene" uid="uid://cppigdi7yhkjv" path="res://UI/Menues/Scenes/add_point.tscn" id="37_cqyav"]
 [ext_resource type="Script" path="res://player/NPC/Script/economic.gd" id="37_kvtch"]
 [ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="38_75e1w"]
 
