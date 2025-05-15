@@ -2,6 +2,8 @@ extends Node
 
 signal inventory_updated
 signal bug_visible
+signal quest_started(desc: String)
+signal quest_finished(desc: String)
 
 # Keep track of number of items in inventory
 var inventory: = {
@@ -12,9 +14,11 @@ var inventory: = {
 	"coffee": []
 }
 
-# Keeps track of picked up items
+# Keeps track of quests
 var picked_up_items := []
 var food_orders := []
+var started_quests := []
+var finished_quests := []
 
 # Keeps track of the bug quest
 var bug_state = {
@@ -22,6 +26,24 @@ var bug_state = {
 	"found": false,
 	"reported": false
 }
+
+var quest_description := [
+	{
+		"id": "keyKuggen",
+		"desc": "Find the lost key around Jupiter and give it to Kuggen"
+	}
+]
+
+func add_started_quest(id: String):
+	print("adding started quest")
+	started_quests.append(id)
+	quest_started.emit()
+	print(started_quests)
+	
+func add_finished_quest(id: String):
+	started_quests.erase(id)
+	finished_quests.append(id)
+	quest_finished.emit()
 
 func get_item_count(item_name: String) -> int:
 	if not inventory.has(item_name):
@@ -43,7 +65,6 @@ func add_item(item_name: String, item_detail: String = "") -> void:
 		return
 	
 	var value = inventory[item_name]
-	print(item_name, " ", item_detail)
 	
 	if typeof(value) == TYPE_FLOAT:
 		inventory[item_name] += 1

@@ -38,11 +38,11 @@ func add_score(s: int, npc_name: String = ""):
 	var points_popup = scene.get_node("CanvasLayer").get_node("AddPoint").get_node("PointsPopup")
 	points_popup.text = "+" + str(s) + " Point" + ("!" if score == 1 else "s!")
 	points_popup.get_node("AnimationPlayer").play("popup")
-	if name != "" and !talked_to_npcs.has("name"):
+	print(npc_name)
+	if npc_name != "" and !talked_to_npcs.has("name"):
 		talked_to_npcs[name] = true
 		var npc = scene.get_node(npc_name)
 		npc.change_mark()
-		
 		
 func save_game() -> bool:
 	# Creates a dictionary to store the player's score, NPC interaction data, 

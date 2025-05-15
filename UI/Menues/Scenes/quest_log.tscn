@@ -1,0 +1,235 @@
+[gd_scene load_steps=9 format=3 uid="uid://bdhwj8e10tfqa"]
+
+[ext_resource type="Script" path="res://UI/Menues/Scenes/quest_log.gd" id="1_8d36b"]
+[ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="1_ndpxd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8uh0"]
+bg_color = Color(0.564706, 0.423529, 0.227451, 1)
+
+[sub_resource type="FontFile" id="FontFile_21mmf"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/2/0/ascent = 0.0
+cache/0/2/0/descent = 0.0
+cache/0/2/0/underline_position = 0.0
+cache/0/2/0/underline_thickness = 0.0
+cache/0/2/0/scale = 1.0
+cache/0/3/0/ascent = 0.0
+cache/0/3/0/descent = 0.0
+cache/0/3/0/underline_position = 0.0
+cache/0/3/0/underline_thickness = 0.0
+cache/0/3/0/scale = 1.0
+cache/0/4/0/ascent = 0.0
+cache/0/4/0/descent = 0.0
+cache/0/4/0/underline_position = 0.0
+cache/0/4/0/underline_thickness = 0.0
+cache/0/4/0/scale = 1.0
+cache/0/5/0/ascent = 0.0
+cache/0/5/0/descent = 0.0
+cache/0/5/0/underline_position = 0.0
+cache/0/5/0/underline_thickness = 0.0
+cache/0/5/0/scale = 1.0
+cache/0/6/0/ascent = 0.0
+cache/0/6/0/descent = 0.0
+cache/0/6/0/underline_position = 0.0
+cache/0/6/0/underline_thickness = 0.0
+cache/0/6/0/scale = 1.0
+cache/0/7/0/ascent = 0.0
+cache/0/7/0/descent = 0.0
+cache/0/7/0/underline_position = 0.0
+cache/0/7/0/underline_thickness = 0.0
+cache/0/7/0/scale = 1.0
+cache/0/8/0/ascent = 0.0
+cache/0/8/0/descent = 0.0
+cache/0/8/0/underline_position = 0.0
+cache/0/8/0/underline_thickness = 0.0
+cache/0/8/0/scale = 1.0
+cache/0/9/0/ascent = 0.0
+cache/0/9/0/descent = 0.0
+cache/0/9/0/underline_position = 0.0
+cache/0/9/0/underline_thickness = 0.0
+cache/0/9/0/scale = 1.0
+cache/0/10/0/ascent = 0.0
+cache/0/10/0/descent = 0.0
+cache/0/10/0/underline_position = 0.0
+cache/0/10/0/underline_thickness = 0.0
+cache/0/10/0/scale = 1.0
+cache/0/11/0/ascent = 0.0
+cache/0/11/0/descent = 0.0
+cache/0/11/0/underline_position = 0.0
+cache/0/11/0/underline_thickness = 0.0
+cache/0/11/0/scale = 1.0
+cache/0/12/0/ascent = 0.0
+cache/0/12/0/descent = 0.0
+cache/0/12/0/underline_position = 0.0
+cache/0/12/0/underline_thickness = 0.0
+cache/0/12/0/scale = 1.0
+cache/0/13/0/ascent = 0.0
+cache/0/13/0/descent = 0.0
+cache/0/13/0/underline_position = 0.0
+cache/0/13/0/underline_thickness = 0.0
+cache/0/13/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
+cache/0/15/0/ascent = 0.0
+cache/0/15/0/descent = 0.0
+cache/0/15/0/underline_position = 0.0
+cache/0/15/0/underline_thickness = 0.0
+cache/0/15/0/scale = 1.0
+cache/0/17/0/ascent = 0.0
+cache/0/17/0/descent = 0.0
+cache/0/17/0/underline_position = 0.0
+cache/0/17/0/underline_thickness = 0.0
+cache/0/17/0/scale = 1.0
+cache/0/18/0/ascent = 0.0
+cache/0/18/0/descent = 0.0
+cache/0/18/0/underline_position = 0.0
+cache/0/18/0/underline_thickness = 0.0
+cache/0/18/0/scale = 1.0
+cache/0/19/0/ascent = 0.0
+cache/0/19/0/descent = 0.0
+cache/0/19/0/underline_position = 0.0
+cache/0/19/0/underline_thickness = 0.0
+cache/0/19/0/scale = 1.0
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/21/0/ascent = 0.0
+cache/0/21/0/descent = 0.0
+cache/0/21/0/underline_position = 0.0
+cache/0/21/0/underline_thickness = 0.0
+cache/0/21/0/scale = 1.0
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
+cache/0/23/0/ascent = 0.0
+cache/0/23/0/descent = 0.0
+cache/0/23/0/underline_position = 0.0
+cache/0/23/0/underline_thickness = 0.0
+cache/0/23/0/scale = 1.0
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/25/0/ascent = 0.0
+cache/0/25/0/descent = 0.0
+cache/0/25/0/underline_position = 0.0
+cache/0/25/0/underline_thickness = 0.0
+cache/0/25/0/scale = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qklyq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmpui"]
+bg_color = Color(0.756863, 0.631373, 0.458824, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xm5bk"]
+bg_color = Color(0.564706, 0.454902, 0.298039, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_er87f"]
+bg_color = Color(0.909804, 0.831373, 0.72549, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[node name="QuestLog" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8d36b")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d8uh0")
+
+[node name="Title" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -377.0
+offset_top = 44.0
+offset_right = 133.0
+offset_bottom = 108.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+theme_override_colors/font_color = Color(0.764706, 0.545098, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("1_ndpxd")
+theme_override_font_sizes/font_size = 64
+text = "Quest Log"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestDescriptions" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -357.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = SubResource("FontFile_21mmf")
+theme_override_font_sizes/font_size = 16
+text = "Quest 1
+Quest 2
+"
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -161.0
+offset_top = 17.0
+offset_right = -27.0
+offset_bottom = 59.0
+grow_horizontal = 0
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_ndpxd")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qklyq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dmpui")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xm5bk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_er87f")
+text = "Exit"
+
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

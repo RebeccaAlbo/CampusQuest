@@ -6,6 +6,8 @@ extends Control
 @onready var inventory: Control = $ColorRect/Inventory
 @onready var interact: Button = $"../Interact"
 @onready var add_point: Control = $"../AddPoint"
+@onready var quest_log: Control = $ColorRect/QuestLog
+
 
 # Paused by other menues
 var paused: bool = false
@@ -16,7 +18,7 @@ var _is_paused: bool = false:
 # Handles the "esc" key input to toggle the pause state, show/hide the minimap, 
 # and control mouse visibility
 func _unhandled_input(event: InputEvent) -> void:	
-	if paused or inventory.visible:
+	if paused or inventory.visible or quest_log.visible:
 		return
 	
 	if event.is_action_pressed("esc"):
@@ -75,7 +77,10 @@ func _on_open_map_pressed() -> void:
 
 func _on_menu_button_pressed() -> void:
 	print("menu button pressed")
-	_is_paused =  true
+	_is_paused = true
 	
 func _on_inventory_pressed() -> void:
 	inventory.visible = true
+	
+func _on_quest_log_pressed() -> void:
+	quest_log.visible = true

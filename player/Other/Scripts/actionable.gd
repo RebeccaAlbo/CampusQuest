@@ -44,10 +44,10 @@ func action() -> void:
 	else:
 		print("not all cameras found")
 	
-	# Set up for dialoque envoronment
+	# Set up for dialoque environment
 	player.in_dialogue(npc)
 	npc.face_toward(player)
-	print("starting talking animation")
+	# needed to avoid npc to keep waving instead of talking during dialogue
 	await get_tree().create_timer(0.1).timeout
 	npc.animation("Talking", 0.3)
 	

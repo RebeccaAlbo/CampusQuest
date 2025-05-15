@@ -7,7 +7,23 @@ We are currently standing infront of the department of Architecture and Civil en
 	if not talked_to_npcs.has("architecture")
 		do add_score(1, "architecture")
 	=> END
-- End conversation
+- Help with a task
+	if not inventory["book"].has("bookArchi")
+		I have this book I have to return to the library, but my lecture begins soon. Could you return it?
+		- Yes, of course
+			Thank you so much
+			do add_item("book", "bookArchi")
+			do picked_up_items.append("bookArchi")
+			do started_quests.append("bookArchi")
+		- No, not right now
+			Okey, come back if you change your mind
+	elif inventory["book"].has("bookArchi"):
+		Hey, just a reminder to drop of my book at the library
+		- End conversation
+		=> END
+	else:
+		You have already helped me
+		- End conversation
 
 do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END
@@ -22,29 +38,45 @@ We are currently standing infront of the department of Computer and Information 
 		do add_score(1, "computer")
 	=> END
 - Help with a task
-	if inventory["coffee"].has("coffeeComputer")
-		Is there anything else I can do for you?
-		- I was sent to bring you this coffee
-		That was very kind, thank you
-		do remove_item("coffee", "coffeeComputer")
-		do add_score(1, "coffeeComputer")
-	else:
-		There is nothing you can do for me
+	if not inventory["coffee"].has("coffeeSaga"):
+		I promised to bring my friend outside of Saga this cup of coffe but I am simply to busy.
+		Would you mind bringing it to them?
+		- No problem, I can do that
+			Thank you so much
+			do add_item("coffee", "coffeeSaga")
+			do picked_up_items.append("coffeeSaga")
+		- No, not right now
+			Okey, come back if you change your mind
+	elif inventory["coffee"].has("coffeeSaga"):
+		Remember to deliver that coffee
 		- End conversation
-	
+		=> END
+	else: 
+		You have already helped me
+		- End conversation
+		
 do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END
 
 ~ electrical
 Oh hello there!
 
-We are currently standing infront of the department of Electrical engineering
+We are currently standing infront of the department of Electrical Engineering
 - Learn more about the department
 	do show_extra_info(true, "electrical")
 	if not talked_to_npcs.has("electrical")
 		do add_score(1, "electrical")
 	=> END
-- End conversation
+- Help with a task
+	if inventory["coffee"].has("coffeeElectrical")
+		Is there anything else I can do for you?
+		- I was sent to bring you this coffee
+		That was very kind, thank you
+		do remove_item("coffee", "coffeeElectrical")
+		do add_score(1)
+	else:
+		There is nothing you can do for me
+		- End conversation
 
 do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
@@ -115,7 +147,22 @@ We are currently standing infront of the department of Life Sciences
 	if not talked_to_npcs.has("life")
 		do add_score(1, "life")
 	=> END
-- End conversation
+- Help with a task
+	if not picked_up_items.has("foodLife"):
+		I am absolutely starving, would you mind bringing me some lunch?
+		- Right away
+			Thank you so much
+			do food_orders.append("foodLife")
+		- No, not right now
+			Okey, come back if you change your mind
+	elif inventory["food"].has("foodLife"):
+		- Here is your lunch
+		Thank you so much
+		do inventory["food"].erase("foodLife")
+		do add_score(1)
+	else:
+		You have already helped me
+		- End conversation
 
 do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
@@ -123,7 +170,7 @@ do set_mouse_state(GameState.MouseState.GAMEPLAY)
 ~ math
 Oh hello there!
 
-We are currently standing infront of the department of Mathematical sciences
+We are currently standing infront of the department of Mathematical Sciences
 - Learn more about the department
 	do show_extra_info(true, "math")
 	if not talked_to_npcs.has("math")
@@ -172,7 +219,7 @@ We are currently standing infront of the department of Microtechnology and Nanos
 		do add_score(1, "micro")
 	=> END
 - Help with a task
-	if not picked_up_items.has("bookMicro")
+	if not inventory["book"].has("bookMicro")
 		I seem to have borrowed the wrong book from the library, would you mind returning it?
 		- Yes, of course
 			Thank you so much
@@ -180,6 +227,10 @@ We are currently standing infront of the department of Microtechnology and Nanos
 			do picked_up_items.append("bookMicro")
 		- No, not right now
 			Okey, come back if you change your mind
+	elif inventory["book"].has("bookMicro"):
+		Don't forget to return my book to the library
+		- End conversation
+		=> END
 	else:
 		You have already helped me
 		- End conversation
@@ -196,7 +247,19 @@ We are currently standing infront of the department of Space, Geo and Environmen
 	if not talked_to_npcs.has("space")
 		do add_score(1, "space")
 	=> END
-- End conversation
+- Help with a task
+	if not picked_up_items.has("walletSpace") or inventory.get("wallet", 0) > 0
+		I think I droped my wallet when I was over at the MV building. Could you please look for it?
+		if inventory.get("wallet", 0) > 0 and picked_up_items.has("walletSpace"):
+			- I have already found it, here
+			Thank you so much
+			do remove_item("wallet")
+			do add_score(1)
+		else:
+			- Of course, I will look around
+	else:
+		You have already helped me
+		- End conversation
 
 do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
@@ -239,14 +302,19 @@ We are currently standing infront of Svea
 		do add_score(1, "svea")
 	=> END
 - Help with a task
-	if not picked_up_items.has("coffeeComputer")
-		Would you mind bringing this coffee my friend at the Computer department, I think they are outside of EDIT
+	if not inventory["coffee"].has("coffeeComputer"):
+		Would you mind bringing this coffee my friend at the Department of Computer and Information technology
+		I think they are outside of EDIT
 		- Ofcourse I can
 			Thank you so much
 			do add_item("coffee", "coffeeComputer")
 			do picked_up_items.append("coffeeComputer")
 		- No, not right now
 			Okey, come back if you change your mind
+	elif inventory["coffee"].has("coffeeComputer"):
+		Don't forget to bring the coffee to my friend
+		- End conversation
+		=> END
 	else: 
 		You have already helped me
 		- End conversation
@@ -262,7 +330,17 @@ We are currently standing infront of Saga
 	do show_extra_info(true, "saga")
 	if not talked_to_npcs.has("saga")
 		do add_score(1, "saga")
-- End conversation
+- Help with a task
+	if inventory["coffee"].has("coffeeSaga")
+		Is there anything else I can do for you?
+		- Your friend asked me to bring you this coffe
+		You have saved my day, thank you
+		do remove_item("coffee", "coffeeSaga")
+		do add_score(1)
+	else:
+		There is nothing you can do for me
+		- End conversation
+	- Help with a task
 
 do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
@@ -277,7 +355,7 @@ We are currently standing infront of Äran
 		do add_score(1, "aran")
 	=> END
 - Help with a task
-	if not picked_up_items.has("bookAran")
+	if not inventory["book"].has("bookAran")
 		I have this book I need to return to the library today, would you mind doing it for me?
 		- Yes, of course
 			Thank you so much
@@ -285,6 +363,10 @@ We are currently standing infront of Äran
 			do picked_up_items.append("bookAran")
 		- No, not right now
 			Okey, come back if you change your mind
+	elif inventory["book"].has("bookAran"):
+		Could you return my book soon? Thanks!
+		- End conversation
+		=> END
 	else:
 		You have already helped me
 		- End conversation
@@ -313,6 +395,7 @@ We are currently standing infront of Jupiter
 		- Here is your lunch
 		Thank you so much
 		do inventory["food"].erase("foodJupiter")
+		do add_score(1)
 	else:
 		You have already helped me
 		- End conversation
@@ -338,10 +421,12 @@ We are currently standing infront of Kuggen
 			do remove_item("key")
 			do add_score(1)
 			do set_mouse_state(GameState.MouseState.GAMEPLAY)
+			do add_finished_quest("keyKuggen")
 		else:
 			- No, do you know where you lost it?
 			Near Jupiter I believe
 			- I'll try to find it
+			do add_started_quest("keyKuggen")
 	else:
 		You have already helped me
 		- End conversation
@@ -358,7 +443,22 @@ We are currently standing infront of Anglia
 	if not talked_to_npcs.has("anglia")
 		do add_score(1, "anglia")
 	=> END
-- End conversation
+- Help with a task
+	if not inventory["book"].has("bookAnglia")
+		I just finished this amazing book, could you bring it back to the library?
+		- Yes, of course
+			Thank you so much
+			do add_item("book", "bookAnglia")
+			do picked_up_items.append("bookAnglia")
+		- No, not right now
+			Okey, come back if you change your mind
+	elif inventory["book"].has("bookAnglia"):
+		Don't forget about my book
+		- End conversation
+		=> END
+	else:
+		You have already helped me
+		- End conversation
 
 do set_mouse_state(GameState.MouseState.GAMEPLAY)
 => END!
