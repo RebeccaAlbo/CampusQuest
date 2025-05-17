@@ -29,13 +29,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			_is_paused =  true
 			GameState.set_mouse_state(GameState.MouseState.UI)
 		else:
-			SoundManager.exit_pause_music()
-			_is_paused =  false
-			get_tree().paused = _is_paused
-			add_point.visible = true
-			if !GameState.is_mobile:
-				minimap.visible = true
-				GameState.set_mouse_state(GameState.MouseState.GAMEPLAY)
+			_on_resume_pressed()
 			
 
 # Sets the paused state, hides the minimap, updates the game pause state, 
