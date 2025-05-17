@@ -7,6 +7,13 @@ extends Control
 @onready var pause_menu: Control = $"../PauseMenu"
 @onready var minimap: PanelContainer = $"../Minimap"
 
+# Handles user input to toggle pause state and control minimap visibility
+func _unhandled_input(event: InputEvent) -> void:	
+	if not visible: #if extra_info is not displayed we should let pause_menu react to esc
+		return
+	if event.is_action_pressed("esc"):
+		get_viewport().set_input_as_handled() # Prevents pause_menu from activating on esc and displaying ontop
+		_on_exit_pressed()
 
 func _on_exit_pressed() -> void:
 	self.visible = false
