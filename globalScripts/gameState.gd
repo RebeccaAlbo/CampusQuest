@@ -166,4 +166,4 @@ func show_extra_info(yes: bool, npc_name: String):
 			dialog_data = "You are now standing before a building on Chalmers campus. Its purpose is not immediately clear, but something about it suggests there's more to discover if you take a closer look around"
 		var data_label = info_node.get_node("Panel/DataBaseText")
 		data_label.text = dialog_data
-		FlutterBridge.play_tts(dialog_data)
+		FlutterBridge.play_tts(dialog_data, npc_name)
