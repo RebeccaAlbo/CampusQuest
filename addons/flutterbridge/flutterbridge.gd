@@ -165,7 +165,7 @@ func play_tts(text: String, speaker: String) -> void:
 	JavaScriptBridge.eval(js, true)
 
 var greeting_variation := 0
-var greetings := ["hello", "hi", "hey", "hey there"]
+var greetings := ["hello", "hi", "hey there", "Hi friend", "Greetings"]
 func play_greeting(speaker: String) -> void:
 	greeting_variation = (greeting_variation + 1)%(greetings.size())
 	play_tts(greetings[greeting_variation], speaker)
