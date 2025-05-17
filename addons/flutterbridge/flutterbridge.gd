@@ -164,6 +164,12 @@ func play_tts(text: String, speaker: String) -> void:
 	var js := "window.parent.postMessage({ type: 'play_tts', text: '" + text + "' , speaker: '" + speaker + "' }, '*');"
 	JavaScriptBridge.eval(js, true)
 
+var greeting_variation := 0
+var greetings := ["hello", "hi", "hey", "hey there"]
+func play_greeting(speaker: String) -> void:
+	greeting_variation = (greeting_variation + 1)%(greetings.size())
+	play_tts(greetings[greeting_variation], speaker)
+	
 # This function is called when a message is received from JavaScript
 func _on_js_message(args: Array):
 	# If no arguments were passed from JS, return early
