@@ -150,7 +150,7 @@ func quit_game ():
 	var js = "window.parent.postMessage({ type: 'quit_game'}, '*');"
 	JavaScriptBridge.eval(js)
 	
-func play_tts(text: String) -> void:
+func play_tts(text: String, speaker: String) -> void:
 	if not tts_active:
 		return
 	
@@ -161,7 +161,7 @@ func play_tts(text: String) -> void:
 	if not flutter_ready:
 		return
 
-	var js := "window.parent.postMessage({ type: 'play_tts', text: '" + text + "' }, '*');"
+	var js := "window.parent.postMessage({ type: 'play_tts', text: '" + text + "' , speaker: '" + speaker + "' }, '*');"
 	JavaScriptBridge.eval(js, true)
 
 # This function is called when a message is received from JavaScript
