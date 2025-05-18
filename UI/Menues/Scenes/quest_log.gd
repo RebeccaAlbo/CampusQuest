@@ -12,14 +12,23 @@ func _ready() -> void:
 	
 
 func update_quest():
-	print("updating quests...")
+	# Allthough there are several book quests, they all have same description, therefor +3
+	var total_quest_count = MiniQuests.quest_description.size() + 3
+	print("total quest count: ", total_quest_count)
+	var finished_quest_count = MiniQuests.finished_quests.size()
+	print("finished quest count: ", finished_quest_count)
 	var text:= ""
 	for id in MiniQuests.started_quests:
 		for q in MiniQuests.quest_description:
 			if q["id"] == id:
 				text += "• " + q["desc"] + "\n"
 				break
-	quest_descriptions.text = text if text != "" else "No active quests"
+	if text != "":
+		quest_descriptions.text = text 
+	elif total_quest_count == finished_quest_count:
+		quest_descriptions.text = "You have finished all quests"
+	else:
+		quest_descriptions.text = "No active quests"
 
 func _on_exit_pressed() -> void:
 	self.visible = false

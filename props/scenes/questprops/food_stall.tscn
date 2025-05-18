@@ -26,16 +26,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0291748, 0.927887, 1.68704)
 shape = SubResource("BoxShape3D_i18w8")
 
 [node name="HoverText" type="Label3D" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.15802, -1.4455)
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 6.15802, -1.4455)
 visible = false
 billboard = 1
 shaded = true
 double_sided = false
+no_depth_test = true
 modulate = Color(0, 0, 0, 1)
 text = "Press F to interact"
 font = ExtResource("3_uo867")
-font_size = 250
-outline_size = 15
+outline_size = 0
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

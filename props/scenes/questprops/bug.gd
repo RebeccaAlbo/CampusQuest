@@ -32,7 +32,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 		hover_text.visible = false
 		self.visible = false
 		MiniQuests.bug_state["found"] =  true
-		GameState.add_score(1)
 
 # Makes hover_text invisible when player no longer is in close proximity
 func _on_area_3d_body_exited(_body: Node3D) -> void:

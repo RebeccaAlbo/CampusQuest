@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://lps4artqdiwu"]
 
-[ext_resource type="PackedScene" uid="uid://dv4bbeyw4suu5" path="res://player/NPC/Imports/Lindholmen/anglia.glb" id="1_x3oa7"]
+[ext_resource type="PackedScene" uid="uid://b5ttmpbvkrn18" path="res://player/NPC/Imports/Lindholmen/anglia.glb" id="1_x3oa7"]
 [ext_resource type="Script" path="res://player/NPC/Script/anglia.gd" id="2_3o4l0"]
 
 [node name="anglia" instance=ExtResource("1_x3oa7")]

@@ -17,15 +17,16 @@ collision_mask = 2
 script = ExtResource("2_cfaqn")
 
 [node name="HoverText" type="Label3D" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.80157, 0)
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 5.30548, 0)
 visible = false
 billboard = 1
 shaded = true
 double_sided = false
+no_depth_test = true
 modulate = Color(0, 0, 0, 1)
 text = "Press F to remove"
 font = ExtResource("3_gq83e")
-font_size = 210
+outline_size = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
 transform = Transform3D(1, 0, 0, 0, 0.0242577, -0.999706, 0, 0.999706, 0.0242577, 0, 2.08224, 0)

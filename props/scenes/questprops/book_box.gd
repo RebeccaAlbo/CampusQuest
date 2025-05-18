@@ -22,7 +22,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 			else:
 				hover_text.text = "Book returned"
 			
-			MiniQuests.remove_item("book")
+			#MiniQuests.remove_item("book")
 			GameState.add_score(count)
 			MiniQuests.add_finished_quest("book")
 		else:
