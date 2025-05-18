@@ -31,6 +31,7 @@ visible = false
 billboard = 1
 shaded = true
 double_sided = false
+no_depth_test = true
 modulate = Color(0, 0, 0, 1)
 text = "Press F to interact"
 font = ExtResource("3_uo867")

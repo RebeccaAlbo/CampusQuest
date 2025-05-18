@@ -61,6 +61,9 @@ We are currently standing infront of the department of Electrical Engineering
 	=> END
 - End conversation
 
+do set_mouse_state(GameState.MouseState.GAMEPLAY)
+=> END!
+
 ~ physics
 Oh hello there!
 
@@ -531,6 +534,7 @@ elif bug_state["found"]:
 	You’ve fixed what we could not. Farewell, brave debugger. 
 	Should you find any more bugs… pretend you didn’t.
 	do remove_creators()
+	do add_score(1)
 	do add_finished_quest("bug")
 	do bug_state["reported"] = true
 
