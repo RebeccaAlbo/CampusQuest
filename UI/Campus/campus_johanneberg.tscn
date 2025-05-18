@@ -353,6 +353,9 @@ billboard_keep_scale = true
 [node name="campus_johanneberg" instance=ExtResource("1_rfggy")]
 script = ExtResource("2_yr3mw")
 
+[node name="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer" index="0"]
+size = Vector2i(138, 138)
+
 [node name="SamhallIII" type="Panel" parent="CanvasLayer/Minimap" index="1"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_dvcx0")

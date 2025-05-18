@@ -5,9 +5,9 @@
 
 shader_type spatial;
 
-uniform vec4 WATER_COL  : source_color = vec4(0.2549, 0.6980, 0.7804, 1.0); // #41b2c7
-uniform vec4 WATER2_COL : source_color = vec4(0.4078, 0.7608, 0.8275, 1.0); // #68C2D3
-uniform vec4 FOAM_COL   : source_color = vec4(0.6392, 0.8549, 0.8941, 1.0); // #a3dae4
+uniform vec4 WATER_COL   : source_color = vec4(0.4078, 0.7608, 0.8275, 1.0);
+uniform vec4 WATER2_COL  : source_color = vec4(0.4667, 0.7843, 0.8431, 1.0);
+uniform vec4 FOAM_COL    : source_color = vec4(0.5843, 0.8314, 0.8784, 1.0);
 
 
 uniform float distortion_speed = 2.0;
