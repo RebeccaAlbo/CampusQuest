@@ -164,7 +164,7 @@ func new_game():
 	}
 	MiniQuests.picked_up_items = []
 	MiniQuests.food_orders = []
-	var bug_state = {
+	MiniQuests.bug_state = {
 		"quest_given": false,
 		"found": false,
 		"reported": false
