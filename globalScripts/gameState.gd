@@ -89,14 +89,14 @@ func quit_game():
 	else: #mobile 
 		get_tree().quit()
 	
-func load_game():
+func load_game() -> bool:
 	if (!is_mobile and FlutterBridge.web_mode):
 		print("[Godot] Running on Web with JS available – requesting save from Flutter")
 		var flutter_data = await FlutterBridge.request_game()
 
 		if flutter_data.is_empty():
 			print("[Godot] Flutter returned empty character data")
-			return
+			return false
 
 		score = flutter_data.get("score", 0)
 		talked_to_npcs = flutter_data.get("talked_to_npcs", {})
@@ -114,11 +114,13 @@ func load_game():
 		CharacterCust.skin_index = appearance.get("skin", 0)
 		CharacterCust.pant_index = appearance.get("pant", 0)
 		CharacterCust.shoes_index = appearance.get("shoes", 0)
-	
+		return true
 	else:
-		print("no saved file")
 		# Fallback to local save
 		if FileAccess.file_exists("user://save_game.json"):
+			print("we should not be here")
+			print(ProjectSettings.globalize_path("user://save_game.json"))
+
 			var file = FileAccess.open("user://save_game.json", FileAccess.READ)
 			var json = JSON.new()
 			var result = json.parse(file.get_as_text())
@@ -144,8 +146,11 @@ func load_game():
 				CharacterCust.skin_index = appearance.get("skin", 0)
 				CharacterCust.pant_index = appearance.get("pant", 0)
 				CharacterCust.shoes_index = appearance.get("shoes", 0)
+				return true
 		else:
 			print("No saved file")
+			return false
+	return false
 
 # Adjust resolution for mobile
 func set_mobile_resolution():
@@ -173,4 +178,4 @@ func show_extra_info(yes: bool, npc_name: String):
 			dialog_data = "You are now standing before a building on Chalmers campus. Its purpose is not immediately clear, but something about it suggests there's more to discover if you take a closer look around"
 		var data_label = info_node.get_node("Panel/DataBaseText")
 		data_label.text = dialog_data
-		FlutterBridge.play_tts(dialog_data)
+		FlutterBridge.play_tts(dialog_data, npc_name)

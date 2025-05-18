@@ -13,6 +13,10 @@ var current_track: AudioStream = null
 
 var music_player: AudioStreamPlayer
 
+var final_volume := -40
+var dialogue_volume := -50
+var fade_duration := 2.0
+
 func _ready():
 	set_process_input(true)
 	
@@ -22,9 +26,8 @@ func _ready():
 	music_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	music_player.autoplay = false
 	music_player.stream = null
-	music_player.volume_db = -10
+	music_player.volume_db = final_volume
 	add_child(music_player)
-	print("first")
 	_play_music(menu_music)
 
 # SOUND EFFECTS
@@ -87,8 +90,6 @@ func stop_music():
 		music_player.stop()
 
 func _play_music(track: AudioStream, fade_in := false):
-	var fade_duration := 2.0
-	var final_volume := -20
 	if music_player.stream == track:
 		return  # Already playing this track
 	music_player.stream = track
@@ -101,3 +102,11 @@ func _play_music(track: AudioStream, fade_in := false):
 	else:
 		music_player.volume_db = final_volume
 		music_player.play()
+		
+func set_music_volume_in_dialogue(dialogue: bool):
+	print("set_music_volume_in_dialogue is: ", dialogue)
+	var tween = create_tween()
+	if (dialogue):
+		tween.tween_property(music_player, "volume_db", dialogue_volume, fade_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	else: 
+		tween.tween_property(music_player, "volume_db", final_volume, fade_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
