@@ -9,6 +9,7 @@ func _ready() -> void:
 	MiniQuests.quest_started.connect(update_quest)
 	MiniQuests.quest_finished.connect(update_quest)
 	update_quest()
+	print("inventory coffee ", MiniQuests.inventory["coffee"])
 	
 
 func update_quest():

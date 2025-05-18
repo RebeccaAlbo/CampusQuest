@@ -53,7 +53,7 @@ size = Vector2(10000, 10000)
 background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
 
-[sub_resource type="GDScript" id="GDScript_3cnnn"]
+[sub_resource type="GDScript" id="GDScript_0yn8y"]
 script/source = "extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -445,7 +445,7 @@ light_color = Color(1, 0.941176, 0.941176, 1)
 
 [node name="BaseCharacter" parent="." instance=ExtResource("24_r2aeb")]
 transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -41.2879, 0, -173.553)
-script = SubResource("GDScript_3cnnn")
+script = SubResource("GDScript_0yn8y")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter"]
 transform = Transform3D(2, 0, 8.9407e-08, 0, 2, 0, -8.9407e-08, 0, 2, 0, 1.85939, 0)
@@ -611,7 +611,7 @@ material_override = SubResource("StandardMaterial3D_26663")
 texture = ExtResource("16_84c18")
 
 [node name="anglia" parent="." instance=ExtResource("19_0lpak")]
-transform = Transform3D(-1.9355, 0, -0.503833, 0, 2, 0, 0.503833, 0, -1.9355, -119.862, -0.00459957, 198.578)
+transform = Transform3D(-1.98703, 0, 0.227378, 0, 2, 0, -0.227378, 0, -1.98703, -114.654, 0, 199.796)
 
 [node name="NPCCollision" parent="anglia" instance=ExtResource("9_4hias")]
 

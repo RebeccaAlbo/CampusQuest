@@ -56,6 +56,8 @@ func save_game() -> bool:
 		"inventory": MiniQuests.inventory,
 		"picked_up_items": MiniQuests.picked_up_items,
 		"food_orders": MiniQuests.food_orders,
+		"started_quests": MiniQuests.started_quests,
+		"finished_quests": MiniQuests.finished_quests,
 		"player_appearance": {
 			"shirt": CharacterCust.shirt_index,
 			"hair": CharacterCust.hair_index,
@@ -103,6 +105,8 @@ func load_game():
 		MiniQuests.picked_up_items = flutter_data.get("picked_up_items", [])
 		MiniQuests.food_orders = flutter_data.get("food_orders", [])
 		MiniQuests.bug_state = flutter_data.get("bug_state", {})
+		MiniQuests.started_quests = flutter_data.get("started_quests", [])
+		MiniQuests.finished_quests = flutter_data.get("finished_quests", [])
 
 		var appearance = flutter_data.get("player_appearance", {})
 		CharacterCust.shirt_index = appearance.get("shirt", 0)
@@ -130,6 +134,9 @@ func load_game():
 				MiniQuests.picked_up_items = save_data.get("picked_up_items", [])
 				MiniQuests.food_orders = save_data.get("food_orders", [])
 				MiniQuests.bug_state = save_data.get("bug_state", {})
+				MiniQuests.started_quests = save_data.get("started_quests", [])
+				MiniQuests.finished_quests = save_data.get("finished_quests", [])
+				print("started quests: ", MiniQuests.started_quests)
 
 				var appearance = save_data.get("player_appearance", {})
 				CharacterCust.shirt_index = appearance.get("shirt", 0)

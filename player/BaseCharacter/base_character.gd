@@ -16,7 +16,6 @@ const LERP_VAL = .15
 var can_move: bool = true
 
 var skin_colors = [
-	Color(0.98, 0.9, 0.78),   # Very light cream 
 	Color(0.95, 0.82, 0.65),  # Light 
 	Color(0.75, 0.6, 0.45),   # Tan 
 	Color(0.45, 0.35, 0.25),  # Medium brown 

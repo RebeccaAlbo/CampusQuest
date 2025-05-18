@@ -56,7 +56,7 @@ size = Vector2(10000, 10000)
 background_energy_multiplier = 5.0
 ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
 
-[sub_resource type="GDScript" id="GDScript_mopl8"]
+[sub_resource type="GDScript" id="GDScript_bbg7v"]
 script/source = "extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -330,7 +330,6 @@ func update_character(skin_index: int, hair_index: int, pant_index: int, shirt_i
 	if shoes_material != null:
 		shoes_material.albedo_color = shoes_colors[shoes_index]	
 	
-
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cy1fy"]
@@ -489,11 +488,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.387695, -6.10352e-05, 3.045
 [node name="johanneberg" parent="." instance=ExtResource("3_p4gww")]
 
 [node name="BaseCharacter" parent="." instance=ExtResource("27_c0edl")]
-transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -296.995, 0.545874, -108.713)
-script = SubResource("GDScript_mopl8")
+transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -296.995, 0.0430053, -108.713)
+script = SubResource("GDScript_bbg7v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter"]
-transform = Transform3D(4, 0, 1.78814e-07, 0, 4, 0, -1.78814e-07, 0, 4, 0, 3.13048, 0)
+transform = Transform3D(4, 0, 1.78814e-07, 0, 4, 0, -1.78814e-07, 0, 4, 0, 18.6032, 0)
 layers = 1024
 mesh = SubResource("CylinderMesh_wd84n")
 
