@@ -9,18 +9,25 @@ func _ready() -> void:
 	MiniQuests.quest_started.connect(update_quest)
 	MiniQuests.quest_finished.connect(update_quest)
 	update_quest()
-	print("inventory coffee ", MiniQuests.inventory["coffee"])
 	
 
 func update_quest():
-	print("updating quests...")
+	var total_quest_count = MiniQuests.quest_description.size()
+	print("total quest count: ", total_quest_count)
+	var finished_quest_count = MiniQuests.finished_quests.size()
+	print("finished quest count: ", finished_quest_count)
 	var text:= ""
 	for id in MiniQuests.started_quests:
 		for q in MiniQuests.quest_description:
 			if q["id"] == id:
 				text += "• " + q["desc"] + "\n"
 				break
-	quest_descriptions.text = text if text != "" else "No active quests"
+	if text != "":
+		quest_descriptions.text = text 
+	elif total_quest_count == finished_quest_count:
+		quest_descriptions.text = "You have finished all quests"
+	else:
+		quest_descriptions.text = "No active quests"
 
 func _on_exit_pressed() -> void:
 	self.visible = false

@@ -55,15 +55,15 @@ var quest_description := [
 	},
 	{
 		"id": "foodJupiter",
-		"desc": "Pick up lunch and give it to the Jupiter"
+		"desc": "Pick up lunch and give it to Jupiter"
 	},
 	{
 		"id": "bug",
 		"desc": "Find the missing bug near the water and report back to Rebecca and Amanda"
 	},
 	{
-		"id": "coffeeElectrical",
-		"desc": "Bring coffee to the department of Electrical Engineering"
+		"id": "coffeeSaga",
+		"desc": "Bring coffee to the department of Physics"
 	},
 	{
 		"id": "walletSpace",
@@ -72,14 +72,18 @@ var quest_description := [
 ]
 
 func add_started_quest(id: String):
-	print("adding started quest")
 	started_quests.append(id)
 	quest_started.emit()
 	print(started_quests)
 	
 func add_finished_quest(id: String):
 	started_quests.erase(id)
-	finished_quests.append(id)
+	if id == "book":
+		for book in inventory["book"]:
+			finished_quests.append(book)
+		remove_item("book")
+	else:
+		finished_quests.append(id)
 	quest_finished.emit()
 
 func get_item_count(item_name: String) -> int:
@@ -119,16 +123,16 @@ func remove_item(item_name: String, item_detail: String = "") -> void:
 	
 	var value = inventory[item_name]
 	
-	if typeof(value) == TYPE_FLOAT:
-		if get_item_count(item_name) > 1:
-			inventory[item_name] -= 1.0
-	elif typeof(value) == TYPE_ARRAY:
+	if typeof(value) == TYPE_ARRAY:
 		if item_name == "book":
 			inventory[item_name].clear()
 		elif item_detail != "":
 			inventory[item_name].erase(item_detail)
-	
-	print(inventory["coffee"].size())
+	else: 
+		if get_item_count(item_name) > 0:
+			inventory[item_name] -= 1.0
+			print("removing: ", item_name)
+			
 	inventory_updated.emit()
 	
 # When bug quest is done, creators are removed from game

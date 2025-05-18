@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1pvrh7buxg0p"]
+[gd_scene load_steps=5 format=3 uid="uid://b1pvrh7buxg0p"]
 
 [ext_resource type="PackedScene" uid="uid://buukaslg4d0pv" path="res://props/imports/wallet.glb" id="1_yemfo"]
 [ext_resource type="Script" path="res://props/scripts/wallet.gd" id="2_8njia"]
+[ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="3_3b0xg"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_30pkq"]
 radius = 5.0
@@ -18,15 +19,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.922572)
 shape = SubResource("SphereShape3D_30pkq")
 
 [node name="HoverText" type="Label3D" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.80157, 0)
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 2.15069, 0)
 visible = false
 billboard = 1
 shaded = true
 double_sided = false
+no_depth_test = true
 modulate = Color(0, 0, 0, 1)
-text = "Press F to pick up"
-font_size = 200
-outline_size = 15
+text = "Press F to pickup"
+font = ExtResource("3_3b0xg")
+outline_size = 0
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

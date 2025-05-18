@@ -48,7 +48,6 @@ func add_score(s: int, npc_name: String = ""):
 func save_game() -> bool:
 	# Creates a dictionary to store the player's score, NPC interaction data, 
 	# and character customization choices for saving
-	print("keys: ", MiniQuests.get_item_count("key"))
 	var save_data = {
 		"score": score,
 		"bug_state": MiniQuests.bug_state,
