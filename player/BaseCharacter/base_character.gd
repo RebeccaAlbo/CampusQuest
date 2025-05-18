@@ -6,14 +6,14 @@ extends CharacterBody3D
 @onready var spring_arm: SpringArm3D = $SpringArmPivot/SpringArm3D
 @onready var anim_tree: AnimationTree = $AnimationTree
 @onready var actionable_finder: Area3D = $Direction/ActionableFinder
-@onready var pc_camera: Camera3D = $SpringArmPivot/SpringArm3D/PCCamera
 @onready var phone_camera: Camera3D = $PhoneCamera
-
 
 const SPEED = 30.0
 const LERP_VAL = .15
-
+const JUMP_VELOCITY = 4.5 
 var can_move: bool = true
+var original_pos
+var interactButton: Button
 
 var skin_colors = [
 	Color(0.98, 0.9, 0.78),   # Very light cream 
@@ -22,6 +22,7 @@ var skin_colors = [
 	Color(0.45, 0.35, 0.25),  # Medium brown 
 	Color(0.28, 0.2, 0.12)    # Dark brown 
 ]
+
 var hair_styles = [
 	$Armature/Skeleton3D/Hair1,
 	$Armature/Skeleton3D/Hair2,
@@ -30,6 +31,7 @@ var hair_styles = [
 	$Armature/Skeleton3D/Hair5,
 	$Armature/Skeleton3D/Hair6
 ]
+
 var pant_colors = [
 	Color(0.05, 0.05, 0.05),     # Black
 	Color(0.6, 0.8, 1.0),        # Light Blue
@@ -37,6 +39,7 @@ var pant_colors = [
 	Color(0.9, 0.85, 0.7),       # Light Beige
 	Color(0.6, 0.5, 0.35)        # Dark Beige
 ]
+
 var shirt_colors = [
 	Color(0.95, 0.95, 0.95),     # Off-White / Light Gray-White
 	Color(0.05, 0.05, 0.05),     # Black
@@ -47,6 +50,7 @@ var shirt_colors = [
 	Color(0.5, 0.3, 0.4),        # Dusty Pink
 	Color(0.7, 0.6, 0.1)         # Warm Muted Yellow
 ]
+
 var shoes_colors = [
 	Color(0.95, 0.95, 0.95),     # Off-White / Light Gray-White
 	Color(0.05, 0.05, 0.05),     # Black
@@ -65,8 +69,10 @@ var prev_hair
 func _ready():
 	add_to_group("player")
 	prev_hair = hair_styles[current_hair_index]
-
-
+	
+	if GameState.is_mobile and get_tree().current_scene.name != "CharacterSelection":
+		phone_camera.current = true
+			
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse control viewpoint
 	if event is InputEventMouseMotion:
@@ -75,23 +81,35 @@ func _unhandled_input(event: InputEvent) -> void:
 		# No infinite rotation
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/4, PI/4)
 	
-	# Trigger the action of the first overlapping actionable object
 	if Input.is_action_just_pressed("interact"):
-		var actionables = actionable_finder.get_overlapping_areas()
-		if actionables.size() > 0:
-			actionables[0].action()
-			return
+		interact()
+
+func _on_interact_pressed() -> void:
+	interact()
+
+func interact():
+	var actionables = actionable_finder.get_overlapping_areas()
+	if actionables.size() > 0:
+		actionables[0].action()
+		return
+
 
 func _physics_process(delta: float) -> void:
 	if !can_move:
 		return
-	
+	# Handle jump.
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = JUMP_VELOCITY 
+		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
 	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("left", "right", "up", "down")
+	if GameState.is_mobile:
+		input_dir = Input.get_vector("right", "left", "down", "up")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	# Mouse control direction of character
 	direction = direction.rotated(Vector3.UP, spring_arm_pivot.rotation.y)
@@ -106,16 +124,34 @@ func _physics_process(delta: float) -> void:
 	anim_tree.set("parameters/BlendSpace1D/blend_position", velocity.length() / SPEED)
 
 	move_and_slide()
-
-# Stops player movement, resets animation blend, and disables movement during dialogue	
-func in_dialogue():
+	
+func in_dialogue(npc: Node3D):
 	velocity = Vector3.ZERO
 	anim_tree.set("parameters/BlendSpace1D/blend_position", 0.0)
 	can_move = false
+	face_toward(npc)
+	if (FlutterBridge.tts_active):
+		SoundManager.set_music_volume_in_dialogue(true) 
 	
 func end_dialoque():
 	can_move = true
+	face_back()
+	if (FlutterBridge.tts_active):
+		SoundManager.set_music_volume_in_dialogue(false) 
 	
+# Rotates the object to face toward the target node, keeping the rotation level on the horizontal axis
+func face_toward(target_node: Node3D):
+	original_pos = rotation
+	var direction = (target_node.global_transform.origin - global_transform.origin)
+	direction.y = 0  # Keep it level, no vertical tilt
+	direction = direction.normalized()
+
+	var target_rotation = Vector3(0, atan2(direction.x, direction.z), 0)
+	rotation = target_rotation
+
+func face_back():
+		rotation = original_pos
+
 func change_skin_color(direction: int):
 	current_skin_index = (current_skin_index + direction) % skin_colors.size()
 	if current_skin_index < 0:
@@ -125,6 +161,7 @@ func change_skin_color(direction: int):
 func update_skin_color():
 	var skin = $Armature/Skeleton3D/Body
 	if skin == null:
+		print("skin not found")
 		return
 		
 	var material = skin.get_surface_override_material(0)
@@ -189,9 +226,7 @@ func update_shoes_color():
 		shoes.set_surface_override_material(0, material)
 	material.albedo_color = shoes_colors[current_shoes_index]
 
-# Update the look of the character
 func update_character(skin_index: int, hair_index: int, pant_index: int, shirt_index: int, shoes_index: int):
-	
 	#Set correct skin color
 	var skin = $Armature/Skeleton3D/Body
 	var skin_material = skin.get_surface_override_material(0)

@@ -46,8 +46,6 @@ func action() -> void:
 	
 	# Set up for dialoque environment
 	player.in_dialogue(npc)
-	if (FlutterBridge.tts_active): 
-		SoundManager.set_music_volume_in_dialogue(true) #this would be nicer to place inside player.in_dialogue(npc) but it does not work so here it is
 	npc.face_toward(player)
 	# needed to avoid npc to keep waving instead of talking during dialogue
 	await get_tree().create_timer(0.1).timeout
@@ -63,8 +61,6 @@ func action() -> void:
 	if (FlutterBridge.running_extra_info):
 		await FlutterBridge.extra_info_ended
 	player.end_dialoque()
-	if (FlutterBridge.tts_active):
-		SoundManager.set_music_volume_in_dialogue(false)
 	npc.animation("Idle", 0.3)
 	npc.face_back()
 	dialogue_camera.current = false

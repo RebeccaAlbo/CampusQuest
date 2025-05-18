@@ -1,12 +1,6 @@
-extends Node
+extends Campus
 
-@onready var base_character: CharacterBody3D = $BaseCharacter
-@onready var menu_button: Button = $CanvasLayer/MenuButton
-@onready var minimap: PanelContainer = $CanvasLayer/Minimap
-@onready var virtual_joystick: VirtualJoystick = $"CanvasLayer/Virtual Joystick"
 @onready var creators: Node3D = $Creators
-@onready var interact: Button = $CanvasLayer/Interact
-
 @onready var svea: CharacterBody3D = $svea
 @onready var kuggen: CharacterBody3D = $kuggen
 @onready var jupiter: CharacterBody3D = $jupiter
@@ -20,17 +14,11 @@ extends Node
 @onready var key_kuggen: Node3D = $keyKuggen
 @onready var wallet_math: Node3D = $walletMath
 
-
-
 func _ready():
+	super._ready()
 	SoundManager.play_lindholmen_music()
 	# Adaptations for mobile version
 	if GameState.is_mobile:
-		menu_button.visible = true
-		minimap.visible = false
-		interact.visible = true
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		
 		svea.scale = Vector3(5, 5, 5)
 		kuggen.scale = Vector3(5, 5, 5)
 		jupiter.scale = Vector3(5, 5, 5)
@@ -47,19 +35,6 @@ func _ready():
 		food_stall.scale = Vector3(3, 3, 3)
 		key_kuggen.scale = Vector3(5, 5, 5)
 		wallet_math.scale = Vector3(5, 5, 5)
-		
-		
-		
-	else:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		virtual_joystick.visible = false
-	
-	# Update saved states
-	base_character.update_character(CharacterCust.skin_index, CharacterCust.hair_index, CharacterCust.pant_index, CharacterCust.shirt_index, CharacterCust.shoes_index)
-	for npc_name in GameState.talked_to_npcs.keys():
-		var npc = get_node_or_null(npc_name)
-		if npc:
-			npc.change_mark()
 	
 	if MiniQuests.bug_state["found"]:
 		creators.visible = false

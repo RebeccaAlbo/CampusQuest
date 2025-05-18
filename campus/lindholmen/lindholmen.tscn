@@ -1,13 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://bmxn8658qh64v"]
 
 [ext_resource type="PackedScene" uid="uid://cdba3p742r8xo" path="res://campus/lindholmen/lindholmen.blend" id="1_cvv8n"]
-[ext_resource type="Script" path="res://script_templates/Node3D/buildingManager.gd" id="2_mv57i"]
+[ext_resource type="Material" uid="uid://coafox8x6mwsd" path="res://campus/shaders/water_material.tres" id="3_afqi6"]
 
 [node name="lindholmen" instance=ExtResource("1_cvv8n")]
-script = ExtResource("2_mv57i")
 
-[node name="passmap_22_osm_vegetation" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="passmap_24_osm_roads_unclassified" parent="." index="17"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+[node name="water" parent="." index="1"]
+surface_material_override/0 = ExtResource("3_afqi6")

@@ -1,0 +1,280 @@
+[gd_scene load_steps=25 format=3 uid="uid://bwentcjjrgqsh"]
+
+[ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="1_23qip"]
+[ext_resource type="PackedScene" uid="uid://ddlyrvsij0w4l" path="res://dialogue/extra_info.tscn" id="2_leu2c"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="3_gjkhm"]
+[ext_resource type="PackedScene" uid="uid://b5elambvpjdk3" path="res://UI/Menues/Scenes/pause_menu.tscn" id="4_b5i8t"]
+[ext_resource type="Script" path="res://UI/Menues/Skripts/minimap.gd" id="5_2ma2p"]
+[ext_resource type="Script" path="res://UI/Menues/Skripts/big_map.gd" id="6_usmqi"]
+[ext_resource type="PackedScene" uid="uid://cppigdi7yhkjv" path="res://UI/Menues/Scenes/add_point.tscn" id="7_55wut"]
+[ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="8_qwabl"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4aaqr"]
+sky_top_color = Color(0.407843, 0.760784, 0.827451, 1)
+sky_horizon_color = Color(1, 1, 0.886275, 1)
+
+[sub_resource type="Sky" id="Sky_dblhm"]
+sky_material = SubResource("ProceduralSkyMaterial_4aaqr")
+
+[sub_resource type="Environment" id="Environment_iogqu"]
+background_mode = 2
+sky = SubResource("Sky_dblhm")
+ambient_light_source = 2
+ambient_light_color = Color(0.956863, 0.815686, 0.643137, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fowso"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifdf4"]
+bg_color = Color(0.756863, 0.631373, 0.458824, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yl5yx"]
+bg_color = Color(0.564706, 0.454902, 0.298039, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_peiw1"]
+bg_color = Color(0.909804, 0.831373, 0.72549, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8fys"]
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.14418, 0.274037, 0.139583, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yboli"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0hkp"]
+bg_color = Color(0.756863, 0.631373, 0.458824, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tciik"]
+bg_color = Color(0.564706, 0.454902, 0.298039, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mf344"]
+bg_color = Color(0.909804, 0.831373, 0.72549, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v6cj5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owoei"]
+bg_color = Color(0.756863, 0.631373, 0.458824, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikr3e"]
+bg_color = Color(0.564706, 0.454902, 0.298039, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ii1hx"]
+bg_color = Color(0.909804, 0.831373, 0.72549, 0.796078)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[node name="BaseCampus" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_iogqu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 95.0384, 0)
+light_color = Color(1, 0.941176, 0.803922, 1)
+
+[node name="ground" parent="." instance=ExtResource("1_23qip")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ExtraInfo" parent="CanvasLayer" instance=ExtResource("2_leu2c")]
+visible = false
+
+[node name="Virtual Joystick" parent="CanvasLayer" instance=ExtResource("3_gjkhm")]
+z_index = 2
+offset_left = 10.0
+offset_top = -116.0
+offset_right = 252.0
+offset_bottom = 101.0
+scale = Vector2(0.5, 0.5)
+pressed_color = Color(0.654902, 0.341176, 0.168627, 1)
+clampzone_size = 20.0
+action_left = "left"
+action_right = "right"
+action_up = "up"
+action_down = "down"
+metadata/_edit_use_anchors_ = true
+
+[node name="MenuButton" type="Button" parent="CanvasLayer"]
+visible = false
+offset_left = 12.0
+offset_top = 13.0
+offset_right = 146.0
+offset_bottom = 55.0
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fowso")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ifdf4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yl5yx")
+theme_override_styles/normal = SubResource("StyleBoxFlat_peiw1")
+text = "Menu"
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("4_b5i8t")]
+visible = false
+
+[node name="Minimap" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -156.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = 156.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_e8fys")
+script = ExtResource("5_2ma2p")
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Minimap"]
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(2, 2)
+render_target_update_mode = 4
+
+[node name="MinimapCamera" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.34202, -0.939693, -4.10753e-08, 0, -4.37114e-08, 1, -0.939693, 0.34202, 1.49502e-08, -298.251, 100, -100.675)
+cull_mask = 1048573
+projection = 1
+size = 150.0
+
+[node name="BigMap" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_usmqi")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/BigMap"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/BigMap/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1000, 500)
+size_2d_override_stretch = true
+render_target_update_mode = 0
+
+[node name="BigMapCamera" type="Camera3D" parent="CanvasLayer/BigMap/SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.422618, -0.906308, -3.9616e-08, 0, -4.37114e-08, 1, -0.906308, 0.422618, 1.84732e-08, -131.213, 557.372, -128.454)
+cull_mask = 1048573
+projection = 1
+size = 375.0
+near = 0.01
+
+[node name="GoBack" type="Button" parent="CanvasLayer/BigMap"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -161.0
+offset_top = 17.0
+offset_right = -27.0
+offset_bottom = 59.0
+grow_horizontal = 0
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yboli")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c0hkp")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tciik")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mf344")
+text = "Go back"
+
+[node name="AddPoint" parent="CanvasLayer" instance=ExtResource("7_55wut")]
+metadata/_edit_use_anchors_ = true
+
+[node name="Interact" type="Button" parent="CanvasLayer"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -164.0
+offset_top = -78.0
+offset_right = -32.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_qwabl")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_v6cj5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_owoei")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ikr3e")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ii1hx")
+toggle_mode = true
+text = "Interact
+"
+
+[connection signal="pressed" from="CanvasLayer/MenuButton" to="CanvasLayer/PauseMenu" method="_on_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/BigMap/GoBack" to="CanvasLayer/BigMap" method="_on_go_back_pressed"]

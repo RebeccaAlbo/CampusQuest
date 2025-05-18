@@ -1,8 +1,8 @@
-[gd_scene load_steps=70 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=45 format=3 uid="uid://lulw05as8mxr"]
 
-[ext_resource type="Script" path="res://UI/Campus/campus_johanneberg.gd" id="1_p1r2s"]
+[ext_resource type="PackedScene" uid="uid://bwentcjjrgqsh" path="res://UI/Campus/base_campus.tscn" id="1_rfggy"]
+[ext_resource type="Script" path="res://UI/Campus/campus_johanneberg.gd" id="2_yr3mw"]
 [ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/johanneberg.tscn" id="3_p4gww"]
-[ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="4_0g13b"]
 [ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://props/scenes/questprops/bus_stop.tscn" id="6_jjioq"]
 [ext_resource type="PackedScene" uid="uid://cnb2h5dy2in10" path="res://player/NPC/Scene/architecture.tscn" id="7_b36ec"]
 [ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="8_qbc84"]
@@ -25,38 +25,27 @@
 [ext_resource type="PackedScene" uid="uid://d0heqcl0pg1n3" path="res://player/NPC/Scene/economic.tscn" id="23_sk0v5"]
 [ext_resource type="PackedScene" uid="uid://cb8cpqr0olva4" path="res://player/NPC/Scene/science.tscn" id="24_mx7op"]
 [ext_resource type="Texture2D" uid="uid://bwq7j8ak5c7jh" path="res://UI/Images/Check.png" id="25_b457s"]
-[ext_resource type="PackedScene" uid="uid://b5elambvpjdk3" path="res://UI/Menues/Scenes/pause_menu.tscn" id="25_bfsex"]
-[ext_resource type="Script" path="res://UI/Menues/Skripts/minimap.gd" id="26_et1t8"]
 [ext_resource type="PackedScene" uid="uid://3kjk4w0wer4" path="res://player/BaseCharacter/base_character.tscn" id="27_c0edl"]
-[ext_resource type="Script" path="res://UI/Menues/Skripts/big_map.gd" id="27_rjjvf"]
 [ext_resource type="Script" path="res://UI/Campus/panel.gd" id="29_6t16t"]
 [ext_resource type="PackedScene" uid="uid://36wmcll8n0bt" path="res://props/scenes/questprops/key.tscn" id="29_fe313"]
 [ext_resource type="PackedScene" uid="uid://wok612jj01x" path="res://props/scenes/questprops/food_stall.tscn" id="30_4acdi"]
 [ext_resource type="PackedScene" uid="uid://b1pvrh7buxg0p" path="res://props/scenes/questprops/wallet.tscn" id="31_k633d"]
-[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="32_oqewd"]
-[ext_resource type="PackedScene" uid="uid://ddlyrvsij0w4l" path="res://dialogue/extra_info.tscn" id="34_4jer0"]
 [ext_resource type="PackedScene" uid="uid://cbad6500e7nqy" path="res://props/scenes/questprops/book_box.tscn" id="34_ngb0i"]
-[ext_resource type="PackedScene" uid="uid://cppigdi7yhkjv" path="res://UI/Menues/Scenes/add_point.tscn" id="37_cqyav"]
 [ext_resource type="Script" path="res://player/NPC/Script/economic.gd" id="37_kvtch"]
-[ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="38_75e1w"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wt17y"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dvcx0"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_m8u5f"]
-size = Vector3(10000, 2, 10000)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tdkqe"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ktf2j"]
-albedo_color = Color(0.476423, 0.557368, 0.0688423, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7itiw"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_m8u5f"]
-material = SubResource("StandardMaterial3D_ktf2j")
-size = Vector2(10000, 10000)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rxs5q"]
 
-[sub_resource type="Environment" id="Environment_wt17y"]
-background_energy_multiplier = 5.0
-ambient_light_color = Color(0.959192, 7.70092e-07, 0.514981, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dvg0q"]
 
-[sub_resource type="GDScript" id="GDScript_mopl8"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vvxbo"]
+
+[sub_resource type="GDScript" id="GDScript_1yljh"]
 script/source = "extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -336,16 +325,16 @@ func update_character(skin_index: int, hair_index: int, pant_index: int, shirt_i
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cy1fy"]
 albedo_color = Color(0.74902, 0.231373, 0.215686, 1)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_wd84n"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_3gy84"]
 material = SubResource("StandardMaterial3D_cy1fy")
 top_radius = 1.0
 bottom_radius = 1.0
 height = 0.001
 
-[sub_resource type="Resource" id="Resource_gx8vd"]
+[sub_resource type="Resource" id="Resource_n0kxa"]
 metadata/__load_path__ = "res://dialogue/architecture.dialogue"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4340n"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4l1ao"]
 transparency = 1
 albedo_texture = ExtResource("13_aiayi")
 emission_enabled = true
@@ -353,7 +342,7 @@ emission_texture = ExtResource("13_aiayi")
 billboard_mode = 1
 billboard_keep_scale = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_87jca"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26wmo"]
 transparency = 1
 albedo_texture = ExtResource("25_b457s")
 emission_enabled = true
@@ -361,635 +350,15 @@ emission_texture = ExtResource("25_b457s")
 billboard_mode = 1
 billboard_keep_scale = true
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qynfc"]
+[node name="campus_johanneberg" instance=ExtResource("1_rfggy")]
+script = ExtResource("2_yr3mw")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xd2ns"]
-bg_color = Color(0.756863, 0.631373, 0.458824, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_be2sd"]
-bg_color = Color(0.564706, 0.454902, 0.298039, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o0pu"]
-bg_color = Color(0.909804, 0.831373, 0.72549, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxwxs"]
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(0.14418, 0.274037, 0.139583, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_87ooe"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wfve7"]
-bg_color = Color(0.756863, 0.631373, 0.458824, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngasd"]
-bg_color = Color(0.564706, 0.454902, 0.298039, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wbjwh"]
-bg_color = Color(0.909804, 0.831373, 0.72549, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 5
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pd5kg"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2mxfc"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w6r6d"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3y14g"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8fc4c"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5nqni"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_136lp"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7gtrq"]
-bg_color = Color(0.756863, 0.631373, 0.458824, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugjea"]
-bg_color = Color(0.564706, 0.454902, 0.298039, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1hvf3"]
-bg_color = Color(0.909804, 0.831373, 0.72549, 0.796078)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 5
-
-[node name="campus_johanneberg" type="Node3D"]
-script = ExtResource("1_p1r2s")
-
-[node name="ground" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-collision_layer = 2
-physics_material_override = SubResource("PhysicsMaterial_wt17y")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-visible = false
-shape = SubResource("BoxShape3D_m8u5f")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ground"]
-transform = Transform3D(1.00162, -2.16005e-11, 1.16415e-10, -2.33058e-11, 1.00162, -5.82077e-11, -1.16415e-10, 0, 1.00162, 0, 0, 0)
-visible = false
-mesh = SubResource("PlaneMesh_m8u5f")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_wt17y")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 95.0384, 0)
-light_color = Color(1, 0.941176, 0.941176, 1)
-
-[node name="ground2" parent="." instance=ExtResource("4_0g13b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.387695, -6.10352e-05, 3.04553)
-
-[node name="johanneberg" parent="." instance=ExtResource("3_p4gww")]
-
-[node name="BaseCharacter" parent="." instance=ExtResource("27_c0edl")]
-transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -296.995, 0.545874, -108.713)
-script = SubResource("GDScript_mopl8")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter"]
-transform = Transform3D(4, 0, 1.78814e-07, 0, 4, 0, -1.78814e-07, 0, 4, 0, 3.13048, 0)
-layers = 1024
-mesh = SubResource("CylinderMesh_wd84n")
-
-[node name="architecture" parent="." instance=ExtResource("7_b36ec")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -137.485, 0.298239, 158.449)
-
-[node name="NPCCollision" parent="architecture" instance=ExtResource("8_qbc84")]
-
-[node name="CameraControll" parent="architecture" instance=ExtResource("9_ukpfr")]
-dialoque_resource = SubResource("Resource_gx8vd")
-
-[node name="CameraControllCollision" parent="architecture/CameraControll" instance=ExtResource("10_88hal")]
-
-[node name="ChatDetectionArea" parent="architecture" instance=ExtResource("11_dvbsa")]
-
-[node name="WaveZone" parent="architecture" instance=ExtResource("12_dlir3")]
-
-[node name="Exlamation" type="Sprite3D" parent="architecture"]
-transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
-layers = 1024
-material_override = SubResource("StandardMaterial3D_4340n")
-texture = ExtResource("13_aiayi")
-
-[node name="Check" type="Sprite3D" parent="architecture"]
-transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
-visible = false
-layers = 1024
-material_override = SubResource("StandardMaterial3D_87jca")
-texture = ExtResource("25_b457s")
-
-[node name="computer" parent="." instance=ExtResource("13_3doim")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -23.4675, 0.224915, 107.536)
-script = ExtResource("17_uyq1m")
-
-[node name="NPCCollision" parent="computer" instance=ExtResource("8_qbc84")]
-
-[node name="CameraControll" parent="computer" instance=ExtResource("9_ukpfr")]
-
-[node name="CameraControllCollision" parent="computer/CameraControll" instance=ExtResource("10_88hal")]
-
-[node name="WaveZone" parent="computer" instance=ExtResource("12_dlir3")]
-
-[node name="ChatDetectionArea" parent="computer" instance=ExtResource("11_dvbsa")]
-
-[node name="Exlamation" type="Sprite3D" parent="computer"]
-transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
-layers = 1024
-material_override = SubResource("StandardMaterial3D_4340n")
-texture = ExtResource("13_aiayi")
-
-[node name="Check" type="Sprite3D" parent="computer"]
-transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
-visible = false
-layers = 1024
-material_override = SubResource("StandardMaterial3D_87jca")
-texture = ExtResource("25_b457s")
-
-[node name="electrical" parent="." instance=ExtResource("14_x75fr")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 21.0247, 0.224915, 134.023)
-
-[node name="NPCCollision" parent="electrical" instance=ExtResource("8_qbc84")]
-
-[node name="CameraControll" parent="electrical" instance=ExtResource("9_ukpfr")]
-
-[node name="CameraControllCollision" parent="electrical/CameraControll" instance=ExtResource("10_88hal")]
-
-[node name="ChatDetectionArea" parent="electrical" instance=ExtResource("11_dvbsa")]
-
-[node name="WaveZone" parent="electrical" instance=ExtResource("12_dlir3")]
-
-[node name="Exlamation" type="Sprite3D" parent="electrical"]
-transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
-layers = 1024
-material_override = SubResource("StandardMaterial3D_4340n")
-texture = ExtResource("13_aiayi")
-
-[node name="Check" type="Sprite3D" parent="electrical"]
-transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
-visible = false
-layers = 1024
-material_override = SubResource("StandardMaterial3D_87jca")
-texture = ExtResource("25_b457s")
-
-[node name="industrial" parent="." instance=ExtResource("15_k23oj")]
-transform = Transform3D(-0.68404, 0, 1.87939, 0, 2, 0, -1.87939, 0, -0.68404, -85.526, 0.224917, -7.0776)
-
-[node name="NPCCollision" parent="industrial" instance=ExtResource("8_qbc84")]
-
-[node name="CameraControll" parent="industrial" instance=ExtResource("9_ukpfr")]
-
-[node name="CameraControllCollision" parent="industrial/CameraControll" instance=ExtResource("10_88hal")]
-
-[node name="ChatDetectionArea" parent="industrial" instance=ExtResource("11_dvbsa")]
-
-[node name="WaveZone" parent="industrial" instance=ExtResource("12_dlir3")]
-
-[node name="Exlamation" type="Sprite3D" parent="industrial"]
-transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
-layers = 1024
-material_override = SubResource("StandardMaterial3D_4340n")
-texture = ExtResource("13_aiayi")
-
-[node name="Check" type="Sprite3D" parent="industrial"]
-transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
-visible = false
-layers = 1024
-material_override = SubResource("StandardMaterial3D_87jca")
-texture = ExtResource("25_b457s")
-
-[node name="physics" parent="." instance=ExtResource("16_gybfq")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -188.973, 0.224915, -195.699)
-
-[node name="NPCCollision" parent="physics" instance=ExtResource("8_qbc84")]
-
-[node name="CameraControll" parent="physics" instance=ExtResource("9_ukpfr")]
-
-[node name="CameraControllCollision" parent="physics/CameraControll" instance=ExtResource("10_88hal")]
-
-[node name="ChatDetectionArea" parent="physics" instance=ExtResource("11_dvbsa")]
-
-[node name="WaveZone" parent="physics" instance=ExtResource("12_dlir3")]
-
-[node name="Exlamation" type="Sprite3D" parent="physics"]
-transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
-layers = 1024
-material_override = SubResource("StandardMaterial3D_4340n")
-texture = ExtResource("13_aiayi")
-
-[node name="Check" type="Sprite3D" parent="physics"]
-transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
-visible = false
-layers = 1024
-material_override = SubResource("StandardMaterial3D_87jca")
-texture = ExtResource("25_b457s")
-
-[node name="chemistry" parent="." instance=ExtResource("17_qw3c1")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -59.7977, 0.224915, -233.436)
-
-[node name="NPCCollision" parent="chemistry" instance=ExtResource("8_qbc84")]
-
-[node name="CameraControll" parent="chemistry" instance=ExtResource("9_ukpfr")]
-
-[node name="CameraControllCollision" parent="chemistry/CameraControll" instance=ExtResource("10_88hal")]
-
-[node name="ChatDetectionArea" parent="chemistry" instance=ExtResource("11_dvbsa")]
-
-[node name="WaveZone" parent="chemistry" instance=ExtResource("12_dlir3")]
-
-[node name="Exlamation" type="Sprite3D" parent="chemistry"]
-transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
-layers = 1024
-material_override = SubResource("StandardMaterial3D_4340n")
-texture = ExtResource("13_aiayi")
-
-[node name="Check" type="Sprite3D" parent="chemistry"]
-transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
-visible = false
-layers = 1024
-material_override = SubResource("StandardMaterial3D_87jca")
-texture = ExtResource("25_b457s")
-
-[node name="life" parent="." instance=ExtResource("18_wkhe0")]
-transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -124.785, 0.224915, -182.024)
-
-[node name="NPCCollision" parent="life" instance=ExtResource("8_qbc84")]
-
-[node name="CameraControll" parent="life" instance=ExtResource("9_ukpfr")]
-
-[node name="CameraControllCollision" parent="life/CameraControll" instance=ExtResource("10_88hal")]
-
-[node name="ChatDetectionArea" parent="life" instance=ExtResource("11_dvbsa")]
-
-[node name="WaveZone" parent="life" instance=ExtResource("12_dlir3")]
-
-[node name="Exlamation" type="Sprite3D" parent="life"]
-transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
-layers = 1024
-material_override = SubResource("StandardMaterial3D_4340n")
-texture = ExtResource("13_aiayi")
-
-[node name="Check" type="Sprite3D" parent="life"]
-transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
-visible = false
-layers = 1024
-material_override = SubResource("StandardMaterial3D_87jca")
-texture = ExtResource("25_b457s")
-
-[node name="math" parent="." instance=ExtResource("19_u6e35")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -48.2272, 0.224915, -149.427)
-
-[node name="NPCCollision" parent="math" instance=ExtResource("8_qbc84")]
-
-[node name="CameraControll" parent="math" instance=ExtResource("9_ukpfr")]
-
-[node name="CameraControllCollision" parent="math/CameraControll" instance=ExtResource("10_88hal")]
-
-[node name="ChatDetectionArea" parent="math" instance=ExtResource("11_dvbsa")]
-
-[node name="WaveZone" parent="math" instance=ExtResource("12_dlir3")]
-
-[node name="Exlamation" type="Sprite3D" parent="math"]
-transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
-layers = 1024
-material_override = SubResource("StandardMaterial3D_4340n")
-texture = ExtResource("13_aiayi")
-
-[node name="Check" type="Sprite3D" parent="math"]
-transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
-visible = false
-layers = 1024
-material_override = SubResource("StandardMaterial3D_87jca")
-texture = ExtResource("25_b457s")
-
-[node name="mechanics" parent="." instance=ExtResource("20_i3yk2")]
-transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 14.7081, 0.224915, -34.798)
-
-[node name="NPCCollision" parent="mechanics" instance=ExtResource("8_qbc84")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.222486, 1, 0)
-
-[node name="CameraControll" parent="mechanics" instance=ExtResource("9_ukpfr")]
-
-[node name="CameraControllCollision" parent="mechanics/CameraControll" instance=ExtResource("10_88hal")]
-
-[node name="ChatDetectionArea" parent="mechanics" instance=ExtResource("11_dvbsa")]
-
-[node name="WaveZone" parent="mechanics" instance=ExtResource("12_dlir3")]
-
-[node name="Exlamation" type="Sprite3D" parent="mechanics"]
-transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
-layers = 1024
-material_override = SubResource("StandardMaterial3D_4340n")
-texture = ExtResource("13_aiayi")
-
-[node name="Check" type="Sprite3D" parent="mechanics"]
-transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
-visible = false
-layers = 1024
-material_override = SubResource("StandardMaterial3D_87jca")
-texture = ExtResource("25_b457s")
-
-[node name="micro" parent="." instance=ExtResource("21_ga0cy")]
-transform = Transform3D(1.69545, 0, 1.06087, 0, 2, 0, -1.06087, 0, 1.69545, -182.789, 0.224915, -279.331)
-
-[node name="NPCCollision" parent="micro" instance=ExtResource("8_qbc84")]
-
-[node name="CameraControll" parent="micro" instance=ExtResource("9_ukpfr")]
-
-[node name="CameraControllCollision" parent="micro/CameraControll" instance=ExtResource("10_88hal")]
-
-[node name="ChatDetectionArea" parent="micro" instance=ExtResource("11_dvbsa")]
-
-[node name="WaveZone" parent="micro" instance=ExtResource("12_dlir3")]
-
-[node name="Exlamation" type="Sprite3D" parent="micro"]
-transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
-layers = 1024
-material_override = SubResource("StandardMaterial3D_4340n")
-texture = ExtResource("13_aiayi")
-
-[node name="Check" type="Sprite3D" parent="micro"]
-transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
-visible = false
-layers = 1024
-material_override = SubResource("StandardMaterial3D_87jca")
-texture = ExtResource("25_b457s")
-
-[node name="space" parent="." instance=ExtResource("22_fbe7f")]
-transform = Transform3D(-1.73619, 0, -0.9928, 0, 2, 0, 0.9928, 0, -1.73619, 3, 0.224915, 54)
-
-[node name="NPCCollision" parent="space" instance=ExtResource("8_qbc84")]
-
-[node name="CameraControll" parent="space" instance=ExtResource("9_ukpfr")]
-
-[node name="CameraControllCollision" parent="space/CameraControll" instance=ExtResource("10_88hal")]
-
-[node name="ChatDetectionArea" parent="space" instance=ExtResource("11_dvbsa")]
-
-[node name="WaveZone" parent="space" instance=ExtResource("12_dlir3")]
-
-[node name="Exlamation" type="Sprite3D" parent="space"]
-transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
-layers = 1024
-material_override = SubResource("StandardMaterial3D_4340n")
-texture = ExtResource("13_aiayi")
-
-[node name="Check" type="Sprite3D" parent="space"]
-transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
-visible = false
-layers = 1024
-material_override = SubResource("StandardMaterial3D_87jca")
-texture = ExtResource("25_b457s")
-
-[node name="economic" parent="." instance=ExtResource("23_sk0v5")]
-transform = Transform3D(1.8527, 0, 0.753319, 0, 2, 0, -0.753319, 0, 1.8527, -187.986, 0.312317, -480.324)
-script = ExtResource("37_kvtch")
-
-[node name="NPCCollision" parent="economic" instance=ExtResource("8_qbc84")]
-
-[node name="CameraControll" parent="economic" instance=ExtResource("9_ukpfr")]
-
-[node name="CameraControllCollision" parent="economic/CameraControll" instance=ExtResource("10_88hal")]
-
-[node name="ChatDetectionArea" parent="economic" instance=ExtResource("11_dvbsa")]
-
-[node name="WaveZone" parent="economic" instance=ExtResource("12_dlir3")]
-
-[node name="Exlamation" type="Sprite3D" parent="economic"]
-transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
-layers = 1024
-material_override = SubResource("StandardMaterial3D_4340n")
-texture = ExtResource("13_aiayi")
-
-[node name="Check" type="Sprite3D" parent="economic"]
-transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
-visible = false
-layers = 1024
-material_override = SubResource("StandardMaterial3D_87jca")
-texture = ExtResource("25_b457s")
-
-[node name="science" parent="." instance=ExtResource("24_mx7op")]
-transform = Transform3D(0.774325, 0, -1.84402, 0, 2, 0, 1.84402, 0, 0.774325, -33.474, 0.224917, -187.82)
-
-[node name="NPCCollision" parent="science" instance=ExtResource("8_qbc84")]
-
-[node name="CameraControll" parent="science" instance=ExtResource("9_ukpfr")]
-
-[node name="CameraControllCollision" parent="science/CameraControll" instance=ExtResource("10_88hal")]
-
-[node name="ChatDetectionArea" parent="science" instance=ExtResource("11_dvbsa")]
-
-[node name="WaveZone" parent="science" instance=ExtResource("12_dlir3")]
-
-[node name="Exlamation" type="Sprite3D" parent="science"]
-transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
-layers = 1024
-material_override = SubResource("StandardMaterial3D_4340n")
-texture = ExtResource("13_aiayi")
-
-[node name="Check" type="Sprite3D" parent="science"]
-transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
-visible = false
-layers = 1024
-material_override = SubResource("StandardMaterial3D_87jca")
-texture = ExtResource("25_b457s")
-
-[node name="bookBox" parent="." instance=ExtResource("34_ngb0i")]
-transform = Transform3D(0.633927, 0, -1.35946, 0, 1.5, 0, 1.35946, 0, 0.633927, -15.976, 0.0723877, -173.181)
-
-[node name="keyChemistry" parent="." instance=ExtResource("29_fe313")]
-transform = Transform3D(3.56833, 0, -3.50243, 0, 5, 0, 3.50243, 0, 3.56833, -206.314, 0.184937, -235.869)
-
-[node name="foodStall" parent="." instance=ExtResource("30_4acdi")]
-transform = Transform3D(-0.73672, 0, 1.30662, 0, 1.5, 0, -1.30662, 0, -0.73672, -235.721, 1.65674, -44.2125)
-
-[node name="busStop" parent="." instance=ExtResource("6_jjioq")]
-transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, -305, 0.078125, -126)
-collision_layer = 32
-collision_mask = 2
-
-[node name="walletSpace" parent="." instance=ExtResource("31_k633d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.9013, -6.10352e-05, -169.379)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ExtraInfo" parent="CanvasLayer" instance=ExtResource("34_4jer0")]
-visible = false
-
-[node name="Virtual Joystick" parent="CanvasLayer" instance=ExtResource("32_oqewd")]
-z_index = 2
-offset_left = 10.0
-offset_top = -116.0
-offset_right = 252.0
-offset_bottom = 101.0
-scale = Vector2(0.5, 0.5)
-pressed_color = Color(0.654902, 0.341176, 0.168627, 1)
-clampzone_size = 20.0
-action_left = "left"
-action_right = "right"
-action_up = "up"
-action_down = "down"
-
-[node name="MenuButton" type="Button" parent="CanvasLayer"]
-visible = false
-offset_left = 12.0
-offset_top = 13.0
-offset_right = 146.0
-offset_bottom = 55.0
-size_flags_vertical = 3
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/focus = SubResource("StyleBoxEmpty_qynfc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_xd2ns")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_be2sd")
-theme_override_styles/normal = SubResource("StyleBoxFlat_0o0pu")
-text = "Menu"
-
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("25_bfsex")]
-visible = false
-
-[node name="Minimap" type="PanelContainer" parent="CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -156.0
-offset_top = 6.0
-offset_right = -6.0
-offset_bottom = 156.0
-grow_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_mxwxs")
-script = ExtResource("26_et1t8")
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Minimap"]
+[node name="SamhallIII" type="Panel" parent="CanvasLayer/Minimap" index="1"]
 layout_mode = 2
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(138, 138)
-render_target_update_mode = 4
-
-[node name="MinimapCamera" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.34202, -0.939693, -4.10753e-08, 0, -4.37114e-08, 1, -0.939693, 0.34202, 1.49502e-08, -298.251, 100, -100.675)
-cull_mask = 1048573
-projection = 1
-size = 150.0
-
-[node name="BigMap" type="Control" parent="CanvasLayer"]
-process_mode = 3
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("27_rjjvf")
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/BigMap"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/BigMap/SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(1000, 500)
-size_2d_override_stretch = true
-render_target_update_mode = 0
-
-[node name="BigMapCamera" type="Camera3D" parent="CanvasLayer/BigMap/SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.422618, -0.906308, -3.9616e-08, 0, -4.37114e-08, 1, -0.906308, 0.422618, 1.84732e-08, -131.213, 557.372, -128.454)
-cull_mask = 1048573
-projection = 1
-size = 375.0
-near = 0.01
-
-[node name="GoBack" type="Button" parent="CanvasLayer/BigMap"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -161.0
-offset_top = 17.0
-offset_right = -27.0
-offset_bottom = 59.0
-grow_horizontal = 0
-size_flags_vertical = 3
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/focus = SubResource("StyleBoxEmpty_87ooe")
-theme_override_styles/hover = SubResource("StyleBoxFlat_wfve7")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ngasd")
-theme_override_styles/normal = SubResource("StyleBoxFlat_wbjwh")
-text = "Go back"
-
-[node name="SamhallIII" type="Panel" parent="CanvasLayer/BigMap"]
-layout_mode = 0
-offset_left = 95.0
-offset_top = 100.0
-offset_right = 260.0
-offset_bottom = 167.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_pd5kg")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dvcx0")
 script = ExtResource("29_6t16t")
 
-[node name="Label" type="Label" parent="CanvasLayer/BigMap/SamhallIII"]
+[node name="Label" type="Label" parent="CanvasLayer/Minimap/SamhallIII" index="0"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -1010,16 +379,12 @@ text = "Samhällsbyggnad III
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SamhallII" type="Panel" parent="CanvasLayer/BigMap"]
-layout_mode = 0
-offset_left = 269.0
-offset_top = 122.0
-offset_right = 427.0
-offset_bottom = 189.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_2mxfc")
+[node name="SamhallII" type="Panel" parent="CanvasLayer/Minimap" index="2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tdkqe")
 script = ExtResource("29_6t16t")
 
-[node name="Label" type="Label" parent="CanvasLayer/BigMap/SamhallII"]
+[node name="Label" type="Label" parent="CanvasLayer/Minimap/SamhallII" index="0"]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -1040,16 +405,12 @@ text = "Samhällsbyggnad I-II
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Chemistry" type="Panel" parent="CanvasLayer/BigMap"]
-layout_mode = 0
-offset_left = 589.0
-offset_top = 317.0
-offset_right = 669.0
-offset_bottom = 463.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_w6r6d")
+[node name="Chemistry" type="Panel" parent="CanvasLayer/Minimap" index="3"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7itiw")
 script = ExtResource("29_6t16t")
 
-[node name="Label" type="Label" parent="CanvasLayer/BigMap/Chemistry"]
+[node name="Label" type="Label" parent="CanvasLayer/Minimap/Chemistry" index="0"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -1070,16 +431,12 @@ text = "Kemi
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MV" type="Panel" parent="CanvasLayer/BigMap"]
-layout_mode = 0
-offset_left = 462.0
-offset_top = 282.0
-offset_right = 520.0
-offset_bottom = 343.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_3y14g")
+[node name="MV" type="Panel" parent="CanvasLayer/Minimap" index="4"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rxs5q")
 script = ExtResource("29_6t16t")
 
-[node name="Label" type="Label" parent="CanvasLayer/BigMap/MV"]
+[node name="Label" type="Label" parent="CanvasLayer/Minimap/MV" index="0"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -1099,16 +456,12 @@ text = "MV-huset"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MC2" type="Panel" parent="CanvasLayer/BigMap"]
-layout_mode = 0
-offset_left = 692.0
-offset_top = 179.0
-offset_right = 778.0
-offset_bottom = 271.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_8fc4c")
+[node name="MC2" type="Panel" parent="CanvasLayer/Minimap" index="5"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dvg0q")
 script = ExtResource("29_6t16t")
 
-[node name="Label" type="Label" parent="CanvasLayer/BigMap/MC2"]
+[node name="Label" type="Label" parent="CanvasLayer/Minimap/MC2" index="0"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -1128,16 +481,12 @@ text = "MC2-huset"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Edit" type="Panel" parent="CanvasLayer/BigMap"]
-layout_mode = 0
-offset_left = 54.0
-offset_top = 260.0
-offset_right = 202.0
-offset_bottom = 362.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_pd5kg")
+[node name="Edit" type="Panel" parent="CanvasLayer/Minimap" index="6"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dvcx0")
 script = ExtResource("29_6t16t")
 
-[node name="Label" type="Label" parent="CanvasLayer/BigMap/Edit"]
+[node name="Label" type="Label" parent="CanvasLayer/Minimap/Edit" index="0"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -1158,16 +507,12 @@ text = "EDIT
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="M" type="Panel" parent="CanvasLayer/BigMap"]
-layout_mode = 0
-offset_left = 220.0
-offset_top = 242.0
-offset_right = 382.0
-offset_bottom = 342.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_pd5kg")
+[node name="M" type="Panel" parent="CanvasLayer/Minimap" index="7"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dvcx0")
 script = ExtResource("29_6t16t")
 
-[node name="Label" type="Label" parent="CanvasLayer/BigMap/M"]
+[node name="Label" type="Label" parent="CanvasLayer/Minimap/M" index="0"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -1187,16 +532,12 @@ text = "House M"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Karhuset" type="Panel" parent="CanvasLayer/BigMap"]
-layout_mode = 0
-offset_left = 357.0
-offset_top = 23.0
-offset_right = 480.0
-offset_bottom = 76.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_5nqni")
+[node name="Karhuset" type="Panel" parent="CanvasLayer/Minimap" index="8"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vvxbo")
 script = ExtResource("29_6t16t")
 
-[node name="Label" type="Label" parent="CanvasLayer/BigMap/Karhuset"]
+[node name="Label" type="Label" parent="CanvasLayer/Minimap/Karhuset" index="0"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -1216,16 +557,12 @@ text = "Kårhuset"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Library" type="Panel" parent="CanvasLayer/BigMap"]
-layout_mode = 0
-offset_left = 482.0
-offset_top = 419.0
-offset_right = 560.0
-offset_bottom = 467.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_3y14g")
+[node name="Library" type="Panel" parent="CanvasLayer/Minimap" index="9"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rxs5q")
 script = ExtResource("29_6t16t")
 
-[node name="Label" type="Label" parent="CanvasLayer/BigMap/Library"]
+[node name="Label" type="Label" parent="CanvasLayer/Minimap/Library" index="0"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -1245,16 +582,12 @@ text = "Bibliotek"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Fysik" type="Panel" parent="CanvasLayer/BigMap"]
-layout_mode = 0
-offset_left = 515.0
-offset_top = 238.0
-offset_right = 629.0
-offset_bottom = 271.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_3y14g")
+[node name="Fysik" type="Panel" parent="CanvasLayer/Minimap" index="10"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rxs5q")
 script = ExtResource("29_6t16t")
 
-[node name="Label" type="Label" parent="CanvasLayer/BigMap/Fysik"]
+[node name="Label" type="Label" parent="CanvasLayer/Minimap/Fysik" index="0"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -1274,58 +607,393 @@ text = "Fysik"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AddPoint" parent="CanvasLayer" instance=ExtResource("37_cqyav")]
+[node name="johanneberg" parent="." index="4" instance=ExtResource("3_p4gww")]
 
-[node name="Interact" type="Button" parent="CanvasLayer"]
+[node name="BaseCharacter" parent="." index="5" instance=ExtResource("27_c0edl")]
+transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -296.995, 0.545874, -108.713)
+script = SubResource("GDScript_1yljh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter" index="8"]
+transform = Transform3D(4, 0, 1.78814e-07, 0, 4, 0, -1.78814e-07, 0, 4, 0, 3.13048, 0)
+layers = 1024
+mesh = SubResource("CylinderMesh_3gy84")
+
+[node name="architecture" parent="." index="6" instance=ExtResource("7_b36ec")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -137.485, 0.298239, 158.449)
+
+[node name="NPCCollision" parent="architecture" index="2" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="architecture" index="3" instance=ExtResource("9_ukpfr")]
+dialoque_resource = SubResource("Resource_n0kxa")
+
+[node name="CameraControllCollision" parent="architecture/CameraControll" index="0" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="architecture" index="4" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="architecture" index="5" instance=ExtResource("12_dlir3")]
+
+[node name="Exlamation" type="Sprite3D" parent="architecture" index="6"]
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_4l1ao")
+texture = ExtResource("13_aiayi")
+
+[node name="Check" type="Sprite3D" parent="architecture" index="7"]
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -164.0
-offset_top = -78.0
-offset_right = -32.0
-offset_bottom = -24.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_vertical = 3
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("38_75e1w")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/focus = SubResource("StyleBoxEmpty_136lp")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7gtrq")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ugjea")
-theme_override_styles/normal = SubResource("StyleBoxFlat_1hvf3")
-toggle_mode = true
-text = "Interact
-"
+layers = 1024
+material_override = SubResource("StandardMaterial3D_26wmo")
+texture = ExtResource("25_b457s")
 
-[connection signal="ready" from="." to="." method="_on_ready"]
-[connection signal="pressed" from="CanvasLayer/MenuButton" to="CanvasLayer/PauseMenu" method="_on_menu_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/BigMap/GoBack" to="CanvasLayer/BigMap" method="_on_go_back_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/BigMap/SamhallIII" to="CanvasLayer/BigMap/SamhallIII" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/BigMap/SamhallIII" to="CanvasLayer/BigMap/SamhallIII" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/BigMap/SamhallII" to="CanvasLayer/BigMap/SamhallII" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/BigMap/SamhallII" to="CanvasLayer/BigMap/SamhallII" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/BigMap/Chemistry" to="CanvasLayer/BigMap/Chemistry" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/BigMap/Chemistry" to="CanvasLayer/BigMap/Chemistry" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/BigMap/MV" to="CanvasLayer/BigMap/MV" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/BigMap/MV" to="CanvasLayer/BigMap/MV" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/BigMap/MC2" to="CanvasLayer/BigMap/MC2" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/BigMap/MC2" to="CanvasLayer/BigMap/MC2" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/BigMap/Edit" to="CanvasLayer/BigMap/Edit" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/BigMap/Edit" to="CanvasLayer/BigMap/Edit" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/BigMap/M" to="CanvasLayer/BigMap/M" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/BigMap/M" to="CanvasLayer/BigMap/M" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/BigMap/Karhuset" to="CanvasLayer/BigMap/Karhuset" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/BigMap/Karhuset" to="CanvasLayer/BigMap/Karhuset" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/BigMap/Library" to="CanvasLayer/BigMap/Library" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/BigMap/Library" to="CanvasLayer/BigMap/Library" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/BigMap/Fysik" to="CanvasLayer/BigMap/Fysik" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/BigMap/Fysik" to="CanvasLayer/BigMap/Fysik" method="_on_mouse_exited"]
-[connection signal="pressed" from="CanvasLayer/Interact" to="BaseCharacter" method="_on_interact_pressed"]
+[node name="computer" parent="." index="7" instance=ExtResource("13_3doim")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -23.4675, 0.224915, 107.536)
+script = ExtResource("17_uyq1m")
+
+[node name="NPCCollision" parent="computer" index="2" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="computer" index="3" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="computer/CameraControll" index="0" instance=ExtResource("10_88hal")]
+
+[node name="WaveZone" parent="computer" index="4" instance=ExtResource("12_dlir3")]
+
+[node name="ChatDetectionArea" parent="computer" index="5" instance=ExtResource("11_dvbsa")]
+
+[node name="Exlamation" type="Sprite3D" parent="computer" index="6"]
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_4l1ao")
+texture = ExtResource("13_aiayi")
+
+[node name="Check" type="Sprite3D" parent="computer" index="7"]
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
+visible = false
+layers = 1024
+material_override = SubResource("StandardMaterial3D_26wmo")
+texture = ExtResource("25_b457s")
+
+[node name="electrical" parent="." index="8" instance=ExtResource("14_x75fr")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 21.0247, 0.224915, 134.023)
+
+[node name="NPCCollision" parent="electrical" index="2" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="electrical" index="3" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="electrical/CameraControll" index="0" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="electrical" index="4" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="electrical" index="5" instance=ExtResource("12_dlir3")]
+
+[node name="Exlamation" type="Sprite3D" parent="electrical" index="6"]
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_4l1ao")
+texture = ExtResource("13_aiayi")
+
+[node name="Check" type="Sprite3D" parent="electrical" index="7"]
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
+visible = false
+layers = 1024
+material_override = SubResource("StandardMaterial3D_26wmo")
+texture = ExtResource("25_b457s")
+
+[node name="industrial" parent="." index="9" instance=ExtResource("15_k23oj")]
+transform = Transform3D(-0.68404, 0, 1.87939, 0, 2, 0, -1.87939, 0, -0.68404, -85.526, 0.224917, -7.0776)
+
+[node name="NPCCollision" parent="industrial" index="2" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="industrial" index="3" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="industrial/CameraControll" index="0" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="industrial" index="4" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="industrial" index="5" instance=ExtResource("12_dlir3")]
+
+[node name="Exlamation" type="Sprite3D" parent="industrial" index="6"]
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_4l1ao")
+texture = ExtResource("13_aiayi")
+
+[node name="Check" type="Sprite3D" parent="industrial" index="7"]
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
+visible = false
+layers = 1024
+material_override = SubResource("StandardMaterial3D_26wmo")
+texture = ExtResource("25_b457s")
+
+[node name="physics" parent="." index="10" instance=ExtResource("16_gybfq")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -188.973, 0.224915, -195.699)
+
+[node name="NPCCollision" parent="physics" index="2" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="physics" index="3" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="physics/CameraControll" index="0" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="physics" index="4" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="physics" index="5" instance=ExtResource("12_dlir3")]
+
+[node name="Exlamation" type="Sprite3D" parent="physics" index="6"]
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_4l1ao")
+texture = ExtResource("13_aiayi")
+
+[node name="Check" type="Sprite3D" parent="physics" index="7"]
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
+visible = false
+layers = 1024
+material_override = SubResource("StandardMaterial3D_26wmo")
+texture = ExtResource("25_b457s")
+
+[node name="chemistry" parent="." index="11" instance=ExtResource("17_qw3c1")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -59.7977, 0.224915, -233.436)
+
+[node name="NPCCollision" parent="chemistry" index="2" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="chemistry" index="3" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="chemistry/CameraControll" index="0" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="chemistry" index="4" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="chemistry" index="5" instance=ExtResource("12_dlir3")]
+
+[node name="Exlamation" type="Sprite3D" parent="chemistry" index="6"]
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_4l1ao")
+texture = ExtResource("13_aiayi")
+
+[node name="Check" type="Sprite3D" parent="chemistry" index="7"]
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
+visible = false
+layers = 1024
+material_override = SubResource("StandardMaterial3D_26wmo")
+texture = ExtResource("25_b457s")
+
+[node name="life" parent="." index="12" instance=ExtResource("18_wkhe0")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -124.785, 0.224915, -182.024)
+
+[node name="NPCCollision" parent="life" index="2" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="life" index="3" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="life/CameraControll" index="0" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="life" index="4" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="life" index="5" instance=ExtResource("12_dlir3")]
+
+[node name="Exlamation" type="Sprite3D" parent="life" index="6"]
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_4l1ao")
+texture = ExtResource("13_aiayi")
+
+[node name="Check" type="Sprite3D" parent="life" index="7"]
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
+visible = false
+layers = 1024
+material_override = SubResource("StandardMaterial3D_26wmo")
+texture = ExtResource("25_b457s")
+
+[node name="math" parent="." index="13" instance=ExtResource("19_u6e35")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -48.2272, 0.224915, -149.427)
+
+[node name="NPCCollision" parent="math" index="2" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="math" index="3" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="math/CameraControll" index="0" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="math" index="4" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="math" index="5" instance=ExtResource("12_dlir3")]
+
+[node name="Exlamation" type="Sprite3D" parent="math" index="6"]
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_4l1ao")
+texture = ExtResource("13_aiayi")
+
+[node name="Check" type="Sprite3D" parent="math" index="7"]
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
+visible = false
+layers = 1024
+material_override = SubResource("StandardMaterial3D_26wmo")
+texture = ExtResource("25_b457s")
+
+[node name="mechanics" parent="." index="14" instance=ExtResource("20_i3yk2")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 14.7081, 0.224915, -34.798)
+
+[node name="NPCCollision" parent="mechanics" index="2" instance=ExtResource("8_qbc84")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.222486, 1, 0)
+
+[node name="CameraControll" parent="mechanics" index="3" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="mechanics/CameraControll" index="0" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="mechanics" index="4" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="mechanics" index="5" instance=ExtResource("12_dlir3")]
+
+[node name="Exlamation" type="Sprite3D" parent="mechanics" index="6"]
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_4l1ao")
+texture = ExtResource("13_aiayi")
+
+[node name="Check" type="Sprite3D" parent="mechanics" index="7"]
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
+visible = false
+layers = 1024
+material_override = SubResource("StandardMaterial3D_26wmo")
+texture = ExtResource("25_b457s")
+
+[node name="micro" parent="." index="15" instance=ExtResource("21_ga0cy")]
+transform = Transform3D(1.69545, 0, 1.06087, 0, 2, 0, -1.06087, 0, 1.69545, -182.789, 0.224915, -279.331)
+
+[node name="NPCCollision" parent="micro" index="2" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="micro" index="3" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="micro/CameraControll" index="0" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="micro" index="4" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="micro" index="5" instance=ExtResource("12_dlir3")]
+
+[node name="Exlamation" type="Sprite3D" parent="micro" index="6"]
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_4l1ao")
+texture = ExtResource("13_aiayi")
+
+[node name="Check" type="Sprite3D" parent="micro" index="7"]
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
+visible = false
+layers = 1024
+material_override = SubResource("StandardMaterial3D_26wmo")
+texture = ExtResource("25_b457s")
+
+[node name="space" parent="." index="16" instance=ExtResource("22_fbe7f")]
+transform = Transform3D(-1.73619, 0, -0.9928, 0, 2, 0, 0.9928, 0, -1.73619, 3, 0.224915, 54)
+
+[node name="NPCCollision" parent="space" index="2" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="space" index="3" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="space/CameraControll" index="0" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="space" index="4" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="space" index="5" instance=ExtResource("12_dlir3")]
+
+[node name="Exlamation" type="Sprite3D" parent="space" index="6"]
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_4l1ao")
+texture = ExtResource("13_aiayi")
+
+[node name="Check" type="Sprite3D" parent="space" index="7"]
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
+visible = false
+layers = 1024
+material_override = SubResource("StandardMaterial3D_26wmo")
+texture = ExtResource("25_b457s")
+
+[node name="economic" parent="." index="17" instance=ExtResource("23_sk0v5")]
+transform = Transform3D(1.8527, 0, 0.753319, 0, 2, 0, -0.753319, 0, 1.8527, -187.986, 0.312317, -480.324)
+script = ExtResource("37_kvtch")
+
+[node name="NPCCollision" parent="economic" index="2" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="economic" index="3" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="economic/CameraControll" index="0" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="economic" index="4" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="economic" index="5" instance=ExtResource("12_dlir3")]
+
+[node name="Exlamation" type="Sprite3D" parent="economic" index="6"]
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_4l1ao")
+texture = ExtResource("13_aiayi")
+
+[node name="Check" type="Sprite3D" parent="economic" index="7"]
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
+visible = false
+layers = 1024
+material_override = SubResource("StandardMaterial3D_26wmo")
+texture = ExtResource("25_b457s")
+
+[node name="science" parent="." index="18" instance=ExtResource("24_mx7op")]
+transform = Transform3D(0.774325, 0, -1.84402, 0, 2, 0, 1.84402, 0, 0.774325, -33.474, 0.224917, -187.82)
+
+[node name="NPCCollision" parent="science" index="2" instance=ExtResource("8_qbc84")]
+
+[node name="CameraControll" parent="science" index="3" instance=ExtResource("9_ukpfr")]
+
+[node name="CameraControllCollision" parent="science/CameraControll" index="0" instance=ExtResource("10_88hal")]
+
+[node name="ChatDetectionArea" parent="science" index="4" instance=ExtResource("11_dvbsa")]
+
+[node name="WaveZone" parent="science" index="5" instance=ExtResource("12_dlir3")]
+
+[node name="Exlamation" type="Sprite3D" parent="science" index="6"]
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_4l1ao")
+texture = ExtResource("13_aiayi")
+
+[node name="Check" type="Sprite3D" parent="science" index="7"]
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
+visible = false
+layers = 1024
+material_override = SubResource("StandardMaterial3D_26wmo")
+texture = ExtResource("25_b457s")
+
+[node name="bookBox" parent="." index="19" instance=ExtResource("34_ngb0i")]
+transform = Transform3D(0.633927, 0, -1.35946, 0, 1.5, 0, 1.35946, 0, 0.633927, -15.976, 0.0723877, -173.181)
+
+[node name="keyChemistry" parent="." index="20" instance=ExtResource("29_fe313")]
+transform = Transform3D(3.56833, 0, -3.50243, 0, 5, 0, 3.50243, 0, 3.56833, -206.314, 0.184937, -235.869)
+
+[node name="foodStall" parent="." index="21" instance=ExtResource("30_4acdi")]
+transform = Transform3D(-0.73672, 0, 1.30662, 0, 1.5, 0, -1.30662, 0, -0.73672, -235.721, 1.65674, -44.2125)
+
+[node name="busStop" parent="." index="22" instance=ExtResource("6_jjioq")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, -305, 0.078125, -126)
+collision_layer = 32
+collision_mask = 2
+
+[node name="walletSpace" parent="." index="23" instance=ExtResource("31_k633d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.9013, -6.10352e-05, -169.379)
+
+[connection signal="mouse_entered" from="CanvasLayer/Minimap/SamhallIII" to="CanvasLayer/Minimap/SamhallIII" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Minimap/SamhallIII" to="CanvasLayer/Minimap/SamhallIII" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/Minimap/SamhallII" to="CanvasLayer/Minimap/SamhallII" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Minimap/SamhallII" to="CanvasLayer/Minimap/SamhallII" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/Minimap/Chemistry" to="CanvasLayer/Minimap/Chemistry" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Minimap/Chemistry" to="CanvasLayer/Minimap/Chemistry" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/Minimap/MV" to="CanvasLayer/Minimap/MV" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Minimap/MV" to="CanvasLayer/Minimap/MV" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/Minimap/MC2" to="CanvasLayer/Minimap/MC2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Minimap/MC2" to="CanvasLayer/Minimap/MC2" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/Minimap/Edit" to="CanvasLayer/Minimap/Edit" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Minimap/Edit" to="CanvasLayer/Minimap/Edit" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/Minimap/M" to="CanvasLayer/Minimap/M" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Minimap/M" to="CanvasLayer/Minimap/M" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/Minimap/Karhuset" to="CanvasLayer/Minimap/Karhuset" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Minimap/Karhuset" to="CanvasLayer/Minimap/Karhuset" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/Minimap/Library" to="CanvasLayer/Minimap/Library" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Minimap/Library" to="CanvasLayer/Minimap/Library" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/Minimap/Fysik" to="CanvasLayer/Minimap/Fysik" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Minimap/Fysik" to="CanvasLayer/Minimap/Fysik" method="_on_mouse_exited"]
