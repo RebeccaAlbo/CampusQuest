@@ -150,6 +150,34 @@ func load_game() -> bool:
 			print("No saved file")
 			return false
 	return false
+	
+func new_game():
+	score = 0
+	talked_to_npcs = {}
+
+	var inventory: = {
+		"key": 0.0,
+		"wallet": 0.0,
+		"book": [],
+		"food": [],
+		"coffee": []
+	}
+	MiniQuests.picked_up_items = []
+	MiniQuests.food_orders = []
+	var bug_state = {
+		"quest_given": false,
+		"found": false,
+		"reported": false
+	}
+	MiniQuests.started_quests = []
+	MiniQuests.finished_quests = []
+
+	var appearance = {}
+	CharacterCust.shirt_index = 0
+	CharacterCust.hair_index = 0
+	CharacterCust.skin_index = 0
+	CharacterCust.pant_index = 0
+	CharacterCust.shoes_index = 0
 
 # Adjust resolution for mobile
 func set_mobile_resolution():
