@@ -60,7 +60,7 @@ func _play_one_shot(stream: AudioStream) -> void:
 
 # GLOBAL CLICK INPUT
 func _input(event):
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton and event.pressed and GameState.current_state == GameState.MouseState.UI:
 		play_click()
 
 # MUSIC CONTROL
