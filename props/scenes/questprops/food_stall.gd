@@ -10,7 +10,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		player = body
 		player_in_interact_zone = true
-		hover_text.visible = true
+		if !GameState.is_mobile:
+			hover_text.visible = true
 
 # If interactions, add item to inventory and mark as picked up
 func _unhandled_input(_event: InputEvent) -> void:
@@ -22,6 +23,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 				MiniQuests.add_item("food", food)
 				MiniQuests.picked_up_items.append(food)
 			MiniQuests.food_orders.clear()
+			hover_text.visible = true
 			hover_text.text = "You have received your orders"
 		else:
 			hover_text.text = "You have no food orders"

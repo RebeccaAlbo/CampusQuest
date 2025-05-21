@@ -462,7 +462,7 @@ We are currently standing infront of Kuggen
 			do add_score(1)
 			do add_finished_quest("keyKuggen")
 		else:
-			No, not yet
+			- No, not yet
 	else:
 		You have already helped me
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=45 format=3 uid="uid://lulw05as8mxr"]
 
-[ext_resource type="PackedScene" uid="uid://bwentcjjrgqsh" path="res://UI/Campus/base_campus.tscn" id="1_rfggy"]
+[ext_resource type="PackedScene" path="res://UI/Campus/base_campus.tscn" id="1_rfggy"]
 [ext_resource type="Script" path="res://UI/Campus/campus_johanneberg.gd" id="2_yr3mw"]
-[ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/johanneberg.tscn" id="3_p4gww"]
+[ext_resource type="PackedScene" path="res://campus/johanneberg/johanneberg.tscn" id="3_p4gww"]
 [ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://props/scenes/questprops/bus_stop.tscn" id="6_jjioq"]
 [ext_resource type="PackedScene" uid="uid://cnb2h5dy2in10" path="res://player/NPC/Scene/architecture.tscn" id="7_b36ec"]
 [ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="8_qbc84"]
@@ -352,9 +352,6 @@ billboard_keep_scale = true
 
 [node name="campus_johanneberg" instance=ExtResource("1_rfggy")]
 script = ExtResource("2_yr3mw")
-
-[node name="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer" index="0"]
-size = Vector2i(138, 138)
 
 [node name="SamhallIII" type="Panel" parent="CanvasLayer/Minimap" index="1"]
 layout_mode = 2

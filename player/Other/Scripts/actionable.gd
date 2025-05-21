@@ -8,6 +8,8 @@ const Balloon = preload("res://dialogue/balloon.tscn")
 var camera: Camera3D = null
 var phone_camera: Camera3D = null
 var dialogue_camera: Camera3D = null
+var interactButton: Button = null
+
 
 var player
 var npc
@@ -22,7 +24,8 @@ func _ready():
 		
 
 func action() -> void:
-		
+	interactButton = get_tree().current_scene.get_node("CanvasLayer").get_node("Interact")
+	
 	#Find the camera
 	if camera == null:
 		player = get_tree().get_first_node_in_group("player")
@@ -37,10 +40,11 @@ func action() -> void:
 					camera = spring_arm.get_node_or_null("PCCamera")  # Finally, get Camera3D
 	
 	# If the camera exists, store original position and smoothly zoom it toward the NPC
-	if camera and dialogue_camera and phone_camera:
+	if camera and dialogue_camera and phone_camera and interactButton:
 		camera.current = false
 		phone_camera.current = false
 		dialogue_camera.current = true
+		interactButton.visible = false
 	else:
 		print("not all cameras found")
 	
@@ -63,6 +67,7 @@ func action() -> void:
 	player.end_dialoque()
 	npc.animation("Idle", 0.3)
 	npc.face_back()
+	interactButton.visible = true
 	dialogue_camera.current = false
 	if GameState.is_mobile:
 		phone_camera.current = true
