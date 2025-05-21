@@ -67,10 +67,10 @@ func action() -> void:
 	player.end_dialoque()
 	npc.animation("Idle", 0.3)
 	npc.face_back()
-	interactButton.visible = true
 	dialogue_camera.current = false
 	if GameState.is_mobile:
 		phone_camera.current = true
+		interactButton.visible = true
 	else:
 		camera.current = true
 	GameState.set_mouse_state(GameState.MouseState.GAMEPLAY)
