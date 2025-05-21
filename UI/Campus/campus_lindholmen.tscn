@@ -1,9 +1,8 @@
-[gd_scene load_steps=54 format=3 uid="uid://c3ynfcpspetng"]
+[gd_scene load_steps=53 format=3 uid="uid://c3ynfcpspetng"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_lindholmen.gd" id="2_hmjc0"]
 [ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="2_makl8"]
 [ext_resource type="PackedScene" uid="uid://ddlyrvsij0w4l" path="res://dialogue/extra_info.tscn" id="3_82x5p"]
-[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="4_5rh31"]
 [ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://props/scenes/questprops/bus_stop.tscn" id="4_b004s"]
 [ext_resource type="PackedScene" uid="uid://bmxn8658qh64v" path="res://campus/lindholmen/lindholmen.tscn" id="5_32ols"]
 [ext_resource type="PackedScene" uid="uid://b5elambvpjdk3" path="res://UI/Menues/Scenes/pause_menu.tscn" id="5_in501"]
@@ -117,7 +116,7 @@ corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 shadow_size = 5
 
-[sub_resource type="GDScript" id="GDScript_l627r"]
+[sub_resource type="GDScript" id="GDScript_txdlu"]
 script/source = "extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -197,12 +196,12 @@ func _ready():
 	
 	if GameState.is_mobile and get_tree().current_scene.name != \"CharacterSelection\":
 		phone_camera.current = true
+		phone_camera.size = 60
 			
 func _unhandled_input(event: InputEvent) -> void:
 	if GameState.is_mobile:
 		if event is InputEventScreenTouch:
 			if event.pressed:
-				print(\"pressing\")
 				drag_start = event.position
 				dragging = true
 			else:
@@ -246,7 +245,6 @@ func _physics_process(delta: float) -> void:
 		
 		var move_vec := Vector3.ZERO
 		if dragging and drag_vector != Vector2.ZERO:
-			print(\"dragging and not drac_vector\")
 			move_vec = Vector3(drag_vector.x, 0, drag_vector.y).normalized() * SPEED
 			
 		velocity.x = move_vec.x
@@ -465,21 +463,6 @@ light_color = Color(1, 0.941176, 0.803922, 1)
 
 [node name="ExtraInfo" parent="CanvasLayer" instance=ExtResource("3_82x5p")]
 visible = false
-
-[node name="Virtual Joystick" parent="CanvasLayer" instance=ExtResource("4_5rh31")]
-z_index = 2
-offset_left = 10.0
-offset_top = -116.0
-offset_right = 252.0
-offset_bottom = 101.0
-scale = Vector2(0.5, 0.5)
-pressed_color = Color(0.654902, 0.341176, 0.168627, 1)
-clampzone_size = 20.0
-action_left = "left"
-action_right = "right"
-action_up = "up"
-action_down = "down"
-metadata/_edit_use_anchors_ = true
 
 [node name="MenuButton" type="Button" parent="CanvasLayer"]
 visible = false
@@ -809,16 +792,13 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Interact" type="Button" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0.501961)
-anchors_preset = 3
-anchor_left = 1.0
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -164.0
-offset_top = -78.0
-offset_right = -32.0
-offset_bottom = -24.0
-grow_horizontal = 0
+offset_left = 10.0
+offset_top = -64.0
+offset_right = 142.0
+offset_bottom = -10.0
 grow_vertical = 0
 size_flags_vertical = 3
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
@@ -840,7 +820,7 @@ text = "Interact
 
 [node name="BaseCharacter" parent="." instance=ExtResource("24_r2aeb")]
 transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -41.2879, 0, -173.553)
-script = SubResource("GDScript_l627r")
+script = SubResource("GDScript_txdlu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter"]
 transform = Transform3D(2, 0, 8.9407e-08, 0, 2, 0, -8.9407e-08, 0, 2, 0, 1.85939, 0)

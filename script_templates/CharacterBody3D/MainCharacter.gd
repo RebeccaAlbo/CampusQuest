@@ -82,7 +82,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if GameState.is_mobile:
 		if event is InputEventScreenTouch:
 			if event.pressed:
-				print("pressing")
 				drag_start = event.position
 				dragging = true
 			else:
@@ -126,7 +125,6 @@ func _physics_process(delta: float) -> void:
 		
 		var move_vec := Vector3.ZERO
 		if dragging and drag_vector != Vector2.ZERO:
-			print("dragging and not drac_vector")
 			move_vec = Vector3(drag_vector.x, 0, drag_vector.y).normalized() * SPEED
 			
 		velocity.x = move_vec.x

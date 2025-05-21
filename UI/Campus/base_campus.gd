@@ -24,13 +24,11 @@ func _ready():
 			
 func set_mobile_UI() :
 	menu_button.visible = true
-	virtual_joystick.visible = true
 	menu_button.visible = true
 	minimap.visible = false
 	interact.visible = true
 func set_web_UI():
 	menu_button.visible = false
-	virtual_joystick.visible = false
 	menu_button.visible = false
 	minimap.visible = true
 	interact.visible = false
