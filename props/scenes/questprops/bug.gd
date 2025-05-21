@@ -30,11 +30,17 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 # If interactions, removes bug when found and adds score
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("interact") and player_in_pickup_zone:
-		hover_text.visible = false
-		self.visible = false
-		MiniQuests.bug_state["found"] =  true
+		pick_up()
 
 # Makes hover_text invisible when player no longer is in close proximity
 func _on_area_3d_body_exited(_body: Node3D) -> void:
 	player_in_pickup_zone = false
 	hover_text.visible = false
+
+func pick_up():
+	hover_text.visible = false
+	self.visible = false
+	MiniQuests.bug_state["found"] =  true
+
+func _on_interact_pressed() -> void:
+	pick_up()

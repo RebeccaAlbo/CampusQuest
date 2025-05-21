@@ -795,7 +795,6 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Interact" type="Button" parent="CanvasLayer"]
-visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -861,7 +860,7 @@ material_override = SubResource("StandardMaterial3D_t2aob")
 texture = ExtResource("16_84c18")
 
 [node name="kuggen" parent="." instance=ExtResource("14_c7uvx")]
-transform = Transform3D(-1.66687, 0, -1.10524, 0, 2, 0, 1.10524, 0, -1.66687, 0.403141, 0, -57.8886)
+transform = Transform3D(-1.66687, 0, -1.10524, 0, 2, 0, 1.10524, 0, -1.66687, 6.11615, 0, -60.9644)
 
 [node name="NPCCollision" parent="kuggen" instance=ExtResource("9_4hias")]
 
@@ -1032,7 +1031,7 @@ transform = Transform3D(2.49999, 0, -3.03984e-06, 0, 2.5, 0, 3.03984e-06, 0, 2.4
 transform = Transform3D(0.5, 0, -1.63913e-07, 0, 0.5, 0, 1.63913e-07, 0, 0.5, -59.4919, 0.0695248, 162.352)
 
 [node name="bookBox" parent="." instance=ExtResource("31_nwhd2")]
-transform = Transform3D(-0.256516, 0, -0.70477, 0, 0.75, 0, 0.70477, 0, -0.256516, -9.0132, -0.00229979, -45.3639)
+transform = Transform3D(-0.00822099, 0, -0.749956, 0, 0.75, 0, 0.749956, 0, -0.00822099, -9.0132, -0.00229979, -39.2424)
 
 [node name="foodStall" parent="." instance=ExtResource("26_ocyoq")]
 transform = Transform3D(-1.08434, 0, 0.514003, 0, 1.2, 0, -0.514003, 0, -1.08434, -70.784, 1.26946, -1.98668)
@@ -1059,3 +1058,9 @@ collision_mask = 2
 [connection signal="mouse_entered" from="CanvasLayer/BigMap/Jupiter" to="CanvasLayer/BigMap/Jupiter" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/BigMap/Jupiter" to="CanvasLayer/BigMap/Jupiter" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/Interact" to="BaseCharacter" method="_on_interact_pressed"]
+[connection signal="pressed" from="CanvasLayer/Interact" to="bug" method="_on_interact_pressed"]
+[connection signal="pressed" from="CanvasLayer/Interact" to="keyKuggen" method="_on_interact_pressed"]
+[connection signal="pressed" from="CanvasLayer/Interact" to="walletMath" method="_on_interact_pressed"]
+[connection signal="pressed" from="CanvasLayer/Interact" to="bookBox" method="_on_interact_pressed"]
+[connection signal="pressed" from="CanvasLayer/Interact" to="foodStall" method="_on_interact_pressed"]
+[connection signal="pressed" from="CanvasLayer/Interact" to="busStop" method="_on_interact_pressed"]

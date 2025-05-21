@@ -353,6 +353,9 @@ billboard_keep_scale = true
 [node name="campus_johanneberg" instance=ExtResource("1_rfggy")]
 script = ExtResource("2_yr3mw")
 
+[node name="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer" index="0"]
+size = Vector2i(138, 138)
+
 [node name="SamhallIII" type="Panel" parent="CanvasLayer/Minimap" index="1"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_dvcx0")
@@ -997,3 +1000,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.9013, -6.10352e-05, -169.
 [connection signal="mouse_exited" from="CanvasLayer/Minimap/Library" to="CanvasLayer/Minimap/Library" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="CanvasLayer/Minimap/Fysik" to="CanvasLayer/Minimap/Fysik" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Minimap/Fysik" to="CanvasLayer/Minimap/Fysik" method="_on_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/Interact" to="bookBox" method="_on_interact_pressed"]

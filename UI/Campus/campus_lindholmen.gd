@@ -13,6 +13,7 @@ extends Campus
 @onready var bug: StaticBody3D = $bug
 @onready var key_kuggen: Node3D = $keyKuggen
 @onready var wallet_math: Node3D = $walletMath
+@onready var bus_stop: StaticBody3D = $busStop
 
 func _ready():
 	super._ready()
@@ -29,12 +30,11 @@ func _ready():
 		base_character.scale = Vector3(5, 5, 5)
 		creators.scale = Vector3(5, 5, 5)
 		bug.scale = Vector3(5, 5, 5)
-		bug.get_node("HoverText").visible = false
 		book_box.scale = Vector3(3, 3, 3)
-		book_box.get_node("HoverText").visible = false
 		food_stall.scale = Vector3(3, 3, 3)
 		key_kuggen.scale = Vector3(5, 5, 5)
 		wallet_math.scale = Vector3(5, 5, 5)
+		bus_stop.scale = Vector3(3, 3, 3)
 	
 	if MiniQuests.bug_state["found"]:
 		creators.visible = false
