@@ -74,7 +74,6 @@ var quest_description := [
 func add_started_quest(id: String):
 	started_quests.append(id)
 	quest_started.emit()
-	print(started_quests)
 	
 func add_finished_quest(id: String):
 	started_quests.erase(id)
@@ -113,7 +112,6 @@ func add_item(item_name: String, item_detail: String = "") -> void:
 		if item_detail != "":
 			inventory[item_name].append(item_detail)
 	
-	print(inventory["food"])
 	inventory_updated.emit()
 		
 # Remove certain item from inventory
@@ -131,7 +129,6 @@ func remove_item(item_name: String, item_detail: String = "") -> void:
 	else: 
 		if get_item_count(item_name) > 0:
 			inventory[item_name] -= 1.0
-			print("removing: ", item_name)
 			
 	inventory_updated.emit()
 	

@@ -12,7 +12,6 @@ func _ready() -> void:
 	interactButton = get_tree().current_scene.get_node("CanvasLayer").get_node("Interact")
 	MiniQuests.bug_visible.connect(bug_visible)
 	# Check if item has already been picked up
-	print("MiniQuests.bug_state is: ", MiniQuests.bug_state)
 	if MiniQuests.bug_state["quest_given"] and !MiniQuests.bug_state["found"]:
 		bug_visible()
 		

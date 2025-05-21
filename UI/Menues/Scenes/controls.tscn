@@ -1,12 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://c262jelbr7551"]
+[gd_scene load_steps=11 format=3 uid="uid://c262jelbr7551"]
 
 [ext_resource type="Script" path="res://UI/Menues/Skripts/control.gd" id="1_5viqy"]
 [ext_resource type="Texture2D" uid="uid://bryejuohsdw34" path="res://UI/Images/Background.png" id="2_08nlj"]
 [ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="3_ge31i"]
+[ext_resource type="Texture2D" uid="uid://biud1onyu7pap" path="res://UI/Images/ControlsPC.png" id="4_1uq7g"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l4454"]
 texture = ExtResource("2_08nlj")
 modulate_color = Color(0.572549, 0.572549, 0.572549, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_letqk"]
+texture = ExtResource("4_1uq7g")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qmoke"]
 
@@ -53,15 +57,84 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_l4454")
 
-[node name="GoBack" type="Button" parent="Panel"]
+[node name="PC" type="ColorRect" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.811765, 0.690196, 0.52549, 0.729412)
+
+[node name="title" type="Label" parent="Panel/PC"]
+layout_mode = 1
+offset_left = 23.0
+offset_top = 15.0
+offset_right = 272.0
+offset_bottom = 71.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ge31i")
+theme_override_font_sizes/font_size = 55
+text = "Controls"
+
+[node name="Panel2" type="Panel" parent="Panel/PC"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -944.5
+offset_top = -142.0
+offset_right = -25.5
+offset_bottom = 193.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_letqk")
+
+[node name="Mobile" type="ColorRect" parent="Panel"]
+visible = false
+offset_left = 39.0
+offset_top = 64.0
+offset_right = 626.0
+offset_bottom = 205.0
+color = Color(0.811765, 0.690196, 0.52549, 0.729412)
+
+[node name="title" type="Label" parent="Panel/Mobile"]
+layout_mode = 1
+offset_left = 23.0
+offset_top = 15.0
+offset_right = 272.0
+offset_bottom = 71.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ge31i")
+theme_override_font_sizes/font_size = 64
+text = "Controls"
+
+[node name="title2" type="Label" parent="Panel/Mobile"]
+offset_left = 23.0
+offset_top = 82.0
+offset_right = 569.0
+offset_bottom = 138.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ge31i")
+theme_override_font_sizes/font_size = 32
+text = "Touch and drag to move the character"
+
+[node name="GoBack" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -161.0
-offset_top = 17.0
-offset_right = -27.0
-offset_bottom = 59.0
+offset_left = -160.0
+offset_top = 26.0
+offset_right = -26.0
+offset_bottom = 68.0
 grow_horizontal = 0
 size_flags_vertical = 3
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
@@ -77,43 +150,4 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_y4ruw")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ofqi2")
 text = "Go back"
 
-[node name="ColorRect" type="ColorRect" parent="Panel"]
-layout_mode = 0
-offset_left = 46.0
-offset_top = 31.0
-offset_right = 530.0
-offset_bottom = 426.0
-color = Color(0.811765, 0.690196, 0.52549, 0.729412)
-
-[node name="instructions" type="Label" parent="Panel/ColorRect"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 11.0
-offset_top = -300.0
-offset_right = 470.0
-offset_bottom = -26.0
-grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_ge31i")
-theme_override_font_sizes/font_size = 33
-text = "Forward:                      W or ↑
-Walk Backward:          S or ↓ 
-Move Left:                    A or ← 
-Move Right:                  D or → 
-Interact:                        F
-Pause:                           ESC"
-
-[node name="title" type="Label" parent="Panel/ColorRect"]
-layout_mode = 1
-offset_left = 23.0
-offset_top = 15.0
-offset_right = 272.0
-offset_bottom = 71.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_ge31i")
-theme_override_font_sizes/font_size = 55
-text = "Controls"
-
-[connection signal="pressed" from="Panel/GoBack" to="." method="_on_go_back_pressed"]
+[connection signal="pressed" from="GoBack" to="." method="_on_go_back_pressed"]

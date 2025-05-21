@@ -104,7 +104,6 @@ func _play_music(track: AudioStream, fade_in := false):
 		music_player.play()
 		
 func set_music_volume_in_dialogue(dialogue: bool):
-	print("set_music_volume_in_dialogue is: ", dialogue)
 	var tween = create_tween()
 	if (dialogue):
 		tween.tween_property(music_player, "volume_db", dialogue_volume, fade_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)

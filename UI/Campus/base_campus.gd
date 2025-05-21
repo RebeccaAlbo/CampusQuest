@@ -4,7 +4,6 @@ class_name Campus
 @onready var base_character: CharacterBody3D = $BaseCharacter
 @onready var menu_button: Button = $CanvasLayer/MenuButton
 @onready var minimap: PanelContainer = $CanvasLayer/Minimap
-@onready var virtual_joystick: VirtualJoystick = $"CanvasLayer/Virtual Joystick"
 @onready var interact: Button = $CanvasLayer/Interact
 
 func _ready():

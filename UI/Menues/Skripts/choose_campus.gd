@@ -15,6 +15,5 @@ func _on_johanneberg_pressed() -> void:
 	GameState.set_mouse_state(GameState.MouseState.GAMEPLAY)
 
 func _on_go_back_pressed() -> void:
-	print("going back to: ", SceneManager.prev_scene_path)
 	get_tree().change_scene_to_file(SceneManager.prev_scene_path)
 	

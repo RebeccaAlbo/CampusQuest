@@ -94,7 +94,6 @@ func _on_continue_pressed() -> void:
 	CharacterCust.shoes_index = character.current_shoes_index
 	
 	SceneManager.prev_scene_path = "res://UI/Menues/Scenes/CharacterSelection.tscn"
-	print(SceneManager.prev_scene_path)
 	get_tree().change_scene_to_file("res://UI/Menues/Scenes/choose_campus.tscn")
 
 func _on_go_back_pressed() -> void:

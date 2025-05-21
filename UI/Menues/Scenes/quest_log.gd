@@ -14,9 +14,7 @@ func _ready() -> void:
 func update_quest():
 	# Allthough there are several book quests, they all have same description, therefor +3
 	var total_quest_count = MiniQuests.quest_description.size() + 3
-	print("total quest count: ", total_quest_count)
 	var finished_quest_count = MiniQuests.finished_quests.size()
-	print("finished quest count: ", finished_quest_count)
 	var text:= ""
 	for id in MiniQuests.started_quests:
 		for q in MiniQuests.quest_description:

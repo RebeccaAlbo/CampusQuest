@@ -18,6 +18,7 @@ func _ready():
 		for npc in characters.get_children():
 			npc.scale = Vector3(5, 5, 5)
 		base_character.scale = Vector3(5, 5, 5)
+		base_character.get_child(1).scale(0.5, 0.5, 0.5)
 		bug.scale = Vector3(5, 5, 5)
 		book_box.scale = Vector3(3, 3, 3)
 		food_stall.scale = Vector3(3, 3, 3)

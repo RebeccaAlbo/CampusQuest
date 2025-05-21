@@ -39,7 +39,6 @@ func add_score(s: int, npc_name: String = ""):
 	var points_popup = scene.get_node("CanvasLayer").get_node("AddPoint").get_node("PointsPopup")
 	points_popup.text = "+" + str(s) + " Point" + ("!" if score == 1 else "s!")
 	points_popup.get_node("AnimationPlayer").play("popup")
-	print(npc_name)
 	if npc_name != "" and !talked_to_npcs.has("name"):
 		talked_to_npcs[npc_name] = true
 		var npc = scene.get_node("characters").get_node(npc_name)
@@ -67,7 +66,7 @@ func save_game() -> bool:
 	}
 	
 	var json = '{"key": 1}'
-	var parsed = JSON.parse_string(json)
+	var _parsed = JSON.parse_string(json)
 	
 	# Converts the save data to a JSON string, writes it to a file, 
 	# and saves the game state to disk
@@ -137,7 +136,6 @@ func load_game() -> bool:
 				MiniQuests.bug_state = save_data.get("bug_state", {})
 				MiniQuests.started_quests = save_data.get("started_quests", [])
 				MiniQuests.finished_quests = save_data.get("finished_quests", [])
-				print("started quests: ", MiniQuests.started_quests)
 
 				var appearance = save_data.get("player_appearance", {})
 				CharacterCust.shirt_index = appearance.get("shirt", 0)
@@ -155,7 +153,7 @@ func new_game():
 	score = 0
 	talked_to_npcs = {}
 
-	var inventory: = {
+	var _inventory: = {
 		"key": 0.0,
 		"wallet": 0.0,
 		"book": [],
@@ -172,7 +170,7 @@ func new_game():
 	MiniQuests.started_quests = []
 	MiniQuests.finished_quests = []
 
-	var appearance = {}
+	var _appearance = {}
 	CharacterCust.shirt_index = 0
 	CharacterCust.hair_index = 0
 	CharacterCust.skin_index = 0
