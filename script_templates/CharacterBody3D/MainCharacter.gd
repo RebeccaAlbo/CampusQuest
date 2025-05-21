@@ -11,6 +11,10 @@ extends CharacterBody3D
 const SPEED = 30.0
 const LERP_VAL = .15
 
+var dragging := false
+var drag_start := Vector2.ZERO
+var drag_vector := Vector2.ZERO
+
 var can_move: bool = true
 var original_pos
 
@@ -75,6 +79,22 @@ func _ready():
 		phone_camera.current = true
 			
 func _unhandled_input(event: InputEvent) -> void:
+	if GameState.is_mobile:
+		if event is InputEventScreenTouch:
+			if event.pressed:
+				print("pressing")
+				drag_start = event.position
+				dragging = true
+			else:
+				dragging = false
+				drag_vector = Vector2.ZERO
+		elif event is InputEventScreenDrag and dragging:
+			drag_vector = event.position - drag_start
+			if drag_vector.length() > 10:
+				drag_vector = drag_vector.normalized()
+			else:
+				drag_vector = Vector2.ZERO
+	
 	# Mouse control viewpoint
 	if event is InputEventMouseMotion:
 		spring_arm_pivot.rotate_y(-event.relative.x * .001)
@@ -94,7 +114,6 @@ func interact():
 		actionables[0].action()
 		return
 
-
 func _physics_process(delta: float) -> void:
 	if !can_move:
 		return
@@ -102,25 +121,37 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("left", "right", "up", "down")
+	
 	if GameState.is_mobile:
-		input_dir = Input.get_vector("right", "left", "down", "up")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	# Mouse control direction of character
-	direction = direction.rotated(Vector3.UP, spring_arm_pivot.rotation.y)
-	if direction:
-		velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
-		velocity.z = lerp(velocity.z, direction.z * SPEED, LERP_VAL)
-		armature.rotation.y = lerp_angle(armature.rotation.y, atan2(-velocity.x, -velocity.z), LERP_VAL)
-	else:
-		velocity.x = lerp(velocity.x, 0.0, LERP_VAL)
-		velocity.z = lerp(velocity.z, 0.0, LERP_VAL)
 		
+		var move_vec := Vector3.ZERO
+		if dragging and drag_vector != Vector2.ZERO:
+			print("dragging and not drac_vector")
+			move_vec = Vector3(drag_vector.x, 0, drag_vector.y).normalized() * SPEED
+			
+		velocity.x = move_vec.x
+		velocity.z = move_vec.z
+		
+		if move_vec.length() > 0.1:
+			var target_rotation = atan2(-move_vec.x, -move_vec.z)
+			armature.rotation.y = lerp_angle(armature.rotation.y, target_rotation, 10 * delta)
+	
+	else: 
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		var input_dir := Input.get_vector("left", "right", "up", "down")
+		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		# Mouse control direction of character
+		direction = direction.rotated(Vector3.UP, spring_arm_pivot.rotation.y)
+		if direction:
+			velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
+			velocity.z = lerp(velocity.z, direction.z * SPEED, LERP_VAL)
+			armature.rotation.y = lerp_angle(armature.rotation.y, atan2(-velocity.x, -velocity.z), LERP_VAL)
+		else:
+			velocity.x = lerp(velocity.x, 0.0, LERP_VAL)
+			velocity.z = lerp(velocity.z, 0.0, LERP_VAL)
+			
 	anim_tree.set("parameters/BlendSpace1D/blend_position", velocity.length() / SPEED)
-
 	move_and_slide()
 	
 func in_dialogue(npc: Node3D):

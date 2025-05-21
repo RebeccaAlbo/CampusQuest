@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://c3ynfcpspetng"]
+[gd_scene load_steps=54 format=3 uid="uid://c3ynfcpspetng"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_lindholmen.gd" id="2_hmjc0"]
 [ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="2_makl8"]
@@ -109,24 +109,6 @@ shadow_size = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_34agw"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v6cj5"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owoei"]
-bg_color = Color(0.756863, 0.631373, 0.458824, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikr3e"]
-bg_color = Color(0.564706, 0.454902, 0.298039, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 5
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ii1hx"]
 bg_color = Color(0.909804, 0.831373, 0.72549, 0.796078)
 corner_radius_top_left = 16
@@ -135,7 +117,7 @@ corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 shadow_size = 5
 
-[sub_resource type="GDScript" id="GDScript_lpycg"]
+[sub_resource type="GDScript" id="GDScript_l627r"]
 script/source = "extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -148,6 +130,10 @@ script/source = "extends CharacterBody3D
 
 const SPEED = 30.0
 const LERP_VAL = .15
+
+var dragging := false
+var drag_start := Vector2.ZERO
+var drag_vector := Vector2.ZERO
 
 var can_move: bool = true
 var original_pos
@@ -213,6 +199,22 @@ func _ready():
 		phone_camera.current = true
 			
 func _unhandled_input(event: InputEvent) -> void:
+	if GameState.is_mobile:
+		if event is InputEventScreenTouch:
+			if event.pressed:
+				print(\"pressing\")
+				drag_start = event.position
+				dragging = true
+			else:
+				dragging = false
+				drag_vector = Vector2.ZERO
+		elif event is InputEventScreenDrag and dragging:
+			drag_vector = event.position - drag_start
+			if drag_vector.length() > 10:
+				drag_vector = drag_vector.normalized()
+			else:
+				drag_vector = Vector2.ZERO
+	
 	# Mouse control viewpoint
 	if event is InputEventMouseMotion:
 		spring_arm_pivot.rotate_y(-event.relative.x * .001)
@@ -232,7 +234,6 @@ func interact():
 		actionables[0].action()
 		return
 
-
 func _physics_process(delta: float) -> void:
 	if !can_move:
 		return
@@ -240,25 +241,37 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector(\"left\", \"right\", \"up\", \"down\")
+	
 	if GameState.is_mobile:
-		input_dir = Input.get_vector(\"right\", \"left\", \"down\", \"up\")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	# Mouse control direction of character
-	direction = direction.rotated(Vector3.UP, spring_arm_pivot.rotation.y)
-	if direction:
-		velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
-		velocity.z = lerp(velocity.z, direction.z * SPEED, LERP_VAL)
-		armature.rotation.y = lerp_angle(armature.rotation.y, atan2(-velocity.x, -velocity.z), LERP_VAL)
-	else:
-		velocity.x = lerp(velocity.x, 0.0, LERP_VAL)
-		velocity.z = lerp(velocity.z, 0.0, LERP_VAL)
 		
+		var move_vec := Vector3.ZERO
+		if dragging and drag_vector != Vector2.ZERO:
+			print(\"dragging and not drac_vector\")
+			move_vec = Vector3(drag_vector.x, 0, drag_vector.y).normalized() * SPEED
+			
+		velocity.x = move_vec.x
+		velocity.z = move_vec.z
+		
+		if move_vec.length() > 0.1:
+			var target_rotation = atan2(-move_vec.x, -move_vec.z)
+			armature.rotation.y = lerp_angle(armature.rotation.y, target_rotation, 10 * delta)
+	
+	else: 
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		var input_dir := Input.get_vector(\"left\", \"right\", \"up\", \"down\")
+		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		# Mouse control direction of character
+		direction = direction.rotated(Vector3.UP, spring_arm_pivot.rotation.y)
+		if direction:
+			velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
+			velocity.z = lerp(velocity.z, direction.z * SPEED, LERP_VAL)
+			armature.rotation.y = lerp_angle(armature.rotation.y, atan2(-velocity.x, -velocity.z), LERP_VAL)
+		else:
+			velocity.x = lerp(velocity.x, 0.0, LERP_VAL)
+			velocity.z = lerp(velocity.z, 0.0, LERP_VAL)
+			
 	anim_tree.set(\"parameters/BlendSpace1D/blend_position\", velocity.length() / SPEED)
-
 	move_and_slide()
 	
 func in_dialogue(npc: Node3D):
@@ -795,6 +808,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Interact" type="Button" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.501961)
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -814,9 +828,9 @@ theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("10_r5u2f")
 theme_override_font_sizes/font_size = 25
-theme_override_styles/focus = SubResource("StyleBoxEmpty_v6cj5")
-theme_override_styles/hover = SubResource("StyleBoxFlat_owoei")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ikr3e")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ii1hx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ii1hx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ii1hx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ii1hx")
 toggle_mode = true
 text = "Interact
@@ -826,198 +840,200 @@ text = "Interact
 
 [node name="BaseCharacter" parent="." instance=ExtResource("24_r2aeb")]
 transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -41.2879, 0, -173.553)
-script = SubResource("GDScript_lpycg")
+script = SubResource("GDScript_l627r")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter"]
 transform = Transform3D(2, 0, 8.9407e-08, 0, 2, 0, -8.9407e-08, 0, 2, 0, 1.85939, 0)
 layers = 1024
 mesh = SubResource("CylinderMesh_35n7u")
 
-[node name="svea" parent="." instance=ExtResource("8_u2u80")]
+[node name="characters" type="Node3D" parent="."]
+
+[node name="svea" parent="characters" instance=ExtResource("8_u2u80")]
 transform = Transform3D(0.99028, 0, 1.73763, 0, 2, 0, -1.73763, 0, 0.99028, -105.922, 0, 9.3275)
 
-[node name="NPCCollision" parent="svea" instance=ExtResource("9_4hias")]
+[node name="NPCCollision" parent="characters/svea" instance=ExtResource("9_4hias")]
 
-[node name="CameraControll" parent="svea" instance=ExtResource("10_xw84y")]
+[node name="CameraControll" parent="characters/svea" instance=ExtResource("10_xw84y")]
 
-[node name="CameraControllCollision" parent="svea/CameraControll" instance=ExtResource("11_ghfee")]
+[node name="CameraControllCollision" parent="characters/svea/CameraControll" instance=ExtResource("11_ghfee")]
 
-[node name="ChatDetectionArea" parent="svea" instance=ExtResource("12_vdjft")]
+[node name="ChatDetectionArea" parent="characters/svea" instance=ExtResource("12_vdjft")]
 
-[node name="WaveZone" parent="svea" instance=ExtResource("13_3p1t0")]
+[node name="WaveZone" parent="characters/svea" instance=ExtResource("13_3p1t0")]
 
-[node name="Exlamation" type="Sprite3D" parent="svea"]
+[node name="Exlamation" type="Sprite3D" parent="characters/svea"]
 transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
 material_override = SubResource("StandardMaterial3D_8fth3")
 texture = ExtResource("14_qthte")
 
-[node name="Check" type="Sprite3D" parent="svea"]
+[node name="Check" type="Sprite3D" parent="characters/svea"]
 transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
 material_override = SubResource("StandardMaterial3D_t2aob")
 texture = ExtResource("16_84c18")
 
-[node name="kuggen" parent="." instance=ExtResource("14_c7uvx")]
+[node name="kuggen" parent="characters" instance=ExtResource("14_c7uvx")]
 transform = Transform3D(-1.66687, 0, -1.10524, 0, 2, 0, 1.10524, 0, -1.66687, 6.11615, 0, -60.9644)
 
-[node name="NPCCollision" parent="kuggen" instance=ExtResource("9_4hias")]
+[node name="NPCCollision" parent="characters/kuggen" instance=ExtResource("9_4hias")]
 
-[node name="CameraControll" parent="kuggen" instance=ExtResource("10_xw84y")]
+[node name="CameraControll" parent="characters/kuggen" instance=ExtResource("10_xw84y")]
 
-[node name="CameraControllCollision" parent="kuggen/CameraControll" instance=ExtResource("11_ghfee")]
+[node name="CameraControllCollision" parent="characters/kuggen/CameraControll" instance=ExtResource("11_ghfee")]
 
-[node name="ChatDetectionArea" parent="kuggen" instance=ExtResource("12_vdjft")]
+[node name="ChatDetectionArea" parent="characters/kuggen" instance=ExtResource("12_vdjft")]
 
-[node name="WaveZone" parent="kuggen" instance=ExtResource("13_3p1t0")]
+[node name="WaveZone" parent="characters/kuggen" instance=ExtResource("13_3p1t0")]
 
-[node name="Exlamation" type="Sprite3D" parent="kuggen"]
+[node name="Exlamation" type="Sprite3D" parent="characters/kuggen"]
 transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
 material_override = SubResource("StandardMaterial3D_8fth3")
 texture = ExtResource("14_qthte")
 
-[node name="Check" type="Sprite3D" parent="kuggen"]
+[node name="Check" type="Sprite3D" parent="characters/kuggen"]
 transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
 material_override = SubResource("StandardMaterial3D_t2aob")
 texture = ExtResource("16_84c18")
 
-[node name="jupiter" parent="." instance=ExtResource("15_vem1b")]
+[node name="jupiter" parent="characters" instance=ExtResource("15_vem1b")]
 transform = Transform3D(-1.28945, 0, -1.52883, 0, 2, 0, 1.52883, 0, -1.28945, -25.836, 0, -8.12006)
 
-[node name="NPCCollision" parent="jupiter" instance=ExtResource("9_4hias")]
+[node name="NPCCollision" parent="characters/jupiter" instance=ExtResource("9_4hias")]
 
-[node name="CameraControll" parent="jupiter" instance=ExtResource("10_xw84y")]
+[node name="CameraControll" parent="characters/jupiter" instance=ExtResource("10_xw84y")]
 
-[node name="CameraControllCollision" parent="jupiter/CameraControll" instance=ExtResource("11_ghfee")]
+[node name="CameraControllCollision" parent="characters/jupiter/CameraControll" instance=ExtResource("11_ghfee")]
 
-[node name="ChatDetectionArea" parent="jupiter" instance=ExtResource("12_vdjft")]
+[node name="ChatDetectionArea" parent="characters/jupiter" instance=ExtResource("12_vdjft")]
 
-[node name="WaveZone" parent="jupiter" instance=ExtResource("13_3p1t0")]
+[node name="WaveZone" parent="characters/jupiter" instance=ExtResource("13_3p1t0")]
 
-[node name="Exlamation" type="Sprite3D" parent="jupiter"]
+[node name="Exlamation" type="Sprite3D" parent="characters/jupiter"]
 transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
 material_override = SubResource("StandardMaterial3D_8fth3")
 texture = ExtResource("14_qthte")
 
-[node name="Check" type="Sprite3D" parent="jupiter"]
+[node name="Check" type="Sprite3D" parent="characters/jupiter"]
 transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
 material_override = SubResource("StandardMaterial3D_t2aob")
 texture = ExtResource("16_84c18")
 
-[node name="saga" parent="." instance=ExtResource("16_4hqyw")]
+[node name="saga" parent="characters" instance=ExtResource("16_4hqyw")]
 transform = Transform3D(0.477948, 0, 1.94205, 0, 2, 0, -1.94205, 0, 0.477948, -59.1846, 0, 34.7213)
 
-[node name="NPCCollision" parent="saga" instance=ExtResource("9_4hias")]
+[node name="NPCCollision" parent="characters/saga" instance=ExtResource("9_4hias")]
 
-[node name="CameraControll" parent="saga" instance=ExtResource("10_xw84y")]
+[node name="CameraControll" parent="characters/saga" instance=ExtResource("10_xw84y")]
 
-[node name="CameraControllCollision" parent="saga/CameraControll" instance=ExtResource("11_ghfee")]
+[node name="CameraControllCollision" parent="characters/saga/CameraControll" instance=ExtResource("11_ghfee")]
 
-[node name="ChatDetectionArea" parent="saga" instance=ExtResource("12_vdjft")]
+[node name="ChatDetectionArea" parent="characters/saga" instance=ExtResource("12_vdjft")]
 
-[node name="WaveZone" parent="saga" instance=ExtResource("13_3p1t0")]
+[node name="WaveZone" parent="characters/saga" instance=ExtResource("13_3p1t0")]
 
-[node name="Exlamation" type="Sprite3D" parent="saga"]
+[node name="Exlamation" type="Sprite3D" parent="characters/saga"]
 transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
 material_override = SubResource("StandardMaterial3D_8fth3")
 texture = ExtResource("14_qthte")
 
-[node name="Check" type="Sprite3D" parent="saga"]
+[node name="Check" type="Sprite3D" parent="characters/saga"]
 transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
 material_override = SubResource("StandardMaterial3D_t2aob")
 texture = ExtResource("16_84c18")
 
-[node name="patricia" parent="." instance=ExtResource("17_8uv6s")]
+[node name="patricia" parent="characters" instance=ExtResource("17_8uv6s")]
 transform = Transform3D(0.719826, 0, 1.86597, 0, 2, 0, -1.86597, 0, 0.719826, -83.7594, 0, -33.1025)
 
-[node name="NPCCollision" parent="patricia" instance=ExtResource("9_4hias")]
+[node name="NPCCollision" parent="characters/patricia" instance=ExtResource("9_4hias")]
 
-[node name="CameraControll" parent="patricia" instance=ExtResource("10_xw84y")]
+[node name="CameraControll" parent="characters/patricia" instance=ExtResource("10_xw84y")]
 
-[node name="CameraControllCollision" parent="patricia/CameraControll" instance=ExtResource("11_ghfee")]
+[node name="CameraControllCollision" parent="characters/patricia/CameraControll" instance=ExtResource("11_ghfee")]
 
-[node name="ChatDetectionArea" parent="patricia" instance=ExtResource("12_vdjft")]
+[node name="ChatDetectionArea" parent="characters/patricia" instance=ExtResource("12_vdjft")]
 
-[node name="WaveZone" parent="patricia" instance=ExtResource("13_3p1t0")]
+[node name="WaveZone" parent="characters/patricia" instance=ExtResource("13_3p1t0")]
 
-[node name="Exlamation" type="Sprite3D" parent="patricia"]
+[node name="Exlamation" type="Sprite3D" parent="characters/patricia"]
 transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
 material_override = SubResource("StandardMaterial3D_8fth3")
 texture = ExtResource("14_qthte")
 
-[node name="Check" type="Sprite3D" parent="patricia"]
+[node name="Check" type="Sprite3D" parent="characters/patricia"]
 transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
 material_override = SubResource("StandardMaterial3D_t2aob")
 texture = ExtResource("16_84c18")
 
-[node name="aran" parent="." instance=ExtResource("18_rf5dy")]
+[node name="aran" parent="characters" instance=ExtResource("18_rf5dy")]
 transform = Transform3D(-1.96177, 0, 0.389154, 0, 2, 0, -0.389154, 0, -1.96177, -78.7897, 0, 97.2154)
 script = ExtResource("25_va2l2")
 
-[node name="NPCCollision" parent="aran" instance=ExtResource("9_4hias")]
+[node name="NPCCollision" parent="characters/aran" instance=ExtResource("9_4hias")]
 
-[node name="CameraControll" parent="aran" instance=ExtResource("10_xw84y")]
+[node name="CameraControll" parent="characters/aran" instance=ExtResource("10_xw84y")]
 
-[node name="CameraControllCollision" parent="aran/CameraControll" instance=ExtResource("11_ghfee")]
+[node name="CameraControllCollision" parent="characters/aran/CameraControll" instance=ExtResource("11_ghfee")]
 
-[node name="ChatDetectionArea" parent="aran" instance=ExtResource("12_vdjft")]
+[node name="ChatDetectionArea" parent="characters/aran" instance=ExtResource("12_vdjft")]
 transform = Transform3D(0.999764, 0, -0.0217451, 0, 1, 0, 0.0217451, 0, 0.999764, 0, 0, 0)
 
-[node name="WaveZone" parent="aran" instance=ExtResource("13_3p1t0")]
+[node name="WaveZone" parent="characters/aran" instance=ExtResource("13_3p1t0")]
 
-[node name="Exlamation" type="Sprite3D" parent="aran"]
+[node name="Exlamation" type="Sprite3D" parent="characters/aran"]
 transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
 material_override = SubResource("StandardMaterial3D_8fth3")
 texture = ExtResource("14_qthte")
 
-[node name="Check" type="Sprite3D" parent="aran"]
+[node name="Check" type="Sprite3D" parent="characters/aran"]
 transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
 material_override = SubResource("StandardMaterial3D_t2aob")
 texture = ExtResource("16_84c18")
 
-[node name="anglia" parent="." instance=ExtResource("19_0lpak")]
+[node name="anglia" parent="characters" instance=ExtResource("19_0lpak")]
 transform = Transform3D(-1.9355, 0, -0.503833, 0, 2, 0, 0.503833, 0, -1.9355, -119.862, -0.00459957, 198.578)
 
-[node name="NPCCollision" parent="anglia" instance=ExtResource("9_4hias")]
+[node name="NPCCollision" parent="characters/anglia" instance=ExtResource("9_4hias")]
 
-[node name="CameraControll" parent="anglia" instance=ExtResource("10_xw84y")]
+[node name="CameraControll" parent="characters/anglia" instance=ExtResource("10_xw84y")]
 
-[node name="CameraControllCollision" parent="anglia/CameraControll" instance=ExtResource("11_ghfee")]
+[node name="CameraControllCollision" parent="characters/anglia/CameraControll" instance=ExtResource("11_ghfee")]
 
-[node name="ChatDetectionArea" parent="anglia" instance=ExtResource("12_vdjft")]
+[node name="ChatDetectionArea" parent="characters/anglia" instance=ExtResource("12_vdjft")]
 
-[node name="WaveZone" parent="anglia" instance=ExtResource("13_3p1t0")]
+[node name="WaveZone" parent="characters/anglia" instance=ExtResource("13_3p1t0")]
 
-[node name="Exlamation" type="Sprite3D" parent="anglia"]
+[node name="Exlamation" type="Sprite3D" parent="characters/anglia"]
 transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
 layers = 1024
 material_override = SubResource("StandardMaterial3D_8fth3")
 texture = ExtResource("14_qthte")
 
-[node name="Check" type="Sprite3D" parent="anglia"]
+[node name="Check" type="Sprite3D" parent="characters/anglia"]
 transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
 visible = false
 layers = 1024
 material_override = SubResource("StandardMaterial3D_t2aob")
 texture = ExtResource("16_84c18")
 
-[node name="Creators" parent="." instance=ExtResource("32_1v130")]
+[node name="Creators" parent="characters" instance=ExtResource("32_1v130")]
 transform = Transform3D(-1.64465, 0, 1.13804, 0, 2, 0, -1.13804, 0, -1.64465, -132.995, 0, -85.4451)
 
 [node name="bug" parent="." instance=ExtResource("20_njr0y")]

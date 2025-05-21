@@ -10,12 +10,18 @@ extends CharacterBody3D
 
 const SPEED = 30.0
 const LERP_VAL = .15
-const JUMP_VELOCITY = 4.5 
+
+var dragging := false
+var drag_start := Vector2.ZERO
+var drag_vector := Vector2.ZERO
+
 var can_move: bool = true
 var original_pos
+
 var interactButton: Button
 
 var skin_colors = [
+	Color(0.98, 0.9, 0.78),   # Very light cream 
 	Color(0.95, 0.82, 0.65),  # Light 
 	Color(0.75, 0.6, 0.45),   # Tan 
 	Color(0.45, 0.35, 0.25),  # Medium brown 
@@ -73,6 +79,15 @@ func _ready():
 		phone_camera.current = true
 			
 func _unhandled_input(event: InputEvent) -> void:
+	if GameState.is_mobile:
+		if event is InputEventScreenTouch:
+			if event.pressed:
+				drag_start = event.position
+				dragging = true
+			else:
+				dragging = false
+				drag_vector = Vector2.ZERO
+	
 	# Mouse control viewpoint
 	if event is InputEventMouseMotion:
 		spring_arm_pivot.rotate_y(-event.relative.x * .001)
@@ -92,18 +107,23 @@ func interact():
 		actionables[0].action()
 		return
 
-
 func _physics_process(delta: float) -> void:
 	if !can_move:
 		return
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY 
-		
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
+	
+	if GameState.is_mobile:
+		var move_vec := Vector3.ZERO
+		if dragging and drag_vector != Vector2.ZERO:
+			move_vec = Vector3(drag_vector.x, 0, drag_vector.y).normalized() * SPEED
+			
+		velocity.x = move_vec.x
+		velocity.z = move_vec.z
+		move_and_slide()
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("left", "right", "up", "down")
@@ -129,14 +149,10 @@ func in_dialogue(npc: Node3D):
 	anim_tree.set("parameters/BlendSpace1D/blend_position", 0.0)
 	can_move = false
 	face_toward(npc)
-	if (FlutterBridge.tts_active):
-		SoundManager.set_music_volume_in_dialogue(true) 
 	
 func end_dialoque():
 	can_move = true
 	face_back()
-	if (FlutterBridge.tts_active):
-		SoundManager.set_music_volume_in_dialogue(false) 
 	
 # Rotates the object to face toward the target node, keeping the rotation level on the horizontal axis
 func face_toward(target_node: Node3D):

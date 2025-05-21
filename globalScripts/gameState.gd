@@ -42,7 +42,7 @@ func add_score(s: int, npc_name: String = ""):
 	print(npc_name)
 	if npc_name != "" and !talked_to_npcs.has("name"):
 		talked_to_npcs[npc_name] = true
-		var npc = scene.get_node(npc_name)
+		var npc = scene.get_node("characters").get_node(npc_name)
 		npc.change_mark()
 		
 func save_game() -> bool:
