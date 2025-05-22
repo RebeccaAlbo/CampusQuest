@@ -28,4 +28,4 @@ func _ready():
 		bus_stop.scale = Vector3(3, 3, 3)
 	
 	if MiniQuests.bug_state["found"]:
-		characters.get_node("creators").visible = false
+		characters.get_node("Creators").visible = false
