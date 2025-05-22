@@ -7,6 +7,7 @@ extends CharacterBody3D
 @onready var anim_tree: AnimationTree = $AnimationTree
 @onready var actionable_finder: Area3D = $Direction/ActionableFinder
 @onready var phone_camera: Camera3D = $PhoneCamera
+@onready var press_and_drag: Node3D = $pressAndDrag
 
 const SPEED = 30.0
 const LERP_VAL = .15

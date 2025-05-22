@@ -7,6 +7,7 @@ extends Campus
 @onready var wallet_math: Node3D = $walletMath
 @onready var bus_stop: StaticBody3D = $busStop
 @onready var characters: Node3D = $characters
+@onready var marker: MeshInstance3D = $BaseCharacter/marker
 
 
 
@@ -18,7 +19,7 @@ func _ready():
 		for npc in characters.get_children():
 			npc.scale = Vector3(5, 5, 5)
 		base_character.scale = Vector3(5, 5, 5)
-		base_character.get_child(1).scale(0.5, 0.5, 0.5)
+		marker.scale = Vector3(1.5, 1.5, 1.5)
 		bug.scale = Vector3(5, 5, 5)
 		book_box.scale = Vector3(3, 3, 3)
 		food_stall.scale = Vector3(3, 3, 3)

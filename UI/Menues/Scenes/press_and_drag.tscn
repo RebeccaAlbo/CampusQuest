@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://dqt12hbnjhlxc"]
+
+[ext_resource type="Script" path="res://UI/Menues/Scenes/press_and_drag.gd" id="1_pk5bk"]
+[ext_resource type="Texture2D" uid="uid://cdvet6dd5okm6" path="res://UI/Images/pressAndDrag.png" id="1_ve83a"]
+[ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="2_4oa4m"]
+
+[sub_resource type="Animation" id="Animation_lasi0"]
+resource_name = "move"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.4, 1, 0.75, 0, 0, 0.8, 1, 0.75, 0, -0.75, 1.2, 1, 0, 0, -0.75, 1.6, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_ij4fh"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w8yqq"]
+_data = {
+"RESET": SubResource("Animation_ij4fh"),
+"move": SubResource("Animation_lasi0")
+}
+
+[node name="pressAndDrag" type="Node3D"]
+script = ExtResource("1_pk5bk")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+visible = false
+billboard = 1
+texture = ExtResource("1_ve83a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite3D"]
+libraries = {
+"": SubResource("AnimationLibrary_w8yqq")
+}
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(2.99971, 0.0418865, 0, 1.83092e-09, -1.31121e-07, -3, -0.0418865, 2.99971, -1.31134e-07, -3.66116, 0, 0.0774536)
+visible = false
+billboard = 1
+modulate = Color(0.835902, 0.572195, 0.33617, 1)
+text = "Press and drag to move"
+font = ExtResource("2_4oa4m")

@@ -2,7 +2,8 @@ extends Node
 
 var score = 0
 var talked_to_npcs = {}
-var is_mobile := true
+var is_mobile := false
+var is_informed_press_and_drag := false
 
 enum MouseState {GAMEPLAY, UI}
 var current_state: MouseState = MouseState.UI
@@ -49,6 +50,7 @@ func save_game() -> bool:
 	# and character customization choices for saving
 	var save_data = {
 		"score": score,
+		"is_informed_press_and_drag": is_informed_press_and_drag,
 		"bug_state": MiniQuests.bug_state,
 		"talked_to_npcs": talked_to_npcs,
 		"inventory": MiniQuests.inventory,
@@ -98,6 +100,7 @@ func load_game() -> bool:
 
 		score = flutter_data.get("score", 0)
 		talked_to_npcs = flutter_data.get("talked_to_npcs", {})
+		is_informed_press_and_drag = flutter_data.get("is_informed_press_and_drag", 0)
 
 		MiniQuests.inventory = flutter_data.get("inventory", {})
 		MiniQuests.picked_up_items = flutter_data.get("picked_up_items", [])
@@ -129,6 +132,7 @@ func load_game() -> bool:
 
 				score = save_data.get("score", 0)
 				talked_to_npcs = save_data.get("talked_to_npcs", {})
+				is_informed_press_and_drag = save_data.get("is_informed_press_and_drag", 0)
 
 				MiniQuests.inventory = save_data.get("inventory", {})
 				MiniQuests.picked_up_items = save_data.get("picked_up_items", [])

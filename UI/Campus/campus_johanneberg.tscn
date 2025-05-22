@@ -52,7 +52,7 @@ sky = SubResource("Sky_dblhm")
 ambient_light_source = 2
 ambient_light_color = Color(0.956863, 0.815686, 0.643137, 1)
 
-[sub_resource type="GDScript" id="GDScript_2jqob"]
+[sub_resource type="GDScript" id="GDScript_adtdu"]
 script/source = "extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -62,6 +62,7 @@ script/source = "extends CharacterBody3D
 @onready var anim_tree: AnimationTree = $AnimationTree
 @onready var actionable_finder: Area3D = $Direction/ActionableFinder
 @onready var phone_camera: Camera3D = $PhoneCamera
+@onready var press_and_drag: Node3D = $pressAndDrag
 
 const SPEED = 30.0
 const LERP_VAL = .15
@@ -132,7 +133,6 @@ func _ready():
 	
 	if GameState.is_mobile and get_tree().current_scene.name != \"CharacterSelection\":
 		phone_camera.current = true
-		phone_camera.size = 80
 			
 func _unhandled_input(event: InputEvent) -> void:
 	if GameState.is_mobile:
@@ -144,6 +144,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				dragging = false
 				drag_vector = Vector2.ZERO
 		elif event is InputEventScreenDrag and dragging:
+			press_and_drag.remove_from_screen()
 			drag_vector = event.position - drag_start
 			if drag_vector.length() > 10:
 				drag_vector = drag_vector.normalized()
@@ -481,9 +482,9 @@ light_color = Color(1, 0.941176, 0.803922, 1)
 
 [node name="BaseCharacter" parent="." instance=ExtResource("27_c0edl")]
 transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -296.995, 0.545874, -108.713)
-script = SubResource("GDScript_2jqob")
+script = SubResource("GDScript_adtdu")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter"]
+[node name="marker" type="MeshInstance3D" parent="BaseCharacter"]
 transform = Transform3D(4, 0, 1.78814e-07, 0, 4, 0, -1.78814e-07, 0, 4, 0, 3.13048, 0)
 layers = 1024
 mesh = SubResource("CylinderMesh_3gy84")

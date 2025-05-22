@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://c3ynfcpspetng"]
+[gd_scene load_steps=56 format=3 uid="uid://c3ynfcpspetng"]
 
 [ext_resource type="Script" path="res://UI/Campus/campus_lindholmen.gd" id="2_hmjc0"]
 [ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="2_makl8"]
@@ -116,7 +116,7 @@ corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 shadow_size = 5
 
-[sub_resource type="GDScript" id="GDScript_txdlu"]
+[sub_resource type="GDScript" id="GDScript_v331o"]
 script/source = "extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -126,6 +126,7 @@ script/source = "extends CharacterBody3D
 @onready var anim_tree: AnimationTree = $AnimationTree
 @onready var actionable_finder: Area3D = $Direction/ActionableFinder
 @onready var phone_camera: Camera3D = $PhoneCamera
+@onready var press_and_drag: Node3D = $pressAndDrag
 
 const SPEED = 30.0
 const LERP_VAL = .15
@@ -196,7 +197,6 @@ func _ready():
 	
 	if GameState.is_mobile and get_tree().current_scene.name != \"CharacterSelection\":
 		phone_camera.current = true
-		phone_camera.size = 60
 			
 func _unhandled_input(event: InputEvent) -> void:
 	if GameState.is_mobile:
@@ -208,6 +208,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				dragging = false
 				drag_vector = Vector2.ZERO
 		elif event is InputEventScreenDrag and dragging:
+			press_and_drag.remove_from_screen()
 			drag_vector = event.position - drag_start
 			if drag_vector.length() > 10:
 				drag_vector = drag_vector.normalized()
@@ -446,6 +447,57 @@ emission_enabled = true
 emission_texture = ExtResource("16_84c18")
 billboard_mode = 1
 billboard_keep_scale = true
+
+[sub_resource type="Animation" id="Animation_doooi"]
+resource_name = "descend"
+length = 2.0
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 2, 2, 2, 2, 1, 0.1, 0.1, 0.1)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_6rw37"]
+length = 2.0
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 2, 2, 2, 2, 1, 2, 2, 2)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fcpt0"]
+_data = {
+"RESET": SubResource("Animation_6rw37"),
+"descend": SubResource("Animation_doooi")
+}
 
 [node name="campus_lindholmen" type="Node3D"]
 script = ExtResource("2_hmjc0")
@@ -819,11 +871,11 @@ text = "Interact
 [node name="lindholmen" parent="." instance=ExtResource("5_32ols")]
 
 [node name="BaseCharacter" parent="." instance=ExtResource("24_r2aeb")]
-transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -41.2879, 0, -173.553)
-script = SubResource("GDScript_txdlu")
+transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -33.3493, 0.0310059, -176.741)
+script = SubResource("GDScript_v331o")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="BaseCharacter"]
-transform = Transform3D(2, 0, 8.9407e-08, 0, 2, 0, -8.9407e-08, 0, 2, 0, 1.85939, 0)
+[node name="marker" type="MeshInstance3D" parent="BaseCharacter"]
+transform = Transform3D(2, 0, 8.9407e-08, 0, 2, 0, -8.9407e-08, 0, 2, 0, 6.56697, 0)
 layers = 1024
 mesh = SubResource("CylinderMesh_35n7u")
 
@@ -1014,7 +1066,12 @@ material_override = SubResource("StandardMaterial3D_t2aob")
 texture = ExtResource("16_84c18")
 
 [node name="Creators" parent="characters" instance=ExtResource("32_1v130")]
-transform = Transform3D(-1.64465, 0, 1.13804, 0, 2, 0, -1.13804, 0, -1.64465, -132.995, 0, -85.4451)
+transform = Transform3D(-1.79299, 0, 0.886112, 0, 2, 0, -0.886112, 0, -1.79299, -132.995, 0, -85.4451)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="characters/Creators"]
+libraries = {
+"": SubResource("AnimationLibrary_fcpt0")
+}
 
 [node name="bug" parent="." instance=ExtResource("20_njr0y")]
 transform = Transform3D(-0.852932, 0, -0.522022, 0, 1, 0, 0.522022, 0, -0.852932, 13.6584, 0, 165.276)

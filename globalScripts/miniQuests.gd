@@ -135,5 +135,7 @@ func remove_item(item_name: String, item_detail: String = "") -> void:
 # When bug quest is done, creators are removed from game
 func remove_creators():
 	var cur_scene = get_tree().current_scene
-	var creators = cur_scene.get_node("Creators")
-	creators.visible = false
+	var creators = cur_scene.get_node("characters").get_node("Creators")
+	var animPlayer = creators.get_node("AnimationPlayer")
+	animPlayer.play("descend")
+	#creators.visible = false
