@@ -7,5 +7,5 @@
 [node name="johanneberg" instance=ExtResource("1_ye06m")]
 script = ExtResource("2_nloj3")
 
-[node name="water" parent="." index="122"]
+[node name="water" parent="." index="85"]
 surface_material_override/0 = ExtResource("2_vqnp4")

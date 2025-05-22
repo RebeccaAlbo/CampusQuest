@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dwa2t136eppp" path="res://player/BaseCharacter/BaseCharacter.glb" id="1_7qjkn"]
 [ext_resource type="Script" path="res://player/BaseCharacter/base_character.gd" id="2_1m2mn"]
 [ext_resource type="Script" path="res://player/BaseCharacter/pc_camera.gd" id="2_evs34"]
-[ext_resource type="PackedScene" uid="uid://dqt12hbnjhlxc" path="res://UI/Menues/Scenes/press_and_drag.tscn" id="4_7tb1r"]
+[ext_resource type="PackedScene" path="res://UI/Menues/Scenes/press_and_drag.tscn" id="4_7tb1r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f5v2i"]
 radius = 0.38
