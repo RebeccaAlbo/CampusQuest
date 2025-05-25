@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://b5elambvpjdk3"]
+[gd_scene load_steps=13 format=3 uid="uid://b5elambvpjdk3"]
 
 [ext_resource type="Script" path="res://UI/Menues/Skripts/pause_menu.gd" id="1_6cegj"]
 [ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="2_5n084"]
 [ext_resource type="Texture2D" uid="uid://bryejuohsdw34" path="res://UI/Images/Background.png" id="2_hxty5"]
 [ext_resource type="PackedScene" uid="uid://ncnfniaaeoud" path="res://UI/Menues/Scenes/Inventory.tscn" id="4_abwr3"]
+[ext_resource type="Texture2D" uid="uid://cpokn21ga3x7c" path="res://UI/Menues/Scenes/gear-1119298.svg" id="4_hee0s"]
 [ext_resource type="PackedScene" uid="uid://bdhwj8e10tfqa" path="res://UI/Menues/Scenes/quest_log.tscn" id="5_ybj8j"]
+[ext_resource type="PackedScene" uid="uid://cwxfws1b338eq" path="res://UI/Menues/Scenes/settings_menu.tscn" id="8_wq4ld"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ntu06"]
 texture = ExtResource("2_hxty5")
@@ -214,6 +216,17 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_kigma")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0k6ik")
 text = "Quit game"
 
+[node name="Settings" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.086
+anchor_bottom = 0.16
+offset_right = 772.0
+offset_bottom = 722.0
+scale = Vector2(0.1, 0.1)
+icon = ExtResource("4_hee0s")
+flat = true
+
 [node name="Inventory" parent="." instance=ExtResource("4_abwr3")]
 visible = false
 layout_mode = 1
@@ -222,8 +235,13 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[node name="SettingsMenu" parent="." instance=ExtResource("8_wq4ld")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="ColorRect/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/OpenMap" to="." method="_on_open_map_pressed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/QuestLog" to="." method="_on_quest_log_pressed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/Inventory" to="." method="_on_inventory_pressed"]
 [connection signal="pressed" from="ColorRect/QuitGame" to="." method="_on_quit_game_pressed"]
+[connection signal="pressed" from="ColorRect/Settings" to="." method="_on_settings_pressed"]

@@ -10,7 +10,7 @@ func _ready():
 			elif child_name.begins_with("arrow"):
 				var area := add_Area3D_colision_to_mesh(child)
 				area.connect("body_entered", Callable(self, "_on_arrow_body_entered").bind(area))
-				area.collision_mask = 1<<1  # This makes it detect layer 1 bodies (e.g. player)
+				area.collision_mask = GameState.PLAYER  # This makes it detect layer 1 bodies (e.g. player)
 			else:
 				add_StaticBody3D_colision_to_mesh(child)  # Default: add collision
 
@@ -43,14 +43,20 @@ func add_Area3D_colision_to_mesh(mesh_instance: MeshInstance3D) -> Area3D:
 			collision_shape.shape = shape
 		else:
 			print("Failed to create collision shape for arrow: ", mesh_instance.name)
-	print("add_Area3D_colision_to_mesh")
 	return area
 
-func _on_arrow_body_entered(body: Node3D, area: Area3D):
+func _on_arrow_body_entered(body: Node3D, arrow: Area3D):
 	if body.is_in_group("player"):
 		print("Welcome to Chalmers")
 		GameState.add_score(1)
-		
+		var arrow_mesh = arrow.get_parent()
+
+		# Immediately free all children of arrow_mesh
+		for child in arrow_mesh.get_children():
+			child.queue_free()
+
+		#keep the visual arrow on the screen for one second to not be jarring
 		await get_tree().create_timer(1.0).timeout
-		var arrow_mesh = area.get_parent()
 		arrow_mesh.queue_free()
+	else:
+		print("[BuildManager] arrow already entered")

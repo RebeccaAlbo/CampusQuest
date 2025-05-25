@@ -2,6 +2,8 @@ extends Control
 
 @onready var controls: Button = $Panel/VBoxContainer/Controls
 @onready var contiue: Button = $Panel/VBoxContainer/Contiue
+@onready var settings: Button = $Panel/VBoxContainer/Settings
+
 
 func _ready() -> void:
 	SceneManager.prev_scene_path = "res://UI/Menues/Scenes/main_menu.tscn"
@@ -32,7 +34,5 @@ func _on_controls_pressed() -> void:
 func _on_contiue_pressed() -> void:
 	get_tree().change_scene_to_file("res://UI/Menues/Scenes/choose_campus.tscn")
 
-func _on_tts_pressed() -> void:
-	FlutterBridge.tts_active = not FlutterBridge.tts_active
-	if (FlutterBridge.tts_active): $Panel/VBoxContainer/TTS.text = "Text-To-Speech ON"
-	else: $Panel/VBoxContainer/TTS.text = "Text-To-Speech OFF"
+func _on_settings_pressed() -> void:
+	get_tree().change_scene_to_file("res://UI/Menues/Scenes/settings_menu.tscn")

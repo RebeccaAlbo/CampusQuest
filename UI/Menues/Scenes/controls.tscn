@@ -99,6 +99,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_letqk")
 
 [node name="Mobile" type="ColorRect" parent="Panel"]
 visible = false
+layout_mode = 0
 offset_left = 39.0
 offset_top = 64.0
 offset_right = 626.0
@@ -117,6 +118,7 @@ theme_override_font_sizes/font_size = 64
 text = "Controls"
 
 [node name="title2" type="Label" parent="Panel/Mobile"]
+layout_mode = 0
 offset_left = 23.0
 offset_top = 82.0
 offset_right = 569.0

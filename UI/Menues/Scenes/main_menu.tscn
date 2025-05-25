@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfq80v1wbg66c"]
+[gd_scene load_steps=10 format=3 uid="uid://dfq80v1wbg66c"]
 
 [ext_resource type="Script" path="res://UI/Menues/Skripts/main_menu.gd" id="1_ox5xi"]
 [ext_resource type="Texture2D" uid="uid://bryejuohsdw34" path="res://UI/Images/Background.png" id="2_4navf"]
 [ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="3_v4ur8"]
+[ext_resource type="Texture2D" uid="uid://cpokn21ga3x7c" path="res://UI/Menues/Scenes/gear-1119298.svg" id="4_618lu"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mvco5"]
 texture = ExtResource("2_4navf")
@@ -27,16 +28,6 @@ corner_radius_bottom_left = 16
 shadow_size = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mr66t"]
-bg_color = Color(0.909804, 0.831373, 0.72549, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 5
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t0kem"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8awhx"]
 bg_color = Color(0.909804, 0.831373, 0.72549, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
@@ -180,28 +171,19 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_d15f3")
 theme_override_styles/normal = SubResource("StyleBoxFlat_mr66t")
 text = "Controls"
 
-[node name="TTS" type="Button" parent="Panel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("3_v4ur8")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("StyleBoxEmpty_t0kem")
-theme_override_styles/hover = SubResource("StyleBoxFlat_8awhx")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_d15f3")
-theme_override_styles/normal = SubResource("StyleBoxFlat_mr66t")
-toggle_mode = true
-button_pressed = true
-text = "Text-To-Speech OFF"
+[node name="Settings" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.086
+anchor_bottom = 0.16
+offset_right = 772.0
+offset_bottom = 722.0
+scale = Vector2(0.1, 0.1)
+icon = ExtResource("4_618lu")
+flat = true
 
 [connection signal="pressed" from="Panel/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/StartGame" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Contiue" to="." method="_on_contiue_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/TTS" to="." method="_on_tts_pressed"]
+[connection signal="pressed" from="Panel/Settings" to="." method="_on_settings_pressed"]

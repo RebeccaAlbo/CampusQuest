@@ -2,11 +2,19 @@ extends Node
 
 var score = 0
 var talked_to_npcs = {}
-var is_mobile := false
+var is_mobile := true
 var is_informed_press_and_drag := false
 
 enum MouseState {GAMEPLAY, UI}
 var current_state: MouseState = MouseState.UI
+
+# Godot shows layers as 1–20 in the UI, but uses a 0-based bitmask internally.
+# Example: UI Layer 3 = bit 2 = (1 << 2) = 4
+# Use (1 << (layer_number - 1)) to convert UI layer to bitmask.
+# Example: mask 35 = layers 1, 2, and 6 (bits 0, 1, and 5)
+
+const PLAYER = 2 #mask 1,2,6
+
 
 func _ready() -> void:
 	if OS.get_name() == "Android":
