@@ -57,7 +57,7 @@ func _setup_js_bridge():
 
 			switch (message.type) {
 				case 'dialog_response':
-				case 'flutter_ready':
+				case 'flutter_response':
 				case 'speakers_request':
 				case 'game_response':
 				case 'save_response':
@@ -77,7 +77,7 @@ func _setup_js_bridge():
 	godot_bridge.setCallback(js_callback)
 
 	# Notify Flutter that Godot is ready
-	JavaScriptBridge.eval("window.parent.postMessage({ type: 'godot_ready' }, '*');", true)
+	JavaScriptBridge.eval("window.parent.postMessage({ type: 'godot_request' }, '*');", true)
 	print("[Godot]  Godot bridge is ready!")
 
 # Request a dialog from Flutter by speaker name
@@ -185,7 +185,7 @@ func _on_js_message(args: Array):
 	if parsed is Dictionary:
 		match parsed.get("type", ""):
 			# Handle Flutter ready signal
-			"flutter_ready":
+			"flutter_response":
 				print("[Godot]  Flutter is ready!")
 				flutter_ready = true  # Set the flag that Flutter is ready
 				emit_signal("flutter_readied")  # Emit signal to notify waiting functions
