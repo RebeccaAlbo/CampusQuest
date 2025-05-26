@@ -1,8 +1,8 @@
-[gd_scene load_steps=64 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=64 format=3 uid="uid://duhpigxxl01vi"]
 
-[ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="2_e4i6s"]
+[ext_resource type="PackedScene" path="res://campus/ground.tscn" id="2_e4i6s"]
 [ext_resource type="Script" path="res://UI/Campus/campus_johanneberg.gd" id="2_yr3mw"]
-[ext_resource type="PackedScene" uid="uid://uwl12swp3r7n" path="res://campus/johanneberg/johanneberg.tscn" id="3_p4gww"]
+[ext_resource type="PackedScene" path="res://campus/johanneberg/johanneberg.tscn" id="3_p4gww"]
 [ext_resource type="PackedScene" uid="uid://47qx37tnfxug" path="res://props/scenes/questprops/bus_stop.tscn" id="6_jjioq"]
 [ext_resource type="PackedScene" uid="uid://cnb2h5dy2in10" path="res://player/NPC/Scene/architecture.tscn" id="7_b36ec"]
 [ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="8_qbc84"]
@@ -36,7 +36,7 @@
 [ext_resource type="Script" path="res://UI/Menues/Skripts/minimap.gd" id="35_dtr4k"]
 [ext_resource type="Script" path="res://UI/Menues/Skripts/big_map.gd" id="37_ku5dq"]
 [ext_resource type="Script" path="res://player/NPC/Script/economic.gd" id="37_kvtch"]
-[ext_resource type="PackedScene" uid="uid://cppigdi7yhkjv" path="res://UI/Menues/Scenes/add_point.tscn" id="38_02218"]
+[ext_resource type="PackedScene" uid="uid://bvj0ua283ron" path="res://UI/Menues/Scenes/add_point.tscn" id="38_02218"]
 [ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="39_3c2r1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4aaqr"]
