@@ -6,7 +6,7 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if GameState.is_mobile and !GameState.is_informed_press_and_drag:
+	if GameState.is_mobile and !GameState.is_informed:
 		label_3d.visible = true
 		sprite_3d.visible = true
 		animation_player.play("move")
@@ -15,4 +15,4 @@ func remove_from_screen():
 	sprite_3d.visible = false
 	animation_player.stop()
 	label_3d.visible = false
-	GameState.is_informed_press_and_drag = true
+	GameState.is_informed = true

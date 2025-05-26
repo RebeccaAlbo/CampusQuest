@@ -4,6 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://cdvet6dd5okm6" path="res://UI/Images/pressAndDrag.png" id="1_ve83a"]
 [ext_resource type="FontFile" uid="uid://c0ij43l2fym11" path="res://UI/Images/Pixellari.ttf" id="2_4oa4m"]
 
+[sub_resource type="Animation" id="Animation_ij4fh"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
 [sub_resource type="Animation" id="Animation_lasi0"]
 resource_name = "move"
 length = 1.6
@@ -15,16 +25,6 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.4, 1, 0.75, 0, 0, 0.8, 1, 0.75, 0, -0.75, 1.2, 1, 0, 0, -0.75, 1.6, 1, 0, 0, 0)
-
-[sub_resource type="Animation" id="Animation_ij4fh"]
-length = 0.001
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w8yqq"]
 _data = {
