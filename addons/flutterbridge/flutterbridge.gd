@@ -38,9 +38,6 @@ func _setup_js_bridge():
 		print("[Godot]  JavaScriptBridge not available on this platform.")
 		return
 
-	# Create the JavaScript callback that will handle messages from JS
-	js_callback = JavaScriptBridge.create_callback(_on_js_message)
-
 	# JavaScript code to set up the bridge and listen for messages
 	var js_code := """
 		window.godotBridge = {
@@ -74,6 +71,9 @@ func _setup_js_bridge():
 
 	# Get the interface for the Godot-JavaScript bridge and set the callback
 	var godot_bridge = JavaScriptBridge.get_interface("godotBridge")
+	
+	# Create the JavaScript callback that will handle messages from JS
+	js_callback = JavaScriptBridge.create_callback(_on_js_message)
 	godot_bridge.setCallback(js_callback)
 
 	# Notify Flutter that Godot is ready
