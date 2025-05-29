@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://be030gbpikbb8" path="res://player/NPC/Scene/amanda.tscn" id="1_ke3q1"]
 [ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="2_0pxut"]
+[ext_resource type="Script" path="res://script_templates/CharacterBody3D/NPC_base.gd" id="2_mlqav"]
 [ext_resource type="PackedScene" uid="uid://bm0dewsu73jun" path="res://player/NPC/Imports/Rebecca.glb" id="3_451bl"]
-[ext_resource type="Script" path="res://player/NPC/Imports/rebecca.gd" id="4_7ivm5"]
 [ext_resource type="PackedScene" uid="uid://emdkw05ycyav" path="res://player/Other/Scenes/wave_zone.tscn" id="5_w61y3"]
 [ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/Other/Scenes/camera_controll.tscn" id="6_tg6n2"]
 [ext_resource type="PackedScene" uid="uid://bui3dm2ac1fqp" path="res://player/Other/Scenes/camera_controll_collision.tscn" id="7_p0chj"]
@@ -13,6 +13,7 @@
 
 [node name="Amanda" parent="." instance=ExtResource("1_ke3q1")]
 transform = Transform3D(0.881839, 0, -0.471551, 0, 1, 0, 0.471551, 0, 0.881839, 0, 0, 0)
+script = ExtResource("2_mlqav")
 
 [node name="NPCCollision" parent="Amanda" instance=ExtResource("2_0pxut")]
 
@@ -20,7 +21,7 @@ transform = Transform3D(0.881839, 0, -0.471551, 0, 1, 0, 0.471551, 0, 0.881839, 
 
 [node name="Rebecca" parent="." instance=ExtResource("3_451bl")]
 transform = Transform3D(0.990821, 0, 0.13518, 0, 1, 0, -0.13518, 0, 0.990821, -1.36203, 0, 0)
-script = ExtResource("4_7ivm5")
+script = ExtResource("2_mlqav")
 
 [node name="NPCCollision" parent="Rebecca" instance=ExtResource("2_0pxut")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19209e-07, 1, 0.592605)

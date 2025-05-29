@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bui3dm2ac1fqp" path="res://player/Other/Scenes/camera_controll_collision.tscn" id="11_ghfee"]
 [ext_resource type="PackedScene" uid="uid://d2k4cl3wm4rd0" path="res://player/Other/Scenes/chat_detection_area.tscn" id="12_vdjft"]
 [ext_resource type="PackedScene" uid="uid://emdkw05ycyav" path="res://player/Other/Scenes/wave_zone.tscn" id="13_3p1t0"]
+[ext_resource type="Script" path="res://script_templates/CharacterBody3D/NPC_base.gd" id="13_o5otf"]
 [ext_resource type="PackedScene" uid="uid://06ccq6sqvbif" path="res://player/NPC/Scene/kuggen.tscn" id="14_c7uvx"]
 [ext_resource type="Texture2D" uid="uid://dqphkalnuma64" path="res://UI/Images/exlamation.png" id="14_qthte"]
 [ext_resource type="PackedScene" uid="uid://cviwhmht567mj" path="res://player/NPC/Scene/jupiter.tscn" id="15_vem1b"]
@@ -27,7 +28,6 @@
 [ext_resource type="PackedScene" uid="uid://thys5b7hn1ga" path="res://props/scenes/questprops/bug.tscn" id="20_njr0y"]
 [ext_resource type="Script" path="res://UI/Campus/panel.gd" id="24_2oniu"]
 [ext_resource type="PackedScene" uid="uid://3kjk4w0wer4" path="res://player/BaseCharacter/base_character.tscn" id="24_r2aeb"]
-[ext_resource type="Script" path="res://player/NPC/Script/äran.gd" id="25_va2l2"]
 [ext_resource type="PackedScene" uid="uid://wok612jj01x" path="res://props/scenes/questprops/food_stall.tscn" id="26_ocyoq"]
 [ext_resource type="PackedScene" uid="uid://36wmcll8n0bt" path="res://props/scenes/questprops/key.tscn" id="28_206b2"]
 [ext_resource type="PackedScene" uid="uid://b1pvrh7buxg0p" path="res://props/scenes/questprops/wallet.tscn" id="29_d8f1n"]
@@ -883,6 +883,7 @@ mesh = SubResource("CylinderMesh_35n7u")
 
 [node name="svea" parent="characters" instance=ExtResource("8_u2u80")]
 transform = Transform3D(0.99028, 0, 1.73763, 0, 2, 0, -1.73763, 0, 0.99028, -105.922, 0, 9.3275)
+script = ExtResource("13_o5otf")
 
 [node name="NPCCollision" parent="characters/svea" instance=ExtResource("9_4hias")]
 
@@ -909,6 +910,7 @@ texture = ExtResource("16_84c18")
 
 [node name="kuggen" parent="characters" instance=ExtResource("14_c7uvx")]
 transform = Transform3D(-1.66687, 0, -1.10524, 0, 2, 0, 1.10524, 0, -1.66687, 6.11615, 0, -60.9644)
+script = ExtResource("13_o5otf")
 
 [node name="NPCCollision" parent="characters/kuggen" instance=ExtResource("9_4hias")]
 
@@ -935,6 +937,7 @@ texture = ExtResource("16_84c18")
 
 [node name="jupiter" parent="characters" instance=ExtResource("15_vem1b")]
 transform = Transform3D(-1.28945, 0, -1.52883, 0, 2, 0, 1.52883, 0, -1.28945, -25.836, 0, -8.12006)
+script = ExtResource("13_o5otf")
 
 [node name="NPCCollision" parent="characters/jupiter" instance=ExtResource("9_4hias")]
 
@@ -961,6 +964,7 @@ texture = ExtResource("16_84c18")
 
 [node name="saga" parent="characters" instance=ExtResource("16_4hqyw")]
 transform = Transform3D(0.477948, 0, 1.94205, 0, 2, 0, -1.94205, 0, 0.477948, -59.1846, 0, 34.7213)
+script = ExtResource("13_o5otf")
 
 [node name="NPCCollision" parent="characters/saga" instance=ExtResource("9_4hias")]
 
@@ -987,6 +991,7 @@ texture = ExtResource("16_84c18")
 
 [node name="patricia" parent="characters" instance=ExtResource("17_8uv6s")]
 transform = Transform3D(0.719826, 0, 1.86597, 0, 2, 0, -1.86597, 0, 0.719826, -83.7594, 0, -33.1025)
+script = ExtResource("13_o5otf")
 
 [node name="NPCCollision" parent="characters/patricia" instance=ExtResource("9_4hias")]
 
@@ -1013,7 +1018,7 @@ texture = ExtResource("16_84c18")
 
 [node name="aran" parent="characters" instance=ExtResource("18_rf5dy")]
 transform = Transform3D(-1.96177, 0, 0.389154, 0, 2, 0, -0.389154, 0, -1.96177, -78.7897, 0, 97.2154)
-script = ExtResource("25_va2l2")
+script = ExtResource("13_o5otf")
 
 [node name="NPCCollision" parent="characters/aran" instance=ExtResource("9_4hias")]
 
@@ -1041,6 +1046,7 @@ texture = ExtResource("16_84c18")
 
 [node name="anglia" parent="characters" instance=ExtResource("19_0lpak")]
 transform = Transform3D(-1.9355, 0, -0.503833, 0, 2, 0, 0.503833, 0, -1.9355, -119.862, -0.00459957, 198.578)
+script = ExtResource("13_o5otf")
 
 [node name="NPCCollision" parent="characters/anglia" instance=ExtResource("9_4hias")]
 
