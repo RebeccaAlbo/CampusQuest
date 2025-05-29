@@ -85,7 +85,7 @@ text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Exit" type="Button" parent="Panel"]
+[node name="Back" type="Button" parent="Panel"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -107,7 +107,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_vcloh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hjk1x")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_pupmr")
 theme_override_styles/normal = SubResource("StyleBoxFlat_svphe")
-text = "Exit"
+text = "Go back"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -157,7 +157,7 @@ layout_mode = 2
 min_value = -100.0
 max_value = 0.0
 
-[connection signal="pressed" from="Panel/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Panel/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/TTS" to="." method="_on_tts_pressed"]
 [connection signal="drag_ended" from="Panel/VBoxContainer/HSlider" to="." method="_on_h_slider_drag_ended"]
 [connection signal="value_changed" from="Panel/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]

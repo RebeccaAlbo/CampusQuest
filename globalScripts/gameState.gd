@@ -2,7 +2,7 @@ extends Node
 
 var score = 0
 var talked_to_npcs = {}
-var is_mobile := true
+var is_mobile := false
 var is_informed := false
 
 enum MouseState {GAMEPLAY, UI}
