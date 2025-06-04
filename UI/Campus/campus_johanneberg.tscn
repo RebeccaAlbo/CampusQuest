@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://lulw05as8mxr"]
+[gd_scene load_steps=62 format=3 uid="uid://lulw05as8mxr"]
 
 [ext_resource type="PackedScene" uid="uid://cvj213nryn4ap" path="res://campus/ground.tscn" id="2_e4i6s"]
 [ext_resource type="Script" path="res://UI/Campus/campus_johanneberg.gd" id="2_yr3mw"]
@@ -174,7 +174,6 @@ light_color = Color(1, 0.941176, 0.803922, 1)
 
 [node name="BaseCharacter" parent="." instance=ExtResource("27_c0edl")]
 transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -296.995, 0.545874, -108.713)
-script = null
 
 [node name="marker" type="MeshInstance3D" parent="BaseCharacter"]
 transform = Transform3D(4, 0, 1.78814e-07, 0, 4, 0, -1.78814e-07, 0, 4, 0, 3.13048, 0)
