@@ -441,27 +441,29 @@ We are currently standing infront of Kuggen
 	=> END
 - Help with a task
 	if not started_quests.has("keyKuggen") and not finished_quests.has("keyKuggen"):
-		I seem to have lost the key to my office, have you seen it?
 		if inventory.get("key", 0) > 0 and picked_up_items.has("keyKuggen"):
+			I seem to have lost the key to my office, have you seen it?
 			- I found near Jupiter, here
 			Thank you so much
 			do remove_item("key")
 			do add_score(1)
 			do add_finished_quest("keyKuggen")
 		else:
+			I seem to have lost the key to my office, have you seen it?
 			- No, do you know where you lost it?
 			Near Jupiter I believe
 			- I'll try to find it
 			do add_started_quest("keyKuggen")
 	elif started_quests.has("keyKuggen") and not finished_quests.has("keyKuggen"):
-		Did you find my key?
 		if inventory.get("key", 0) > 0 and picked_up_items.has("keyKuggen"):
+			Did you find my key?
 			- Yes, here you go
 			Thank you so much
 			do remove_item("key")
 			do add_score(1)
 			do add_finished_quest("keyKuggen")
 		else:
+			Did you find my key?
 			- No, not yet
 	else:
 		You have already helped me

@@ -86,18 +86,6 @@ border_width_right = 6
 border_width_bottom = 6
 border_color = Color(0.14418, 0.274037, 0.139583, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dvcx0"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tdkqe"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7itiw"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rxs5q"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dvg0q"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vvxbo"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yboli"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0hkp"]
@@ -123,6 +111,18 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 shadow_size = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dvcx0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tdkqe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7itiw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rxs5q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dvg0q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vvxbo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmg1h"]
 bg_color = Color(0.909804, 0.831373, 0.72549, 0.796078)
@@ -280,260 +280,6 @@ cull_mask = 1048573
 projection = 1
 size = 150.0
 
-[node name="SamhallIII" type="Panel" parent="CanvasLayer/Minimap"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_dvcx0")
-script = ExtResource("29_6t16t")
-
-[node name="Label" type="Label" parent="CanvasLayer/Minimap/SamhallIII"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.0
-offset_top = -11.5
-offset_right = 68.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
-text = "Samhällsbyggnad III
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SamhallII" type="Panel" parent="CanvasLayer/Minimap"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_tdkqe")
-script = ExtResource("29_6t16t")
-
-[node name="Label" type="Label" parent="CanvasLayer/Minimap/SamhallII"]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0443038
-anchor_top = -0.592593
-anchor_right = 0.962025
-anchor_bottom = 1.77778
-offset_left = -7.0
-offset_top = 42.7037
-offset_right = 8.0
-offset_bottom = -50.1111
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
-text = "Samhällsbyggnad I-II
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Chemistry" type="Panel" parent="CanvasLayer/Minimap"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_7itiw")
-script = ExtResource("29_6t16t")
-
-[node name="Label" type="Label" parent="CanvasLayer/Minimap/Chemistry"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -38.0
-offset_top = -40.5
-offset_right = 39.0
-offset_bottom = 33.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
-text = "Kemi
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MV" type="Panel" parent="CanvasLayer/Minimap"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_rxs5q")
-script = ExtResource("29_6t16t")
-
-[node name="Label" type="Label" parent="CanvasLayer/Minimap/MV"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -26.5
-offset_right = 33.0
-offset_bottom = 24.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
-text = "MV-huset"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MC2" type="Panel" parent="CanvasLayer/Minimap"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_dvg0q")
-script = ExtResource("29_6t16t")
-
-[node name="Label" type="Label" parent="CanvasLayer/Minimap/MC2"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -43.0
-offset_top = -37.5
-offset_right = 44.0
-offset_bottom = 33.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
-text = "MC2-huset"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Edit" type="Panel" parent="CanvasLayer/Minimap"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_dvcx0")
-script = ExtResource("29_6t16t")
-
-[node name="Label" type="Label" parent="CanvasLayer/Minimap/Edit"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -74.5
-offset_top = -50.5
-offset_right = 74.5
-offset_bottom = 50.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
-text = "EDIT
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="M" type="Panel" parent="CanvasLayer/Minimap"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_dvcx0")
-script = ExtResource("29_6t16t")
-
-[node name="Label" type="Label" parent="CanvasLayer/Minimap/M"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -74.5
-offset_top = -50.5
-offset_right = 74.5
-offset_bottom = 50.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
-text = "House M"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Karhuset" type="Panel" parent="CanvasLayer/Minimap"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_vvxbo")
-script = ExtResource("29_6t16t")
-
-[node name="Label" type="Label" parent="CanvasLayer/Minimap/Karhuset"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -63.5
-offset_top = -25.0
-offset_right = 63.5
-offset_bottom = 25.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
-text = "Kårhuset"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Library" type="Panel" parent="CanvasLayer/Minimap"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_rxs5q")
-script = ExtResource("29_6t16t")
-
-[node name="Label" type="Label" parent="CanvasLayer/Minimap/Library"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -37.0
-offset_top = -9.0
-offset_right = 37.0
-offset_bottom = 15.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
-text = "Bibliotek"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Fysik" type="Panel" parent="CanvasLayer/Minimap"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_rxs5q")
-script = ExtResource("29_6t16t")
-
-[node name="Label" type="Label" parent="CanvasLayer/Minimap/Fysik"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -26.5
-offset_right = 33.0
-offset_bottom = 24.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
-text = "Fysik"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="BigMap" type="Control" parent="CanvasLayer"]
 process_mode = 3
 visible = false
@@ -564,7 +310,7 @@ render_target_update_mode = 0
 transform = Transform3D(-0.422618, -0.906308, -3.9616e-08, 0, -4.37114e-08, 1, -0.906308, 0.422618, 1.84732e-08, -131.213, 557.372, -128.454)
 cull_mask = 1048573
 projection = 1
-size = 375.0
+size = 500.0
 near = 0.01
 
 [node name="GoBack" type="Button" parent="CanvasLayer/BigMap"]
@@ -589,6 +335,300 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_c0hkp")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_tciik")
 theme_override_styles/normal = SubResource("StyleBoxFlat_mf344")
 text = "Go back"
+
+[node name="SamhallIII" type="Panel" parent="CanvasLayer/BigMap"]
+layout_mode = 2
+offset_left = 34.0
+offset_top = 122.0
+offset_right = 207.0
+offset_bottom = 189.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dvcx0")
+script = ExtResource("29_6t16t")
+
+[node name="Label" type="Label" parent="CanvasLayer/BigMap/SamhallIII"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -11.5
+offset_right = 68.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Samhällsbyggnad III
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SamhallII" type="Panel" parent="CanvasLayer/BigMap"]
+layout_mode = 2
+offset_left = 213.0
+offset_top = 130.0
+offset_right = 323.0
+offset_bottom = 196.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tdkqe")
+script = ExtResource("29_6t16t")
+
+[node name="Label" type="Label" parent="CanvasLayer/BigMap/SamhallII"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0443038
+anchor_top = -0.592593
+anchor_right = 0.962025
+anchor_bottom = 1.77778
+offset_left = -7.0
+offset_top = 42.7037
+offset_right = 8.0
+offset_bottom = -50.1111
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Samhällsbyggnad I-II
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Chemistry" type="Panel" parent="CanvasLayer/BigMap"]
+layout_mode = 2
+offset_left = 568.0
+offset_top = 291.0
+offset_right = 629.0
+offset_bottom = 419.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7itiw")
+script = ExtResource("29_6t16t")
+
+[node name="Label" type="Label" parent="CanvasLayer/BigMap/Chemistry"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -40.5
+offset_right = 39.0
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Kemi
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MV" type="Panel" parent="CanvasLayer/BigMap"]
+layout_mode = 2
+offset_left = 471.0
+offset_top = 272.0
+offset_right = 517.0
+offset_bottom = 324.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rxs5q")
+script = ExtResource("29_6t16t")
+
+[node name="Label" type="Label" parent="CanvasLayer/BigMap/MV"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -26.5
+offset_right = 33.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "MV-huset"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MC2" type="Panel" parent="CanvasLayer/BigMap"]
+layout_mode = 2
+offset_left = 630.0
+offset_top = 192.0
+offset_right = 718.0
+offset_bottom = 281.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dvg0q")
+script = ExtResource("29_6t16t")
+
+[node name="Label" type="Label" parent="CanvasLayer/BigMap/MC2"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -37.5
+offset_right = 44.0
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "MC2-huset"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Edit" type="Panel" parent="CanvasLayer/BigMap"]
+layout_mode = 2
+offset_left = 154.0
+offset_top = 249.0
+offset_right = 280.0
+offset_bottom = 341.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dvcx0")
+script = ExtResource("29_6t16t")
+
+[node name="Label" type="Label" parent="CanvasLayer/BigMap/Edit"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = -50.5
+offset_right = 74.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "EDIT
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="M" type="Panel" parent="CanvasLayer/BigMap"]
+layout_mode = 2
+offset_left = 276.0
+offset_top = 247.0
+offset_right = 401.0
+offset_bottom = 339.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dvcx0")
+script = ExtResource("29_6t16t")
+
+[node name="Label" type="Label" parent="CanvasLayer/BigMap/M"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = -50.5
+offset_right = 74.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "House M"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Karhuset" type="Panel" parent="CanvasLayer/BigMap"]
+layout_mode = 2
+offset_left = 374.0
+offset_top = 83.0
+offset_right = 516.0
+offset_bottom = 130.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vvxbo")
+script = ExtResource("29_6t16t")
+
+[node name="Label" type="Label" parent="CanvasLayer/BigMap/Karhuset"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.5
+offset_top = -25.0
+offset_right = 63.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Kårhuset"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Library" type="Panel" parent="CanvasLayer/BigMap"]
+layout_mode = 2
+offset_left = 459.0
+offset_top = 373.0
+offset_right = 551.0
+offset_bottom = 427.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rxs5q")
+script = ExtResource("29_6t16t")
+
+[node name="Label" type="Label" parent="CanvasLayer/BigMap/Library"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -9.0
+offset_right = 37.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Bibliotek"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Fysik" type="Panel" parent="CanvasLayer/BigMap"]
+layout_mode = 2
+offset_left = 508.0
+offset_top = 204.0
+offset_right = 605.0
+offset_bottom = 273.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rxs5q")
+script = ExtResource("29_6t16t")
+
+[node name="Label" type="Label" parent="CanvasLayer/BigMap/Fysik"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -26.5
+offset_right = 33.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Fysik"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AddPoint" parent="CanvasLayer" instance=ExtResource("38_02218")]
 metadata/_edit_use_anchors_ = true
@@ -620,27 +660,27 @@ text = "Interact
 "
 
 [connection signal="pressed" from="CanvasLayer/MenuButton" to="CanvasLayer/PauseMenu" method="_on_menu_button_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/Minimap/SamhallIII" to="CanvasLayer/Minimap/SamhallIII" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Minimap/SamhallIII" to="CanvasLayer/Minimap/SamhallIII" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/Minimap/SamhallII" to="CanvasLayer/Minimap/SamhallII" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Minimap/SamhallII" to="CanvasLayer/Minimap/SamhallII" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/Minimap/Chemistry" to="CanvasLayer/Minimap/Chemistry" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Minimap/Chemistry" to="CanvasLayer/Minimap/Chemistry" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/Minimap/MV" to="CanvasLayer/Minimap/MV" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Minimap/MV" to="CanvasLayer/Minimap/MV" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/Minimap/MC2" to="CanvasLayer/Minimap/MC2" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Minimap/MC2" to="CanvasLayer/Minimap/MC2" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/Minimap/Edit" to="CanvasLayer/Minimap/Edit" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Minimap/Edit" to="CanvasLayer/Minimap/Edit" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/Minimap/M" to="CanvasLayer/Minimap/M" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Minimap/M" to="CanvasLayer/Minimap/M" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/Minimap/Karhuset" to="CanvasLayer/Minimap/Karhuset" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Minimap/Karhuset" to="CanvasLayer/Minimap/Karhuset" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/Minimap/Library" to="CanvasLayer/Minimap/Library" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Minimap/Library" to="CanvasLayer/Minimap/Library" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/Minimap/Fysik" to="CanvasLayer/Minimap/Fysik" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Minimap/Fysik" to="CanvasLayer/Minimap/Fysik" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/BigMap/GoBack" to="CanvasLayer/BigMap" method="_on_go_back_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/BigMap/SamhallIII" to="CanvasLayer/BigMap/SamhallIII" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BigMap/SamhallIII" to="CanvasLayer/BigMap/SamhallIII" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/BigMap/SamhallII" to="CanvasLayer/BigMap/SamhallII" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BigMap/SamhallII" to="CanvasLayer/BigMap/SamhallII" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/BigMap/Chemistry" to="CanvasLayer/BigMap/Chemistry" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BigMap/Chemistry" to="CanvasLayer/BigMap/Chemistry" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/BigMap/MV" to="CanvasLayer/BigMap/MV" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BigMap/MV" to="CanvasLayer/BigMap/MV" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/BigMap/MC2" to="CanvasLayer/BigMap/MC2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BigMap/MC2" to="CanvasLayer/BigMap/MC2" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/BigMap/Edit" to="CanvasLayer/BigMap/Edit" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BigMap/Edit" to="CanvasLayer/BigMap/Edit" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/BigMap/M" to="CanvasLayer/BigMap/M" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BigMap/M" to="CanvasLayer/BigMap/M" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/BigMap/Karhuset" to="CanvasLayer/BigMap/Karhuset" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BigMap/Karhuset" to="CanvasLayer/BigMap/Karhuset" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/BigMap/Library" to="CanvasLayer/BigMap/Library" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BigMap/Library" to="CanvasLayer/BigMap/Library" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/BigMap/Fysik" to="CanvasLayer/BigMap/Fysik" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BigMap/Fysik" to="CanvasLayer/BigMap/Fysik" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/Interact" to="BaseCharacter" method="_on_interact_pressed"]
 [connection signal="pressed" from="CanvasLayer/Interact" to="bookBox" method="_on_interact_pressed"]
 [connection signal="pressed" from="CanvasLayer/Interact" to="keyChemistry" method="_on_interact_pressed"]

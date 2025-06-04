@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cj7le52ks7iqq"]
+[gd_scene load_steps=12 format=3 uid="uid://cj7le52ks7iqq"]
 
 [ext_resource type="PackedScene" uid="uid://dbygwfnckri8b" path="res://player/NPC/Imports/Johanneberg/micro.glb" id="1_ndjo8"]
 [ext_resource type="Script" path="res://player/NPC/Script/micro.gd" id="2_bltdb"]
@@ -9,9 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://emdkw05ycyav" path="res://player/Other/Scenes/wave_zone.tscn" id="7_rsu3i"]
 [ext_resource type="Texture2D" uid="uid://dqphkalnuma64" path="res://UI/Images/exlamation.png" id="8_l21ue"]
 [ext_resource type="Texture2D" uid="uid://bwq7j8ak5c7jh" path="res://UI/Images/Check.png" id="9_5ts2o"]
-
-[sub_resource type="Resource" id="Resource_jbn3h"]
-metadata/__load_path__ = "res://dialogue/architecture.dialogue"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b1aed"]
 transparency = 1
@@ -112,7 +109,7 @@ layers = 2
 [node name="NPCCollision" parent="." index="2" instance=ExtResource("3_pp0ct")]
 
 [node name="CameraControll" parent="." index="3" instance=ExtResource("4_36u73")]
-dialoque_resource = SubResource("Resource_jbn3h")
+dialoque_resource = null
 
 [node name="CameraControllCollision" parent="CameraControll" index="0" instance=ExtResource("5_oby6d")]
 
