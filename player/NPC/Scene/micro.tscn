@@ -1,7 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://cj7le52ks7iqq"]
+[gd_scene load_steps=13 format=3 uid="uid://cj7le52ks7iqq"]
 
 [ext_resource type="PackedScene" uid="uid://dbygwfnckri8b" path="res://player/NPC/Imports/Johanneberg/micro.glb" id="1_ndjo8"]
 [ext_resource type="Script" path="res://player/NPC/Script/micro.gd" id="2_bltdb"]
+[ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="3_pp0ct"]
+[ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/Other/Scenes/camera_controll.tscn" id="4_36u73"]
+[ext_resource type="PackedScene" uid="uid://bui3dm2ac1fqp" path="res://player/Other/Scenes/camera_controll_collision.tscn" id="5_oby6d"]
+[ext_resource type="PackedScene" uid="uid://d2k4cl3wm4rd0" path="res://player/Other/Scenes/chat_detection_area.tscn" id="6_f1cgy"]
+[ext_resource type="PackedScene" uid="uid://emdkw05ycyav" path="res://player/Other/Scenes/wave_zone.tscn" id="7_rsu3i"]
+[ext_resource type="Texture2D" uid="uid://dqphkalnuma64" path="res://UI/Images/exlamation.png" id="8_l21ue"]
+[ext_resource type="Texture2D" uid="uid://bwq7j8ak5c7jh" path="res://UI/Images/Check.png" id="9_5ts2o"]
+
+[sub_resource type="Resource" id="Resource_jbn3h"]
+metadata/__load_path__ = "res://dialogue/architecture.dialogue"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b1aed"]
+transparency = 1
+albedo_texture = ExtResource("8_l21ue")
+emission_enabled = true
+emission_texture = ExtResource("8_l21ue")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_icj8d"]
+transparency = 1
+albedo_texture = ExtResource("9_5ts2o")
+emission_enabled = true
+emission_texture = ExtResource("9_5ts2o")
+billboard_mode = 1
+billboard_keep_scale = true
 
 [node name="micro" instance=ExtResource("1_ndjo8")]
 script = ExtResource("2_bltdb")
@@ -82,3 +108,27 @@ layers = 2
 
 [node name="Teeth_top" parent="Armature/Skeleton3D" index="2"]
 layers = 2
+
+[node name="NPCCollision" parent="." index="2" instance=ExtResource("3_pp0ct")]
+
+[node name="CameraControll" parent="." index="3" instance=ExtResource("4_36u73")]
+dialoque_resource = SubResource("Resource_jbn3h")
+
+[node name="CameraControllCollision" parent="CameraControll" index="0" instance=ExtResource("5_oby6d")]
+
+[node name="ChatDetectionArea" parent="." index="4" instance=ExtResource("6_f1cgy")]
+
+[node name="WaveZone" parent="." index="5" instance=ExtResource("7_rsu3i")]
+
+[node name="Exlamation" type="Sprite3D" parent="." index="6"]
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_b1aed")
+texture = ExtResource("8_l21ue")
+
+[node name="Check" type="Sprite3D" parent="." index="7"]
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
+visible = false
+layers = 1024
+material_override = SubResource("StandardMaterial3D_icj8d")
+texture = ExtResource("9_5ts2o")

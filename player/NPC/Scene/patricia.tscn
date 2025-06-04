@@ -1,7 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://debrevchux61e"]
+[gd_scene load_steps=13 format=3 uid="uid://debrevchux61e"]
 
 [ext_resource type="PackedScene" uid="uid://djnwlomgp10os" path="res://player/NPC/Imports/Lindholmen/patricia.glb" id="1_hrb3n"]
 [ext_resource type="Script" path="res://player/NPC/Script/patricia.gd" id="2_4uf1u"]
+[ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="3_ku0uq"]
+[ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/Other/Scenes/camera_controll.tscn" id="4_6gu32"]
+[ext_resource type="PackedScene" uid="uid://bui3dm2ac1fqp" path="res://player/Other/Scenes/camera_controll_collision.tscn" id="5_d8tq6"]
+[ext_resource type="PackedScene" uid="uid://d2k4cl3wm4rd0" path="res://player/Other/Scenes/chat_detection_area.tscn" id="6_x6ggx"]
+[ext_resource type="PackedScene" uid="uid://emdkw05ycyav" path="res://player/Other/Scenes/wave_zone.tscn" id="7_ci5ru"]
+[ext_resource type="Texture2D" uid="uid://dqphkalnuma64" path="res://UI/Images/exlamation.png" id="8_wl727"]
+[ext_resource type="Texture2D" uid="uid://bwq7j8ak5c7jh" path="res://UI/Images/Check.png" id="9_3rb56"]
+
+[sub_resource type="Resource" id="Resource_l4uow"]
+metadata/__load_path__ = "res://dialogue/architecture.dialogue"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_swlm7"]
+transparency = 1
+albedo_texture = ExtResource("8_wl727")
+emission_enabled = true
+emission_texture = ExtResource("8_wl727")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g1sj2"]
+transparency = 1
+albedo_texture = ExtResource("9_3rb56")
+emission_enabled = true
+emission_texture = ExtResource("9_3rb56")
+billboard_mode = 1
+billboard_keep_scale = true
 
 [node name="patricia" instance=ExtResource("1_hrb3n")]
 script = ExtResource("2_4uf1u")
@@ -14,3 +40,27 @@ layers = 2
 
 [node name="Teeth_top" parent="Armature/Skeleton3D" index="2"]
 layers = 2
+
+[node name="NPCCollision" parent="." index="2" instance=ExtResource("3_ku0uq")]
+
+[node name="CameraControll" parent="." index="3" instance=ExtResource("4_6gu32")]
+dialoque_resource = SubResource("Resource_l4uow")
+
+[node name="CameraControllCollision" parent="CameraControll" index="0" instance=ExtResource("5_d8tq6")]
+
+[node name="ChatDetectionArea" parent="." index="4" instance=ExtResource("6_x6ggx")]
+
+[node name="WaveZone" parent="." index="5" instance=ExtResource("7_ci5ru")]
+
+[node name="Exlamation" type="Sprite3D" parent="." index="6"]
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_swlm7")
+texture = ExtResource("8_wl727")
+
+[node name="Check" type="Sprite3D" parent="." index="7"]
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
+visible = false
+layers = 1024
+material_override = SubResource("StandardMaterial3D_g1sj2")
+texture = ExtResource("9_3rb56")
