@@ -117,8 +117,8 @@ We are currently standing infront of the department of Chemistry and chemical en
 	=> END
 - Help with a task
 	if not started_quests.has("keyChemistry") and not finished_quests.has("keyChemistry"):
-		I have lost the key to the chemistry lab, have you seen it?
 		if inventory.get("key", 0) > 0 and picked_up_items.has("keyChemistry"):
+			I have lost the key to the chemistry lab, have you seen it?
 			- Yes, I have it, here you go
 			Thank you so much
 			do remove_item("key")
@@ -126,19 +126,21 @@ We are currently standing infront of the department of Chemistry and chemical en
 			do set_mouse_state(GameState.MouseState.GAMEPLAY)
 			do add_finished_quest("keyChemistry")
 		else:
+			I have lost the key to the chemistry lab, have you seen it?
 			- No, do you know where you lost it?
 			Near the MC2 building I think
 			- I'll try to find it
 			do add_started_quest("keyChemistry")
 	elif started_quests.has("keyChemistry") and not finished_quests.has("keyChemistry"):
-		I hope you can find that key of mine
 		if inventory.get("key", 0) > 0 and picked_up_items.has("keyChemistry"):
+			I hope you can find that key of mine
 			- I found it, here
 			Thank you so much
 			do remove_item("key")
 			do add_score(1)
 			do add_finished_quest("keyChemistry")
 		else:
+			I hope you can find that key of mine
 			- I haven't found it yet
 			No worries, I'm thankful for some help though
 	else:
@@ -190,27 +192,29 @@ We are currently standing infront of the department of Mathematical Sciences
 	=> END
 - Help with a task
 	if not started_quests.has("walletMath") and not finished_quests.has("walletMath"):
-		I seem to have lost my wallet, have you seen it?
 		if inventory.get("wallet", 0) > 0 and picked_up_items.has("walletMath"):
+			I seem to have lost my wallet, have you seen it?
 			- I have actually, here you go
 			Look at that, thank you very much
 			do remove_item("wallet")
 			do add_finished_quest("walletMath")
 			do add_score(1)
 		else:
+			I seem to have lost my wallet, have you seen it?
 			- No, where did you see it last?
 			Near Äran
 			- I will look for it
 			do add_started_quest("walletMath")
 	elif started_quests.has("walletMath") and not finished_quests.has("walletMath"):
-		I would be so greatful if you found my wallet
 		if inventory.get("wallet", 0) > 0 and picked_up_items.has("walletMath"):
+			I would be so greatful if you found my wallet
 			- I have it right here
 			Thank you so much
 			do remove_item("wallet")
 			do add_finished_quest("walletMath")
 			do add_score(1)
 		else:
+			I would be so greatful if you found my wallet
 			- I will keep looking
 	else:
 		You have already helped me
@@ -269,19 +273,20 @@ We are currently standing infront of the department of Space, Geo and Environmen
 	=> END
 - Help with a task
 	if not started_quests.has("walletSpace") and not finished_quests.has("walletSpace"):
-		I think I droped my wallet when I was over at the MV building. Could you please look for it?
 		if inventory.get("wallet", 0) > 0 and picked_up_items.has("walletSpace"):
+			I think I droped my wallet when I was over at the MV building. Could you please look for it?
 			- I have already found it, here
 			Thank you so much
 			do remove_item("wallet")
 			do add_finished_quest("walletSpace")
 			do add_score(1)
 		else:
+			I think I droped my wallet when I was over at the MV building. Could you please look for it?
 			- Of course, I will look around
 			do add_started_quest("walletSpace")
 	elif started_quests.has("walletSpace") and not finished_quests.has("walletSpace"):
-		I would be so greatful if you found my wallet
 		if inventory.get("wallet", 0) > 0 and picked_up_items.has("walletSpace"):
+			I would be so greatful if you found my wallet
 			- I have it right here
 			Thank you so much
 			do remove_item("wallet")
@@ -415,14 +420,15 @@ We are currently standing infront of Jupiter
 			do food_orders.append("foodJupiter")
 			do add_started_quest("foodJupiter")
 	elif started_quests.has("foodJupiter") and not finished_quests.has("foodJupiter"):
-		I am starving
 		if inventory["food"].has("foodJupiter"):
+			I am starving
 			- Here is your lunch
 			Thank you so much
 			do remove_item("food", "foodJupiter")
 			do add_finished_quest("foodJupiter")
 			do add_score(1)
 		else:
+			I am starving
 			- I will get your lunch
 	else:
 		You have already helped me
@@ -492,7 +498,6 @@ We are currently standing infront of Anglia
 	elif inventory["book"].has("bookAnglia"):
 		Don't forget about my book
 		- End conversation
-		=> END
 	else:
 		You have already helped me
 		- End conversation

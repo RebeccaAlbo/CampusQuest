@@ -888,6 +888,7 @@ script = ExtResource("13_o5otf")
 [node name="NPCCollision2" parent="characters/svea" instance=ExtResource("9_4hias")]
 
 [node name="CameraControll2" parent="characters/svea" instance=ExtResource("10_xw84y")]
+dialoque_resource = null
 
 [node name="CameraControllCollision" parent="characters/svea/CameraControll2" instance=ExtResource("11_ghfee")]
 
@@ -919,6 +920,7 @@ script = ExtResource("13_o5otf")
 [node name="NPCCollision2" parent="characters/jupiter" instance=ExtResource("9_4hias")]
 
 [node name="CameraControll2" parent="characters/jupiter" instance=ExtResource("10_xw84y")]
+dialoque_resource = null
 
 [node name="CameraControllCollision" parent="characters/jupiter/CameraControll2" instance=ExtResource("11_ghfee")]
 
@@ -946,6 +948,7 @@ script = ExtResource("13_o5otf")
 [node name="NPCCollision2" parent="characters/saga" instance=ExtResource("9_4hias")]
 
 [node name="CameraControll2" parent="characters/saga" instance=ExtResource("10_xw84y")]
+dialoque_resource = null
 
 [node name="CameraControllCollision" parent="characters/saga/CameraControll2" instance=ExtResource("11_ghfee")]
 
@@ -973,6 +976,7 @@ script = ExtResource("13_o5otf")
 [node name="NPCCollision2" parent="characters/patricia" instance=ExtResource("9_4hias")]
 
 [node name="CameraControll2" parent="characters/patricia" instance=ExtResource("10_xw84y")]
+dialoque_resource = null
 
 [node name="CameraControllCollision" parent="characters/patricia/CameraControll2" instance=ExtResource("11_ghfee")]
 
@@ -1000,6 +1004,7 @@ script = ExtResource("13_o5otf")
 [node name="NPCCollision2" parent="characters/aran" instance=ExtResource("9_4hias")]
 
 [node name="CameraControll2" parent="characters/aran" instance=ExtResource("10_xw84y")]
+dialoque_resource = null
 
 [node name="CameraControllCollision" parent="characters/aran/CameraControll2" instance=ExtResource("11_ghfee")]
 
@@ -1028,6 +1033,7 @@ script = ExtResource("13_o5otf")
 [node name="NPCCollision2" parent="characters/anglia" instance=ExtResource("9_4hias")]
 
 [node name="CameraControll2" parent="characters/anglia" instance=ExtResource("10_xw84y")]
+dialoque_resource = null
 
 [node name="CameraControllCollision" parent="characters/anglia/CameraControll2" instance=ExtResource("11_ghfee")]
 

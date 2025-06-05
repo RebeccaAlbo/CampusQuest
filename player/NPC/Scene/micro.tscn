@@ -109,7 +109,6 @@ layers = 2
 [node name="NPCCollision" parent="." index="2" instance=ExtResource("3_pp0ct")]
 
 [node name="CameraControll" parent="." index="3" instance=ExtResource("4_36u73")]
-dialoque_resource = null
 
 [node name="CameraControllCollision" parent="CameraControll" index="0" instance=ExtResource("5_oby6d")]
 
