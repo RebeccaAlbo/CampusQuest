@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dbn7fmsdl1yi8"]
+[gd_scene load_steps=12 format=3 uid="uid://dbn7fmsdl1yi8"]
 
 [ext_resource type="PackedScene" uid="uid://c2t7ukhjdw30n" path="res://player/NPC/Imports/Johanneberg/computer.glb" id="1_pd563"]
 [ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="2_tghgi"]
@@ -35,9 +35,6 @@ func face_back():
 func animation(anim : String, time : float):
 	animation_player.play(anim, time)
 "
-
-[sub_resource type="Resource" id="Resource_iyvta"]
-metadata/__load_path__ = "res://dialogue/architecture.dialogue"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1y7o6"]
 transparency = 1
@@ -138,7 +135,6 @@ layers = 2
 [node name="NPCCollision" parent="." index="2" instance=ExtResource("2_tghgi")]
 
 [node name="CameraControll" parent="." index="3" instance=ExtResource("3_8dk17")]
-dialoque_resource = SubResource("Resource_iyvta")
 
 [node name="CameraControllCollision" parent="CameraControll" index="0" instance=ExtResource("4_iw87i")]
 

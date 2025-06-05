@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://lps4artqdiwu"]
+[gd_scene load_steps=12 format=3 uid="uid://lps4artqdiwu"]
 
 [ext_resource type="PackedScene" uid="uid://b5ttmpbvkrn18" path="res://player/NPC/Imports/Lindholmen/anglia.glb" id="1_x3oa7"]
 [ext_resource type="Script" path="res://player/NPC/Script/anglia.gd" id="2_3o4l0"]
@@ -9,9 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://emdkw05ycyav" path="res://player/Other/Scenes/wave_zone.tscn" id="7_qpj1j"]
 [ext_resource type="Texture2D" uid="uid://dqphkalnuma64" path="res://UI/Images/exlamation.png" id="8_unwwp"]
 [ext_resource type="Texture2D" uid="uid://bwq7j8ak5c7jh" path="res://UI/Images/Check.png" id="9_7dgcr"]
-
-[sub_resource type="Resource" id="Resource_g0pa8"]
-metadata/__load_path__ = "res://dialogue/architecture.dialogue"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l03fe"]
 transparency = 1
@@ -112,7 +109,6 @@ layers = 2
 [node name="NPCCollision" parent="." index="2" instance=ExtResource("3_mr82o")]
 
 [node name="CameraControll" parent="." index="3" instance=ExtResource("4_vc1ra")]
-dialoque_resource = SubResource("Resource_g0pa8")
 
 [node name="CameraControllCollision" parent="CameraControll" index="0" instance=ExtResource("5_ycg06")]
 

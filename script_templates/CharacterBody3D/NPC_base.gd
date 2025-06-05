@@ -28,5 +28,6 @@ func animation(anim : String, time : float):
 
 # Updates which Sprite3D is visible above NPC on maps
 func change_mark():
+	print("check: ", get_node("Check").visible, " ex: ", get_node("Exlamation").visible)
 	get_node("Check").visible = true
 	get_node("Exlamation").visible = false

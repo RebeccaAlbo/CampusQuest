@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cviwhmht567mj"]
+[gd_scene load_steps=12 format=3 uid="uid://cviwhmht567mj"]
 
 [ext_resource type="PackedScene" uid="uid://btf0xugqi8kcf" path="res://player/NPC/Imports/Lindholmen/jupiter.glb" id="1_n686a"]
 [ext_resource type="Script" path="res://player/NPC/Script/jupiter.gd" id="2_ij8xp"]
@@ -9,9 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://emdkw05ycyav" path="res://player/Other/Scenes/wave_zone.tscn" id="7_t0bcw"]
 [ext_resource type="Texture2D" uid="uid://dqphkalnuma64" path="res://UI/Images/exlamation.png" id="8_3pf72"]
 [ext_resource type="Texture2D" uid="uid://bwq7j8ak5c7jh" path="res://UI/Images/Check.png" id="9_2xlfw"]
-
-[sub_resource type="Resource" id="Resource_7jirk"]
-metadata/__load_path__ = "res://dialogue/architecture.dialogue"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vamrh"]
 transparency = 1
@@ -115,7 +112,6 @@ layers = 2
 [node name="NPCCollision" parent="." index="2" instance=ExtResource("3_3nsud")]
 
 [node name="CameraControll" parent="." index="3" instance=ExtResource("4_auhfc")]
-dialoque_resource = SubResource("Resource_7jirk")
 
 [node name="CameraControllCollision" parent="CameraControll" index="0" instance=ExtResource("5_t8jvd")]
 
@@ -125,6 +121,7 @@ dialoque_resource = SubResource("Resource_7jirk")
 
 [node name="Exlamation" type="Sprite3D" parent="." index="6"]
 transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
+visible = false
 layers = 1024
 material_override = SubResource("StandardMaterial3D_vamrh")
 texture = ExtResource("8_3pf72")

@@ -1,6 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://ci7kcmimugf4w"]
+[gd_scene load_steps=12 format=3 uid="uid://ci7kcmimugf4w"]
 
 [ext_resource type="PackedScene" uid="uid://c3lyo743c46k5" path="res://player/NPC/Imports/Lindholmen/äran.glb" id="1_hnitc"]
+[ext_resource type="PackedScene" uid="uid://c7yhcimbsxqhj" path="res://player/Other/Scenes/camera_controll.tscn" id="2_v3dx7"]
+[ext_resource type="PackedScene" uid="uid://bui3dm2ac1fqp" path="res://player/Other/Scenes/camera_controll_collision.tscn" id="3_om3p2"]
+[ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="4_2r5gj"]
+[ext_resource type="PackedScene" uid="uid://emdkw05ycyav" path="res://player/Other/Scenes/wave_zone.tscn" id="5_a1mxk"]
+[ext_resource type="PackedScene" uid="uid://d2k4cl3wm4rd0" path="res://player/Other/Scenes/chat_detection_area.tscn" id="6_a6u17"]
+[ext_resource type="Texture2D" uid="uid://dqphkalnuma64" path="res://UI/Images/exlamation.png" id="7_h7yl7"]
+[ext_resource type="Texture2D" uid="uid://bwq7j8ak5c7jh" path="res://UI/Images/Check.png" id="8_xhk3r"]
 
 [sub_resource type="GDScript" id="GDScript_aw2eu"]
 script/source = "extends CharacterBody3D
@@ -28,6 +35,22 @@ func face_back():
 func animation(anim : String, time : float):
 	animation_player.play(anim, time)
 "
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0l1gv"]
+transparency = 1
+albedo_texture = ExtResource("7_h7yl7")
+emission_enabled = true
+emission_texture = ExtResource("7_h7yl7")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sm64p"]
+transparency = 1
+albedo_texture = ExtResource("8_xhk3r")
+emission_enabled = true
+emission_texture = ExtResource("8_xhk3r")
+billboard_mode = 1
+billboard_keep_scale = true
 
 [node name="äran" instance=ExtResource("1_hnitc")]
 script = SubResource("GDScript_aw2eu")
@@ -99,3 +122,26 @@ bones/47/rotation = Quaternion(0.00215545, 0.138467, 0.989647, 0.0376975)
 bones/47/scale = Vector3(1, 1, 0.999998)
 bones/48/rotation = Quaternion(-0.278102, -0.00292851, 0.0340221, 0.959944)
 bones/49/scale = Vector3(1, 1, 1)
+
+[node name="CameraControll" parent="." index="2" instance=ExtResource("2_v3dx7")]
+
+[node name="CameraControllCollision" parent="CameraControll" index="0" instance=ExtResource("3_om3p2")]
+
+[node name="NPCCollision" parent="." index="3" instance=ExtResource("4_2r5gj")]
+
+[node name="WaveZone" parent="." index="4" instance=ExtResource("5_a1mxk")]
+
+[node name="ChatDetectionArea" parent="." index="5" instance=ExtResource("6_a6u17")]
+
+[node name="Exlamation" type="Sprite3D" parent="." index="6"]
+transform = Transform3D(0.326152, -3.98668, 1.74263e-07, 0, -1.74846e-07, -4, 3.98668, 0.326152, -1.42566e-08, 0, 9.54637, 0)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_0l1gv")
+texture = ExtResource("7_h7yl7")
+
+[node name="Check" type="Sprite3D" parent="." index="7"]
+transform = Transform3D(0.203847, -2.49168, 1.08915e-07, 0, -1.09278e-07, -2.5, 2.49168, 0.203847, -8.91045e-09, 0, 9.58065, 0)
+visible = false
+layers = 1024
+material_override = SubResource("StandardMaterial3D_sm64p")
+texture = ExtResource("8_xhk3r")

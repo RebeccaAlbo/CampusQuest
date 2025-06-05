@@ -330,7 +330,7 @@ do set_mouse_state(GameState.MouseState.GAMEPLAY)
 Oh hello there!
 
 We are currently standing infront of Svea
-- Learn more about the department
+- Learn more about the building
 	do show_extra_info(true, "svea")
 	if not talked_to_npcs.has("svea")
 		do add_score(1, "svea")
@@ -355,7 +355,7 @@ do set_mouse_state(GameState.MouseState.GAMEPLAY)
 Oh hello there!
 
 We are currently standing infront of Saga
-- Learn more about the department
+- Learn more about the building
 	do show_extra_info(true, "saga")
 	if not talked_to_npcs.has("saga")
 		do add_score(1, "saga")
@@ -381,7 +381,7 @@ do set_mouse_state(GameState.MouseState.GAMEPLAY)
 Oh hello there!
 
 We are currently standing infront of Äran
-- Learn more about the department
+- Learn more about the building
 	do show_extra_info(true, "aran")
 	if not talked_to_npcs.has("aran")
 		do add_score(1, "aran")
@@ -407,7 +407,7 @@ do set_mouse_state(GameState.MouseState.GAMEPLAY)
 Oh hello there!
 
 We are currently standing infront of Jupiter
-- Learn more about the department
+- Learn more about the building
 	do show_extra_info(true, "jupiter")
 	if not talked_to_npcs.has("jupiter")
 		do add_score(1, "jupiter")
@@ -440,7 +440,7 @@ do set_mouse_state(GameState.MouseState.GAMEPLAY)
 Oh hello there!
 
 We are currently standing infront of Kuggen
-- Learn more about the department
+- Learn more about the building
 	do show_extra_info(true, "kuggen")
 	if not talked_to_npcs.has("kuggen")
 		do add_score(1, "kuggen")
@@ -481,7 +481,7 @@ do set_mouse_state(GameState.MouseState.GAMEPLAY)
 Oh hello there!
 
 We are currently standing infront of Anglia
-- Learn more about the department
+- Learn more about the building
 	do show_extra_info(true, "anglia")
 	if not talked_to_npcs.has("anglia")
 		do add_score(1, "anglia")
@@ -509,7 +509,7 @@ do set_mouse_state(GameState.MouseState.GAMEPLAY)
 Oh hello there!
 
 We are currently standing infront of Patricia
-- Learn more about the department
+- Learn more about the building
 	do show_extra_info(true, "patricia")
 	if not talked_to_npcs.has("patricia")
 		do add_score(1, "patricia")

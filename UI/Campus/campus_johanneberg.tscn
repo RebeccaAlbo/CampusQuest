@@ -150,12 +150,12 @@ light_color = Color(1, 0.941176, 0.803922, 1)
 transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -296.995, 0.545874, -108.713)
 
 [node name="marker" type="MeshInstance3D" parent="BaseCharacter"]
-transform = Transform3D(4, 0, 1.78814e-07, 0, 4, 0, -1.78814e-07, 0, 4, 0, 3.13048, 0)
+transform = Transform3D(4, 0, 1.78814e-07, 0, 4, 0, -1.78814e-07, 0, 4, 0, 6.89784, 0)
 layers = 1024
 mesh = SubResource("CylinderMesh_3gy84")
 
 [node name="bookBox" parent="." instance=ExtResource("34_ngb0i")]
-transform = Transform3D(0.633927, 0, -1.35946, 0, 1.5, 0, 1.35946, 0, 0.633927, -15.976, 0.0723877, -173.181)
+transform = Transform3D(0.422618, 0, -0.906308, 0, 1, 0, 0.906308, 0, 0.422618, -15.976, 0.0723877, -173.181)
 
 [node name="keyChemistry" parent="." instance=ExtResource("29_fe313")]
 transform = Transform3D(3.56833, 0, -3.50243, 0, 5, 0, 3.50243, 0, 3.56833, -206.314, 0.184937, -235.869)
@@ -271,7 +271,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(138, 138)
 render_target_update_mode = 4
 
 [node name="MinimapCamera" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]

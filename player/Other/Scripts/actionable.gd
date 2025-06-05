@@ -3,12 +3,16 @@ extends Area3D
 @export var dialoque_resource : DialogueResource
 @export var dialoque_start : String = ""
 
+signal dialogue_starting
+signal dialogue_ending
+
 const Balloon = preload("res://dialogue/balloon.tscn")
 # For zooming in on NPC during conversation
 var camera: Camera3D = null
 var phone_camera: Camera3D = null
 var dialogue_camera: Camera3D = null
 var interactButton: Button = null
+var minimap
 
 
 var player
@@ -16,6 +20,7 @@ var npc
 var department: String
 
 func _ready():
+	minimap = get_tree().current_scene.get_node("CanvasLayer/Minimap")
 	npc = get_parent()
 	if npc:
 		department = npc.name
@@ -49,6 +54,7 @@ func action() -> void:
 		print("not all cameras found")
 	
 	# Set up for dialoque environment
+	minimap.visible = false
 	player.in_dialogue(npc)
 	npc.face_toward(player)
 	# needed to avoid npc to keep waving instead of talking during dialogue
@@ -64,6 +70,7 @@ func action() -> void:
 	await DialogueManager.dialogue_ended
 	if (FlutterBridge.running_extra_info):
 		await FlutterBridge.extra_info_ended
+	minimap.visible = true
 	player.end_dialoque()
 	npc.animation("Idle", 0.3)
 	npc.face_back()
@@ -74,6 +81,3 @@ func action() -> void:
 	else:
 		camera.current = true
 	GameState.set_mouse_state(GameState.MouseState.GAMEPLAY)
-	#if npc.name not in GameState.talked_to_npcs and not npc.name == "Rebecca":
-	#	npc.change_mark()
-	#	GameState.add_npc_point(npc)

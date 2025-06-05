@@ -26,3 +26,4 @@ func animation(anim : String, time : float):
 func change_mark():
 	get_node("Check").visible = true
 	get_node("Exlamation").visible = false
+	print("check: ", get_node("Check").visible, " ex: ", get_node("Exlamation").visible)
