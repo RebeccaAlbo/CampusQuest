@@ -69,6 +69,14 @@ var quest_description := [
 		"id": "walletSpace",
 		"desc": "Find the lost wallet near MV and return it to the department of Space"
 	},
+	{
+		"id": "linholmenArrow",
+		"desc": "Follow the arrow at Lindholmen."
+	},
+	{
+		"id": "johannebergArrow",
+		"desc": "Follow the arrow at  Johanneberg."
+	}
 ]
 
 func add_started_quest(id: String):
