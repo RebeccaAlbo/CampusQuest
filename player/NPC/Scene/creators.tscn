@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cd5wttsnu0crk"]
+[gd_scene load_steps=10 format=3 uid="uid://cd5wttsnu0crk"]
 
+[ext_resource type="Script" path="res://player/NPC/Scene/creators.gd" id="1_fr7yp"]
 [ext_resource type="PackedScene" uid="uid://be030gbpikbb8" path="res://player/NPC/Scene/amanda.tscn" id="1_ke3q1"]
 [ext_resource type="PackedScene" uid="uid://c2t6ce1e5octn" path="res://player/Other/Scenes/npc_collision.tscn" id="2_0pxut"]
 [ext_resource type="Script" path="res://script_templates/CharacterBody3D/NPC_base.gd" id="2_mlqav"]
@@ -10,14 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://d2k4cl3wm4rd0" path="res://player/Other/Scenes/chat_detection_area.tscn" id="8_68chn"]
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_fr7yp")
 
 [node name="Amanda" parent="." instance=ExtResource("1_ke3q1")]
 transform = Transform3D(0.881839, 0, -0.471551, 0, 1, 0, 0.471551, 0, 0.881839, 0, 0, 0)
 script = ExtResource("2_mlqav")
 
-[node name="NPCCollision" parent="Amanda" instance=ExtResource("2_0pxut")]
-
-[node name="WaveZone" parent="Amanda" instance=ExtResource("5_w61y3")]
+[node name="NPCCollision2" parent="Amanda" instance=ExtResource("2_0pxut")]
 
 [node name="Rebecca" parent="." instance=ExtResource("3_451bl")]
 transform = Transform3D(0.990821, 0, 0.13518, 0, 1, 0, -0.13518, 0, 0.990821, -1.36203, 0, 0)

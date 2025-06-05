@@ -10,7 +10,7 @@ extends Control
 @onready var quest_log: Control = $QuestLog
 @onready var settings: Control = $SettingsMenu
 
-var debug_enabled := true  # Toggle this to enable/disable debugging
+var debug_enabled := false  # Toggle this to enable/disable debugging
 
 # Paused by other menus
 var paused: bool = false

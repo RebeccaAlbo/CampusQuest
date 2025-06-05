@@ -9,7 +9,7 @@ extends Node
 @export var lindholmen_music: AudioStream = preload("res://assets/music/LINDHOLMEN.mp3")
 @export var custom_music: AudioStream = preload("res://assets/music/CUSTOM.mp3")
 
-var debug_enabled := true  # Toggle this to enable/disable debugging
+var debug_enabled := false  # Toggle this to enable/disable debugging
 
 var current_track: AudioStream = null
 var music_player: AudioStreamPlayer
