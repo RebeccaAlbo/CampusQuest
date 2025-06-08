@@ -36,6 +36,10 @@ func _ready():
 
 				else:
 					if debug_enabled: print("[DEBUG] Unknown scene context for arrow: %s in scene %s" % [child_name, scene_name])
+			else:
+				add_StaticBody3D_colision_to_mesh(child)  # Default: add collision
+				if debug_enabled: print("[DEBUG] add collision")
+				
 func add_StaticBody3D_colision_to_mesh(mesh_instance: MeshInstance3D):
 	var static_body = StaticBody3D.new()
 	mesh_instance.add_child(static_body)

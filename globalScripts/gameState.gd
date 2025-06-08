@@ -128,7 +128,6 @@ func load_game() -> bool:
 	else:
 		# Fallback to local save
 		if FileAccess.file_exists("user://save_game.json"):
-			print("we should not be here")
 			print(ProjectSettings.globalize_path("user://save_game.json"))
 
 			var file = FileAccess.open("user://save_game.json", FileAccess.READ)
