@@ -40,7 +40,7 @@ func _setup_js_bridge():
 
 	# JavaScript code to set up the bridge and listen for messages
 	var js_code := """
-		window.godotBridge = {
+		window.godotCallbackHandler = {
 			callback: null,
 			setCallback: function(cb) { this.callback = cb; },
 			sendMessage: function(msg) {
@@ -58,9 +58,9 @@ func _setup_js_bridge():
 				case 'speakers_request':
 				case 'game_response':
 				case 'save_response':
-					if (window.godotBridge) {
+					if (window.godotCallbackHandler) {
 						const json = JSON.stringify(message);
-						window.godotBridge.sendMessage(json);
+						window.godotCallbackHandler.sendMessage(json);
 					}
 					break;
 			}
@@ -70,11 +70,11 @@ func _setup_js_bridge():
 	JavaScriptBridge.eval(js_code, true)
 
 	# Get the interface for the Godot-JavaScript bridge and set the callback
-	var godot_bridge = JavaScriptBridge.get_interface("godotBridge")
+	var godotCallbackHandler = JavaScriptBridge.get_interface("godotCallbackHandler")
 	
 	# Create the JavaScript callback that will handle messages from JS
 	js_callback = JavaScriptBridge.create_callback(_on_js_message)
-	godot_bridge.setCallback(js_callback)
+	godotCallbackHandler.setCallback(js_callback)
 
 	# Notify Flutter that Godot is ready
 	JavaScriptBridge.eval("window.parent.postMessage({ type: 'godot_request' }, '*');", true)
